@@ -5692,7 +5692,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;substitution&quot; </i><![endif]--><
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>of values for variables, such that the
 statement in the query, i.e. </p>
 
-<p class="p-el">nearby(tottenham_court_road,leicester_square)</p>
+<pre class="query" id="query15"><span class="swish query">?-nearby(tottenham_court_road,leicester_square).</span></pre>
 
 <p class="tekst">is true. Now, if the nearby-relation is defined by means of a
 list of facts, answers to queries are easily found: just look for a fact that <i style="mso-bidi-font-style:normal">matches</i> the query, by which is meant
@@ -5710,7 +5710,7 @@ we match it with the conclusion of the rule </p>
 <span style="font-family:Courier">Y</span><span style="font-family:Symbol">¨</span><span style="font-family:Courier">W</span>}. We then try to find an answer for the
 premises of the rule under this substitution, i.e. we try to answer the query </p>
 
-<p class="p-el">?-connected(tottenham_court_road,W,L). </p>
+<pre class="query" id="query15"><span class="swish query">?-connected(tottenham_court_road,W,L). </span></pre>
 
 <p class="tekst">That is, we can find a station nearby Tottenham Court Road, if
 we can find a station directly connected to it. This second query is answered
@@ -6546,7 +6546,10 @@ Courier">,</span>Õ (<b style="mso-bidi-font-weight:normal">and</b>), we can
 combine atoms to form <i style="mso-bidi-font-style:normal">clauses</i>. For
 instance,</p>
 
-<p class="p-el">married;bachelor:-man,adult</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.1.1" style="display: block;">
+	married;bachelor:-man,adult
+</pre>
+<!-- Original text <p class="p-el">married;bachelor:-man,adult</p> -->
 
 <p class="tekst">is a clause<!--[if supportFields]><span style='display:none;
 mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
@@ -6591,16 +6594,24 @@ padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.1.</i>
 Translate the following statements into clauses, using the atoms <span style="font-family:Courier">person</span>, <span style="font-family:Courier">sad</span>
 and <span style="font-family:Courier">happy</span>:<br>
-(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>persons
-are happy or sad;<br>
-(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>no
-person is both happy and sad;<br>
-(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>sad
-persons are not happy;<br>
-(<i style="mso-bidi-font-style:normal">d</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>non-happy
-persons are sad.</p>
+
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.1" style="display: block;">
+	(a) persons are happy or sad;
+</pre>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.2" style="display: block;">
+	(b) no person is both happy and sad;
+</pre>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.3" style="display: block;">
+	(c) sad persons are not happy;
+</pre>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.4" style="display: block;">
+	(d) non-happy persons are sad.
+</pre>
 
 </div>
+
+
+
 
 <p class="sektie">A <i style="mso-bidi-font-style:normal">program</i><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -6776,10 +6787,19 @@ the program<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>:-bachelor.</span><br>
 determine which of the following clauses are logical consequences of this
 program:<br>
-(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">married:-adult</span>;<br>
-(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">married:-bachelor</span>;<br>
-(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">bachelor:-man</span>;<br>
-(<i style="mso-bidi-font-style:normal">d</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">bachelor:-bachelor</span>.</p>
+
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.1" style="display: block;">
+	(a) married:-adult;
+</pre>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.2" style="display: block;">
+	(b) married:-bachelor;
+</pre>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.3" style="display: block;">
+	(c) bachelor:-man;
+</pre>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.4" style="display: block;">
+	(d) bachelor:-bachelor;
+</pre>
 
 </div>
 
@@ -6906,9 +6926,9 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.3.</i> Write
-down the six Herbrand interpretations that are not models of the program.</p>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e3" style="display: block;">
+	Exercise 2.3. Write down the six Herbrand interpretations that are not models of the program.
+</pre>
 
 </div>
 
@@ -7045,15 +7065,13 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.4.</i> Give a
-derivation of <span style="font-family:Courier">friendly</span> from the
-following program:<br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">happy;friendly:-teacher.<br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>friendly:-teacher,happy.<br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>teacher;wise.<br>
-<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span><span style="mso-tab-count:
-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>teacher:-wise.</span></p>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e4" style="display: block;">
+Exercise 2.4. Give a derivation of friendly from the following program:
+    <tab/> happy;friendly:-teacher.
+    <tab/> friendly:-teacher,happy.
+    <tab/> teacher;wise.
+    <tab/> teacher:-wise.
+</pre>
 
 </div>
 
@@ -7200,12 +7218,12 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.5.</i> Prove
-by refutation that <span style="font-family:Courier">friendly:-has_friends</span>
-is a logical consequence of the following clauses: <br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">happy:-has_friends.<br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>friendly:-happy.</span></p>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e5" style="display: block;">
+Exercise 2.5. Prove by refutation that <span style="font-family:Courier">friendly:-has_friends</span> 
+	is a logical consequence of the following clauses:
+	<tab/> 	happy:-has_friends.
+	<tab/> 	friendly:-happy.
+</pre>
 
 </div>
 
@@ -7335,9 +7353,11 @@ propositional clausal logic, in particular those of literal, clause and
 program, stay the same. So, the following clauses are meant to represent the
 above statements:</p>
 
-<p class="p-el">likes(peter,S):-student_of(S,peter).<br>
-student_of(maria,peter).<br>
-likes(peter,maria).</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.1" style="display: block;">
+likes(peter,S):-student_of(S,peter).
+student_of(maria,peter).
+likes(peter,maria).
+</pre>
 
 <p class="tekst">The intended meaning of these clauses are, respectively, Ô<b style="mso-bidi-font-weight:normal">if</b> <i style="mso-bidi-font-style:normal">S</i>
 is a student of Peter <b style="mso-bidi-font-weight:normal">then</b> Peter
@@ -7493,12 +7513,10 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.6.</i> How
-many models does <i style="mso-bidi-font-style:normal">C</i> have over the
-Herbrand universe <br>
-{<span style="font-family:Courier">peter</span>, <span style="font-family:Courier">maria</span>}?
-</p>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.2.e6" style="display: block;">
+Exercise 2.6. How many models does <i style="mso-bidi-font-style:normal">C</i> have over the Herbrand universe
+	{<span style="font-family:Courier">peter</span>, <span style="font-family:Courier">maria</span>}?
+</pre>
 
 </div>
 
@@ -7577,18 +7595,16 @@ margin;mso-element-top:123.95pt;mso-height-rule:exactly">
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
   mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
   padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-  <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:
-  18.0pt;margin-left:0cm;mso-element:frame;mso-element-frame-hspace:0cm;
-  mso-element-frame-vspace:0cm;mso-element-wrap:auto;mso-element-anchor-vertical:
-  page;mso-element-anchor-horizontal:margin;mso-element-top:123.95pt;
-  mso-height-rule:exactly"><i style="mso-bidi-font-style:normal">Exercise 2.7</i>.
-  Write a clause expressing that Peter teaches all the first-year courses, and
-  apply resolution to this clause and the above resolvent.</p>
+
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.2.e7" style="display: block;">
+	Exercise 2.7. Write a clause expressing that Peter teaches all the first-year courses,     
+	<tab/> 	and apply resolution to this clause and the above resolvent.
+</pre>
+  
   </div>
   </td>
  </tr>
 </tbody></table>
-
 </div>
 
 <p class="sektie">Consider the following two-clause program <i style="mso-bidi-font-style:
@@ -7746,9 +7762,9 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.8</i>. Draw
-the proof tree for the answer {<span style="font-family:Courier">N</span><span style="font-family:Symbol">¨</span><span style="font-family:Courier">paul</span>}.</p>
+<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.2.e8" style="display: block;">
+	Exercise 2.8. Draw the proof tree for the answer {<span style="font-family:Courier">N</span><span style="font-family:Symbol">-></span><span style="font-family:Courier">paul</span>}.</p>
+</pre>
 
 </div>
 
