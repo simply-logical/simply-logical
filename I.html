@@ -5674,7 +5674,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;query&quot; </i><![endif]--><!--[if 
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>like Ôwhich station is nearby Tottenham
 Court Road?Õ will be written as </p>
 
-<pre class="source swish inherit query" data-variant-id="group-1" inherit-id="query111 query113" id="query115" style="display: block;">
+<pre class="source swish inherit query" data-variant-id="group-1" inherit-id="query111 query113" id="query114" style="display: block;">
 ?-nearby(tottenham_court_road,W).
 </pre>
 
@@ -5696,7 +5696,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;substitution&quot; </i><![endif]--><
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>of values for variables, such that the
 statement in the query, i.e. </p>
 
-<p class="p-el">nearby(tottenham_court_road,leicester_square)</p>
+<pre class="query" id="query15"><span class="swish query">?-nearby(tottenham_court_road,leicester_square).</span></pre>
 
 <p class="tekst">is true. Now, if the nearby-relation is defined by means of a
 list of facts, answers to queries are easily found: just look for a fact that <i style="mso-bidi-font-style:normal">matches</i> the query, by which is meant
@@ -5714,7 +5714,7 @@ we match it with the conclusion of the rule </p>
 <span style="font-family:Courier">Y</span><span style="font-family:Symbol">¨</span><span style="font-family:Courier">W</span>}. We then try to find an answer for the
 premises of the rule under this substitution, i.e. we try to answer the query </p>
 
-<p class="p-el">?-connected(tottenham_court_road,W,L). </p>
+<pre class="query" id="query15"><span class="swish query">?-connected(tottenham_court_road,W,L). </span></pre>
 
 <p class="tekst">That is, we can find a station nearby Tottenham Court Road, if
 we can find a station directly connected to it. This second query is answered
