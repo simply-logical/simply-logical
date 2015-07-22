@@ -34,9 +34,11 @@
 	  return obj;
 	}
 	
+	// Begin edited by TW.
 	if( elem.hasClass("temp") ) {
 		database[elem.attr("id")] = elem.text();
 	}
+	// End edit.
 	
 	if ( elem.hasClass("exercise") ) {
 	  currentSource = null;		/* make them independent */
@@ -49,21 +51,14 @@
 	    elem = run;
 	    appendRunButtonTo(elem.parent());
 	  }
-	} else if ( elem.hasClass("source") ) {
+	} 
+	
+	// Begin modified by TW. 
+	else if ( elem.hasClass("source") ) {
 	  data.queries = [];
-	  if ( elem.hasClass("inherit") ) {
-      var inherits = elem.attr("inherit-id").split(" ");
-      var text = "";
-      for (index = 0; index < inherits.length; index++) {
-        text += database[inherits[index]];
-      }
-      if ( elem.hasClass("query") ) {
-        data.queries.push(elem.text(), "\n");
-        data.source = text;
-      } else {
-  		//var text = database[elem.attr("inherit-id")];
-  		  data.source = text + elem.text();
-      }
+	  if ( elem.hasClass("inherit") && database[elem.attr("inherit-id")]) {
+		var text = "% Inheritance\n" + database[elem.attr("inherit-id")] + "% End of inheritance\n";
+		data.source = text + elem.text();  
 	  }
 	  else {
 		data.source = elem.text();
@@ -71,7 +66,10 @@
 	  currentSource = data;
 	  elem.wrap("<div class='source'></div>");
 	  appendRunButtonTo(elem.parent());
-	} else if ( elem.hasClass("query") ) {
+	}
+    // End modified.
+	
+	else if ( elem.hasClass("query") ) {
 	  if ( currentSource ) {
 	    currentSource.queries.push(elem.text(), "\n");
 	  } else {

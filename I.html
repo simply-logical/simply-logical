@@ -5515,7 +5515,7 @@ specifies which stations are directly connected by which lines. If we follow
 the lines from left to right (Northern downwards), we come up with the
 following 11 formulas:</p>
 
-<pre class="source swish temp" data-variant-id="group-1" id="query111" style="display: block;">
+<pre class="source swish temp" data-variant-id="group-1" id="swish.1.0.1" style="display: block;">
 connected(bond_street,oxford_circus,central).
 connected(oxford_circus,tottenham_court_road,central).
 connected(bond_street,green_park,jubilee).
@@ -5533,7 +5533,7 @@ connected(leicester_square,charing_cross,northern).
 normal">nearby</i> if they are on the same line, with at most one station in
 between. This relation can also be represented by a set of logical formulas:</p>
 
-<pre class="source swish" data-variant-id="group-1" id="query112" style="display: block;">
+<pre class="source swish" data-variant-id="group-1" id="swish.1.0.2" style="display: block;">
 nearby(bond_street,oxford_circus).
 nearby(oxford_circus,tottenham_court_road).
 nearby(bond_street,tottenham_court_road).
@@ -5608,7 +5608,7 @@ connected via <i style="mso-bidi-font-style:normal">L</i>, then <i style="mso-bi
 normal">Y</i> are also nearby. We can formulate this in logic as follows:</p>
 
 
-<pre class="source swish inherit temp" inherit-id="query111" data-variant-id="group-1" id="query113" style="display: block;">
+<pre class="source swish inherit" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;">
 nearby(X,Y):-connected(X,Y,L).
 nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).
 <!-- nearby(X,Y):-connected(X,Y,L). 
@@ -5630,7 +5630,7 @@ normal">L</i>, <i style="mso-bidi-font-style:normal">X</i> is nearby <i style="m
 simply lists all pairs of stations that are nearby each other, and one in terms
 of direct connections. Logical formulas of the first type, such as</p>
 
-<pre class="query" id="query11"><span class="swish query">?- nearby(bond_street,oxford_circus).</span></pre>
+<p class=p-el>nearby(bond_street,oxford_circus) </p>
 
 <p class="tekst">will be called <i style="mso-bidi-font-style:normal">fact</i><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -5639,7 +5639,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;fact&quot; \b </i><![endif]--><!--[i
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><i style="mso-bidi-font-style:normal">s</i>, and formulas of the second type, such
 as</p>
 
-<pre class="query" id="query12"><span class="swish query">?- nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).</span></pre>
+<p class=p-el>nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L) </p>
 
 <p class="tekst">will be called <i style="mso-bidi-font-style:normal">rule</i><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -5674,11 +5674,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;query&quot; </i><![endif]--><!--[if 
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>like Ôwhich station is nearby Tottenham
 Court Road?Õ will be written as </p>
 
-<pre class="source swish inherit query" data-variant-id="group-1" inherit-id="query111 query113" id="query114" style="display: block;">
-?-nearby(tottenham_court_road,W).
-</pre>
-
-
+<pre class="query" id="query.1.1.1"><span class="swish query">?- nearby(tottenham_court_road,W).</span></pre>
 
 <p class="tekst">where the prefix Ô<span style="font-family:Courier">?-</span>Õ
 indicates that this is a query rather than a fact. An <i style="mso-bidi-font-style:
@@ -5696,7 +5692,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;substitution&quot; </i><![endif]--><
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>of values for variables, such that the
 statement in the query, i.e. </p>
 
-<pre class="query" id="query15"><span class="swish query">?-nearby(tottenham_court_road,leicester_square).</span></pre>
+<p class="p-el">nearby(tottenham_court_road,leicester_square)</p>
 
 <p class="tekst">is true. Now, if the nearby-relation is defined by means of a
 list of facts, answers to queries are easily found: just look for a fact that <i style="mso-bidi-font-style:normal">matches</i> the query, by which is meant
@@ -5714,7 +5710,7 @@ we match it with the conclusion of the rule </p>
 <span style="font-family:Courier">Y</span><span style="font-family:Symbol">¨</span><span style="font-family:Courier">W</span>}. We then try to find an answer for the
 premises of the rule under this substitution, i.e. we try to answer the query </p>
 
-<pre class="query" id="query15"><span class="swish query">?-connected(tottenham_court_road,W,L). </span></pre>
+<p class="p-el">?-connected(tottenham_court_road,W,L). </p>
 
 <p class="tekst">That is, we can find a station nearby Tottenham Court Road, if
 we can find a station directly connected to it. This second query is answered
