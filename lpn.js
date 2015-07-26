@@ -62,7 +62,7 @@
 	}
 	
 	// End edit.
-	
+	//
 	// Begin modified by TW & CH. 
 	else if ( elem.hasClass("source") ) {
 	  data.queries = [];
