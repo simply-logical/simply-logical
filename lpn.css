@@ -7,18 +7,6 @@ div.source {
   border-radius: 5px;
 }
 
-/* Edited by TW. */
-div.answer {
-  position: relative;
-  margin: 10px 2ex;
-  border: 1px solid #888;
-  background-color: #eee;
-  padding: 4px 8px;
-  border-radius: 5px;
-}
-
-/* End of edition */
-
 pre.query, pre.source, pre.verbatim {
   margin: 10px 2ex;
 }
@@ -78,7 +66,6 @@ div.query div.load {
 
 div.source.swish div.load,
 div.query.swish div.load,
-div.answer.swish div.load,
 div.open-prolog.swish div.load {
   background-image: url("close.png");
 }
