@@ -34,9 +34,11 @@
 	  return obj;
 	}
 	
+	// Begin edited by TW.
 	if( elem.hasClass("temp") ) {
 		database[elem.attr("id")] = elem.text();
 	}
+	// End edit.
 	
 	if ( elem.hasClass("exercise") ) {
 	  currentSource = null;		/* make them independent */
@@ -49,21 +51,35 @@
 	    elem = run;
 	    appendRunButtonTo(elem.parent());
 	  }
-	} else if ( elem.hasClass("source") ) {
+	} 
+	
+	// Begin edited by TW.
+	
+	else if ( elem.hasClass("answer") ) {
+		elem.wrap("<div class='answer'></div>");
+		data.answer = elem.attr("answer");
+		appendRunButtonTo(elem.parent());
+	}
+	
+	// End edit.
+	//
+	// Begin modified by TW & CH. 
+	else if ( elem.hasClass("source") ) {
 	  data.queries = [];
 	  if ( elem.hasClass("inherit") ) {
-      var inherits = elem.attr("inherit-id").split(" ");
-      var text = "";
-      for (index = 0; index < inherits.length; index++) {
-        text += database[inherits[index]];
-      }
-      if ( elem.hasClass("query") ) {
-        data.queries.push(elem.text(), "\n");
-        data.source = text;
-      } else {
-  		//var text = database[elem.attr("inherit-id")];
-  		  data.source = text + elem.text();
-      }
+        var inherits = elem.attr("inherit-id").split(" ");
+        var text = "";
+        for (index = 0; index < inherits.length; index++) {
+          if(database[inherits[index]]) {
+			text += database[inherits[index]];
+		  }
+        }
+		if ( elem.hasClass("query") ) {
+			data.queries.push(elem.text(), "\n");
+			data.source = text;
+		} else {
+			data.source = text + elem.text();
+		}
 	  }
 	  else {
 		data.source = elem.text();
@@ -71,7 +87,10 @@
 	  currentSource = data;
 	  elem.wrap("<div class='source'></div>");
 	  appendRunButtonTo(elem.parent());
-	} else if ( elem.hasClass("query") ) {
+	}
+    // End modified.
+	
+	else if ( elem.hasClass("query") ) {
 	  if ( currentSource ) {
 	    currentSource.queries.push(elem.text(), "\n");
 	  } else {
@@ -107,7 +126,7 @@
     function attr(name, value) {
       content.push(" ", name, '="', value, '"');
     }
-
+	
     var data    = elem.data(pluginName);
 	if ( data.swish ) {
       var swish = data.swish;
@@ -120,20 +139,22 @@
 	.resizable('destroy')
         .css("height", "auto");
     } else
-    { var query   = data.swishURL;
+    { 
+	  var query   = data.swishURL;
       var content = [ "<iframe " ];
       var q = "?";
-
+		  
       if ( currentSWISHElem )
-	toggleSWISH(currentSWISHElem);
+		toggleSWISH(currentSWISHElem);
 
       if ( data.source ) {
-	query += q+"code="+encodeURIComponent(data.source);
-	q = "&";
+		query += q +"code="+encodeURIComponent(data.source);
+		q = "&";
       }
+	  
       if ( data.queries && data.queries.length > 0 ) {
-	query += q + "examples=" + encodeURIComponent(data.queries.join(""));
-	q = "&";
+		query += q + "examples=" + encodeURIComponent(data.queries.join(""));
+		q = "&";
       }
 
       attr("class", "swish");
@@ -143,12 +164,18 @@
 
       content.push("></iframe>");
 
-      data.swish = $(content.join(""))
-	.hide()
-	.insertAfter(elem);
-      elem.parent()
-	.css("height", "300px")
-	.resizable({handles:'s'});
+	// Edited by TW.
+	  if( data.answer ) {
+		content = [ "<div " ];
+		attr("class", "swish");
+		attr("width", "100%");
+		attr("height", "100%");
+		content.push(">"+ data.answer +"</div>");
+	  }
+	// End of edit.
+
+      data.swish = $(content.join("")).hide().insertAfter(elem);
+      elem.parent().css("height", "300px").resizable({handles:'s'});
       elem.hide(400);
       data.swish.show(400, function() { elem.parent().addClass("swish"); });
 
