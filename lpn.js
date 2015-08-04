@@ -71,7 +71,7 @@
         var text = "";
         for (index = 0; index < inherits.length; index++) {
           if(database[inherits[index]]) {
-			text += database[inherits[index]];
+			text += database[inherits[index]] + "\n";
 		  }
         }
 		if ( elem.hasClass("query") ) {
