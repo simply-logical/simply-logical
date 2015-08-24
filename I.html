@@ -6167,7 +6167,7 @@ margin-left:18.0pt">{<span style="font-family:Courier">R</span><span style="font
 definition of the reachability relation, in which case we use functors in a
 somewhat different way.</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="query111" id="query119" style="display: block;">
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query119" style="display: block;">
 reachable(X,Y,noroute):-connected(X,Y,L).
 reachable(X,Y,route(Z,R)):-connected(X,Z,L),
                            reachable(Z,Y,R).
@@ -6329,7 +6329,7 @@ whether there is an intermediate station or not. For both cases, there is a
 clause. Expressing the route as a list, we can state the final definition of
 the reachability relation:</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="query111" id="query120" style="display: block;">
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query120" style="display: block;">
 reachable(X,Y,[]):-connected(X,Y,L).
 reachable(X,Y,[Z|R]):-connected(X,Z,L),
                       reachable(Z,Y,R).

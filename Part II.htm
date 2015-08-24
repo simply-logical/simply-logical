@@ -13,6 +13,11 @@ xmlns:mv="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=Originator content="Microsoft Word 14">
 <link rel=File-List href="Part%20II_files/filelist.xml">
 <link rel=Edit-Time-Data href="Part%20II_files/editdata.mso">
+<link href="lpn.css" rel="stylesheet">
+<link href="jquery-ui.min.css" rel="stylesheet">
+<script src="jquery.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="lpn.js"></script>
 <!--[if !mso]>
 <style>
 v\:* {behavior:url(#default#VML);}
@@ -2360,41 +2365,20 @@ Courier;display:none;mso-hide:all'><span style='mso-element:field-end'></span></
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>predicate (see section
 3.7): </span></p>
 
-<p class=oms-eerst style='tab-stops:155.0pt'><span lang=EN-US>%
-term_tree(T,R,S) &lt;- term T represents a tree with root R <br>
-%<span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>and list of subtrees S</span></p>
+<pre class="source swish temp" data-variant-id="group-4" id="swish.4.0.1" style="display: block;">
+% term_tree(T,R,S) &lt;- term T represents a tree with root R and list of subtrees S
+term_tree(Tree,Root,Subtrees):-
+Tree=..[Root|Subtrees].
 
-<p class=pi-laatst><span lang=EN-US>term_tree</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;term_tree/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Tree,Root,Subtrees):-<br>
-Tree=..[Root|Subtrees].</span></p>
+% term_root(T,R) &lt;- R is the root of tree T
+term_root(Tree,Root):-
+term_tree(Tree,Root,S).
 
-<p class=oms><span lang=EN-US>% term_root(T,R) &lt;- R is the root of tree T</span></p>
-
-<p class=pi-laatst><span lang=EN-US>term_root</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;term_root/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Tree,Root):-<br>
-term_tree(Tree,Root,S).</span></p>
-
-<p class=oms><span lang=EN-US>% term_subtree(T,S) &lt;- S is a subtree of tree
-T</span></p>
-
-<p class=pi-laatst><span lang=EN-US>term_subtree</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;term_subtree/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Tree,Subtree):-<br>
-term_tree(Tree,R,S),<br>
-element(Subtree,S).</span></p>
+% term_subtree(T,S) &lt;- S is a subtree of tree T
+term_subtree(Tree,Subtree):-
+term_tree(Tree,R,S),
+element(Subtree,S).
+</pre>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
 
@@ -2482,42 +2466,25 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>consisting of two nodes:
 </span></p>
 
-<p class=oms-eerst><span lang=EN-US>% term_arc(T,A) &lt;- T is a tree, and A is
-an arc in T</span></p>
+<pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.0.1" id="swish.4.0.2" style="display: block;">
+% term_arc(T,A) &lt;- T is a tree, and A is an arc in T
+(Tree,[Root,SR]):- % Arc from Root to Subtree
+term_root(Tree,Root),
+term_subtree(Tree,Subtree),
+term_root(Subtree,SR).
 
-<p class=pi style='tab-stops:208.0pt'><span lang=EN-US>term_arc</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;term_arc/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Tree,[Root,SR]):-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-Arc from Root to Subtree<br>
-term_root(Tree,Root),<br>
-term_subtree(Tree,Subtree),<br>
-term_root(Subtree,SR).</span></p>
+term_arc(Tree,Arc):- % Arc in Subtree
+term_subtree(Tree,Subtree),
+term_arc(Subtree,Arc).
 
-<p class=pi-laatst style='tab-stops:208.0pt'><span lang=EN-US>term_arc(Tree,Arc):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-Arc in Subtree<br>
-term_subtree(Tree,Subtree),<br>
-term_arc(Subtree,Arc).</span></p>
+% term_path(T,P) &lt;- T is a tree, and P is a path in T
+term_path(Tree,Arc):- % consisting of one arc
+term_arc(Tree,Arc).
 
-<p class=oms style='tab-stops:140.0pt 249.0pt'><span lang=EN-US>%
-term_path(T,P) &lt;- T is a tree, and P is a path in T</span></p>
-
-<p class=pi style='tab-stops:208.0pt'><span lang=EN-US>term_path</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;term_path/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Tree,Arc):-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-consisting of one arc<br>
-term_arc(Tree,Arc).</span></p>
-
-<p class=pi-laatst style='tab-stops:208.0pt 252.0pt'><span lang=EN-US>term_path(Tree,[Node1,Node2|Nodes]):-<span
-style='mso-tab-count:1'>&nbsp; </span>% several arcs<br>
-term_arc(Tree,[Node1,Node2]),<br>
-term_path(Tree,[Node2|Nodes]).</span></p>
+term_path(Tree,[Node1,Node2|Nodes]):- % several arcs 
+term_arc(Tree,[Node1,Node2]),
+term_path(Tree,[Node2|Nodes]).
+</pre>
 
 <div style='mso-element:para-border-div;border-top:solid windowtext 1.0pt;
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
@@ -6652,7 +6619,7 @@ solution path. </span></p>
 </div>
 
 </div>
-
+<script>$(function() { $(".swish").LPN({swish:"http://swish.swi-prolog.org/"}); });</script>
 </body>
 
 </html>
