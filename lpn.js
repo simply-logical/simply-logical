@@ -68,12 +68,13 @@
 	  data.queries = [];
 	  if ( elem.hasClass("inherit") ) {
         var inherits = elem.attr("inherit-id").split(" ");
-        var text = "";
+        var text = "/*\n This part is inherited from others. \n*/ \n";
         for (index = 0; index < inherits.length; index++) {
           if(database[inherits[index]]) {
-			text += database[inherits[index]] + "\n";
-		  }
+			     text += database[inherits[index]];
+		      }
         }
+        text += "/*\n This is the end of inheritance.\n*/\n";
 		if ( elem.hasClass("query") ) {
 			data.queries.push(elem.text(), "\n");
 			data.source = text;
