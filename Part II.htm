@@ -2377,7 +2377,7 @@ term_tree(Tree,Root,S).
 % term_subtree(T,S) &lt;- S is a subtree of tree T
 term_subtree(Tree,Subtree):-
 term_tree(Tree,R,S),
-element(Subtree,S).
+member(Subtree,S).
 </pre>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
@@ -2534,8 +2534,9 @@ lang=EN-US>.</span></p>
 <p class=sektie style='page-break-after:avoid'><span lang=EN-US>Consider the
 tree in fig. 4.2. The following query lists all the paths in this tree:</span></p>
 
+<pre class="query" id="query.4.0.1"><span class="swish query">?-term_path(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Path).</span></pre>
 <p class=query style='margin-bottom:6.0pt;mso-pagination:widow-orphan;
-page-break-after:auto'><span lang=EN-US>?-term_path(1(2(4,5(7),6),3(8,9(10))),Path).<br>
+page-break-after:auto'><span lang=EN-US>
 Path = [1,2];<br>
 Path = [1,3];<br>
 Path = [2,4];<br>
