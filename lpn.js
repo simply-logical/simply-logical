@@ -11,6 +11,7 @@
   var pluginName = 'LPN';
   var currentSWISHElem = null;
   var database = new Array();
+  var keepingSource = [];
   
   var SWISH = "http://swish.swi-prolog.org/";
 
@@ -20,103 +21,163 @@
     var currentSource = null;
 	
     return this.each(function() {
-	var elem = $(this);
-	var data = {};			/* private data */
+		var elem = $(this);
+		var data = {};			/* private data */
 
-	data.swishURL = options.swish || SWISH;
+		data.swishURL = options.swish || SWISH;
 
-	function appendRunButtonTo(obj) {
-	  obj.append("<div class='load'></div>")
-	     .on("click", "div.load", function() {
-	       toggleSWISH(elem);
-	     });
+		function appendRunButtonTo(obj) {
+		  obj.append("<div class='load'></div>")
+			 .on("click", "div.load", function() {
+			   toggleSWISH(elem);
+			 });
 
-	  return obj;
-	}
-	
-	// Begin edited by TW.
-	if( elem.hasClass("temp") ) {
-		database[elem.attr("id")] = elem.text();
-	}
-	// End edit.
-	
-	if ( elem.hasClass("exercise") ) {
-	  currentSource = null;		/* make them independent */
-	  if ( elem.find(".swish").length == 0 ) {
-	    var run = $("<div>"+
-			  "<span>Run Prolog Now!</span>"+
-			"</div>");
-	    elem.append(run);
-	    run.wrap("<div class='open-prolog'></div>");
-	    elem = run;
-	    appendRunButtonTo(elem.parent());
-	  }
-	} 
-	
-	// Begin edited by TW.
-	
-	else if ( elem.hasClass("answer") ) {
-		elem.wrap("<div class='answer'></div>");
-		data.answer = elem.attr("answer");
-		appendRunButtonTo(elem.parent());
-	}
-	
-	// End edit.
-	//
-	// Begin modified by TW & CH. 
-	else if ( elem.hasClass("source") ) {
-	  data.queries = [];
-	  if ( elem.hasClass("inherit") ) {
-        var inherits = elem.attr("inherit-id").split(" ");
-        var text = "/*\n This part is inherited from others. \n*/ \n";
-        for (index = 0; index < inherits.length; index++) {
-          if(database[inherits[index]]) {
-			     text += database[inherits[index]];
-		      }
-        }
-        text += "/*\n This is the end of inheritance.\n*/\n";
-		if ( elem.hasClass("query") ) {
-			data.queries.push(elem.text(), "\n");
-			data.source = text;
-		} else {
-			data.source = text + elem.text();
+		  return obj;
 		}
-	  }
-	  else {
-		data.source = elem.text();
-	  }
-	  currentSource = data;
-	  elem.wrap("<div class='source'></div>");
-	  appendRunButtonTo(elem.parent());
-	}
-    // End modified.
-	
-	else if ( elem.hasClass("query") ) {
-	  if ( currentSource ) {
-	    currentSource.queries.push(elem.text(), "\n");
-	  } else {
-	    data.queries = [elem.text(), "\n"];
-	    elem.wrap("<div class='query'></div>");
-	    appendRunButtonTo(elem.parent());
-	  }
-	} else if ( elem.hasClass("query-list") ) {
-	  function addQueries(list) {
-	    elem.children().each(function() {
-	      var li = $(this);
-	      list.push(makeQuery(li.text()));
-	    });
-	  }
+		
+		// Begin edited by TW.
+		if( elem.hasClass("temp") ) {
+			database[elem.attr("id")] = elem.text();
+		}
+		// End edit.
+		
+		if ( elem.hasClass("exercise") ) {
+		  currentSource = null;		/* make them independent */
+		  if ( elem.find(".swish").length == 0 ) {
+			var run = $("<div>"+
+				  "<span>Run Prolog Now!</span>"+
+				"</div>");
+			elem.append(run);
+			run.wrap("<div class='open-prolog'></div>");
+			elem = run;
+			appendRunButtonTo(elem.parent());
+		  }
+		} 
+		
+		// Begin edited by TW.
+		
+		else if ( elem.hasClass("answer") ) {
+			elem.wrap("<div class='answer'></div>");
+			data.answer = elem.attr("answer");
+			appendRunButtonTo(elem.parent());
+		}
+		
+		// End edit.
+		//
+		// Begin modified by TW & CH. 
+		else if ( elem.hasClass("source") ) {
+		  data.queries = [];
+		  data.id = elem.attr("id");
+		  if ( elem.hasClass("inherit") ) {
+			var inherits = elem.attr("inherit-id").split(" ");
+			var text = "/*\n This part is inherited from others. \n*/ \n";
+			for (index = 0; index < inherits.length; index++) {
+			  if(database[inherits[index]]) {
+				  text += database[inherits[index]];
+			  }
+      }
+		  text += "/*\n This is the end of inheritance.\n*/\n";
+			if ( elem.hasClass("query") ) {
+				data.queries.push(elem.text(), "\n");
+				data.source = text;
+			} else {
+				data.source = text + elem.text();
+			}
+		  }
+		  else {
+			
+			var startText = "";
+			var endText = "";
+			  
+			var attr = $(this).attr('source-text-end');
+			if (typeof attr !== typeof undefined && attr !== false) {	  
+				endText = elem.attr("source-text-end");
+			}
+			
+			attr = $(this).attr('source-text-start');
+			if (typeof attr !== typeof undefined && attr !== false) {	  
+				startText = elem.attr("source-text-start");
+			}
+			 
+			data.source = startText + elem.text() + endText;
+		  }
+		  
+		  var attr = $(this).attr('query-id');
+		  if (typeof attr !== typeof undefined && attr !== false) {	  
+			var queryIds = elem.attr("query-id").split(" ");
+			for(var i = 0; i < queryIds.length ; ++i) {
+				var newElem = document.getElementById(queryIds[i]);
+				if(newElem != undefined) {
+					data.queries.push(newElem.innerText, "\n");
+				}
+			}
+		  }
+		  
+		  var attr = $(this).attr('query-text');
+		  if (typeof attr !== typeof undefined && attr !== false) {	  
+			var queryTexts = elem.attr("query-text").split(" ");
+			for(var i = 0; i < queryTexts.length ; ++i) {
+				data.queries.push(queryTexts[i], "\n");
+			}
+		  }
+		  
+		  currentSource = data;
+		  keepingSource.push(data);
+		  elem.wrap("<div class='source'></div>");
+		  appendRunButtonTo(elem.parent());
+		}
+		
+		else if ( elem.hasClass("query") ) {
+		  var attr = $(this).attr('source-id');
+		  if (typeof attr !== typeof undefined && attr !== false) {	  
+			var sourceIds = elem.attr("source-id").split(" ");
+			for(var i = 0; i < sourceIds.length ; ++i) {
+				function Find(id) {
+					for (var i = 0; i < keepingSource.length; ++i) {
+						if(keepingSource[i].id == id) {
+							return keepingSource[i];
+						}
+					}
+					
+					return false;
+				}
+				
+				var data = Find(sourceIds[i]);
+				if (data != false) {
+					data.queries.push(elem.text(), "\n");
+				}
+			}
+		  } 
+		  
+		  // End modified.
+		  
+		  else if ( currentSource ) {
+			currentSource.queries.push(elem.text(), "\n");
+		  } else {
+			data.queries = [elem.text(), "\n"];
+			elem.wrap("<div class='query'></div>");
+			appendRunButtonTo(elem.parent());
+		  }
+		} 
+		
+		else if ( elem.hasClass("query-list") ) {
+		  function addQueries(list) {
+			elem.children().each(function() {
+			  var li = $(this);
+			  list.push(makeQuery(li.text()));
+			});
+		  }
 
-	  if ( currentSource ) {
-	    addQueries(currentSource.queries);
-	  } else {
-	    data.queries = [];
-	    addQueries(data.queries);
-	    elem.wrap("<div class='query'></div>");
-	    appendRunButtonTo(elem.parent());
-	  }
-	}
-	elem.data(pluginName, data);	/* store with element */
+		  if ( currentSource ) {
+			addQueries(currentSource.queries);
+		  } else {
+			data.queries = [];
+			addQueries(data.queries);
+			elem.wrap("<div class='query'></div>");
+			appendRunButtonTo(elem.parent());
+		  }
+		}
+		elem.data(pluginName, data);	/* store with element */
       });
     }
   }; // methods
