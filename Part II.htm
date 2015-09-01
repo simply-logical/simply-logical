@@ -2365,7 +2365,7 @@ Courier;display:none;mso-hide:all'><span style='mso-element:field-end'></span></
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>predicate (see section
 3.7): </span></p>
 
-<pre class="source swish temp" data-variant-id="group-4" id="swish.4.0.1" style="display: block;">
+<pre class="source swish temp" data-variant-id="group-4" id="swish.4.1.1" style="display: block;">
 % term_tree(T,R,S) &lt;- term T represents a tree with root R and list of subtrees S
 term_tree(Tree,Root,Subtrees):-
 Tree=..[Root|Subtrees].
@@ -2466,7 +2466,7 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>consisting of two nodes:
 </span></p>
 
-<pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.0.1" id="swish.4.0.2" style="display: block;">
+<pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.1.1" id="swish.4.1.2" style="display: block;">
 % term_arc(T,A) &lt;- T is a tree, and A is an arc in T
 term_arc(Tree,[Root,SR]):- % Arc from Root to Subtree
 term_root(Tree,Root),
@@ -2534,7 +2534,7 @@ lang=EN-US>.</span></p>
 <p class=sektie style='page-break-after:avoid'><span lang=EN-US>Consider the
 tree in fig. 4.2. The following query lists all the paths in this tree:</span></p>
 
-<pre class="query" id="query.4.0.1"><span class="swish query">?-term_path(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Path).</span></pre>
+<pre class="query" id="query.4.1.1"><span class="swish query">?-term_path(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Path).</span></pre>
 <p class=query style='margin-bottom:6.0pt;mso-pagination:widow-orphan;
 page-break-after:auto'><span lang=EN-US>
 Path = [1,2];<br>
@@ -2595,60 +2595,40 @@ mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'>[13]
 lang=EN-US>. A reasonable alternative is to print the tree rotated at 90
 degrees, from the root to the right. A program to do this is given below.</span></p>
 
-<p class=pi-el><span lang=EN-US>term_write</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;term_write/1&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Tree):-<br>
-term_write(0,Tree),nl.</span></p>
+<pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.1.1" id="swish.4.1.3" query-text="?- term_write(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))))." style="display: block;">
+term_write(Tree):-
+  term_write(0,Tree),nl.
 
-<p class=oms><span lang=EN-US>% write a Tree at position Pos</span></p>
+% write a Tree at position Pos
+term_write(Pos,Tree):-
+  term_tree(Tree,Root,Subtrees),  % decompose Tree
+  term_write_node(Pos,Pos2,Root), % write Root
+  term_writes(Pos2,Subtrees).     % new position
 
-<p class=pi-laatst style='tab-stops:238.0pt'><span lang=EN-US>term_write(Pos,Tree):-<br>
-term_tree(Tree,Root,Subtrees),<span style='mso-tab-count:1'>&nbsp; </span>%
-decompose Tree<br>
-term_write_node(Pos,Pos2,Root),<span style='mso-tab-count:1'> </span>% write
-Root<br>
-term_writes(Pos2,Subtrees).<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-new position </span></p>
+% write a list of trees at position Pos
+term_writes(Pos,[]).
+term_writes(Pos,[Tree]):-!,       % no newline here
+  term_write(Pos,Tree).
+term_writes(Pos,[Tree|Subtrees]):-
+  term_write(Pos,Tree),
+  nl,tab(Pos),                    % skip to position Pos
+  term_writes(Pos,Subtrees).
 
-<p class=oms style='tab-stops:140.0pt 238.0pt'><span lang=EN-US>% write a list
-of trees at position Pos</span></p>
+% write a Node from Begin to End
+term_write_node(Begin,End,Node):-
+  name(Node,L),length(L,N),       % N is length of Nodename
+  End is Begin+10,
+  N1 is End-Begin-N,              % N1 is length of line
+  write_line(N1),
+  write(Node).
 
-<p class=pi style='tab-stops:238.0pt 253.0pt'><span lang=EN-US>term_writes(Pos,[]).</span></p>
-
-<p class=pi style='tab-stops:238.0pt 253.0pt'><span lang=EN-US>term_writes(Pos,[Tree]):-!,<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-no newline here<br>
-term_write(Pos,Tree).</span></p>
-
-<p class=pi-laatst style='tab-stops:238.0pt'><span lang=EN-US>term_writes(Pos,[Tree|Subtrees]):-<br>
-term_write(Pos,Tree),<br>
-nl,tab(Pos),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-skip to position Pos<br>
-term_writes(Pos,Subtrees).</span></p>
-
-<p class=oms style='tab-stops:140.0pt 238.0pt'><span lang=EN-US>% write a Node
-from Begin to End</span></p>
-
-<p class=pi-laatst style='tab-stops:211.0pt'><span lang=EN-US>term_write_node(Begin,End,Node):-<br>
-name(Node,L),length(L,N),<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>% N
-is length of Nodename<br>
-End is Begin+10,<br>
-N1 is End-Begin-N,<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-N1 is length of line<br>
-write_line(N1),<br>
-write(Node).</span></p>
-
-<p class=oms><span lang=EN-US>% write a line of given length</span></p>
-
-<p class=pi style='tab-stops:253.0pt'><span lang=EN-US>write_line(0).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>write_line(N):-<br>
-N&gt;0,N1 is N-1,<br>
-write('-'),<br>
-write_line(N1).</span></p>
+% write a line of given length
+write_line(0).
+write_line(N):-
+  N&gt;0,N1 is N-1,
+  write('-'),
+  write_line(N1).
+</pre>
 
 <p class=tekst><span lang=EN-US style='font-family:Courier'>name/2</span><!--[if supportFields]><span
 lang=EN-US style='font-family:Courier;display:none;mso-hide:all'><span
@@ -2723,20 +2703,25 @@ lang=EN-US style='font-family:Courier'>arc/2</span><span lang=EN-US> is used
 rather than </span><span lang=EN-US style='font-family:Courier'>term_arc/2</span><span
 lang=EN-US>:</span></p>
 
-<p class=pi-eerst><span lang=EN-US>% path(P) &lt;- P is a path in the graph
-given by arc/2</span></p>
-
-<p class=pi><span lang=EN-US>path</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;path/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>([Node1,Node2]):-<br>
-arc(Node1,Node2).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>path([Node1,Node2|Nodes]):-<br>
-arc(Node1,Node2),<br>
-path([Node2|Nodes]).</span></p>
+<pre class="source swish" data-variant-id="group-4" id="swish.4.2.1" query-text="?- path([n1,Node2])." style="display: block;"
+source-text-start=
+"arc(n1,n2).
+arc(n1,n3).
+arc(n2,n4).
+arc(n2,n5).
+arc(n2,n6).
+arc(n5,n7).
+arc(n3,n8).
+arc(n3,n9).
+arc(n9,n10).
+">
+% path(P) &lt;- P is a path in the graph given by arc/2
+path([Node1,Node2]):-
+  arc(Node1,Node2).
+path([Node1,Node2|Nodes]):-
+  arc(Node1,Node2),
+  path([Node2|Nodes]).
+</pre>
 
 <div style='mso-element:para-border-div;border-top:solid windowtext 1.0pt;
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
@@ -2757,31 +2742,29 @@ start at a given node (for instance, the root of a tree), and end in a leaf.
 The following program will do the job. Note that this program differs from the
 previous one in that it allows for paths consisting of one node only.</span></p>
 
-<p class=oms-eerst style='tab-stops:143.0pt'><span lang=EN-US>% path_leaf(N,P)
-&lt;- P is a path starting at node N, ending <br>
-%<span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>in a leaf in the graph given by arc/2</span></p>
+<pre class="source swish" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(1,Path)." style="display: block;"
+source-text-start=
+"arc(n1,n2).
+arc(n1,n3).
+arc(n2,n4).
+arc(n2,n5).
+arc(n2,n6).
+arc(n5,n7).
+arc(n3,n8).
+arc(n3,n9).
+arc(n9,n10).
+">
+% path_leaf(N,P) &lt;- P is a path starting at node N, ending 
+%                      in a leaf in the graph given by arc/2
+path_leaf(Leaf,[Leaf]):-
+  leaf(Leaf).
+path_leaf(Node1,[Node1|Nodes]):-
+  arc(Node1,Node2),
+  path_leaf(Node2,Nodes).
 
-<p class=pi><span lang=EN-US>path_leaf</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;path_leaf/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Leaf,[Leaf]):-<br>
-leaf(Leaf).</span></p>
-
-<p class=pi><span lang=EN-US>path_leaf(Node1,[Node1|Nodes]):-<br>
-arc(Node1,Node2),<br>
-path_leaf(Node2,Nodes).</span></p>
-
-<p class=pi-el><span lang=EN-US>leaf</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;leaf/1&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Leaf):-<br>
-not arc(Leaf,SomeNode).</span></p>
+leaf(Leaf):-
+not arc(Leaf,SomeNode).
+</pre>
 
 <p class=tekst><span lang=EN-US>The query </span><span lang=EN-US
 style='font-family:Courier'>?-path_leaf(1,Path)</span><span lang=EN-US> will
@@ -2887,33 +2870,19 @@ performs one resolution step, and the two clauses for </span><span lang=EN-US
 style='font-family:Courier'>br/2</span><span lang=EN-US> in the appropriate
 representation. This gives the following program:</span></p>
 
-<p class=pi-eerst><span lang=EN-US>arc(A,B):-
-resolve(A,(br(X,Y):-[br(X,Z),br(Z,Y)]),B).</span></p>
+<pre class="source swish" data-variant-id="group-4" id="swish.4.2.3" query-text="?- arc([br(paul,B)],N)." style="display: block;">
+arc(A,B):- resolve(A,(br(X,Y):-[br(X,Z),br(Z,Y)]),B).
+arc(A,B):- resolve(A,(br(paul,peter):-[]),B).
 
-<p class=pi-laatst><span lang=EN-US>arc(A,B):-
-resolve(A,(br(paul,peter):-[]),B).</span></p>
-
-<p class=oms><span lang=EN-US>% resolve(G,C,NewG) &lt;- the goal G (a list of
-atoms) <br>
-%<span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>resolves with the clause C (body <br>
-%<span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>is a list) to yield the goal NewG</span></p>
-
-<p class=pi><span lang=EN-US>resolve</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;resolve/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>([H1|T],(H2:-Body),B):-<br>
-H1=H2,<span style="mso-spacerun:yes">&nbsp; </span>% literal in goal unifies
-with head of clause<br>
-append(Body,T,B).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>resolve([H|T],Clause,[H|B]):-<br>
-resolve(T,Clause,B).<span style='mso-tab-count:1'> </span>% try next literal</span></p>
+% resolve(G,C,NewG) &lt;- the goal G (a list of atoms)
+%                          resolves with the clause C (body
+%                          is a list) to yield the goal NewG
+resolve([H1|T],(H2:-Body),B):-
+  H1=H2,    % literal in goal unifies with head of clause
+  append(Body,T,B).
+resolve([H|T],Clause,[H|B]):-
+  resolve(T,Clause,B).  % try next literal
+</pre>
 
 <p class=MsoNormal><span lang=EN-US>The query </span><span lang=EN-US
 style='font-family:Courier'>?-arc([br(paul,B)],N)</span><span lang=EN-US>
@@ -3022,56 +2991,39 @@ the most natural choice is to represent an instance by a constant, and a class
 by a unary predicate. A class&#8211;superclass relation is then expressed by a
 clause, and an instance&#8211;class relation is expressed by a ground fact: </span></p>
 
-<p class=oms-eerst><span lang=EN-US>% Classes</span></p>
+<pre class="source swish temp" data-variant-id="group-4" id="swish.4.3.1" query-text="?- instrument(X)." style="display: block;">
+% Classes
+instrument(X):-wind(X).
+instrument(X):-string(X).
+instrument(X):-percussion(X).
+wind(X):-woodwind(X).
+wind(X):-brass(X).
+string(X):-plucked(X).
+string(X):-bowed(X).
+string(X):-keyboard(X).
+percussion(X):-tuned(X).
+percussion(X):-untuned(X).
 
-<p class=pi><span lang=EN-US>instrument(X):-wind(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>instrument(X):-string(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>instrument(X):-percussion(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>wind(X):-woodwind(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>wind(X):-brass(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>string(X):-plucked(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>string(X):-bowed(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>string(X):-keyboard(X).</span></p>
-
-<p class=pi><span lang=EN-US>percussion(X):-tuned(X).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>percussion(X):-untuned(X).</span></p>
-
-<p class=oms><span lang=EN-US>% Instances</span></p>
-
-<p class=pi style='tab-stops:211.0pt'><span lang=EN-US>woodwind(recorder).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>woodwind(flute).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:211.0pt'><span lang=EN-US>woodwind(oboe).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>woodwind(saxophone).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:211.0pt'><span lang=EN-US>brass(trumpet).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>brass(trombone).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:211.0pt'><span lang=EN-US>brass(horn).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>plucked(guitar).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:211.0pt'><span lang=EN-US>plucked(lute).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>plucked(harp).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:211.0pt'><span lang=EN-US>bowed(violin).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>bowed(cello).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:211.0pt'><span lang=EN-US>keyboard(harpsichord).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>keyboard(piano).</span></p>
-
-<p class=pi style='tab-stops:211.0pt'><span lang=EN-US>tuned(triangle).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tuned(kettledrum).</span></p>
-
-<p class=pi-laatst style='tab-stops:211.0pt'><span lang=EN-US>untuned(cymbal).<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>untuned(snaredrum).</span></p>
+% Instances
+woodwind(recorder).
+woodwind(flute).
+woodwind(oboe).
+woodwind(saxophone).
+brass(trumpet).
+brass(trombone).
+brass(horn).
+plucked(guitar).
+plucked(lute).
+plucked(harp).
+bowed(violin).
+bowed(cello).
+keyboard(harpsichord).
+keyboard(piano).
+tuned(triangle).
+tuned(kettledrum).
+untuned(cymbal).
+untuned(snaredrum).
+</pre>
 
 <p class=tekst><span lang=EN-US>With these clauses, it is possible to ask
 questions about instances and (super)classes. For example, we can find out what
@@ -3128,35 +3080,27 @@ style='font-family:Courier'>material</span><span lang=EN-US> of an instrument
 attribute </span><span lang=EN-US style='font-family:Courier'>action</span><span
 lang=EN-US>: </span></p>
 
-<p class=pi-el><span lang=EN-US>function(X,musical):-instrument(X).</span></p>
+<pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.3.1" id="swish.4.3.2" query-text="?- material(flute,M)." style="display: block;">
+function(X,musical):-instrument(X).
 
-<p class=pi><span lang=EN-US>material(flute,metal).</span></p>
+% Materials
+material(flute,metal).
+material(saxophone,metal).
+material(X,wood):-woodwind(X).
+material(X,metal):-brass(X).
+material(X,wood):-string(X).
+material(X,metal):-percussion(X).
 
-<p class=pi><span lang=EN-US>material(saxophone,metal).</span></p>
-
-<p class=pi><span lang=EN-US>material(X,wood):-woodwind(X).</span></p>
-
-<p class=pi><span lang=EN-US>material(X,metal):-brass(X).</span></p>
-
-<p class=pi><span lang=EN-US>material(X,wood):-string(X).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>material(X,metal):-percussion(X).</span></p>
-
-<p class=pi><span lang=EN-US>action(oboe,reed(double)).</span></p>
-
-<p class=pi><span lang=EN-US>action(saxophone,reed(single)).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>action(harpsichord,plucked).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>action(piano,hammered).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>action(X,reed(lip)):-brass(X).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>action(X,plucked):-plucked(X).</span></p>
-
-<p class=pi><span lang=EN-US>action(X,bowed):-bowed(X).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>action(X,hammered):-percussion(X).</span></p>
+% Actions
+action(oboe,reed(double)).
+action(saxophone,reed(single)).
+action(harpsichord,plucked).
+action(piano,hammered).
+action(X,reed(lip)):-brass(X).
+action(X,plucked):-plucked(X).
+action(X,bowed):-bowed(X).
+action(X,hammered):-percussion(X).
+</pre>
 
 <p class=tekst><span lang=EN-US>For instance, all brass instruments have lip-reeds,
 while some woodwinds have a double reed (oboes, for example) or a single reed
@@ -3209,32 +3153,21 @@ and constructing the appropriate goal for each attribute by means of the
 predicate </span><span lang=EN-US style='font-family:Courier'>get_value/3</span><span
 lang=EN-US>: </span></p>
 
-<p class=pi-el><span lang=EN-US>properties</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;properties/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Inst,Props):-<br>
-attributes(Attrs),<br>
-properties(Attrs,Inst,Props).</span></p>
+<pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.3.1 swish.4.3.2" id="swish.4.3.3" query-text="?- properties(saxophone,P)." style="display: block;">
+properties(Inst,Props):-
+  attributes(Attrs),
+  properties(Attrs,Inst,Props).
+properties([],Inst,[]).
+properties([Attr|Attrs],Inst,[Attr=Value|Props]):-
+  get_value(Attr,Inst,Value),!,   % only first answer
+  properties(Attrs,Inst,Props).
 
-<p class=pi><span lang=EN-US>properties([],Inst,[]).</span></p>
+attributes([function,material,action]).
 
-<p class=pi-laatst><span lang=EN-US>properties([Attr|Attrs],Inst,[Attr=Value|Props]):-<br>
-get_value(Attr,Inst,Value),!,<span style='mso-tab-count:1'> </span>% only first
-answer<br>
-properties(Attrs,Inst,Props).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>attributes([function,material,action]).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>get_value</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;get_value/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(A,B,C):-<br>
-Goal =.. [A,B,C],<br>
-call(Goal).</span></p>
+get_value(A,B,C):-
+  Goal =.. [A,B,C],
+  call(Goal).
+</pre>
 
 <p class=tekst style='page-break-after:avoid'><span lang=EN-US>For instance,
 the query </span><span lang=EN-US style='font-family:Courier'>?-properties(saxophone,P)</span><span
@@ -3456,22 +3389,85 @@ style="mso-spacerun:yes">&nbsp;</span>XE </span><span lang=EN-US><span
 style="mso-spacerun:yes">&nbsp;</span>&quot;overriding&quot; \b </span><![endif]--><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--></p>
 
-<p class=pi-eerst><span lang=EN-US>override</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;override/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Props,[],Props).</span></p>
+<pre class="source swish" data-variant-id="group-4" id="swish.4.3.4" query-text="?- properties_sn(saxophone,P)." style="display: block;"
+source-text-start=
+"% Classes
+isa(wind,instrument).
+isa(string,instrument).
+isa(percussion,instrument).
+isa(woodwind,wind).
+isa(brass,wind).
+isa(plucked,string).
+isa(bowed,string).
+isa(keyboard,string).
+isa(tuned,percussion).
+isa(untuned,percussion).
 
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>override(Specific,[Attr=Val|General],Props):-<br>
-element(Attr=V,Specific),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-overriding<br>
-override(Specific,General,Props).</span></p>
+% Instances
+inst(recorder,woodwind).
+inst(flute,woodwind).
+inst(oboe,woodwind).
+inst(saxophone,woodwind).
+inst(trumpet,brass).
+inst(trombone,brass).
+inst(horn,brass).
+inst(guitar,plucked).
+inst(lute,plucked).
+inst(harp,plucked).
+inst(violin,bowed).
+inst(cello,bowed).
+inst(harpsichord,keyboard).
+inst(piano,keyboard).
+inst(triangle,tuned).
+inst(kettledrum,tuned).
+inst(cymbal,untuned).
+inst(snaredrum,untuned).
 
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>override(Specific,[Attr=Val|General],[Attr=Val|Props]):-<br>
-not element(Attr=V,Specific),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-no overriding<br>
-override(Specific,General,Props).</span></p>
+% Class properties
+prop(instrument,function,musical).
+prop(string,material,wood).
+prop(percussion,material,metal).
+prop(percussion,action,hammered).
+prop(woodwind,material,wood).
+prop(brass,material,metal).
+prop(brass,action,reed(lip)).
+prop(plucked,action,plucked).
+prop(bowed,action,bowed).
+
+% Instance properties
+prop(flute,material,metal).
+prop(oboe,action,reed(double)).
+prop(saxophone,material,metal).
+prop(saxophone,action,reed(single)).
+prop(harpsichord,action,plucked).
+prop(piano,action,hammered).
+
+
+properties_sn(Inst,Props):-
+  props(Inst,InstProps),    % properties of instance
+  inst(Inst,Class),
+  inherit_sn(Class,InstProps,Props). % inherit the rest
+
+props(IC,Props):-
+  findall(Attr=Value,prop(IC,Attr,Value),Props).
+
+inherit_sn(top,Props,Props).
+inherit_sn(Class,SpecificProps,AllProps):-
+  props(Class,GeneralProps), % properties of this class
+  override(SpecificProps,GeneralProps,Props),
+  isa(Class,SuperClass),     % climb hierarchy
+  inherit_sn(SuperClass,Props,AllProps). % inherit rest
+
+isa(instrument,top).
+">
+override(Props,[],Props).
+override(Specific,[Attr=Val|General],Props):-
+  element(Attr=V,Specific),       % overriding
+  override(Specific,General,Props).
+override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
+  not element(Attr=V,Specific),   % no overriding
+  override(Specific,General,Props).
+</pre>
 
 <p class=tekst><span lang=EN-US>Again, the query </span><span lang=EN-US
 style='font-family:Courier'>?-properties_sn(saxophone,P)</span><span
@@ -3568,30 +3564,51 @@ etcetera... */</span></p>
 <p class=tekst><span lang=EN-US>Inheritance is as easily implemented as in the
 semantic network representation: </span></p>
 
-<p class=pi-el style='tab-stops:238.0pt 259.0pt'><span lang=EN-US>properties_fr</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;properties_fr/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Inst,Props):-<br>
-instance(Inst,Class,InstProps),<span style='mso-tab-count:1'> </span>% instance
-properties <br>
-inherit_fr(Class,InstProps,Props).<span style='mso-tab-count:1'>&nbsp; </span>%
-inherit the rest</span></p>
+<pre class="source swish" data-variant-id="group-4" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P)." style="display: block;"
+source-start-text=
+"% Classes
+class(instrument,top,[]).
+class(wind,instrument,[function=musical]).
+class(string,instrument,[material=wood]).
+class(percussion,instrument,[material=metal,action=hammered]).
+class(woodwind,wind,[material=wood]).
+class(brass,wind,[material=metal,action=reed(lip)]).
+class(plucked,string,[action=plucked]).
+class(bowed,string,[action=bowed]).
+class(keyboard,string,[]).
+class(tuned,percussion,[]).
+class(untuned,percussion,[]).
 
-<p class=pi><span lang=EN-US>inherit_fr</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;inherit_fr/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(top,Props,Props).</span></p>
+% Instances
+instance(recorder,woodwind,[]).
+instance(flute,woodwind,[material=metal]).
+instance(oboe,woodwind,[action=reed(double)]).
+instance(saxophone,woodwind,[material=metal,action=reed(single)]).
+instance(trumpet,brass,[]).
+instance(trombone,brass,[]).
+instance(horn,brass,[]).
+instance(guitar,plucked,[]).
+instance(lute,plucked,[]).
+instance(harp,plucked,[]).
+instance(violin,bowed,[]).
+instance(cello,bowed,[]).
+instance(harpsichord,keyboard,[action=plucked]).
+instance(piano,keyboard,[action=hammered]).
+instance(triangle,tuned,[]).
+instance(kettledrum,tuned,[]).
+instance(cymbal,untuned,[]).
+instance(snaredrum,untuned,[]).
+">
+properties_fr(Inst,Props):-
+  instance(Inst,Class,InstProps),       % instance properties
+  inherit_fr(Class,InstProps,Props).    % inherit the rest
 
-<p class=pi-laatst><span lang=EN-US>inherit_fr(Class,SpecificProps,AllProps):-<br>
-class(Class,SuperClass,GeneralProps),<span style='mso-tab-count:1'>&nbsp; </span>%
-this class<br>
-override(SpecificProps,GeneralProps,Props),<br>
-inherit_fr(SuperClass,Props,AllProps).<span style='mso-tab-count:1'> </span>%
-inherit rest</span></p>
+inherit_fr(top,Props,Props).
+inherit_fr(Class,SpecificProps,AllProps):-
+  class(Class,SuperClass,GeneralProps),         % this class
+  override(SpecificProps,GeneralProps,Props),
+  inherit_fr(SuperClass,Props,AllProps).        % inherit rest
+</pre>
 
 <p class=tekst><span lang=EN-US>Historically, semantic network and frame-based
 representations were proposed in quite different contexts. We see that their
