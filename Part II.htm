@@ -2753,6 +2753,7 @@ arc(n5,n7).
 arc(n3,n8).
 arc(n3,n9).
 arc(n9,n10).
+
 ">
 % path_leaf(N,P) &lt;- P is a path starting at node N, ending 
 %                      in a leaf in the graph given by arc/2
@@ -3392,6 +3393,7 @@ lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'
 <pre class="source swish" data-variant-id="group-4" id="swish.4.3.4" query-text="?- properties_sn(saxophone,P)." style="display: block;"
 source-text-start=
 "% Classes
+isa(instrument,top).
 isa(wind,instrument).
 isa(string,instrument).
 isa(percussion,instrument).
@@ -3458,14 +3460,13 @@ inherit_sn(Class,SpecificProps,AllProps):-
   isa(Class,SuperClass),     % climb hierarchy
   inherit_sn(SuperClass,Props,AllProps). % inherit rest
 
-isa(instrument,top).
 ">
 override(Props,[],Props).
 override(Specific,[Attr=Val|General],Props):-
-  element(Attr=V,Specific),       % overriding
+  member(Attr=V,Specific),       % overriding
   override(Specific,General,Props).
 override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
-  not element(Attr=V,Specific),   % no overriding
+  not member(Attr=V,Specific),   % no overriding
   override(Specific,General,Props).
 </pre>
 
@@ -3564,8 +3565,8 @@ etcetera... */</span></p>
 <p class=tekst><span lang=EN-US>Inheritance is as easily implemented as in the
 semantic network representation: </span></p>
 
-<pre class="source swish" data-variant-id="group-4" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P)." style="display: block;"
-source-start-text=
+<pre class="source swish" data-variant-id="group-2" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P)." style="display: block;"
+source-text-start=
 "% Classes
 class(instrument,top,[]).
 class(wind,instrument,[function=musical]).
@@ -3598,6 +3599,18 @@ instance(triangle,tuned,[]).
 instance(kettledrum,tuned,[]).
 instance(cymbal,untuned,[]).
 instance(snaredrum,untuned,[]).
+
+"
+
+source-text-end=
+"
+override(Props,[],Props).
+override(Specific,[Attr=Val|General],Props):-
+  member(Attr=V,Specific),       % overriding
+  override(Specific,General,Props).
+override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
+  not member(Attr=V,Specific),   % no overriding
+  override(Specific,General,Props).
 ">
 properties_fr(Inst,Props):-
   instance(Inst,Class,InstProps),       % instance properties
