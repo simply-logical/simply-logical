@@ -3609,7 +3609,7 @@ override(Specific,[Attr=Val|General],Props):-
   member(Attr=V,Specific),       % overriding
   override(Specific,General,Props).
 override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
-  not member(Attr=V,Specific),   % no overriding
+  not(member(Attr=V,Specific)),   % no overriding
   override(Specific,General,Props).
 ">
 properties_fr(Inst,Props):-
