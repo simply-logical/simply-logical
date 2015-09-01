@@ -2365,19 +2365,19 @@ Courier;display:none;mso-hide:all'><span style='mso-element:field-end'></span></
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>predicate (see section
 3.7): </span></p>
 
-<pre class="source swish temp" data-variant-id="group-4" id="swish.4.1.1" style="display: block;">
+<pre class="source swish temp" data-variant-id="group-4" id="swish.4.1.1" query-text="?- term_tree(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Root,Subtree). ?- term_tree(T,n1,[n2(n3),n4])." style="display: block;">
 % term_tree(T,R,S) &lt;- term T represents a tree with root R and list of subtrees S
 term_tree(Tree,Root,Subtrees):-
-Tree=..[Root|Subtrees].
+  Tree=..[Root|Subtrees].
 
 % term_root(T,R) &lt;- R is the root of tree T
 term_root(Tree,Root):-
-term_tree(Tree,Root,S).
+  term_tree(Tree,Root,_S).
 
 % term_subtree(T,S) &lt;- S is a subtree of tree T
 term_subtree(Tree,Subtree):-
-term_tree(Tree,R,S),
-member(Subtree,S).
+  term_tree(Tree,_R,S),
+  member(Subtree,S).
 </pre>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
@@ -2469,21 +2469,21 @@ lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>consisting of two nodes:
 <pre class="source swish inherit" data-variant-id="group-4" inherit-id="swish.4.1.1" id="swish.4.1.2" style="display: block;">
 % term_arc(T,A) &lt;- T is a tree, and A is an arc in T
 term_arc(Tree,[Root,SR]):- % Arc from Root to Subtree
-term_root(Tree,Root),
-term_subtree(Tree,Subtree),
-term_root(Subtree,SR).
+  term_root(Tree,Root),
+  term_subtree(Tree,Subtree),
+  term_root(Subtree,SR).
 
 term_arc(Tree,Arc):- % Arc in Subtree
-term_subtree(Tree,Subtree),
-term_arc(Subtree,Arc).
+  term_subtree(Tree,Subtree),
+  term_arc(Subtree,Arc).
 
 % term_path(T,P) &lt;- T is a tree, and P is a path in T
 term_path(Tree,Arc):- % consisting of one arc
-term_arc(Tree,Arc).
+  term_arc(Tree,Arc).
 
 term_path(Tree,[Node1,Node2|Nodes]):- % several arcs 
-term_arc(Tree,[Node1,Node2]),
-term_path(Tree,[Node2|Nodes]).
+  term_arc(Tree,[Node1,Node2]),
+  term_path(Tree,[Node2|Nodes]).
 </pre>
 
 <div style='mso-element:para-border-div;border-top:solid windowtext 1.0pt;
@@ -2742,7 +2742,7 @@ start at a given node (for instance, the root of a tree), and end in a leaf.
 The following program will do the job. Note that this program differs from the
 previous one in that it allows for paths consisting of one node only.</span></p>
 
-<pre class="source swish" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(n1,Path)." style="display: block;"
+<pre class="source swish" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(n1,Path). ?- path_leaf(Node,[N1,N2,N3])." style="display: block;"
 source-text-start=
 "arc(n1,n2).
 arc(n1,n3).
@@ -2764,7 +2764,7 @@ path_leaf(Node1,[Node1|Nodes]):-
   path_leaf(Node2,Nodes).
 
 leaf(Leaf):-
-  not(arc(Leaf,SomeNode)).
+  not(arc(Leaf,_SomeNode)).
 </pre>
 
 <p class=tekst><span lang=EN-US>The query </span><span lang=EN-US
@@ -2992,7 +2992,7 @@ the most natural choice is to represent an instance by a constant, and a class
 by a unary predicate. A class&#8211;superclass relation is then expressed by a
 clause, and an instance&#8211;class relation is expressed by a ground fact: </span></p>
 
-<pre class="source swish temp" data-variant-id="group-4" id="swish.4.3.1" query-text="?- instrument(X)." style="display: block;">
+<pre class="source swish temp" data-variant-id="group-4" id="swish.4.3.1" query-text="?- instrument(X). ?- plucked(keyboard)." style="display: block;">
 % Classes
 instrument(X):-wind(X).
 instrument(X):-string(X).
@@ -3462,11 +3462,11 @@ inherit_sn(Class,SpecificProps,AllProps):-
 
 ">
 override(Props,[],Props).
-override(Specific,[Attr=Val|General],Props):-
-  member(Attr=V,Specific),       % overriding
+override(Specific,[Attr=_Val|General],Props):-
+  member(Attr=_V,Specific),       % overriding
   override(Specific,General,Props).
 override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
-  not(member(Attr=V,Specific)),   % no overriding
+  not(member(Attr=_V,Specific)),   % no overriding
   override(Specific,General,Props).
 </pre>
 
@@ -3565,7 +3565,7 @@ etcetera... */</span></p>
 <p class=tekst><span lang=EN-US>Inheritance is as easily implemented as in the
 semantic network representation: </span></p>
 
-<pre class="source swish" data-variant-id="group-2" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P)." style="display: block;"
+<pre class="source swish" data-variant-id="group-2" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P). ?- properties_fr(I,[function=musical,material=metal,A])." style="display: block;"
 source-text-start=
 "% Classes
 class(instrument,top,[]).
@@ -3605,11 +3605,11 @@ instance(snaredrum,untuned,[]).
 source-text-end=
 "
 override(Props,[],Props).
-override(Specific,[Attr=Val|General],Props):-
-  member(Attr=V,Specific),       % overriding
+override(Specific,[Attr=_Val|General],Props):-
+  member(Attr=_V,Specific),       % overriding
   override(Specific,General,Props).
 override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
-  not(member(Attr=V,Specific)),   % no overriding
+  not(member(Attr=_V,Specific)),   % no overriding
   override(Specific,General,Props).
 ">
 properties_fr(Inst,Props):-
