@@ -2742,7 +2742,7 @@ start at a given node (for instance, the root of a tree), and end in a leaf.
 The following program will do the job. Note that this program differs from the
 previous one in that it allows for paths consisting of one node only.</span></p>
 
-<pre class="source swish" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(1,Path)." style="display: block;"
+<pre class="source swish" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(n1,Path)." style="display: block;"
 source-text-start=
 "arc(n1,n2).
 arc(n1,n3).
@@ -2764,7 +2764,7 @@ path_leaf(Node1,[Node1|Nodes]):-
   path_leaf(Node2,Nodes).
 
 leaf(Leaf):-
-not arc(Leaf,SomeNode).
+  not(arc(Leaf,SomeNode)).
 </pre>
 
 <p class=tekst><span lang=EN-US>The query </span><span lang=EN-US
@@ -3466,7 +3466,7 @@ override(Specific,[Attr=Val|General],Props):-
   member(Attr=V,Specific),       % overriding
   override(Specific,General,Props).
 override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
-  not member(Attr=V,Specific),   % no overriding
+  not(member(Attr=V,Specific)),   % no overriding
   override(Specific,General,Props).
 </pre>
 
