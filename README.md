@@ -16,3 +16,4 @@ You can view it [here](so-cool.github.io/simply-logical).
 
 # To do #
 - [ ] Fix PDF release.
+- [ ] Fix rendering of *¨*, *Ô*, etc..
