@@ -17,3 +17,6 @@ You can view it [here](so-cool.github.io/simply-logical).
 # To do #
 - [ ] Fix PDF release.
 - [ ] Fix rendering of *¨*, *Ô*, etc..
+- [ ] Fix repeating header's ids.
+- [ ] Merge external changes (Dropbox).
+- [ ] Split `htm` files into proper modules.
