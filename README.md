@@ -15,10 +15,13 @@ The release page with some notes is available [here](https://github.com/So-Cool/
 
 ## Online version ##
 The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH Prolog](http://swish.swi-prolog.org/).  
-You can view it [here](so-cool.github.io/simply-logical).
+You can view it [here](http://so-cool.github.io/simply-logical).
 
 ### Prolog code blocks not working ###
 If Prolog blocks are not working for you in the online version of the book please make sure that 3rd party cookies are enabled in your web browser.
+
+### Error in the book ###
+If you found an error in the online version of the book please file an **issue** in [this](https://github.com/So-Cool/simply-logical) GitHub repository.
 
 # Deploying to GitHub Pages #
 To deploy changes introduced in `master` branch to `gh-pages` branch do (after committing all changes on `master` branch):
@@ -32,6 +35,7 @@ git checkout master
 
 # To do #
 - [ ] Fix PDF release.
+- [ ] Figure 4.1 is missing.
 - [X] Fix rendering of *¨*, *Ô*, etc..
 
 [^\x00-\x7F]
@@ -73,4 +77,5 @@ git checkout master
 
 - [X] Fix repeating header's ids.
 - [ ] Merge external changes (Dropbox).
+- [ ] Create better stylesheet.
 - [X] Split `htm` files into proper modules.
