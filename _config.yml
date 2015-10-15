@@ -1,0 +1,22 @@
+# Site settings
+title: Simply Logical
+email: Peter.Flach@bristol.ac.uk
+description: > # this means to ignore newlines until "baseurl:"
+  Simply Logical: Intelligent Reasoning by Example<br>
+  This is a book about intelligent reasoning. Reasoning is the process of 
+  drawing conclusions; intelligent reasoning is the kind of reasoning performed 
+  by humans. This is not to say that this book is about the psychological 
+  aspects of human reasoning: rather, it discusses methods to implement 
+  intelligent reasoning by means of Prolog programs. The book is written from 
+  the shared viewpoints of Computational Logic, which aims at automating 
+  various kinds of reasoning, and Artificial Intelligence, which seeks to 
+  implement aspects of intelligent behaviour on a computer. The combination of 
+  these two viewpoints is a distinguishing feature of this book, which I think 
+  gives it a unique place among the many related books available.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://so-cool.github.io/simply-logical" # the base hostname & protocol for your site
+# twitter_username: jekyllrb
+# github_username:  jekyll
+
+# Build settings
+markdown: kramdown

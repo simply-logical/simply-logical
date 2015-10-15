@@ -1,0 +1,303 @@
+<!-- navibar - highlight; homepge & about -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="{{ site.baseurl }}/#intro" data-target="#intro">{{ site.title }}</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+
+<!-- 
+  <li>
+        <div class="btn-group navbar-btn">
+          <button class="btn btn-default">Action</button>
+          <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+  </li>
+ -->
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/Part%20I.htm#logic_and_logic_programming" data-target="#logic_and_logic_programming">Part I<span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <a href="/Part%20I.htm#logic_and_logic_programming" data-target="#logic_and_logic_programming">
+              <li class="dropdown-header"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Logic and Logic Programming</li>
+              </a>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20I.htm#a_brief_introduction_to_clausal_logic" data-target="#a_brief_introduction_to_clausal_logic">Chapter 1</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20I.htm#a_brief_introduction_to_clausal_logic" data-target="#a_brief_introduction_to_clausal_logic">Chapter 1</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20I.htm#answering_queries" data-target="#answering_queries">1.1 Answering queries</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#recursion" data-target="#recursion">1.2 Recursion</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#structured_terms" data-target="#structured_terms">1.3 Structured terms</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#what_else_is_there_to_know_about_clausal_logic" data-target="#what_else_is_there_to_know_about_clausal_logic">1.4 What else is there to know about clausal logic?</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">A brief introduction to clausal logic</li>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20I.htm#clausal_logic_and_resolution_theoretical_backgrounds" data-target="#clausal_logic_and_resolution_theoretical_backgrounds">Chapter 2</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20I.htm#clausal_logic_and_resolution_theoretical_backgrounds" data-target="#clausal_logic_and_resolution_theoretical_backgrounds">Chapter 2</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20I.htm#propositional_clausal_logic" data-target="#propositional_clausal_logic">2.1 Propositional clausal logic</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#relational_clausal_logic" data-target="#relational_clausal_logic">2.2 Relational clausal logic</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#full_clausal_logic" data-target="#full_clausal_logic">2.3 Full clausal logic</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#definite_clause_logic" data-target="#definite_clause_logic">2.4 Definite clause logic</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#the_relation_between_clausal_logic_and_predicate_logic" data-target="#the_relation_between_clausal_logic_and_predicate_logic">2.5 The relation between clausal logic and Predicate Logic</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#further_reading_2" data-target="#further_reading_2">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Clausal logic and resolution:<br>theoretical backgrounds</li>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20I.htm#logic_programming_and_prolog" data-target="#logic_programming_and_prolog">Chapter 3</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20I.htm#logic_programming_and_prolog" data-target="#logic_programming_and_prolog">Chapter 3</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20I.htm#sld_resolution" data-target="#sld_resolution">3.1 SLD-resolution</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#pruning_the_search_by_means_of_cut" data-target="#pruning_the_search_by_means_of_cut">3.2 Pruning the search by means of cut</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#negation_as_failure" data-target="#negation_as_failure">3.3 Negation as failure</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#other_uses_of_cut" data-target="#other_uses_of_cut">3.4 Other uses of cut</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#arithmetic_expressions" data-target="#arithmetic_expressions">3.5 Arithmetic expressions</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#accumulators" data-target="#accumulators">3.6 Accumulators</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#second_order_predicates" data-target="#second_order_predicates">3.7 Second-order predicates</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#meta_programs" data-target="#meta_programs">3.8 Meta-programs</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#a_methodology_of_prolog_programming" data-target="#a_methodology_of_prolog_programming">3.9 A methodology of Prolog programming</a></li>
+                  <li><a tabindex="-1" href="/Part%20I.htm#further_reading_3" data-target="#further_reading_3">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Logic Programming and Prolog</li>
+            </ul>
+          </li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/Part%20II.htm#reasoning_with_structured_knowledge" data-target="#reasoning_with_structured_knowledge">Part II<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <a href="/Part%20II.htm#reasoning_with_structured_knowledge" data-target="#reasoning_with_structured_knowledge">
+              <li class="dropdown-header"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Reasoning with structured knowledge</li>
+              </a>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20II.htm#representing_structured_knowledge" data-target="#representing_structured_knowledge">Chapter 4</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20II.htm#representing_structured_knowledge" data-target="#representing_structured_knowledge">Chapter 4</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20II.htm#trees_as_terms" data-target="#trees_as_terms">4.1 Trees as terms</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#graphs_generated_by_a_predicate" data-target="#graphs_generated_by_a_predicate">4.2 Graphs generated by a predicate</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#inheritance_hierarchies" data-target="#inheritance_hierarchies">4.3 Inheritance hierarchies</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#further_reading_4" data-target="#further_reading_4">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Representing structured knowledge</li>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20II.htm#searching_graphs" data-target="#searching_graphs">Chapter 5</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20II.htm#searching_graphs" data-target="#searching_graphs">Chapter 5</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20II.htm#a_general_search_procedure" data-target="#a_general_search_procedure">5.1 A general search procedure</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#depth_first_search" data-target="#depth_first_search">5.2 Depth-first search</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#breadth_first_search" data-target="#breadth_first_search">5.3 Breadth-first search</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#forward_chaining" data-target="#forward_chaining">5.4 Forward chaining</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#further_reading_5" data-target="#further_reading_5">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Searching graphs</li>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20II.htm#informed_search" data-target="#informed_search">Chapter 6</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20II.htm#informed_search" data-target="#informed_search">Chapter 6</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20II.htm#best_first_search" data-target="#best_first_search">6.1 Best-first search</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#optimal_best_first_search" data-target="#optimal_best_first_search">6.2 Optimal best-first search</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#non_exhaustive_informed_search" data-target="#non_exhaustive_informed_search">6.3 Non-exhaustive informed search</a></li>
+                  <li><a tabindex="-1" href="/Part%20II.htm#further_reading_6" data-target="#further_reading_6">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Informed search</li>
+            </ul>
+          </li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/Part%20III.htm#advanced_reasoning_techniques" data-target="#advanced_reasoning_techniques">Part III<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <a href="/Part%20III.htm#advanced_reasoning_techniques" data-target="#advanced_reasoning_techniques">
+              <li class="dropdown-header"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Advanced reasoning techniques</li>
+              </a>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20III.htm#reasoning_with_natural_language" data-target="#reasoning_with_natural_language">Chapter 7</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20III.htm#reasoning_with_natural_language" data-target="#reasoning_with_natural_language">Chapter 7</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20III.htm#grammars_and_parsing" data-target="#grammars_and_parsing">7.1 Grammars and parsing</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#definite_clause_grammars" data-target="#definite_clause_grammars">7.2 Definite Clause Grammars</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#interpretation_of_natural_language" data-target="#interpretation_of_natural_language">7.3 Interpretation of natural language</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#further_reading_7" data-target="#further_reading_7">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Reasoning with natural language</li>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20III.htm#reasoning_with_incomplete_information" data-target="#reasoning_with_incomplete_information">Chapter 8</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20III.htm#reasoning_with_incomplete_information" data-target="#reasoning_with_incomplete_information">Chapter 8</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20III.htm#default_reasoning" data-target="#default_reasoning">8.1 Default reasoning</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#the_semantics_of_incomplete_information" data-target="#the_semantics_of_incomplete_information">8.2 The semantics of incomplete information</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#abduction_and_diagnostic_reasoning" data-target="#abduction_and_diagnostic_reasoning">8.3 Abduction and diagnostic reasoning</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#the_complete_picture" data-target="#the_complete_picture">8.4 The complete picture</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#further_reading_8" data-target="#further_reading_8">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Reasoning with incomplete information</li>
+              <li role="separator" class="divider"></li>
+
+              <!-- <li><a href="/Part%20III.htm#inductive_reasoning" data-target="#inductive_reasoning">Chapter 9</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Part%20III.htm#inductive_reasoning" data-target="#inductive_reasoning">Chapter 9</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Part%20III.htm#generalisation_and_specialisation" data-target="#generalisation_and_specialisation">9.1 Generalisation and specialisation</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#bottom_up_induction" data-target="#bottom_up_induction">9.2 Bottom-up induction</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#top_down_induction" data-target="#top_down_induction">9.3 Top-down induction</a></li>
+                  <li><a tabindex="-1" href="/Part%20III.htm#further_reading_9" data-target="#further_reading_9">Further reading</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Inductive reasoning</li>
+            </ul>
+          </li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/Appendix.htm#appendices" data-target="#appendices">Appendices<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+            <a href="/Appendix.htm#appendices" data-target="#appendices">
+              <li class="dropdown-header"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Additional materials</li>
+              </a>
+              <li role="separator" class="divider"></li>
+
+<!--          <li><a href="/Appendix.htm#a_catalogue_of_useful_predicates" data-target="#a_catalogue_of_useful_predicates">Appendix A</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Appendix.htm#a_catalogue_of_useful_predicates" data-target="#a_catalogue_of_useful_predicates">Appendix A</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Appendix.htm#built_in_predicates" data-target="#built_in_predicates">A.1 Built-in predicates</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#a_library_of_utility_predicates" data-target="#a_library_of_utility_predicates">A.2 A library of utility predicates</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">A catalogue of useful predicates</li>
+              <li role="separator" class="divider"></li>
+
+<!--          <li><a href="/Appendix.htm#two_programs_for_logical_conversion" data-target="#two_programs_for_logical_conversion">Appendix B</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Appendix.htm#two_programs_for_logical_conversion" data-target="#two_programs_for_logical_conversion">Appendix B</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Appendix.htm#from_predicate_logic_to_clausal_logic" data-target="#from_predicate_logic_to_clausal_logic">B.1 From Predicate Logic to clausal logic</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#predicate_completion" data-target="#predicate_completion">B.2 Predicate Completion</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Two programs for logical conversion</li>
+              <li role="separator" class="divider"></li>
+
+<!--           <li><a href="/Appendix.htm#answers_to_selected_exercises" data-target="#answers_to_selected_exercises">Appendix C</a></li> -->
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/Appendix.htm#answers_to_selected_exercises" data-target="#answers_to_selected_exercises">Appendix C</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="/Appendix.htm#a_brief_introduction_to_clausal_logic_c" data-target="#a_brief_introduction_to_clausal_logic_c">C.1 A brief introduction to clausal logic</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#clausal_logic_and_resolution_theoretical_backgrounds_c" data-target="#clausal_logic_and_resolution_theoretical_backgrounds_c">C.2 Clausal logic and resolution: theoretical backgrounds</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#logic_programming_and_prolog_c" data-target="#logic_programming_and_prolog_c">C.3 Logic Programming and Prolog</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#representing_structured_knowledge_c" data-target="#representing_structured_knowledge_c">C.4 Representing structured knowledge</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#searching_graphs_c" data-target="#searching_graphs_c">C.5 Searching graphs</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#informed_search_c" data-target="#informed_search_c">C.6 Informed search</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#reasoning_with_natural_language_c" data-target="#reasoning_with_natural_language_c">C.7 Reasoning with natural language</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#reasoning_with_incomplete_information_c" data-target="#reasoning_with_incomplete_information_c">C.8 Reasoning with incomplete information</a></li>
+                  <li><a tabindex="-1" href="/Appendix.htm#inductive_reasoning_c" data-target="#inductive_reasoning_c">C.9 Inductive reasoning</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-header">Answers to selected exercises</li>              
+            </ul>
+          </li>
+        </ul>
+<!--         
+        <ul class="nav navbar-nav" style="float: right">
+          <li><a href="#contact" class="navbar-nav pull-right">Contact</a></li>
+        </ul>
+-->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/about.html#about" data-target="#about">About</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</nav> 
+
+
+
+<!--     <div id="navbar">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container"> -->
+
+<!--         <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ site.baseurl }}">{{ site.title }}</a>
+        </div> -->
+
+<!--         <div class="navbar-header">
+          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-scrollspy">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project Name</a>
+        </div>
+
+        <div class="collapse navbar-collapse bs-example-js-navbar-scrollspy">
+          <ul class="nav navbar-nav">
+            <li><a href="#section1">@fat</a></li>
+            <li><a href="#section2">@mdo</a></li>
+            <li class="dropdown">
+              <a href="#" id="navbarDrop1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDrop1">
+                <li><a href="#one">one</a></li>
+                <li><a href="#two">two</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#three">three</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div> -->
+
+<!--         <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+
+<!--       </div>
+    </nav>
+    </div> -->
