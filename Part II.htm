@@ -178,11 +178,11 @@ XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;Uni
 of Discourse&quot; </span><![endif]--><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US>, but are instead <i style='mso-bidi-font-style:normal'>derived</i>
-from problem specifications of the form ‘given program <i style='mso-bidi-font-style:
-normal'>P</i>, find all answers to query <i style='mso-bidi-font-style:normal'>Q</i>’.
+from problem specifications of the form &lsquo;given program <i style='mso-bidi-font-style:
+normal'>P</i>, find all answers to query <i style='mso-bidi-font-style:normal'>Q</i>&rsquo;.
 By means of SLD-trees, such problems are translated to problems of the form
-‘given SLD-tree <i style='mso-bidi-font-style:normal'>T</i>, find all paths
-from the root of the tree to the empty clause’. Problems of the latter kind are
+&lsquo;given SLD-tree <i style='mso-bidi-font-style:normal'>T</i>, find all paths
+from the root of the tree to the empty clause&rsquo;. Problems of the latter kind are
 called <i style='mso-bidi-font-style:normal'>search problem</i></span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><i style='mso-bidi-font-style:normal'><span lang=EN-US><span
@@ -1180,7 +1180,7 @@ depth-first search.</span></p>
 
 <p class=sektie1><span lang=EN-US>In real life, graphs are often infinite. For
 instance, many SLD-trees are infinite, even for very simple programs such as
-(‘br’ abbreviates brother):</span></p>
+(&lsquo;br&rsquo; abbreviates brother):</span></p>
 
 <p class=p-el><span lang=EN-US>br(X,Y):-br(X,Z),br(Z,Y).<br>
 br(paul,peter).</span></p>
@@ -1348,8 +1348,8 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;instance&quot; \b </span></i><![endi
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><i
 style='mso-bidi-font-style:normal'><span lang=EN-US>s</span></i><span
 lang=EN-US> are listed for each most specific subclass. Thus, guitar, lute and
-harp are instances of the class ‘plucked instruments’, and thus also of the
-classes ‘string instruments’ and ‘instruments’. </span></p>
+harp are instances of the class &lsquo;plucked instruments&rsquo;, and thus also of the
+classes &lsquo;string instruments&rsquo; and &lsquo;instruments&rsquo;. </span></p>
 
 <p class=sektie><span lang=EN-US>If we want to represent such hierarchies in
 Prolog, we have to choose a representation for instances and classes. By far
@@ -1411,18 +1411,18 @@ style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;attribute&quot;
 \b </span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:
 none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>, with possible values ‘wood’ and ‘metal’.</span><!--[if supportFields]><span
+lang=EN-US>, with possible values &lsquo;wood&rsquo; and &lsquo;metal&rsquo;.</span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;value
 of an attribute&quot; \b </span><![endif]--><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>The statement
-‘saxophones are made of metal’ is represented by the ground fact </span></p>
+&lsquo;saxophones are made of metal&rsquo; is represented by the ground fact </span></p>
 
 <p class=p-el><span lang=EN-US>material(saxophone,metal)</span></p>
 
-<p class=tekst><span lang=EN-US>The statement ‘instances of the class of string
-instruments are made of wood’ is represented by the clause</span></p>
+<p class=tekst><span lang=EN-US>The statement &lsquo;instances of the class of string
+instruments are made of wood&rsquo; is represented by the clause</span></p>
 
 <p class=pi-el><span lang=EN-US>material(X,wood):-string(X).</span></p>
 
@@ -1550,7 +1550,7 @@ lang=EN-US style='font-family:Courier'>properties/3</span><span lang=EN-US>. </s
 inheritance hierarchies by means of clauses only allows a relatively simple
 inheritance strategy. Moreover, since classes are represented by predicates,
 reasoning about classes becomes a second-order logical inference. For example,
-the question ‘what are the subclasses of the class of instruments’ is not
+the question &lsquo;what are the subclasses of the class of instruments&rsquo; is not
 easily handled in the above representation. Both shortcomings can be alleviated
 if classes and attributes are represented by terms instead of predicates. In
 effect, this will result in a clearer separation of declarative knowledge
@@ -2001,16 +2001,16 @@ such as the difference between isa-links and instance-of-links in semantic
 networks. Papers about inheritance hierarchies can be found in (Lenzerini <i
 style='mso-bidi-font-style:normal'>et al.</i>, 1991). LOGIN is an extension of
 Prolog in which inheritance is represented by terms rather than clauses
-(Aït-Kaci &amp; Nasr, 1986). </span></p>
+(A&iuml;t-Kaci &amp; Nasr, 1986). </span></p>
 
 <p class=referenties><span lang=EN-US style='font-variant:small-caps'>H.
-Aït-Kaci &amp; R. Nasr (</span><span lang=EN-US>1986)<span style='font-variant:
-small-caps'>,</span> ‘LOGIN: a logic programming language with built-in
-inheritance’, <i style='mso-bidi-font-style:normal'>Journal of Logic
+A&iuml;t-Kaci &amp; R. Nasr (</span><span lang=EN-US>1986)<span style='font-variant:
+small-caps'>,</span> &lsquo;LOGIN: a logic programming language with built-in
+inheritance&rsquo;, <i style='mso-bidi-font-style:normal'>Journal of Logic
 Programming</i> <b style='mso-bidi-font-weight:normal'>1986</b>(3): 185-215.<span
 style='display:none;mso-hide:all'>.;</span></span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;Aït-Kaci,
+XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;A&iuml;t-Kaci,
 H.&quot; </span><![endif]--><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US style='display:none;mso-hide:all'>.;</span><!--[if supportFields]><span
@@ -2146,7 +2146,7 @@ in the search space along every possible path, before finding a solution. On
 the other hand, they differ with regard to: </span></p>
 
 <p class=opsomming style='margin-left:28.0pt;text-indent:-10.15pt'><span
-lang=EN-US>•<span style='mso-tab-count:1'>&nbsp; </span><i style='mso-bidi-font-style:
+lang=EN-US>&bull;<span style='mso-tab-count:1'>&nbsp; </span><i style='mso-bidi-font-style:
 normal'>completeness</i></span><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><i style='mso-bidi-font-style:normal'><span lang=EN-US><span
@@ -2157,7 +2157,7 @@ lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&#8212; will a solution
 always be found?</span></p>
 
 <p class=opsomming style='margin-left:28.0pt;text-indent:-10.15pt'><span
-lang=EN-US>•<span style='mso-tab-count:1'>&nbsp; </span><i style='mso-bidi-font-style:
+lang=EN-US>&bull;<span style='mso-tab-count:1'>&nbsp; </span><i style='mso-bidi-font-style:
 normal'>optimality</i></span><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><i style='mso-bidi-font-style:normal'><span lang=EN-US><span
@@ -2168,7 +2168,7 @@ lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&#8212; will shorter
 paths be found before longer ones?</span></p>
 
 <p class=opsomming style='margin-left:28.0pt;text-indent:-10.15pt'><span
-lang=EN-US>•<span style='mso-tab-count:1'>&nbsp; </span><i style='mso-bidi-font-style:
+lang=EN-US>&bull;<span style='mso-tab-count:1'>&nbsp; </span><i style='mso-bidi-font-style:
 normal'>efficiency</i></span><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><i style='mso-bidi-font-style:normal'><span lang=EN-US><span
@@ -2199,16 +2199,16 @@ that she would stay where she was, while you would go looking for her. What
 strategy would you employ?</a></span></p>
 
 <p class=sektie><span style='mso-bookmark:bk0'><span lang=EN-US>First of all,
-to make sure that you don’t miss any room, you have to visit them in some
-systematic way. You don’t have a global map of the building, so you decide to
+to make sure that you don&rsquo;t miss any room, you have to visit them in some
+systematic way. You don&rsquo;t have a global map of the building, so you decide to
 never leave a room through the door through which you entered. Thinking about
-it, you recognise that this procedure won’t fully work, because a room might
+it, you recognise that this procedure won&rsquo;t fully work, because a room might
 have just one door: the one through which you entered. Assuming that there are
 still rooms not yet visited, you <b style='mso-bidi-font-weight:normal'>have</b>
 to leave such a room through the same door through which you entered, and find
-a room you’ve visited before, with a door not yet taken. Such a procedure,
+a room you&rsquo;ve visited before, with a door not yet taken. Such a procedure,
 however, requires that, for each room you visit, you remember the door through
-which you entered the room (in order to go back to a room you’ve been in
+which you entered the room (in order to go back to a room you&rsquo;ve been in
 before), and the doors you tried already (in order to try a remaining door).</span></span></p>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
@@ -2240,15 +2240,15 @@ before), and the doors you tried already (in order to try a remaining door).</sp
 
 <p class=sektie><span style='mso-bookmark:bk0'><span lang=EN-US>Luckily enough,
 you carry a piece of paper and a pencil with you, so you can stick little
-papers saying ‘entrance’ or ‘exit’ on the appropriate doors. However, the
+papers saying &lsquo;entrance&rsquo; or &lsquo;exit&rsquo; on the appropriate doors. However, the
 amount of paper you have is limited, so a better idea is to mark the doors <i
 style='mso-bidi-font-style:normal'>not yet</i> tried, and to remove the paper
 when you try a door, so that you can use the paper again. By reusing those
 pieces of paper that become obsolete, you minimise the amount of paper needed.
 Similarly, if you return to a room in which there are no remaining doors, you
 will never return to that room, so you might want to remove the paper saying
-‘entrance’ as well. On the other hand, leaving one paper might be a good idea,
-just in case you return to the room later via a ‘circular’ route; you are then
+&lsquo;entrance&rsquo; as well. On the other hand, leaving one paper might be a good idea,
+just in case you return to the room later via a &lsquo;circular&rsquo; route; you are then
 able to see that you already tried all the doors in that room.</span></span></p>
 
 <p class=sektie><span style='mso-bookmark:bk0'><span lang=EN-US>So you decide
@@ -2256,7 +2256,7 @@ to employ the following procedure:</span></span></p>
 
 <p class=opsomming style='margin-top:6.0pt;page-break-after:avoid'><span
 style='mso-bookmark:bk0'><span lang=EN-US>1.<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>mark
-every door in the starting room as ‘exit’;</span></span></p>
+every door in the starting room as &lsquo;exit&rsquo;;</span></span></p>
 
 <p class=opsomming><span style='mso-bookmark:bk0'><span lang=EN-US>2.<span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>examine the current room;</span></span></p>
@@ -2267,7 +2267,7 @@ stop;</span></span></p>
 
 <p class=opsomming style='page-break-after:avoid'><span style='mso-bookmark:
 bk0'><span lang=EN-US>4.<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>otherwise,
-if there are any doors marked ‘exit’ in the room,</span></span></p>
+if there are any doors marked &lsquo;exit&rsquo; in the room,</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4a.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>choose one of
@@ -2275,30 +2275,30 @@ them;</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4b.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>remove the mark
-‘exit’;</span></span></p>
+&lsquo;exit&rsquo;;</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4c.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>go through it;</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4d.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>if one of the
-doors in this room is already marked ‘entrance’, go back to the previous room,
+doors in this room is already marked &lsquo;entrance&rsquo;, go back to the previous room,
 and go to step 4;</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4d.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>otherwise, mark
-the door you just came through as ‘entrance’;</span></span></p>
+the door you just came through as &lsquo;entrance&rsquo;;</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4e.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>mark all other
-doors as ‘exit’;</span></span></p>
+doors as &lsquo;exit&rsquo;;</span></span></p>
 
 <p class=opsomming style='margin-left:85.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>4f.<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>go to step 2;</span></span></p>
 
 <p class=opsomming style='margin-bottom:6.0pt'><span style='mso-bookmark:bk0'><span
 lang=EN-US>5.<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>otherwise,
-take the door marked ‘entrance’, and go to step 4.</span></span></p>
+take the door marked &lsquo;entrance&rsquo;, and go to step 4.</span></span></p>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
 
@@ -2321,7 +2321,7 @@ take the door marked ‘entrance’, and go to step 4.</span></span></p>
   <p class=Caption1><span style='mso-bookmark:bk0'><b style='mso-bidi-font-weight:
   normal'><span lang=EN-US>Figure 5.2.</span></b><span lang=EN-US> You find her
   by systematically searching the rooms, backtracking when all the rooms
-  reachable from the room you’re in <br>
+  reachable from the room you&rsquo;re in <br>
   have been visited already (thin lines). </span></span></p>
   </td>
  </tr>
@@ -2363,20 +2363,20 @@ room, you do some bookkeeping and proceed in the same way.</span></span></p>
 
 <p class=sektie><span style='mso-bookmark:bk0'><span lang=EN-US>How does this
 search procedure work in practice? Suppose you are in the </span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US> room (fig. 5.1). You decide to try the doors in that room in a
 clockwise order. You first check the </span></span><span style='mso-bookmark:
-bk0'><span lang=EN-US style='font-family:Helvetica'>Léger</span><span
+bk0'><span lang=EN-US style='font-family:Helvetica'>L&eacute;ger</span><span
 lang=EN-US> room, then the </span></span><span style='mso-bookmark:bk0'><span
 lang=EN-US style='font-family:Helvetica'>Kupka</span><span lang=EN-US> room,
 and finally the </span></span><span style='mso-bookmark:bk0'><span lang=EN-US
 style='font-family:Helvetica'>Kandinsky</span><span lang=EN-US> room. When you
 enter the </span></span><span style='mso-bookmark:bk0'><span lang=EN-US
-style='font-family:Helvetica'>Léger</span><span lang=EN-US> room again from </span></span><span
+style='font-family:Helvetica'>L&eacute;ger</span><span lang=EN-US> room again from </span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Kandinsky</span><span
-lang=EN-US>, you realise that you’ve been there before, because there’s a door
-marked ‘entrance’. So you backtrack to </span></span><span style='mso-bookmark:
-bk0'><span lang=EN-US style='font-family:Helvetica'>Léger</span><span
+lang=EN-US>, you realise that you&rsquo;ve been there before, because there&rsquo;s a door
+marked &lsquo;entrance&rsquo;. So you backtrack to </span></span><span style='mso-bookmark:
+bk0'><span lang=EN-US style='font-family:Helvetica'>L&eacute;ger</span><span
 lang=EN-US> (because there are no alternatives left in </span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Kandinsky</span><span
 lang=EN-US> and </span></span><span style='mso-bookmark:bk0'><span lang=EN-US
@@ -2385,7 +2385,7 @@ door. This one leads you straight to </span></span><span style='mso-bookmark:
 bk0'><span lang=EN-US style='font-family:Helvetica'>Kandinsky</span><span
 lang=EN-US> again, and your little papers remind you that you have been there
 already. You backtrack again to </span></span><span style='mso-bookmark:bk0'><span
-lang=EN-US style='font-family:Helvetica'>Léger</span><span lang=EN-US>, and try
+lang=EN-US style='font-family:Helvetica'>L&eacute;ger</span><span lang=EN-US>, and try
 the </span></span><span style='mso-bookmark:bk0'><span lang=EN-US
 style='font-family:Helvetica'>Matisse</span><span lang=EN-US> room. From there,
 </span></span><span style='mso-bookmark:bk0'><span lang=EN-US style='font-family:
@@ -2394,7 +2394,7 @@ finally find your friend still admiring the Mondriaan paintings! The route you
 walked is shown in fig. 5.2, (thin lines denote backtracking).</span></span></p>
 
 <p class=sektie><span style='mso-bookmark:bk0'><span lang=EN-US>In a computer
-implementation of such a search procedure, you don’t walk from room to room.
+implementation of such a search procedure, you don&rsquo;t walk from room to room.
 Instead of marking nodes and returning to them later, the search program stores
 a description of those nodes in memory. In the above example, the number of
 marks needed corresponds to the amount of memory required during search, and
@@ -2500,13 +2500,13 @@ possible from the initial room, only coming closer again when backtracking. </sp
 
 <p class=sektie><span style='mso-bookmark:bk0'><span lang=EN-US>On the other
 hand, the shortest path between your initial position and your friend is </span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US>-</span></span><span style='mso-bookmark:bk0'><span lang=EN-US
 style='font-family:Helvetica'>Mondriaan</span><span lang=EN-US>, while you
 finally reach your friend along the path </span></span><span style='mso-bookmark:
-bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US>-</span></span><span style='mso-bookmark:bk0'><span lang=EN-US
-style='font-family:Helvetica'>Léger</span><span lang=EN-US>-</span></span><span
+style='font-family:Helvetica'>L&eacute;ger</span><span lang=EN-US>-</span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Matisse</span><span
 lang=EN-US>-</span></span><span style='mso-bookmark:bk0'><span lang=EN-US
 style='font-family:Helvetica'>Mondriaan</span></span><span style='mso-bookmark:
@@ -2520,13 +2520,13 @@ Times;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
 AR-SA'>[15]</span></span><![endif]></span></span></span></span></a><span
 style='mso-bookmark:bk0'><span lang=EN-US>. You would have found your friend
 sooner if you would have examined all rooms next to </span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US> first. But suppose your friend was two rooms away, e.g. in the </span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Matisse</span><span
 lang=EN-US> room? Well, in that case you would have gone to the rooms next to </span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US> (</span></span><span style='mso-bookmark:bk0'><span lang=EN-US
-style='font-family:Helvetica'>Léger</span><span lang=EN-US> and </span></span><span
+style='font-family:Helvetica'>L&eacute;ger</span><span lang=EN-US> and </span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mondriaan</span><span
 lang=EN-US>), and then to all rooms next to those (</span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Kupka</span><span
@@ -2552,9 +2552,9 @@ style='mso-bookmark:bk0'></span><!--[if supportFields]><span style='mso-bookmark
 bk0'></span><span style='mso-element:field-end'></span><![endif]--><span
 style='mso-bookmark:bk0'><span lang=EN-US>. Thus you would have found your
 friend along one of the two shortest paths (</span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US>-</span></span><span style='mso-bookmark:bk0'><span lang=EN-US
-style='font-family:Helvetica'>Léger</span><span lang=EN-US>-</span></span><span
+style='font-family:Helvetica'>L&eacute;ger</span><span lang=EN-US>-</span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Matisse</span><span
 lang=EN-US>). This second method is an example of <i style='mso-bidi-font-style:
 normal'>breadth-first</i> search</span></span><!--[if supportFields]><span
@@ -2591,9 +2591,9 @@ lang=EN-US style='font-family:Helvetica'>Mondriaan</span><span lang=EN-US>
 room. In this case it would be wise to overrule the default clockwise ordering,
 and to try </span></span><span style='mso-bookmark:bk0'><span lang=EN-US
 style='font-family:Helvetica'>Mondriaan</span><span lang=EN-US> before </span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Léger</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>L&eacute;ger</span><span
 lang=EN-US>. Consequently, you would have found your friend along the path </span></span><span
-style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Miró</span><span
+style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Mir&oacute;</span><span
 lang=EN-US>-</span></span><span style='mso-bookmark:bk0'><span lang=EN-US
 style='font-family:Helvetica'>Mondriaan</span><span lang=EN-US>-</span></span><span
 style='mso-bookmark:bk0'><span lang=EN-US style='font-family:Helvetica'>Matisse</span><span
@@ -2829,7 +2829,7 @@ normal'>n</i>), how many nodes are there on the agenda? Since at each level
 only the children of a single node are generated, the size of the agenda is of
 the order <i style='mso-bidi-font-style:normal'>B</i></span><span lang=EN-US
 style='font-family:Symbol;letter-spacing:-1.75pt'> </span><span lang=EN-US
-style='font-family:Symbol'>´<span style='letter-spacing:-1.75pt'> </span></span><i
+style='font-family:Symbol'>&times;<span style='letter-spacing:-1.75pt'> </span></span><i
 style='mso-bidi-font-style:normal'><span lang=EN-US>n</span></i><span
 lang=EN-US>, that is, a linear function of the depth of the tree. The time
 complexity</span><!--[if supportFields]><span lang=EN-US style='display:none;
@@ -2853,13 +2853,13 @@ course, we cannot hope to achieve any better for blind exhaustive search!</span>
 <p class=sektie><span lang=EN-US>In practice, depth-first search is only
 implemented as above if loop detection is an absolute must. Otherwise, the
 agenda is represented <i style='mso-bidi-font-style:normal'>implicitly</i> by
-means of Prolog’s internal goal stack</span><!--[if supportFields]><span
+means of Prolog&rsquo;s internal goal stack</span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;Prolog:goal
 stack&quot; </span><![endif]--><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US>. Children of a given node are generated one at a time, by means of
-Prolog’s backtracking</span><!--[if supportFields]><span lang=EN-US
+Prolog&rsquo;s backtracking</span><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;Prolog:backtracking&quot;
 </span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
@@ -3664,10 +3664,10 @@ cl((false:-woman(peter))).</span></p>
 
 <p class=tekst><span lang=EN-US>In this way, the first clause is violated only
 under the substitutions {</span><span lang=EN-US style='font-family:Courier'>X</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US
 style='font-family:Courier'>peter</span><span lang=EN-US>} and {</span><span
 lang=EN-US style='font-family:Courier'>X</span><span lang=EN-US
-style='font-family:Symbol'>®</span><span lang=EN-US style='font-family:Courier'>maria</span><span
+style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>maria</span><span
 lang=EN-US>}. Thus, all literals which are added to the model are ground, and
 the program constructs the correct model</span></p>
 
@@ -3684,11 +3684,11 @@ range-restricted clauses by adding domain predicates enumerating the domains of
 variables, as above. The two sets of clauses are equivalent in the sense that
 there exists a one-to-one correspondence between their models:</span></p>
 
-<p class=opsomming style='margin-right:17.0pt'><span lang=EN-US>•<span
+<p class=opsomming style='margin-right:17.0pt'><span lang=EN-US>&bull;<span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>any model of the
 original clauses provides an enumeration of all the domains;</span></p>
 
-<p class=opsomming><span lang=EN-US>•<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>any
+<p class=opsomming><span lang=EN-US>&bull;<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>any
 model of the range-restricted clauses can be transformed to a model of the
 original clauses by dropping the domain literals.</span></p>
 
@@ -3708,9 +3708,9 @@ cl((thing(c):-true)).</span></p>
 
 <p class=tekst><span lang=EN-US>Instead of the complete, infinite model, we
 might be interested in a subset over a universe of lists up to a given length.
-Such a ‘submodel’ can be computed by a forward chaining procedure which stops
+Such a &lsquo;submodel&rsquo; can be computed by a forward chaining procedure which stops
 after a prespecified number of steps. In this way, the procedure gets more of a
-‘breadth-first’ flavour. The program is given below: </span></p>
+&lsquo;breadth-first&rsquo; flavour. The program is given below: </span></p>
 
 <p class=oms-eerst><span lang=EN-US>% model_d(D,M) &lt;- M is a submodel of the
 clauses <br>
@@ -3817,7 +3817,7 @@ is adapted from (Manthey &amp; Bry, 1988). </span></p>
 
 <p class=referenties><span lang=EN-US style='font-variant:small-caps'>R.E. Korf
 (</span><span lang=EN-US>1985)<span style='font-variant:small-caps'>,</span>
-‘Depth-first iterative deepening: an optimal admissible tree search’, <i
+&lsquo;Depth-first iterative deepening: an optimal admissible tree search&rsquo;, <i
 style='mso-bidi-font-style:normal'>Artificial Intelligence</i> <b
 style='mso-bidi-font-weight:normal'>27</b>: 97-109.<span style='display:none;
 mso-hide:all'>.E.;</span></span><!--[if supportFields]><span lang=EN-US
@@ -3828,7 +3828,7 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 
 <p class=referenties><span lang=EN-US style='font-variant:small-caps'>R.E. Korf
 (</span><span lang=EN-US>1987)<span style='font-variant:small-caps'>,</span>
-‘Search’. In <i style='mso-bidi-font-style:normal'>Encyclopedia of Artificial
+&lsquo;Search&rsquo;. In <i style='mso-bidi-font-style:normal'>Encyclopedia of Artificial
 Intelligence</i>, S.C. Shapiro (ed.), pp. 994-998, John Wiley.<span
 style='display:none;mso-hide:all'>.E.;</span></span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -3838,8 +3838,8 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 
 <p class=referenties style='margin-right:-2.0pt'><span lang=EN-US
 style='font-variant:small-caps'>R. Manthey &amp; F. Bry (</span><span
-lang=EN-US>1988)<span style='font-variant:small-caps'>,</span> ‘SATCHMO: a
-theorem prover implemented in Prolog’. In E. Lusk &amp; R. Overbeek (eds), <i
+lang=EN-US>1988)<span style='font-variant:small-caps'>,</span> &lsquo;SATCHMO: a
+theorem prover implemented in Prolog&rsquo;. In E. Lusk &amp; R. Overbeek (eds), <i
 style='mso-bidi-font-style:normal'>Proc. 9th International Conference on
 Automated Deduction</i>, Lecture Notes in Computer Science 310, pp. 415-434,
 Springer&#8209;Verlag.<span style='display:none;mso-hide:all'>.;</span></span><!--[if supportFields]><span
@@ -4101,10 +4101,10 @@ replace(Xs,N1,Y,Zs).</span></p>
   lang=EN-US> is an alternative notation for the term </span><span lang=EN-US
   style='font-family:Courier'>.(b,.(b,.(b,.(e,.(w,.(w,.(w,[])))))))</span><span
   lang=EN-US>. This term contains, besides the seven constants in the linear
-  notation, one additional constant (‘</span><span lang=EN-US style='font-family:
-  Courier'>[]</span><span lang=EN-US>’) and seven functors (‘</span><span
-  lang=EN-US style='font-family:Courier'>.</span><span lang=EN-US>’), each with
-  two arguments. In contrast, a ‘flat’ term </span><span lang=EN-US
+  notation, one additional constant (&lsquo;</span><span lang=EN-US style='font-family:
+  Courier'>[]</span><span lang=EN-US>&rsquo;) and seven functors (&lsquo;</span><span
+  lang=EN-US style='font-family:Courier'>.</span><span lang=EN-US>&rsquo;), each with
+  two arguments. In contrast, a &lsquo;flat&rsquo; term </span><span lang=EN-US
   style='font-family:Courier'>p(b,b,b,e,w,w,w)</span><span lang=EN-US> contains
   only one additional functor, with seven arguments. Recursive datastructures
   like lists are useful if the number of items to be stored is not fixed, but
@@ -4347,7 +4347,7 @@ This seems to suggest that the heuristic works quite well. On the other hand,
 the first few moves seem a bit awkward: in particular, the first and the fourth
 move are relatively expensive.</a></span></p>
 
-<p class=sektie><span style='mso-bookmark:bk1'><span lang=EN-US>Let’s try
+<p class=sektie><span style='mso-bookmark:bk1'><span lang=EN-US>Let&rsquo;s try
 another heuristic, which counts the number of tiles out of place: a wrong tile
 on the first or seventh square gives 3, on the second or sixth square 2, and on
 the third or fifth square 1.</span></span></p>
@@ -4640,7 +4640,7 @@ mistaken to suggest that better heuristics are more optimistic! On the
 contrary, a good heuristic is as pessimistic as possible, without becoming
 non-admissible. In general, if <i style='mso-bidi-font-style:normal'>h</i></span><span
 lang=EN-US style='font-size:9.0pt;position:relative;top:2.0pt;mso-text-raise:
--2.0pt'>1</span><span lang=EN-US>(<i style='mso-bidi-font-style:normal'>n</i>)≥<i
+-2.0pt'>1</span><span lang=EN-US>(<i style='mso-bidi-font-style:normal'>n</i>)&ge;<i
 style='mso-bidi-font-style:normal'>h</i></span><span lang=EN-US
 style='font-size:9.0pt;position:relative;top:2.0pt;mso-text-raise:-2.0pt'>2</span><span
 lang=EN-US>(<i style='mso-bidi-font-style:normal'>n</i>) for any node <i
@@ -4679,7 +4679,7 @@ which, being on the optimal path, leads to the goal. </span></p>
 <p class=sektie><span lang=EN-US>Thus, although admissible search leads to
 optimal solutions, it is not necessarily the case that every node on an optimal
 path is immediately reached along that optimal path. In fig. 6.3, this is
-caused by ‘local pessimism’ of the heuristic, which estimates the cost of
+caused by &lsquo;local pessimism&rsquo; of the heuristic, which estimates the cost of
 moving from <i style='mso-bidi-font-style:normal'>start</i> to <i
 style='mso-bidi-font-style:normal'>p</i> as 3&#8211;1=2, while the actual cost
 is 1. Indeed, if <i style='mso-bidi-font-style:normal'>p</i> would have an <i
@@ -4780,7 +4780,7 @@ lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>is a form of best-first
 search in which the number of nodes on the agenda is limited. In its most
 simple form, the agenda is of fixed size. Alternatively, one could allow the
 agenda to grow polynomially (instead of exponentially) with the search depth.
-The effect of this strategy is, that only a ‘beam’ of the search space is
+The effect of this strategy is, that only a &lsquo;beam&rsquo; of the search space is
 searched: </span></p>
 
 <p class=pi-el><span lang=EN-US>search_beam</span><!--[if supportFields]><span
@@ -4805,7 +4805,7 @@ search_beam(D,Rest,NewNextLayer,Goal).</span></p>
 
 <p class=tekst><span lang=EN-US>In this program, two agendas are maintained,
 one for the current level, and one for the children of the nodes on the current
-level. Once the current level is exhausted, the agenda’s are swapped and the
+level. Once the current level is exhausted, the agenda&rsquo;s are swapped and the
 depth count is increased. The depth count is passed on to the predicate </span><span
 lang=EN-US style='font-family:Courier'>add_beam/4</span><span lang=EN-US>, in
 order to decide how many children to add to the agenda for the next level. </span></p>

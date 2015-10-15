@@ -32,7 +32,45 @@ git checkout master
 
 # To do #
 - [ ] Fix PDF release.
-- [ ] Fix rendering of *¨*, *Ô*, etc..
+- [X] Fix rendering of *¨*, *Ô*, etc..
+
+[^\x00-\x7F]
+
+| org | rep      |
+| --- | ---      |
+| ¢   | &prime;  |
+| ¨   | &rarr;   |
+| ¥   | &bull;   |
+| É   | &hellip; |
+| Æ   | &#x25A1; |
+| ®   | &#8709;  |
+| ë é | &cup;    |
+| ô   | &and;    |
+| ò   | &or;     |
+| ¯   | &not;    |
+| Â   | &not;    |
+| Ç   | &harr;   |
+| ¼   | &equiv;  |
+| Š   | &auml;   |
+| Ÿ   | &uuml;   |
+| Ñ   | &mdash;  |
+| --- | ---      |
+| $   | &exist;  |
+| "   | &forall; |
+| --- | ---      |
+| Ô   | &lsquo;  |
+| Õ   | &rsquo;  |
+| •   | &iuml;   |
+| Ž   | &eacute; |
+| —   | &oacute; |
+| «   | &times;  |
+| ³   | &ge;     |
+| è   | &Euml;   |
+| ¾   | &aelig;  |
+| ê   | &sube;   |
+| --- | ---      |
+| È   | NULL     |
+
 - [X] Fix repeating header's ids.
 - [ ] Merge external changes (Dropbox).
-- [ ] Split `htm` files into proper modules.
+- [X] Split `htm` files into proper modules.

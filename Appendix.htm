@@ -399,7 +399,7 @@ margin-left:113.0pt;margin-bottom:.0001pt;text-indent:-112.35pt'><span
 lang=EN-US style='font-family:Courier'>findall(X,G,L)</span><span lang=EN-US><span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
 lang=EN-US style='font-family:Courier'>L</span><span lang=EN-US> is a list of </span><span
-lang=EN-US style='font-family:Courier'>X</span><span lang=EN-US>’s, one for
+lang=EN-US style='font-family:Courier'>X</span><span lang=EN-US>&rsquo;s, one for
 each solution of </span><span lang=EN-US style='font-family:Courier'>G</span><span
 lang=EN-US> (succeeds with the empty list if no solutions are found).</span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -412,7 +412,7 @@ margin-left:113.0pt;margin-bottom:.0001pt;text-indent:-112.35pt'><span
 lang=EN-US style='font-family:Courier'>bagof(X,G,L)</span><span lang=EN-US><span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
 lang=EN-US style='font-family:Courier'>L</span><span lang=EN-US> is a list of </span><span
-lang=EN-US style='font-family:Courier'>X</span><span lang=EN-US>’s, one for
+lang=EN-US style='font-family:Courier'>X</span><span lang=EN-US>&rsquo;s, one for
 each solution of </span><span lang=EN-US style='font-family:Courier'>G</span><span
 lang=EN-US>, which may be preceded by existential variables (fails if no
 solutions are found).</span><!--[if supportFields]><span lang=EN-US
@@ -805,7 +805,7 @@ asserta('$copy'(Old)),<br>
 retract('$copy'(New)),!.</span></p>
 
 <p class=pi-laatst style='tab-stops:163.0pt'><span lang=EN-US>copy_term(Old,New):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>% in case Old and New don’t
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>% in case Old and New don&rsquo;t
 unify<br>
 retract('$copy'(Old)),<br>
 !,fail.</span></p>
@@ -834,7 +834,7 @@ difference between negation as failure and logical negation. </span></p>
 variables <br>
 %<span
 style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>don’t get instantiated</span></p>
+</span>don&rsquo;t get instantiated</span></p>
 
 <p class=pi-laatst><span lang=EN-US>try</span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -903,8 +903,8 @@ means of the first program. </span></p>
 Predicate Logic to clausal logic</span></h3>
 
 <p class=sektie1><span lang=EN-US>In section 2.5 we discussed a method for
-transforming a formula in Predicate Logic to an ‘almost’ equivalent set of
-clauses (reread this section if you don’t recall in what sense the clauses
+transforming a formula in Predicate Logic to an &lsquo;almost&rsquo; equivalent set of
+clauses (reread this section if you don&rsquo;t recall in what sense the clauses
 differ from the Predicate Logic formula). Below, a Prolog program implementing
 this method is given. </span><!--[if supportFields]><span lang=EN-US
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span><span
@@ -943,7 +943,7 @@ lang=EN-US>. For instance, the formula</span></p>
 
 <p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
 lang=EN-US>S: student_of(S,peter)</span><span lang=EN-US style='font-family:
-Symbol'>®</span><span lang=EN-US>likes(peter,S)</span></p>
+Symbol'>&rarr;</span><span lang=EN-US>likes(peter,S)</span></p>
 
 <p class=tekst><span lang=EN-US>is represented by </span></p>
 
@@ -1399,10 +1399,10 @@ lang=EN-US> as an undefined predicate, and also to check the negated literal
 itself. After constructing the list of undefined literals occuring in clause
 bodies, each of them is transformed into a formula of the form </span><span
 lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
-style='font-family:Courier'>X1</span><span lang=EN-US>…</span><span lang=EN-US
+style='font-family:Courier'>X1</span><span lang=EN-US>&hellip;</span><span lang=EN-US
 style='font-family:Symbol'>&quot;</span><span lang=EN-US style='font-family:
-Courier'>Xn: </span><span lang=EN-US>¬</span><span lang=EN-US style='font-family:
-Courier'>p(X1,…,Xn)</span><span lang=EN-US>: </span></p>
+Courier'>Xn: </span><span lang=EN-US>&not;</span><span lang=EN-US style='font-family:
+Courier'>p(X1,&hellip;,Xn)</span><span lang=EN-US>: </span></p>
 
 <p class=pi-el style='tab-stops:248.0pt 286.0pt'><span lang=EN-US>handle_undefined(Program,Heads,CompDefs,Comp):-<br>
 findall(L,<br>
@@ -1636,14 +1636,14 @@ style='page-break-before:right;mso-break-type:section-break'>
 found. Not all answers have been included, due to two reasons. Some of the
 questions only lead to a new insight when the answer is actually constructed,
 and the student is encouraged to do so. Furthermore, some other questions
-embody small programming projects, and don’t have straightforward answers. </span></p>
+embody small programming projects, and don&rsquo;t have straightforward answers. </span></p>
 
 <p class=sektie><span lang=EN-US>The remaining questions have been constructed
 to highlight a particular point in the discussion (which, incidentally, is the
 reason that they are printed throughout the text, and not at the end of each
 chapter). They are most advantageous when addressed as soon as they are
 encountered. The answers provided here can then be used to check and assess
-one’s own solution. Most of the answers contain additional explanatory remarks.
+one&rsquo;s own solution. Most of the answers contain additional explanatory remarks.
 </span></p>
 
 <p class=sektie><span lang=EN-US>Alternatively, this appendix can be read
@@ -1681,23 +1681,23 @@ brief introduction to clausal logic</span></h3>
 <p class=answer><span lang=EN-US>There are six answers to this query:</span></p>
 
 <p class=p-el><span lang=EN-US style='font-family:Times'>{</span><span
-lang=EN-US>W</span><span lang=EN-US style='font-family:Symbol'>®</span><span
+lang=EN-US>W</span><span lang=EN-US style='font-family:Symbol'>&rarr;</span><span
 lang=EN-US>green_park</span><span lang=EN-US style='font-family:Times'>}</span><span
 lang=EN-US><br>
 </span><span lang=EN-US style='font-family:Times'>{</span><span lang=EN-US>W</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US>piccadilly_circus</span><span
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US>piccadilly_circus</span><span
 lang=EN-US style='font-family:Times'>}</span><span lang=EN-US><br>
 </span><span lang=EN-US style='font-family:Times'>{</span><span lang=EN-US>W</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US>leicester_square</span><span
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US>leicester_square</span><span
 lang=EN-US style='font-family:Times'>}</span><span lang=EN-US><br>
 </span><span lang=EN-US style='font-family:Times'>{</span><span lang=EN-US>W</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US>bond_street</span><span
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US>bond_street</span><span
 lang=EN-US style='font-family:Times'>}</span><span lang=EN-US><br>
 </span><span lang=EN-US style='font-family:Times'>{</span><span lang=EN-US>W</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US>oxford_circus</span><span
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US>oxford_circus</span><span
 lang=EN-US style='font-family:Times'>}</span><span lang=EN-US><br>
 </span><span lang=EN-US style='font-family:Times'>{</span><span lang=EN-US>W</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US>tottenham_court_road</span><span
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US>tottenham_court_road</span><span
 lang=EN-US style='font-family:Times'>}<o:p></o:p></span></p>
 
 <p class=tekst><span lang=EN-US>The proof trees for the first three answers are
@@ -1862,23 +1862,23 @@ logic and resolution: theoretical backgrounds</span></h3>
 
 </div>
 
-<p class=answer><span lang=EN-US>The statements should be read as ‘<b
-style='mso-bidi-font-weight:normal'>if</b> … <b style='mso-bidi-font-weight:
-normal'>then</b> …’ statements. Thus, the first statement reads ‘<b
+<p class=answer><span lang=EN-US>The statements should be read as &lsquo;<b
+style='mso-bidi-font-weight:normal'>if</b> &hellip; <b style='mso-bidi-font-weight:
+normal'>then</b> &hellip;&rsquo; statements. Thus, the first statement reads &lsquo;<b
 style='mso-bidi-font-weight:normal'>if</b> somebody is a person, <b
-style='mso-bidi-font-weight:normal'>then</b> she is happy or sad’: </span></p>
+style='mso-bidi-font-weight:normal'>then</b> she is happy or sad&rsquo;: </span></p>
 
 <p class=opsomming style='tab-stops:225.0pt'><span lang=EN-US>(<i
 style='mso-bidi-font-style:normal'>a</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span
 lang=EN-US style='font-family:Courier'>happy;sad:-person<o:p></o:p></span></p>
 
-<p class=tekst><span lang=EN-US>The second statement reads ‘<b
+<p class=tekst><span lang=EN-US>The second statement reads &lsquo;<b
 style='mso-bidi-font-weight:normal'>if</b> somebody is a person, <b
-style='mso-bidi-font-weight:normal'>then</b> she is not both happy and sad’. In
+style='mso-bidi-font-weight:normal'>then</b> she is not both happy and sad&rsquo;. In
 clausal logic, only positive conclusions can be drawn; negative conclusions are
-turned into positive conditions, as follows: ‘<b style='mso-bidi-font-weight:
+turned into positive conditions, as follows: &lsquo;<b style='mso-bidi-font-weight:
 normal'>if</b> somebody is a person, and she is happy and sad, <b
-style='mso-bidi-font-weight:normal'>then</b> contradiction’. A contradictory
+style='mso-bidi-font-weight:normal'>then</b> contradiction&rsquo;. A contradictory
 conclusion is signalled by the empty head: </span></p>
 
 <p class=opsomming style='tab-stops:225.0pt'><span lang=EN-US>(<i
@@ -1886,9 +1886,9 @@ style='mso-bidi-font-style:normal'>b</i>)<span style='mso-tab-count:1'>&nbsp;&nb
 lang=EN-US style='font-family:Courier'>:-person,happy,sad<o:p></o:p></span></p>
 
 <p class=tekst><span lang=EN-US>Following the same recipe, the third statement
-expresses that ‘<b style='mso-bidi-font-weight:normal'>if</b> somebody is a
+expresses that &lsquo;<b style='mso-bidi-font-weight:normal'>if</b> somebody is a
 person who is sad, and she is happy, <b style='mso-bidi-font-weight:normal'>then</b>
-contradiction’: </span></p>
+contradiction&rsquo;: </span></p>
 
 <p class=opsomming style='tab-stops:225.0pt'><span lang=EN-US>(<i
 style='mso-bidi-font-style:normal'>c</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span
@@ -1898,13 +1898,13 @@ lang=EN-US style='font-family:Courier'>:-person,sad,happy<o:p></o:p></span></p>
 normal'>b</i>) and (<i style='mso-bidi-font-style:normal'>c</i>) convey the
 same logical meaning.</span></p>
 
-<p class=sektie><span lang=EN-US>Finally, the fourth sentence reads ‘<b
+<p class=sektie><span lang=EN-US>Finally, the fourth sentence reads &lsquo;<b
 style='mso-bidi-font-weight:normal'>if</b> somebody is a person who is not
-happy, <b style='mso-bidi-font-weight:normal'>then</b> she is sad’. In clausal
+happy, <b style='mso-bidi-font-weight:normal'>then</b> she is sad&rsquo;. In clausal
 logic, only positive conditions can be used; therefore, this negative condition
-should be turned into a positive conclusion: ‘<b style='mso-bidi-font-weight:
+should be turned into a positive conclusion: &lsquo;<b style='mso-bidi-font-weight:
 normal'>if</b> somebody is a person, <b style='mso-bidi-font-weight:normal'>then</b>
-she is sad or happy’. We thus obtain the same clause as in case (<i
+she is sad or happy&rsquo;. We thus obtain the same clause as in case (<i
 style='mso-bidi-font-style:normal'>a</i>): </span></p>
 
 <p class=opsomming style='tab-stops:225.0pt'><span lang=EN-US>(<i
@@ -2216,8 +2216,8 @@ that <i style='mso-bidi-font-style:normal'>less knowledge leads to more models</
 
 <p class=p-el><span lang=EN-US>likes(peter,maria):-follows(maria,C),first_year_course(C)</span></p>
 
-<p class=tekst><span lang=EN-US>In words: ‘Peter likes Maria <b
-style='mso-bidi-font-weight:normal'>if</b> Maria follows a first-year course’. </span></p>
+<p class=tekst><span lang=EN-US>In words: &lsquo;Peter likes Maria <b
+style='mso-bidi-font-weight:normal'>if</b> Maria follows a first-year course&rsquo;. </span></p>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
 
@@ -2247,10 +2247,10 @@ style='mso-bidi-font-weight:normal'>if</b> Maria follows a first-year course’. <
 </div>
 
 <p class=answer><span lang=EN-US>(<i style='mso-bidi-font-style:normal'>a</i>)
-This statement should be read as ‘<b style='mso-bidi-font-weight:normal'>if</b>
+This statement should be read as &lsquo;<b style='mso-bidi-font-weight:normal'>if</b>
 <i style='mso-bidi-font-style:normal'>X</i> is a mouse, <b style='mso-bidi-font-weight:
 normal'>then</b> there exists something which is <i style='mso-bidi-font-style:
-normal'>X</i>’s tail’. Giving <i style='mso-bidi-font-style:normal'>X</i>’s
+normal'>X</i>&rsquo;s tail&rsquo;. Giving <i style='mso-bidi-font-style:normal'>X</i>&rsquo;s
 tail the abstract name </span><span lang=EN-US style='font-family:Courier'>tail(X)</span><span
 lang=EN-US>, we obtain the following clause: </span></p>
 
@@ -2263,14 +2263,14 @@ this person does not depend on anybody else, it can simply be a constant: </span
 <p class=p-el><span lang=EN-US>loves(person_who_loves_everybody,X)</span></p>
 
 <p class=tekst><span lang=EN-US>Notice the difference with the statement
-‘everybody loves somebody’: </span></p>
+&lsquo;everybody loves somebody&rsquo;: </span></p>
 
 <p class=p-el><span lang=EN-US>loves(X,person_loved_by(X))</span></p>
 
 <p class=sektie><span lang=EN-US>(<i style='mso-bidi-font-style:normal'>c</i>)
-This statement should be read as ‘<b style='mso-bidi-font-weight:normal'>if</b>
+This statement should be read as &lsquo;<b style='mso-bidi-font-weight:normal'>if</b>
 <i style='mso-bidi-font-style:normal'>X</i> and <i style='mso-bidi-font-style:
-normal'>Y</i> are numbers, then there exists a number which is their maximum’.
+normal'>Y</i> are numbers, then there exists a number which is their maximum&rsquo;.
 Giving this maximum the abstract name </span><span lang=EN-US style='font-family:
 Courier'>max(X,Y)</span><span lang=EN-US> yields the clause </span></p>
 
@@ -2298,8 +2298,8 @@ Courier'>max(X,Y)</span><span lang=EN-US> yields the clause </span></p>
   that </span><span lang=EN-US style='font-family:Courier'>[X|Y]</span><span
   lang=EN-US> is an alternative notation for the complex term </span><span
   lang=EN-US style='font-family:Courier'>.(X,Y)</span><span lang=EN-US> with
-  binary functor ‘</span><span lang=EN-US style='font-family:Courier'>.</span><span
-  lang=EN-US>’!)</span></p>
+  binary functor &lsquo;</span><span lang=EN-US style='font-family:Courier'>.</span><span
+  lang=EN-US>&rsquo;!)</span></p>
   </div>
   </td>
  </tr>
@@ -2309,8 +2309,8 @@ Courier'>max(X,Y)</span><span lang=EN-US> yields the clause </span></p>
 
 <p class=answer><span lang=EN-US>In the intended interpretation, </span><span
 lang=EN-US style='font-family:Courier'>s</span><span lang=EN-US> is restricted
-to numbers and ‘</span><span lang=EN-US style='font-family:Courier'>.</span><span
-lang=EN-US>’ is restricted to lists; however, variables are untyped in clausal
+to numbers and &lsquo;</span><span lang=EN-US style='font-family:Courier'>.</span><span
+lang=EN-US>&rsquo; is restricted to lists; however, variables are untyped in clausal
 logic, and the two sets of terms may be mixed.</span><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
 XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;variable:type&quot;
@@ -2329,7 +2329,7 @@ denoting numbers, such as </span></p>
 Times'>, </span><span lang=EN-US>s(0)</span><span lang=EN-US style='font-family:
 Times'>, </span><span lang=EN-US>s(s(0))</span><span lang=EN-US
 style='font-family:Times'>, </span><span lang=EN-US>s(s(s(0)))</span><span
-lang=EN-US style='font-family:Times'>, …<o:p></o:p></span></p>
+lang=EN-US style='font-family:Times'>, &hellip;<o:p></o:p></span></p>
 
 <p class=tekst><span lang=EN-US>and terms denoting lists of numbers, such as</span></p>
 
@@ -2337,9 +2337,9 @@ lang=EN-US style='font-family:Times'>, …<o:p></o:p></span></p>
 Times'>, </span><span lang=EN-US>[0]</span><span lang=EN-US style='font-family:
 Times'>, </span><span lang=EN-US>[s(0),0]</span><span lang=EN-US
 style='font-family:Times'>, </span><span lang=EN-US>[s(s(0)),s(0),0]</span><span
-lang=EN-US style='font-family:Times'>, …<o:p></o:p></span></p>
+lang=EN-US style='font-family:Times'>, &hellip;<o:p></o:p></span></p>
 
-<p class=tekst><span lang=EN-US>but also ‘strange’ terms like</span></p>
+<p class=tekst><span lang=EN-US>but also &lsquo;strange&rsquo; terms like</span></p>
 
 <p class=p-el><span lang=EN-US>[[[0]]]</span><span lang=EN-US style='font-family:
 Times'> or </span><span lang=EN-US>.(.(.(0,[]),[]),[])<br>
@@ -2406,7 +2406,7 @@ Not unifiable.</span></p>
   <p class=exercise style='margin-top:18.0pt;margin-right:0cm;margin-bottom:
   12.0pt;margin-left:0cm'><i style='mso-bidi-font-style:normal'><span
   lang=EN-US>Exercise 2.13.</span></i><span lang=EN-US> Write a clause for the
-  statement ‘somebody is innocent unless proven guilty’, and give its intended
+  statement &lsquo;somebody is innocent unless proven guilty&rsquo;, and give its intended
   model (supposing that </span><span lang=EN-US style='font-family:Courier'>john</span><span
   lang=EN-US> is the only individual in the Herbrand universe).</span></p>
   </div>
@@ -2441,13 +2441,13 @@ style='font-family:Courier'>innocent(john)</span><span lang=EN-US>}.</span></p>
   lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
   style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>$</span><span
   lang=EN-US style='font-family:Courier'>Y: mouse(X)</span><span lang=EN-US
-  style='font-family:Symbol'>®</span><span lang=EN-US style='font-family:Courier'>tail_of(Y,X)</span><span
+  style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>tail_of(Y,X)</span><span
   lang=EN-US>;<br>
   (<i style='mso-bidi-font-style:normal'>b</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
   lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
   style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>$</span><span
   lang=EN-US style='font-family:Courier'>Y: loves(X,Y)</span><span lang=EN-US
-  style='font-family:Symbol'>Ù</span><span lang=EN-US style='font-family:Courier'>(</span><span
+  style='font-family:Symbol'>&and;</span><span lang=EN-US style='font-family:Courier'>(</span><span
   lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
   style='font-family:Courier'>Z: loves(Y,Z))</span><span lang=EN-US>;<br>
   (<i style='mso-bidi-font-style:normal'>c</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
@@ -2455,9 +2455,9 @@ style='font-family:Courier'>innocent(john)</span><span lang=EN-US>}.</span></p>
   style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
   lang=EN-US style='font-family:Courier'>Y</span><span lang=EN-US
   style='font-family:Symbol'>$</span><span lang=EN-US style='font-family:Courier'>Z:
-  number(X)</span><span lang=EN-US style='font-family:Symbol'>Ù</span><span
+  number(X)</span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
   lang=EN-US style='font-family:Courier'>number(Y)</span><span lang=EN-US
-  style='font-family:Symbol'>®</span><span lang=EN-US style='font-family:Courier'>maximum(X,Y,Z)</span><span
+  style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>maximum(X,Y,Z)</span><span
   lang=EN-US>.</span></p>
   </div>
   </td>
@@ -2487,7 +2487,7 @@ lang=EN-US>, we obtain </span></p>
 <p class=p-el style='margin-left:56.0pt'><span lang=EN-US>loves(X,person_loved_by(X)).<br>
 loves(person_loved_by(X),Z).</span></p>
 
-<p class=tekst><span lang=EN-US>Notice that the two clauses are ‘linked’ by the
+<p class=tekst><span lang=EN-US>Notice that the two clauses are &lsquo;linked&rsquo; by the
 Skolem functor. </span></p>
 
 <p class=sektie><span lang=EN-US>(<i style='mso-bidi-font-style:normal'>c</i>)
@@ -2571,9 +2571,9 @@ clauses means that Prolog gives no answer at all. </span></p>
   <span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>friendly(maria).<br>
   </span><span lang=EN-US>Add a cut in order to prune away one of the answers {</span><span
   lang=EN-US style='font-family:Courier'>A</span><span lang=EN-US
-  style='font-family:Symbol'>®</span><span lang=EN-US style='font-family:Courier'>peter</span><span
+  style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>peter</span><span
   lang=EN-US>, </span><span lang=EN-US style='font-family:Courier'>B</span><span
-  lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US
+  lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US
   style='font-family:Courier'>maria</span><span lang=EN-US>}, and indicate the
   result in the SLD-tree. Can this be done without pruning away the third
   answer?</span></p>
@@ -2606,9 +2606,9 @@ second clause can be done in two places: placing it just before the literal </sp
 lang=EN-US style='font-family:Courier'>student_of(S,T)</span><span lang=EN-US>
 has no effect, while placing it at the end will only prune the answer {</span><span
 lang=EN-US style='font-family:Courier'>A</span><span lang=EN-US
-style='font-family:Symbol'>®</span><span lang=EN-US style='font-family:Courier'>peter</span><span
+style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>peter</span><span
 lang=EN-US>, </span><span lang=EN-US style='font-family:Courier'>B</span><span
-lang=EN-US style='font-family:Symbol'>®</span><span lang=EN-US
+lang=EN-US style='font-family:Symbol'>&rarr;</span><span lang=EN-US
 style='font-family:Courier'>paul</span><span lang=EN-US>} (right figure). </span></p>
 
 <p class=sektie><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
@@ -2632,10 +2632,10 @@ src="Appendix_files/image014.png" v:shapes="Picture_x0020_7"><![endif]></span></
 <p class=tekst><span lang=EN-US>If in addition the two </span><span lang=EN-US
 style='font-family:Courier'>student_of</span><span lang=EN-US> clauses are
 swapped, only the second answer {</span><span lang=EN-US style='font-family:
-Courier'>A</span><span lang=EN-US style='font-family:Symbol'>®</span><span
+Courier'>A</span><span lang=EN-US style='font-family:Symbol'>&rarr;</span><span
 lang=EN-US style='font-family:Courier'>peter</span><span lang=EN-US>, </span><span
 lang=EN-US style='font-family:Courier'>B</span><span lang=EN-US
-style='font-family:Symbol'>®</span><span lang=EN-US style='font-family:Courier'>maria</span><span
+style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>maria</span><span
 lang=EN-US>} is pruned. </span></p>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
@@ -2943,14 +2943,14 @@ lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'
 <p class=answer><span lang=EN-US>The reversed lists are represented by
 difference lists as follows: </span></p>
 
-<p class=opsomming><span lang=EN-US>•<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>(partly)
+<p class=opsomming><span lang=EN-US>&bull;<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>(partly)
 specified lists are extended with a variable representing the minus list, e.g. </span><span
 lang=EN-US style='font-family:Courier'>[]</span><span lang=EN-US> becomes </span><span
 lang=EN-US style='font-family:Courier'>R-R</span><span lang=EN-US>, and </span><span
 lang=EN-US style='font-family:Courier'>[H]</span><span lang=EN-US> becomes </span><span
 lang=EN-US style='font-family:Courier'>[H|Minus]-Minus</span><span lang=EN-US>;</span></p>
 
-<p class=opsomming><span lang=EN-US>•<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>a
+<p class=opsomming><span lang=EN-US>&bull;<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>a
 variable representing a list is replaced by two variables representing the plus
 and minus lists, e.g. </span><span lang=EN-US style='font-family:Courier'>R</span><span
 lang=EN-US> becomes </span><span lang=EN-US style='font-family:Courier'>RPlus-RMinus</span><span
@@ -3436,12 +3436,12 @@ with natural language</span></h3>
   <p class=exercise style='margin-top:18.0pt;margin-right:0cm;margin-bottom:
   12.0pt;margin-left:0cm'><i style='mso-bidi-font-style:normal'><span
   lang=EN-US>Exercise 7.1</span></i><span lang=EN-US>. Redraw the parse tree of
-  fig. 7.1 in the manner of an SLD proof tree, where ‘resolvents’ are partially
+  fig. 7.1 in the manner of an SLD proof tree, where &lsquo;resolvents&rsquo; are partially
   parsed sentences such as <br>
   <span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
   lang=EN-US style='font-family:Courier'>[the],[rapid],noun,verb_phrase</span><span
   lang=EN-US><br>
-  and ‘clauses’ are grammar rules. </span></p>
+  and &lsquo;clauses&rsquo; are grammar rules. </span></p>
   </div>
   </td>
  </tr>
@@ -3691,12 +3691,12 @@ Exercise 2.6.) </span></p>
 <p class=answer><span lang=EN-US>The completion of this program is</span></p>
 
 <p class=pi-eerst><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
-lang=EN-US>X: wise(X)</span><span lang=EN-US style='font-family:Symbol'>«</span><span
-lang=EN-US> ¬teacher(X)</span></p>
+lang=EN-US>X: wise(X)</span><span lang=EN-US style='font-family:Symbol'>&harr;</span><span
+lang=EN-US> &not;teacher(X)</span></p>
 
 <p class=pi-laatst><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
-lang=EN-US>X: teacher(X)</span><span lang=EN-US style='font-family:Symbol'>« </span><span
-lang=EN-US>(X=peter </span><span lang=EN-US style='font-family:Symbol'>Ù</span><span
+lang=EN-US>X: teacher(X)</span><span lang=EN-US style='font-family:Symbol'>&harr; </span><span
+lang=EN-US>(X=peter </span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US> wise(peter))</span></p>
 
 <p class=tekst><span lang=EN-US>The first formula states that somebody is wise
