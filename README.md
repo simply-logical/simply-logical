@@ -17,6 +17,9 @@ The release page with some notes is available [here](https://github.com/So-Cool/
 The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH Prolog](http://swish.swi-prolog.org/).  
 You can view it [here](so-cool.github.io/simply-logical).
 
+### Prolog code blocks not working ###
+If Prolog blocks are not working for you in the online version of the book please make sure that 3rd party cookies are enabled in your web browser.
+
 # Deploying to GitHub Pages #
 To deploy changes introduced in `master` branch to `gh-pages` branch do (after committing all changes on `master` branch):
 ``` bash
