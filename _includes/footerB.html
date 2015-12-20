@@ -1,0 +1,33 @@
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-3">
+          <h2>About author</h2>
+          <h4>Peter Flach,<br>University of Bristol</h4>
+          <ul class="contact-list">
+            <li><a href="https://www.cs.bris.ac.uk/~flach/index.html">Peter's website</a></li>
+            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <h2>{{ site.title }}</h2>
+          <p>{{ site.description }}</p>
+          <p><a class="btn btn-default" href="{{ site.baseurl }}/about.html#about" data-target="#about" role="button">Read more &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Peter Flach 2015</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="{{ site.baseurl }}/bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
