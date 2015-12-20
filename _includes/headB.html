@@ -15,7 +15,14 @@
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+
+  <!-- SWISH -->
+  <link href="{{ site.baseurl }}/bootstrap/css/lpn.css" rel="stylesheet">
+  <link href="{{ site.baseurl }}/bootstrap/css/jquery-ui.min.css" rel="stylesheet">
+  <script src="{{ site.baseurl }}/bootstrap/js/jquery.min.js"></script>
+  <script src="{{ site.baseurl }}/bootstrap/js/jquery-ui.min.js"></script>
+  <script src="{{ site.baseurl }}/bootstrap/js/lpn.js"></script>
+
 
   <!-- custom stylesheet -->
   <link href="{{ site.baseurl }}/bootstrap/css/custom.css" rel="stylesheet">
