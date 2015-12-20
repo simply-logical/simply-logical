@@ -35,7 +35,7 @@ git checkout master
 
 # To do #
 - [ ] Fix PDF release.
-- [ ] Figure 4.1 is missing.
+- [X] Figure 4.1 is missing.
 - [X] Fix rendering of *¨*, *Ô*, etc..
 
 [^\x00-\x7F]
