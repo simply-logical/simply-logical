@@ -5,7 +5,7 @@ title: About
 
 # Simply Logical: Intelligent Reasoning by Example #
 
-![](SLfront.gif "Simply Logical cover")
+![](img/SLfront.gif "Simply Logical cover")
 
 *by [Peter Flach](https://www.cs.bris.ac.uk/~flach/index.html), then at [Tilburg University](http://www.tilburguniversity.nl/), the Netherlands*  
 [John Wiley](http://www.wiley.co.uk/) 1994, xvi + 240 pages, ISBN 0471 94152 2  
