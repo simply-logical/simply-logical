@@ -3,7 +3,7 @@ layout: pageB
 title: About
 ---
 
-# Simply Logical: Intelligent Reasoning by Example #
+## Simply Logical: Intelligent Reasoning by Example ##
 
 ![](img/SLfront.gif "Simply Logical cover")
 
