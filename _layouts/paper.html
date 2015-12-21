@@ -6,16 +6,18 @@
     {% include {{ page.part }}_head.htm %}
   </head>
 
-  <body data-spy="scroll" data-target=".navbar" data-offset="65">
+  <body data-spy="scroll" data-target=".navbar">
 
     {% include headerB.html %}
 
     <div class="jumbotron">
-    <div id="{{ page.title }}" class="container">
+    <div id="{{ page.title }}" class="container" style="margin-top: -130px;">
       
+      {% if page.title %}
       <header class="post-header">
         <h1 class="post-title">{{ page.title }}</h1>
       </header>
+      {% endif %}
 
       <!-- <article class="post-content"> -->
         {{ content }}
