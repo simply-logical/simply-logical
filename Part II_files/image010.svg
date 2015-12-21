@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="502.5"
+   height="225"
+   id="svg2"
+   xml:space="preserve"><defs
+     id="defs6"><clipPath
+       id="clipPath20"><path
+         d="M 0,0 402,0 402,180 0,180 0,0 z"
+         id="path22" /></clipPath><clipPath
+       id="clipPath30"><path
+         d="m 0,180 402,0 0,-180.000002656016 -402,0 L 0,180 z"
+         id="path32" /></clipPath><clipPath
+       id="clipPath36"><path
+         d="M 0,0 402,0 402,180 0,180 0,0 z"
+         id="path38" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,225)"
+     id="g12"><g
+       id="g14" /><g
+       id="g16"><g
+         clip-path="url(#clipPath20)"
+         id="g18"><path
+           d="M 0,180 402,180 402,0 0,0 0,180 z"
+           id="path24"
+           style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:none" /></g></g><g
+       id="g26"><g
+         clip-path="url(#clipPath30)"
+         id="g28"><g
+           clip-path="url(#clipPath36)"
+           id="g34"><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g40"><text
+               transform="translate(168,13)"
+               id="text42"><tspan
+                 x="0 2.9244001 9.1848001 14.7732 17.697599 21.282 27.5424 37.126801 43.387199 49.647598"
+                 y="0"
+                 id="tspan44"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Instrument</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g46"><text
+               transform="translate(179,68)"
+               id="text48"><tspan
+                 x="0 7.7340002 10.8 14.526 16.92 23.322001"
+                 y="0"
+                 id="tspan50"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">String</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g52"><text
+               transform="translate(49.33008,69)"
+               id="text54"><tspan
+                 x="0 11.3256 13.9872 20.656799"
+                 y="0"
+                 id="tspan56"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Wind</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g58"><text
+               transform="translate(304,68)"
+               id="text60"><tspan
+                 x="0 7.6307998 13.9296 17.552401 23.179199 29.478001 35.104801 40.731602 43.0224 49.321201"
+                 y="0"
+                 id="tspan62"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Percussion</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g64"><text
+               transform="translate(226.8154,124)"
+               id="text66"><tspan
+                 x="0 8.0039997 14.6784 20.6784 27.3528 34.027199 40.701599 44.697601"
+                 y="0"
+                 id="tspan68"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Keyboard</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g70"><text
+               transform="translate(177.1543,124)"
+               id="text72"><tspan
+                 x="0 8.0039997 14.6784 23.344801 30.019199"
+                 y="0"
+                 id="tspan74"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Bowed</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g76"><text
+               transform="translate(123,124)"
+               id="text78"><tspan
+                 x="0 7.5552001 9.7704 15.9936 21.5448 27.096001 33.319199"
+                 y="0"
+                 id="tspan80"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Plucked</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g82"><text
+               transform="translate(79,124)"
+               id="text84"><tspan
+                 x="0 7.836 11.664 18.167999 24"
+                 y="0"
+                 id="tspan86"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Brass</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g88"><text
+               transform="translate(5.986328,124)"
+               id="text90"><tspan
+                 x="0 11.3256 17.995199 24.664801 31.3344 39.995998 42.6576 49.327202"
+                 y="0"
+                 id="tspan92"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Woodwind</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g94"><text
+               transform="translate(291,124)"
+               id="text96"><tspan
+                 x="0 7.0739999 13.488 19.902 26.316"
+                 y="0"
+                 id="tspan98"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Tuned</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g100"><text
+               transform="translate(354,124)"
+               id="text102"><tspan
+                 x="0 8.4384003 14.8848 17.995199 24.441601 30.888 37.3344"
+                 y="0"
+                 id="tspan104"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">Untuned</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g106"><path
+               d="m 194.125,17 0,37.25"
+               id="path108"
+               style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g110"><path
+               d="m 194.125,73 0,37.25"
+               id="path112"
+               style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><path
+             d="m 52,107 0.25,0 0,-0.25 -19,-37 -0.25,0 0,0.25"
+             id="path114"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 163,162 0.25,0 0,-0.25 -97,-37 -0.25,0 0,0.25"
+             id="path116"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 235,163 0.25,0 97,-37 0,-0.25 -0.25,0 -97,37"
+             id="path118"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 74,107 0.25,0 19,-37 0,-0.25 -0.25,0 -19,37"
+             id="path120"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 328,106 0.25,0 0,-0.25 -19,-37 -0.25,0 0,0.25"
+             id="path122"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 350,106 0.25,0 19,-37 0,-0.25 -0.25,0 -19,37"
+             id="path124"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 184,107 0.25,0 0,-0.25 -37,-37 -0.25,0 0,0.25"
+             id="path126"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 211,106 0.25,0 37,-37 0,-0.25 -0.25,0 -37,37"
+             id="path128"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g130"><text
+               transform="translate(13,140)"
+               id="text132"><tspan
+                 x="0 3.3299999 8.8920002 13.892 19.454 22.784 28.346001 33.908001"
+                 y="0"
+                 id="tspan134"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">recorder</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g136"><text
+               transform="translate(13,152)"
+               id="text138"><tspan
+                 x="0 2.7780001 4.9959998 10.554 13.332"
+                 y="0"
+                 id="tspan140"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">flute</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g142"><text
+               transform="translate(13,164)"
+               id="text144"><tspan
+                 x="0 5.5619998 11.124 16.686001"
+                 y="0"
+                 id="tspan146"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">oboe</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g148"><text
+               transform="translate(13,176)"
+               id="text150"><tspan
+                 x="0 5 10.562 15.562 21.124001 26.686001 32.248001 37.810001 43.372002"
+                 y="0"
+                 id="tspan152"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">saxophone</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g154"><text
+               transform="translate(74.09863,141)"
+               id="text156"><tspan
+                 x="0 2.7780001 6.1079998 11.67 20 25.562 31.124001"
+                 y="0"
+                 id="tspan158"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">trumpet</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g160"><text
+               transform="translate(65.75391,153)"
+               id="text162"><tspan
+                 x="0 2.7780001 6.1079998 11.67 20 25.562 31.124001 36.686001"
+                 y="0"
+                 id="tspan164"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">trombone</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g166"><text
+               transform="translate(87.98535,165)"
+               id="text168"><tspan
+                 x="0 5.5619998 11.124 14.454"
+                 y="0"
+                 id="tspan170"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">horn</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g172"><text
+               transform="translate(132,141)"
+               id="text174"><tspan
+                 x="0 5.5619998 11.124 13.346 16.128 21.690001"
+                 y="0"
+                 id="tspan176"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">guitar</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g178"><text
+               transform="translate(132,153)"
+               id="text180"><tspan
+                 x="0 2.2219999 7.7839999 10.566"
+                 y="0"
+                 id="tspan182"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">lute</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g184"><text
+               transform="translate(132,165)"
+               id="text186"><tspan
+                 x="0 5.5619998 11.124 14.454"
+                 y="0"
+                 id="tspan188"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">harp</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g190"><text
+               transform="translate(183.106,141)"
+               id="text192"><tspan
+                 x="0 5 7.2220001 12.784 15.006 17.228001"
+                 y="0"
+                 id="tspan194"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">violin</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g196"><text
+               transform="translate(184.2168,153)"
+               id="text198"><tspan
+                 x="0 5 10.562 12.784 15.006"
+                 y="0"
+                 id="tspan200"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">cello</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g202"><text
+               transform="translate(225.749,141)"
+               id="text204"><tspan
+                 x="0 5.5619998 11.124 14.454 20.016001 25.016001 27.238001 32.237999 37.799999 43.362 46.692001"
+                 y="0"
+                 id="tspan206"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">harpsichord</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g208"><text
+               transform="translate(253.5322,153)"
+               id="text210"><tspan
+                 x="0 5.5619998 7.7839999 13.346 18.908001"
+                 y="0"
+                 id="tspan212"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">piano</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g214"><text
+               transform="translate(293,141)"
+               id="text216"><tspan
+                 x="0 2.7780001 6.1079998 8.3299999 13.892 19.454 25.016001 27.238001"
+                 y="0"
+                 id="tspan218"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">triangle</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g220"><text
+               transform="translate(293,153)"
+               id="text222"><tspan
+                 x="0 5 10.562 13.34 16.118 18.34 23.902 29.464001 32.793999 38.355999"
+                 y="0"
+                 id="tspan224"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">kettledrum</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g226"><text
+               transform="translate(370,141)"
+               id="text228"><tspan
+                 x="0 4.8649998 9.7299995 17.924999 23.35 28.775"
+                 y="0"
+                 id="tspan230"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">cymbal</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,180)"
+             id="g232"><text
+               transform="translate(353.2021,153)"
+               id="text234"><tspan
+                 x="0 5 10.562 16.124001 19.454 25.016001 30.577999 33.908001 39.470001"
+                 y="0"
+                 id="tspan236"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">snaredrum</tspan></text>
+</g></g></g></g></g></svg>

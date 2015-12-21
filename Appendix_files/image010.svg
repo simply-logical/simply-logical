@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="262.5"
+   height="131.25"
+   id="svg2"
+   xml:space="preserve"><defs
+     id="defs6"><clipPath
+       id="clipPath20"><path
+         d="M 0,0 210,0 210,105 0,105 0,0 z"
+         id="path22" /></clipPath><clipPath
+       id="clipPath30"><path
+         d="m 0,105 210,0 0,-105.000001549342 -210,0 L 0,105 z"
+         id="path32" /></clipPath><clipPath
+       id="clipPath36"><path
+         d="M 0,0 210,0 210,105 0,105 0,0 z"
+         id="path38" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,131.25)"
+     id="g12"><g
+       id="g14" /><g
+       id="g16"><g
+         clip-path="url(#clipPath20)"
+         id="g18"><path
+           d="M 0,105 210,105 210,0 0,0 0,105 z"
+           id="path24"
+           style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:none" /></g></g><g
+       id="g26"><g
+         clip-path="url(#clipPath30)"
+         id="g28"><g
+           clip-path="url(#clipPath36)"
+           id="g34"><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g40"><text
+               transform="translate(55,9)"
+               id="text42"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001 42.007 48.007999 54.008999 60.009998 66.011002"
+                 y="0"
+                 id="tspan44"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">?-likes(A,B)</tspan></text>
+</g><path
+             d="m 71,92 0.25,0 0,-0.25 -20,-22 -0.25,0 0,0.25"
+             id="path46"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 111,92 0.25,0 20,-22 0,-0.25 -0.25,0 -20,22"
+             id="path48"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g50"><text
+               transform="translate(95,45)"
+               id="text52"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001 42.007 48.007999 54.008999 60.009998 66.011002 72.012001 78.013 84.014 90.014999 96.015999"
+                 y="0"
+                 id="tspan54"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">:-student_of(B,A)</tspan></text>
+</g><path
+             d="m 119,52 0.25,0 0,-0.25 -20,-22 -0.25,0 0,0.25"
+             id="path56"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 159,52 0.25,0 20,-22 0,-0.25 -0.25,0 -20,22"
+             id="path58"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g60"><text
+               transform="translate(94,88)"
+               id="text62"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan64"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">∆</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g66"><text
+               transform="translate(179,88)"
+               id="text68"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan70"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">∆</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g72"><text
+               transform="translate(1,45)"
+               id="text74"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001 42.007 48.007999 54.008999 60.009998 66.011002 72.012001"
+                 y="0"
+                 id="tspan76"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">:-friendly(B)</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g78"><text
+               transform="translate(40,88)"
+               id="text80"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan82"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">∆</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g84"><path
+               d="m 42.125,49 0,27.25"
+               id="path86"
+               style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g88"><text
+               transform="translate(19,101)"
+               id="text90"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001"
+                 y="0"
+                 id="tspan92"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">B=maria</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g94"><text
+               transform="translate(85,101)"
+               id="text96"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001"
+                 y="0"
+                 id="tspan98"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">B=maria</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,105)"
+             id="g100"><text
+               transform="translate(171,101)"
+               id="text102"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999"
+                 y="0"
+                 id="tspan104"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">B=paul</tspan></text>
+</g></g></g></g></g></svg>
