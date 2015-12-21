@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="511.25"
+   height="235"
+   id="svg2"
+   xml:space="preserve"><defs
+     id="defs6"><clipPath
+       id="clipPath20"><path
+         d="M 0,0 409,0 409,188 0,188 0,0 z"
+         id="path22" /></clipPath><clipPath
+       id="clipPath30"><path
+         d="m 0,188 409,0 0,-188.000002774061 -409,0 L 0,188 z"
+         id="path32" /></clipPath><clipPath
+       id="clipPath36"><path
+         d="M 0,0 409,0 409,188 0,188 0,0 z"
+         id="path38" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,235)"
+     id="g12"><g
+       id="g14" /><g
+       id="g16"><g
+         clip-path="url(#clipPath20)"
+         id="g18"><path
+           d="M 0,188 409,188 409,0 0,0 0,188 z"
+           id="path24"
+           style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:none" /></g></g><g
+       id="g26"><g
+         clip-path="url(#clipPath30)"
+         id="g28"><g
+           clip-path="url(#clipPath36)"
+           id="g34"><path
+             d="m 236,152 109,0 0,-97 -109,0 0,97 z"
+             id="path40"
+             style="fill:#efefef;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g42"><text
+               transform="translate(109,148)"
+               id="text44"><tspan
+                 x="0 6.9804001 13.9608 20.9412 27.9216 34.902 41.882401 48.862801 55.843201 62.823601 69.804001"
+                 y="0"
+                 id="tspan46"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">p(X):-q(X).</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g48"><text
+               transform="translate(109,160)"
+               id="text50"><tspan
+                 x="0 6.9492002 13.8984 20.847601 27.796801"
+                 y="0"
+                 id="tspan52"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">q(a).</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g54"><text
+               transform="translate(88,71)"
+               id="text56"><tspan
+                 x="0 6.9875998 13.9752 20.962799 27.950399 34.938 41.925598 48.9132 55.900799 62.888401 69.875999 76.863602 83.851196 90.838799 97.826401 104.814 111.8016 118.7892"
+                 y="0"
+                 id="tspan58"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">clause(p(X),q(X)).</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g60"><text
+               transform="translate(88,83)"
+               id="text62"><tspan
+                 x="0 6.9875998 13.9752 20.962799 27.950399 34.938 41.925598 48.9132 55.900799 62.888401 69.875999 76.863602 83.851196 90.838799 97.826401 104.814 111.8016 118.7892"
+                 y="0"
+                 id="tspan64"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">clause(q(a),true).</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g66"><text
+               transform="translate(270,148)"
+               id="text68"><tspan
+                 x="0 6.9660001 13.932 20.898001 27.864 34.830002 41.796001"
+                 y="0"
+                 id="tspan70"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">?-p(X).</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g72"><text
+               transform="translate(270,160)"
+               id="text74"><tspan
+                 x="0 6.9000001 13.8"
+                 y="0"
+                 id="tspan76"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">X=a</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g78"><text
+               transform="translate(244,71)"
+               id="text80"><tspan
+                 x="0 6.9840002 13.968 20.952 27.936001 34.919998 41.903999 48.888 55.872002 62.855999 69.839996 76.823997 83.807999 90.792"
+                 y="0"
+                 id="tspan82"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">?-prove(p(X)).</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g84"><text
+               transform="translate(244,83)"
+               id="text86"><tspan
+                 x="0 6.9000001 13.8"
+                 y="0"
+                 id="tspan88"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">X=a</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g90"><text
+               transform="translate(261,126)"
+               id="text92"><tspan
+                 x="0 6.0707998 12.1416 14.2044 16.939199 19.002001 24.400801 30.4716 33.206402 35.269199 41.34"
+                 y="0"
+                 id="tspan94"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">unification</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g96"><text
+               transform="translate(18,73)"
+               id="text98"><tspan
+                 x="0 10.7744 19.2248 26.891199 35.341599"
+                 y="0"
+                 id="tspan100"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">META-</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g102"><text
+               transform="translate(19,88)"
+               id="text104"><tspan
+                 x="0 7.1399999 15.834 24.528 33.222"
+                 y="0"
+                 id="tspan106"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">LEVEL</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g108"><text
+               transform="translate(4.110352,144)"
+               id="text110"><tspan
+                 x="0 10.8892 20.2272 27.2272 36.565201 46.675999 55.2272"
+                 y="0"
+                 id="tspan112"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">OBJECT-</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g114"><text
+               transform="translate(20,159)"
+               id="text116"><tspan
+                 x="0 7.1399999 15.834 24.528 33.222"
+                 y="0"
+                 id="tspan118"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">LEVEL</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g120"><text
+               transform="translate(112,22)"
+               id="text122"><tspan
+                 x="0 9.2105999 19.1912 29.955799 43.044399 50.701 59.911598 69.892197 80.656799"
+                 y="0"
+                 id="tspan124"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">KNOWLEDGE</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g126"><text
+               transform="translate(272,20)"
+               id="text128"><tspan
+                 x="0 10.1108 19.448799 28.7868 38.124802 49.014 59.124802 63.014 73.124802"
+                 y="0"
+                 id="tspan130"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">REASONING</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g132"><path
+               d="m 4,109.5 404,0"
+               id="path134"
+               style="fill:none;stroke:#808080;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g136"><path
+               d="m 235.5,3 0,184"
+               id="path138"
+               style="fill:none;stroke:#808080;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g140"><path
+               d="m 73.5,37.5 333,0 0,148 -333,0 0,-148 z"
+               id="path142"
+               style="fill:none;stroke:#bfbfbf;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g></g></g></g></g></svg>

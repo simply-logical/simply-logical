@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="511.25"
+   height="235"
+   id="svg2"
+   xml:space="preserve"><defs
+     id="defs6"><clipPath
+       id="clipPath20"><path
+         d="M 0,0 409,0 409,188 0,188 0,0 z"
+         id="path22" /></clipPath><clipPath
+       id="clipPath30"><path
+         d="m 0,188 409,0 0,-188.000002774061 -409,0 L 0,188 z"
+         id="path32" /></clipPath><clipPath
+       id="clipPath36"><path
+         d="M 0,0 409,0 409,188 0,188 0,0 z"
+         id="path38" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,235)"
+     id="g12"><g
+       id="g14" /><g
+       id="g16"><g
+         clip-path="url(#clipPath20)"
+         id="g18"><path
+           d="M 0,188 409,188 409,0 0,0 0,188 z"
+           id="path24"
+           style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:none" /></g></g><g
+       id="g26"><g
+         clip-path="url(#clipPath30)"
+         id="g28"><g
+           clip-path="url(#clipPath36)"
+           id="g34"><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g40"><path
+               d="m 4,109.5 404,0"
+               id="path42"
+               style="fill:none;stroke:#808080;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g44"><path
+               d="m 235.5,3 0,184"
+               id="path46"
+               style="fill:none;stroke:#808080;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g48"><text
+               transform="translate(20,72)"
+               id="text50"><tspan
+                 x="0 10.7744 19.2248 26.891199 35.341599"
+                 y="0"
+                 id="tspan52"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">META-</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g54"><text
+               transform="translate(21,87)"
+               id="text56"><tspan
+                 x="0 7.1399999 15.834 24.528 33.222"
+                 y="0"
+                 id="tspan58"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">LEVEL</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g60"><text
+               transform="translate(6.110352,143)"
+               id="text62"><tspan
+                 x="0 10.8892 20.2272 27.2272 36.565201 46.675999 55.2272"
+                 y="0"
+                 id="tspan64"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">OBJECT-</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g66"><text
+               transform="translate(22,158)"
+               id="text68"><tspan
+                 x="0 7.1399999 15.834 24.528 33.222"
+                 y="0"
+                 id="tspan70"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">LEVEL</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g72"><text
+               transform="translate(122,22)"
+               id="text74"><tspan
+                 x="0 10.5378 20.291599 29.2754 40.583199 51.890999 60.874802"
+                 y="0"
+                 id="tspan76"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">GRAMMAR</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g78"><text
+               transform="translate(284,21)"
+               id="text80"><tspan
+                 x="0 9.1686001 18.3372 28.275801 37.444401 41.167 51.105598"
+                 y="0"
+                 id="tspan82"
+                 style="font-size:14px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica">PARSING</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g84"><text
+               transform="translate(109,77)"
+               id="text86"><tspan
+                 x="0 6.9804001 13.9608 20.9412 27.9216 34.902 41.882401 48.862801 55.843201 62.823601 69.804001"
+                 y="0"
+                 id="tspan88"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">s --&gt; np,vp</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g90"><text
+               transform="translate(108,136)"
+               id="text92"><tspan
+                 x="0 6.9744 13.9488 20.923201 27.8976 34.872002 41.846401 48.820801 55.7952"
+                 y="0"
+                 id="tspan94"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">s(L,L0):-</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g96"><text
+               transform="translate(149.9112,148)"
+               id="text98"><tspan
+                 x="0 6.9851999 13.9704 20.955601 27.9408 34.925999 41.911201 48.8964 55.881599"
+                 y="0"
+                 id="tspan100"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">np(L,L1),</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g102"><text
+               transform="translate(149.9112,160)"
+               id="text104"><tspan
+                 x="0 6.9851999 13.9704 20.955601 27.9408 34.925999 41.911201 48.8964 55.881599"
+                 y="0"
+                 id="tspan106"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">vp(L1,L0)</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g108"><text
+               transform="translate(272,77)"
+               id="text110"><tspan
+                 x="0 6.9828 13.9656 20.9484 27.9312 34.914001 41.896801 48.879601 55.8624 62.8452 69.828003 76.810799 83.793602"
+                 y="0"
+                 id="tspan112"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">?-phrase(s,L)</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g114"><text
+               transform="translate(274,139)"
+               id="text116"><tspan
+                 x="0 6.9744 13.9488 20.923201 27.8976 34.872002 41.846401 48.820801 55.7952"
+                 y="0"
+                 id="tspan118"
+                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">?-s(L,[])</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,188)"
+             id="g120"><path
+               d="m 73.5,37.5 333,0 0,148 -333,0 0,-148 z"
+               id="path122"
+               style="fill:none;stroke:#bfbfbf;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g></g></g></g></g></svg>
