@@ -63,10 +63,10 @@
              id="g58"><text
                transform="translate(174,135)"
                id="text60"><tspan
-                 x="0"
-                 y="0"
+                 x="-2.5"
+                 y="-1"
                  id="tspan62"
-                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">∆</tspan></text>
+                 style="font-size:20px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">&#x25A1;</tspan></text>
 </g><path
              d="m 101,130 0.25,0 0,-0.25 -20,-22 -0.25,0 0,0.25"
              id="path64"
@@ -140,8 +140,8 @@
              id="g112"><text
                transform="translate(225,135)"
                id="text114"><tspan
-                 x="0"
+                 x="-1.5"
                  y="0"
                  id="tspan116"
-                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">∆</tspan></text>
+                 style="font-size:20px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">&#x25A1;</tspan></text>
 </g></g></g></g></g></svg>
