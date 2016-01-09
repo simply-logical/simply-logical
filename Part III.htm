@@ -895,7 +895,8 @@ abbreviated). The following grammar indicates how parse trees are built up from
 their constituents. </span></p>
 
 
-<pre class="source swish" data-variant-id="group-2" id="swish.7.2.1" style="display: block;" query-text="?- s(np(art(the),n(turtle)),vp(iv(sleeps))).">
+<pre class="source swish" data-variant-id="group-2" id="swish.7.2.1" style="display: block;" 
+query-text="?- phrase(sentence(T),[achilles,beats,the,lazy,turtle]). ?- phrase(sentence(s(np(pn(achilles)),vp(tv(beats),np(art(the),adj(lazy),n(turtle))))),L).">
 sentence(s(NP,VP))            --> noun_phrase(NP),
                                   verb_phrase(VP).
 noun_phrase(np(N))            --> proper_noun(N).
@@ -914,47 +915,6 @@ noun(n(turtle))               --> [turtle].
 intransitive_verb(iv(sleeps)) --> [sleeps].
 transitive_verb(tv(beats))    --> [beats].
 </pre>
-
-
-
-<p class=grammar style='margin-bottom:0cm;margin-bottom:.0001pt;tab-stops:197.0pt 9.0cm 11.0cm 13.0cm'><span
-lang=EN-US>sentence(s(NP,VP))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-noun_phrase(NP),<br>
-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>verb_phrase(VP).<br>
-noun_phrase(np(N))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-proper_noun(N).<br>
-noun_phrase(np(Art,Adj,N))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>--&gt;
-article(Art),<br>
-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>adjective(Adj),<br>
-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>noun(N).<br>
-noun_phrase(np(Art,N))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-article(Art),noun(N).<br>
-verb_phrase(vp(IV))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-intransitive_verb(IV).</span></p>
-
-<p class=grammar style='margin-top:0cm;tab-stops:197.0pt 9.0cm 11.0cm 13.0cm'><span
-lang=EN-US>verb_phrase(vp(TV,NP))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-transitive_verb(TV),<br>
-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>noun_phrase(NP).<br>
-article(art(the))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[the].<br>
-adjective(adj(lazy))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[lazy].<br>
-adjective(adj(rapid))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[rapid].<br>
-proper_noun(pn(achilles))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[achilles].<br>
-noun(n(turtle))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[turtle].<br>
-intransitive_verb(iv(sleeps))<span style='mso-tab-count:1'> </span>--&gt;
-[sleeps].<br>
-transitive_verb(tv(beats))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>--&gt;
-[beats].</span></p>
-
 <p class=tekst style='page-break-after:avoid'><span lang=EN-US>In the query,
 the argument of the non-terminal </span><span lang=EN-US style='font-family:
 Courier'>sentence</span><span lang=EN-US> will be instantiated to the final
@@ -1018,7 +978,8 @@ lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begi
 style="mso-spacerun:yes">&nbsp;</span>XE </span><span lang=EN-US><span
 style="mso-spacerun:yes">&nbsp;</span>&quot;goal:in a grammar rule&quot; </span><![endif]--><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--></p>
-<pre class="source swish" data-variant-id="group-2" id="swish.7.2.2" style="display: block;" >
+<pre class="source swish" data-variant-id="group-2" id="swish.7.2.2" style="display: block;" 
+query-text="?- phrase(numeral(N),[nine,thousand,nine,hundred,ninety,nine]).">
 numeral(N) --> n1_999(N).
 numeral(N) --> n1_9(N1),[thousand],n1_999(N2),{N is N1*1000+N2}.
 
@@ -1343,7 +1304,7 @@ verb_phrase(s,M)              --> [is],property(s,M).
 verb_phrase(p,M)              --> [are],property(p,M).
 property(s,M)                 --> [a],noun(s,M).
 property(p,M)                 --> noun(p,M).
-property(N,X=>mortal(X))      --> [mortal].
+property(_N,X=>mortal(X))      --> [mortal].
 determiner(s,X=>B,X=>H,[(H:-B)]) --> [every].
 determiner(p,sk=>H1,sk=>H2,[(H1:-true),(H2:-true)]) --> [some].
 proper_noun(s,socrates)       --> [socrates].
@@ -1358,23 +1319,13 @@ mortal?&rsquo;, and &lsquo;are some living beings mortal?&rsquo;: </span></p>
 
 
 <pre class="source swish inherit" data-variant-id="group-2" inherit-id="swish.7.3.3" id="swish.7.3.4" style="display: block;" 
-query-text="?- phrase(question(human(L)),[is,socrates,a,human]).">
-question(Q)          --> [who],[is],property(s,X=>Q).
+query-text="?- phrase(question(human(L)),[is,socrates,a,human]). ?- phrase(sentence([(mortal(socrates):-true)]),Answer).">
+question(Q)          --> [who],[is],property(s,_X=>Q).
 question(Q)          --> [is],proper_noun(N,X),
                          property(N,X=>Q).
 question((Q1,Q2))    --> [are],[some],noun(p,sk=>Q1),
                          property(p,sk=>Q2).
 </pre>
-<p class=grammar><span lang=EN-US>question(Q)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[who],[is],property(s,X=&gt;Q).<br>
-question(Q)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>--&gt;
-[is],proper_noun(N,X),<br>
-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>property(N,X=&gt;Q).<br>
-question((Q1,Q2))<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>--&gt;
-[are],[some],noun(p,sk=&gt;Q1),<br>
-<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>property(p,sk=&gt;Q2).</span></p>
 
 <p class=sektie><span lang=EN-US>The program below is a shell for interactively
 building up and querying a small rulebase. User inputs are handled by the
@@ -1412,103 +1363,77 @@ lang=EN-US>). Again, we encounter the declarative power of DCG&rsquo;s, which ca
 the same time be used for interpreting natural language sentences, and for
 constructing sentences that express a certain logical meaning. </span></p>
 
-<p class=oms-eerst><span lang=EN-US>% natural language shell</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.7.3.5" style="display: block;" 
+query-text="?- nl_shell(Rulebase)."
+source-text-end="/*
+ This part is inherited from others. 
+*/ 
+:-op(600,xfy,'=>').
+sentence(C)                   --> determiner(N,M1,M2,C), noun(N,M1), verb_phrase(N,M2).
+sentence([(L:-true)])         --> proper_noun(N,X), verb_phrase(N,X=>L).
+verb_phrase(s,M)              --> [is],property(s,M).
+verb_phrase(p,M)              --> [are],property(p,M).
+property(s,M)                 --> [a],noun(s,M).
+property(p,M)                 --> noun(p,M).
+property(_N,X=>mortal(X))      --> [mortal].
+determiner(s,X=>B,X=>H,[(H:-B)]) --> [every].
+determiner(p,sk=>H1,sk=>H2,[(H1:-true),(H2:-true)]) --> [some].
+proper_noun(s,socrates)       --> [socrates].
+noun(s,X=>human(X))           --> [human].
+noun(p,X=>human(X))           --> [humans].
+noun(s,X=>living_being(X))    --> [living],[being].
+noun(p,X=>living_being(X))    --> [living],[beings].
 
-<p class=pi-laatst><span lang=EN-US>nl_shell</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;nl_shell/1&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Rulebase):-<br>
-get_input(Input),<br>
-handle_input(Input,Rulebase).</span></p>
+question(Q)          --> [who],[is],property(s,_X=>Q).
+question(Q)          --> [is],proper_noun(N,X),
+                         property(N,X=>Q).
+question((Q1,Q2))    --> [are],[some],noun(p,sk=>Q1),
+                         property(p,sk=>Q2).
+/*
+ This is the end of inheritance.
+*/"
+>
+% natural language shell
+nl_shell(Rulebase):- get_input(Input),handle_input(Input,Rulebase).
 
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% handle input from user</span></p>
 
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>handle_input(stop,Rulebase):-!.</span></p>
+% handle input from user
+handle_input(stop,_Rulebase):-!.
+handle_input(show,Rulebase):-!,show_rules(Rulebase),nl_shell(Rulebase).
+handle_input(Sentence,Rulebase):-phrase(sentence(Rule),Sentence),!,nl_shell([Rule|Rulebase]).
+handle_input(Question,Rulebase):-phrase(question(Query),Question),prove_rb(Query,Rulebase),!,
+	transform(Query,Clauses),phrase(sentence(Clauses),Answer),show_answer(Answer),nl_shell(Rulebase).
+handle_input(_Question,Rulebase):-show_answer('No'),nl_shell(Rulebase).
 
-<p class=pi style='page-break-after:auto;tab-stops:256.0pt'><span lang=EN-US>handle_input(show,Rulebase):-!,<br>
-show_rules(Rulebase),<br>
-nl_shell(Rulebase).</span></p>
+% show current rulebase
+show_rules([]).
+show_rules([Rule|Rules]):-phrase(sentence(Rule),Sentence),show_answer(Sentence),show_rules(Rules).
 
-<p class=pi style='page-break-after:auto;tab-stops:256.0pt'><span lang=EN-US>handle_input(Sentence,Rulebase):-<br>
-phrase(sentence(Rule),Sentence),!,<span style='mso-tab-count:1'> </span>% new
-rule<br>
-nl_shell([Rule|Rulebase]).</span></p>
+% meta-interpreter
+prove_rb(true,_Rulebase):-!.
+prove_rb((A,B),Rulebase):-!,prove_rb(A,Rulebase),prove_rb(B,Rulebase).
+prove_rb(A,Rulebase):-find_clause((A:-B),Rulebase),prove_rb(B,Rulebase).
 
-<p class=pi style='page-break-after:auto;tab-stops:256.0pt'><span lang=EN-US>handle_input(Question,Rulebase):-<br>
-phrase(question(Query),Question),<span style='mso-tab-count:1'>&nbsp; </span>%
-question<br>
-prove_rb(Query,Rulebase),!,<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-it can be solved<br>
-transform(Query,Clauses),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-transform to <br>
-phrase(sentence(Clauses),Answer),<span style='mso-tab-count:1'>&nbsp; </span>%
-answer<br>
-show_answer(Answer),<br>
-nl_shell(Rulebase).</span></p>
+% find applicable clause in rulebase
+find_clause(Clause,[Rule|_Rules]):- copy_element(Clause,Rule). 
+find_clause(Clause,[_Rule|Rules]):- find_clause(Clause,Rules).
 
-<p class=pi-laatst style='tab-stops:232.0pt'><span lang=EN-US>handle_input(Question,Rulebase):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp; </span>% illegal sentence or<br>
-show_answer('No'),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-no answer found<br>
-nl_shell(Rulebase).</span></p>
+copy_element(X,Ys):-element(X1,Ys),copy_term(X1,X).
 
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% show current rulebase</span></p>
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]). 
+element(X,[_Y|Ys]):-element(X,Ys).
 
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>show_rules([]).</span></p>
+% transform query to answer
+transform((A,B),[(A:-true)|Rest]):-!,transform(B,Rest).
+transform(A,[(A:-true)]).
 
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>show_rules([Rule|Rules]):-<br>
-phrase(sentence(Rule),Sentence),<br>
-show_answer(Sentence),<br>
-show_rules(Rules).</span></p>
+% get input from user
+get_input(Input):-write('? '),read(Input).
 
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% meta-interpreter</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>prove_rb</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;prove_rb/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(true,Rulebase):-!.</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>prove_rb((A,B),Rulebase):-!,<br>
-prove_rb(A,Rulebase),<br>
-prove_rb(B,Rulebase).</span></p>
-
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>prove_rb(A,Rulebase):-<br>
-find_clause((A:-B),Rulebase),<br>
-prove_rb(B,Rulebase).</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% find applicable clause
-in rulebase</span></p>
-
-<p class=pi style='tab-stops:219.0pt'><span lang=EN-US>find_clause(Clause,[Rule|Rules]):-<br>
-copy_element(Clause,Rule).<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>%
-don&rsquo;t instantiate Rule</span></p>
-
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>find_clause(Clause,[Rule|Rules]):-<br>
-find_clause(Clause,Rules).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>%%% copy_element/2: see Appendix A.2</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% transform query to
-answer</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>transform((A,B),[(A:-true)|Rest]):-!,<br>
-transform(B,Rest).</span></p>
-
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>transform(A,[(A:-true)]).</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% get input from user</span></p>
-
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>get_input(Input):-<br>
-write('? '),read(Input).</span></p>
-
-<p class=pi style='tab-stops:256.0pt'><span lang=EN-US>% show answer to user</span></p>
-
-<p class=pi-laatst style='tab-stops:256.0pt'><span lang=EN-US>show_answer(Answer):-<br>
-write('! '),write(Answer),nl.</span></p>
+% show answer to user
+show_answer(Answer):-write('! '),write(Answer),nl.
+</pre>
 
 <p class=tekst><span lang=EN-US>A conversation with this program might proceed
 as follows (following </span><span lang=EN-US style='font-family:Courier'>?</span><span
@@ -2124,61 +2049,37 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>applies a default
 whenever it does not lead to a contradiction. </span></p>
 
-<p class=oms-eerst><span lang=EN-US>% explain(F,E) &lt;- E explains F from
-rules and defaults</span></p>
+<pre class="source swish temp" data-variant-id="group-2" id="swish.8.1.1" style="display: block;" 
+query-text="?- explain(flies(X),E). ?- explain(not flies(X),E)."
+source-text-start="
+:-op(900,fy,not).
+"
+source-text-end="
+default((flies(X):-bird(X))).
+rule((not flies(X):-penguin(X))).
+rule((bird(X):-penguin(X))).
+rule((penguin(tweety):-true)).
+rule((bird(opus):-true)).">
 
-<p class=pi-laatst><span lang=EN-US>explain</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;explain/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(F,E):-<br>
-explain(F,[],E).</span></p>
+% explain(F,E) <- E explains F from rules and defaults
+explain(F,E):-explain(F,[],E).
 
-<p class=oms><span lang=EN-US>% meta-interpreter for rules and defaults</span></p>
+% meta-interpreter for rules and defaults
+explain(true,E,E):-!.
+explain((A,B),E0,E):-!,explain(A,E0,E1),explain(B,E1,E).
+explain(A,E0,E):-prove_e(A,E0,E).         % explain by rules only
+explain(A,E0,[default((A:-B))|E]):-default((A:-B)),explain(B,E0,E),
+not contradiction(A,E).  % A consistent with E
 
-<p class=pi style='page-break-after:auto;tab-stops:228.0pt'><span lang=EN-US>explain(true,E,E):-!.</span></p>
+% meta-interpreter for rules
+prove_e(true,E,E):-!.
+prove_e((A,B),E0,E):-!,prove_e(A,E0,E1),prove_e(B,E1,E).
+prove_e(A,E0,[rule((A:-B))|E]):-rule((A:-B)),prove_e(B,E0,E).
 
-<p class=pi style='page-break-after:auto;tab-stops:228.0pt'><span lang=EN-US>explain((A,B),E0,E):-!,<br>
-explain(A,E0,E1),<br>
-explain(B,E1,E).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:197.0pt'><span lang=EN-US>explain(A,E0,E):-<br>
-prove_e(A,E0,E).<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-explain by rules only</span></p>
-
-<p class=pi-laatst style='tab-stops:197.0pt'><span lang=EN-US>explain(A,E0,[default((A:-B))|E]):-<br>
-default((A:-B)),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-explain by default<br>
-explain(B,E0,E),<br>
-not contradiction(A,E).<span style='mso-tab-count:1'>&nbsp; </span>% A
-consistent with E</span></p>
-
-<p class=oms><span lang=EN-US>% meta-interpreter for rules</span></p>
-
-<p class=pi style='tab-stops:228.0pt'><span lang=EN-US>prove_e</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;prove_e/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(true,E,E):-!.</span></p>
-
-<p class=pi style='tab-stops:228.0pt'><span lang=EN-US>prove_e((A,B),E0,E):-!,<br>
-prove_e(A,E0,E1),<br>
-prove_e(B,E1,E).</span></p>
-
-<p class=pi-laatst style='tab-stops:228.0pt'><span lang=EN-US>prove_e(A,E0,[rule((A:-B))|E]):-<br>
-rule((A:-B)),<br>
-prove_e(B,E0,E).</span></p>
-
-<p class=oms><span lang=EN-US>% check contradiction against rules</span></p>
-
-<p class=pi style='tab-stops:228.0pt'><span lang=EN-US>contradiction(not
-A,E):-!,<br>
-prove_e(A,E,E1).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>contradiction(A,E):-<br>
-prove_e(not A,E,E1).</span></p>
+% check contradiction against rules
+contradiction(not A,E):-!,prove_e(A,E,_E1).
+contradiction(A,E):-prove_e(not A,E,_E1).
+</pre>
 
 <p class=tekst><span lang=EN-US>The query </span><span lang=EN-US
 style='font-family:Courier'>?-explain(flies(X),E)</span><span lang=EN-US> has
@@ -2202,14 +2103,18 @@ E = [ rule((not flies(tweety):-penguin(tweety))), <br>
 <p class=sektie><span lang=EN-US>Sometimes, both a fact and its negation can be
 explained. Consider the following set of defaults and rules:</span></p>
 
-<p class=p-eerst style='page-break-after:auto'><span lang=EN-US>default((not
-flies(X):-mammal(X))).<br>
-default((flies(X):-bat(X))).<br>
-default((not flies(X):-dead(X))).</span></p>
-
-<p class=p-laatst><span lang=EN-US>rule((mammal(X):-bat(X))).<br>
-rule((bat(dracula):-true)).<br>
-rule((dead(dracula):-true)).</span></p>
+<pre class="source swish inherit" data-variant-id="group-2" inherit-id="swish.8.1.1" id="swish.8.1.2" style="display: block;" 
+query-text="?- explain(flies(dracula),E). ?- explain(not flies(dracula),E)."
+source-text-start="
+:-op(900,fy,not).
+">
+default((not flies(X):-mammal(X))).
+default((flies(X):-bat(X))).
+default((not flies(X):-dead(X))).
+rule((mammal(X):-bat(X))).
+rule((bat(dracula):-true)).
+rule((dead(dracula):-true)).
+</pre>
 
 <p class=tekst><span lang=EN-US>Does Dracula fly or not? One explanation claims
 he does, because he is a bat, and bats typically fly: </span></p>
@@ -2248,7 +2153,8 @@ style='mso-bidi-font-style:normal'><span lang=EN-US>s</span></i><span
 lang=EN-US> to defaults, which are parametrised with the variables in the
 default. Then, we can refer to a default in the conclusion of a rule:</span></p>
 
-<p class=p-el style='tab-stops:269.0pt'><span lang=EN-US>% default(Name,Rule)<br>
+<p class=p-el style='tab-stops:269.0pt'><span lang=EN-US>
+% default(Name,Rule)<br>
 default(mammals_dont_fly(X),(not flies(X):-mammal(X))).<br>
 default(bats_fly(X),(flies(X):-bat(X))).<br>
 default(dead_things_dont_fly(X),(not flies(X):-dead(X))).<br>
@@ -2258,20 +2164,52 @@ rule((dead(dracula):-true)).<br>
 % bats are flying mammals<br>
 rule((not mammals_dont_fly(X):-bat(X))).<br>
 % dead bats don&rsquo;t fly<br>
-rule((not bats_fly(X):-dead(X))).</span></p>
+rule((not bats_fly(X):-dead(X))).
+</span></p>
 
 <p class=tekst><span lang=EN-US>We change the fourth clause of the </span><span
 lang=EN-US style='font-family:Courier'>explain/3</span><span lang=EN-US>
 predicate accordingly:</span></p>
 
-<p class=pi-el style='tab-stops:211.0pt'><span lang=EN-US>explain(A,E0,[default(Name)|E]):-<br>
-default(Name,(A:-B)),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-explain by default rule<br>
-explain(B,E0,E),<br>
-not contradiction(Name,E).<span style='mso-tab-count:1'>&nbsp; </span>% default
-applicable<br>
-not contradiction(A,E).<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-A consistent with E</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.1.4" style="display: block;" 
+query-text="?- explain(flies(dracula),E). ?- explain(not flies(dracula),E)."
+source-text-start=":-op(900,fy,not).
+% explain(F,E) <- E explains F from rules and defaults
+explain(F,E):-explain(F,[],E).
+
+% meta-interpreter for rules and defaults
+explain(true,E,E):-!.
+explain((A,B),E0,E):-!,explain(A,E0,E1),explain(B,E1,E).
+explain(A,E0,E):-prove_e(A,E0,E).         % explain by rules only
+"
+source-text-end="
+% meta-interpreter for rules
+prove_e(true,E,E):-!.
+prove_e((A,B),E0,E):-!,prove_e(A,E0,E1),prove_e(B,E1,E).
+prove_e(A,E0,[rule((A:-B))|E]):-rule((A:-B)),prove_e(B,E0,E).
+
+% check contradiction against rules
+contradiction(not A,E):-!,prove_e(A,E,_E1).
+contradiction(A,E):-prove_e(not A,E,_E1).
+
+% default(Name,Rule)
+default(mammals_dont_fly(X),(not flies(X):-mammal(X))).
+default(bats_fly(X),(flies(X):-bat(X))).
+default(dead_things_dont_fly(X),(not flies(X):-dead(X))).
+rule((mammal(X):-bat(X))).
+rule((bat(dracula):-true)).
+rule((dead(dracula):-true)).
+% bats are flying mammals
+rule((not mammals_dont_fly(X):-bat(X))).
+% dead bats donâÃÃ´t fly
+rule((not bats_fly(X):-dead(X))).
+">
+explain(A,E0,[default(Name)|E]):-
+default(Name,(A:-B)),       % explain by default rule
+explain(B,E0,E),
+not contradiction(Name,E),  % default applicable
+not contradiction(A,E).     % A consistent with E
+</pre>
 
 <p class=tekst><span lang=EN-US>There are two changes: (<i style='mso-bidi-font-style:
 normal'>i</i>) when applying a default, its name is tested for consistency with
@@ -2952,45 +2890,38 @@ XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;met
 mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US>.</span></p>
 
-<p class=oms-eerst><span lang=EN-US>% abduce(O,E) &lt;- observation O follows
-by SLD-resolution <br>
-%<span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>from the theory defined by clause/2, <br>
-%<span
-style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>extended with a list of unit clauses E</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.3.1" style="display: block;" 
+query-text="?- abduce(likes(peter,paul),Explanation). ?- abduce(flies(tweety),Explanation)."
+source-text-start=":-op(900,fy,not).
+"
+source-text-end="
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-	element(X,Ys).
 
-<p class=pi-laatst><span lang=EN-US>abduce(O,E) :-<br>
-abduce(O,[],E).</span></p>
+cl(likes(peter,S),student_of(S,peter)).
+cl(likes(X,Y),friend(Y,X)).
 
-<p class=oms><span lang=EN-US>% with accumulator for explanations</span></p>
+cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(abnormal(X),penguin(X)).
+cl(abnormal(X),dead(X)).
+cl(bird(X),penguin(X)).
+cl(bird(X),sparrow(X)).
 
-<p class=pi style='page-break-after:auto;tab-stops:171.0pt'><span lang=EN-US>abduce(true,E,E):-!.</span></p>
+"
+>
+% abduce(O,E) <- observation O follows by SLD-resolution 
+%                from the theory defined by clause/2, 
+%                extended with a list of unit clauses E
+abduce(O,E) :-abduce(O,[],E).
 
-<p class=pi style='page-break-after:auto;tab-stops:171.0pt'><span lang=EN-US>abduce((A,B),E0,E):-!,<br>
-abduce(A,E0,E1),<br>
-abduce(B,E1,E).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:171.0pt'><span lang=EN-US>abduce(A,E0,E):-<br>
-clause(A,B),<br>
-abduce(B,E0,E).</span></p>
-
-<p class=pi style='tab-stops:171.0pt'><span lang=EN-US>abduce(A,E,E):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-already assumed<br>
-element(A,E).</span></p>
-
-<p class=pi-laatst style='tab-stops:171.0pt'><span lang=EN-US>abduce(A,E,[A|E]):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>% A can be
-added to E<br>
-not element(A,E),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>% if
-it's not already there,<br>
-abducible(A).<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-and if it's abducible</span></p>
-
-<p class=pi-laatst><span lang=EN-US>abducible(A):-<br>
-not clause(A,B).</span></p>
+% with accumulator for explanations
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
+abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
+abduce(A,E,E):-element(A,E).
+abduce(A,E,[A|E]):-not element(A,E),abducible(A).
+abducible(A):-not cl(A,_B).
+</pre>
 
 <p class=tekst><span lang=EN-US>The last two clauses of </span><span
 lang=EN-US style='font-family:Courier'>abduce/3</span><span lang=EN-US> extend
@@ -3055,10 +2986,43 @@ style='font-family:Courier'><span style="mso-spacerun:yes">&nbsp;</span>&quot;ab
 </span><![endif]--><!--[if supportFields]><span lang=EN-US style='font-family:
 Courier;display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>to</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.3.1" style="display: block;" 
+query-text="?- abduce(flies(tweety),Explanation). ?- abduce(not(abnormal(tweety)),[penguin(tweety)],[penguin(tweety)]). ?- abduce(not(abnormal(tweety)),[],[])."
+source-text-start="
+:-op(900,fy,not).
 
-<p class=pi-el><span lang=EN-US>abducible(A):-<br>
-A \= not(X),<br>
-not clause(A,B).</span></p>
+% abduce(O,E) <- observation O follows by SLD-resolution 
+%                from the theory defined by clause/2, 
+%                extended with a list of unit clauses E
+abduce(O,E) :-abduce(O,[],E).
+
+% with accumulator for explanations
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
+abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
+abduce(A,E,E):-element(A,E).
+abduce(not(A),E,E):-not abduce(A,E,E).   % if E doesn't explain A
+abduce(A,E,[A|E]):-not element(A,E),abducible(A).
+
+"
+source-text-end="
+
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-	element(X,Ys).
+
+cl(likes(peter,S),student_of(S,peter)).
+cl(likes(X,Y),friend(Y,X)).
+
+cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(abnormal(X),penguin(X)).
+cl(abnormal(X),dead(X)).
+cl(bird(X),penguin(X)).
+cl(bird(X),sparrow(X)).
+
+">
+abducible(A):-A \= not(B),not cl(A,B).
+</pre>
+
 
 <p class=tekst><span lang=EN-US>With this extended abductive meta-interpreter,
 the query</span></p>
@@ -3245,12 +3209,47 @@ of clauses. Notice that there are several explanations for </span><span
 lang=EN-US style='font-family:Courier'>abnormal(tweety)</span><span lang=EN-US>.
 </span></p>
 
-<p class=p-el><span lang=EN-US>flies(X):-bird(X),not abnormal(X).<br>
-flies1(X):-not abnormal(X),bird(X).<br>
-abnormal(X):-penguin(X).<br>
-abnormal(X):-dead(X).<br>
-bird(X):-penguin(X).<br>
-bird(X):-sparrow(X).</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.3.2" style="display: block;" 
+query-text="?- abduce(flies(tweety),Explanation). ?- abduce(flies1(tweety),Explanation)."
+source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
+abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
+abduce(A,E,E):-element(A,E).           % already assumed
+abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
+abduce_not(B,E0,E).
+abduce_not(A,E0,E):-setof(B,cl(A,B),L),abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+
+abducible(A):-A \= not(B),not cl(A,B).
+"
+source-text-end="
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+"
+>
+cl(flies1(X),(not(abnormal(X)),bird(X))).
+cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(abnormal(X),penguin(X)).
+cl(abnormal(X),dead(X)).
+cl(bird(X),penguin(X)).
+cl(bird(X),sparrow(X)).
+</pre>
 
 <p class=tekst><span lang=EN-US>The following queries show that the order of
 unnegated and negated literals in a clause only influences the order in which
@@ -3439,15 +3438,82 @@ lang=EN-US style='font-family:Courier'>fault/1</span><span lang=EN-US> as the
 (only) abducible predicate, and we make a call to </span><span lang=EN-US
 style='font-family:Courier'>abduce/2</span><span lang=EN-US>:</span></p>
 
-<p class=pi-el><span lang=EN-US>diagnosis</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;diagnosis/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Observation,Diagnosis):-<br>
-abduce(Observation,Diagnosis).</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.3.2" style="display: block;" 
+query-text="?- diagnosis(adder(a,0,0,1,0,1),D)."
 
-<p class=pi-laatst><span lang=EN-US>abducible(fault(X)).</span></p>
+source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
+abduce(A,E0,E):-clause(A,B),abduce(B,E0,E).
+abduce(A,E,E):-element(A,E).           % already assumed
+abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
+abduce_not(B,E0,E).
+abduce_not(A,E0,E):-setof(B,clause(A,B),L),abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+
+"
+source-text-end="
+
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+
+adder(N,X,Y,Z,Sum,Carry):-
+xorg(N-xor1,X,Y,S),
+xorg(N-xor2,Z,S,Sum),
+andg(N-and1,X,Y,C1),
+andg(N-and2,Z,S,C2),
+org(N-or1,C1,C2,Carry).
+
+xorg(_N,X,Y,Z):-xor(X,Y,Z).
+xorg(N,0,0,1):-fault(N=s1).
+xorg(N,0,1,0):-fault(N=s0).
+xorg(N,1,0,0):-fault(N=s0).
+xorg(N,1,1,1):-fault(N=s1).
+
+andg(_N,X,Y,Z):-and(X,Y,Z).
+andg(N,0,0,1):-fault(N=s1).
+andg(N,0,1,1):-fault(N=s1).
+andg(N,1,0,1):-fault(N=s1).
+andg(N,1,1,0):-fault(N=s0).
+
+org(_N,X,Y,Z):-or(X,Y,Z).
+org(N,0,0,1):-fault(N=s1).
+org(N,0,1,0):-fault(N=s0).
+org(N,1,0,0):-fault(N=s0).
+org(N,1,1,0):-fault(N=s0).
+
+xor(0,0,0).
+xor(0,1,1).
+xor(1,0,1).
+xor(1,1,0).
+or(0,0,0).
+or(0,1,1).
+or(1,0,1).
+or(1,1,1).
+and(0,0,0).
+and(0,1,0).
+and(1,0,0).
+and(1,1,1).
+">
+diagnosis(Observation,Diagnosis):-abduce(Observation,Diagnosis).
+
+abducible(fault(_X)).
+</pre>
 
 <p class=tekst><span lang=EN-US>For instance, suppose the inputs </span><span
 lang=EN-US style='font-family:Courier'>X=0</span><span lang=EN-US>, </span><span
@@ -3505,16 +3571,93 @@ style="mso-spacerun:yes">&nbsp;</span>XE </span><span lang=EN-US><span
 style="mso-spacerun:yes">&nbsp;</span>&quot;minimal diagnosis&quot; </span><![endif]--><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--></p>
 
-<p class=pi-el><span lang=EN-US>min_diagnosis</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;min_diagnosis/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(O,D):-<br>
-diagnosis(O,D),<br>
-not((diagnosis(O,D1),proper_subset(D1,D))).</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.3.2" style="display: block;" 
+query-text="?- min_diagnosis(adder(a,0,0,1,0,1),D)."
 
-<p class=pi-laatst><span lang=EN-US>%%% proper_subset/2: see Appendix A.2</span></p>
+source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
+abduce(A,E0,E):-clause(A,B),abduce(B,E0,E).
+abduce(A,E,E):-element(A,E).           % already assumed
+abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
+abduce_not(B,E0,E).
+abduce_not(A,E0,E):-setof(B,clause(A,B),L),abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+
+diagnosis(Observation,Diagnosis):-abduce(Observation,Diagnosis).
+
+abducible(fault(_X)).
+
+"
+source-text-end="
+
+% remove_one(X,Ys,Zs) <- Zs is list Ys minus one occurrence of X
+remove_one(X,[X|Ys],Ys).
+remove_one(X,[Y|Ys],[Y|Zs]):-remove_one(X,Ys,Zs).
+
+% proper_subset(Xs,Ys) <- Xs is a subset of Ys, and Ys contains 
+%                         at least one element more
+proper_subset([],Ys):-Ys \= [].
+proper_subset([X|Xs],Ys):-remove_one(X,Ys,Ys1),proper_subset(Xs,Ys1).
+
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+
+adder(N,X,Y,Z,Sum,Carry):-
+xorg(N-xor1,X,Y,S),
+xorg(N-xor2,Z,S,Sum),
+andg(N-and1,X,Y,C1),
+andg(N-and2,Z,S,C2),
+org(N-or1,C1,C2,Carry).
+
+xorg(_N,X,Y,Z):-xor(X,Y,Z).
+xorg(N,0,0,1):-fault(N=s1).
+xorg(N,0,1,0):-fault(N=s0).
+xorg(N,1,0,0):-fault(N=s0).
+xorg(N,1,1,1):-fault(N=s1).
+
+andg(_N,X,Y,Z):-and(X,Y,Z).
+andg(N,0,0,1):-fault(N=s1).
+andg(N,0,1,1):-fault(N=s1).
+andg(N,1,0,1):-fault(N=s1).
+andg(N,1,1,0):-fault(N=s0).
+
+org(_N,X,Y,Z):-or(X,Y,Z).
+org(N,0,0,1):-fault(N=s1).
+org(N,0,1,0):-fault(N=s0).
+org(N,1,0,0):-fault(N=s0).
+org(N,1,1,0):-fault(N=s0).
+
+xor(0,0,0).
+xor(0,1,1).
+xor(1,0,1).
+xor(1,1,0).
+or(0,0,0).
+or(0,1,1).
+or(1,0,1).
+or(1,1,1).
+and(0,0,0).
+and(0,1,0).
+and(1,0,0).
+and(1,1,1).
+">
+min_diagnosis(O,D):-diagnosis(O,D),not((diagnosis(O,D1),proper_subset(D1,D))).
+</pre>
 
 <p class=p-laatst style='mso-pagination:widow-orphan'><span lang=EN-US>?-min_diagnosis(adder(a,0,0,1,0,1),D).<br>
 D = [fault(a-or1=s1),fault(a-xor2=s0)];<br>
@@ -3702,8 +3845,7 @@ flies(X):-dead(X)))</span></p>
 <p class=tekst><span lang=EN-US>Thus, the complete set of rules and defaults
 about Dracula is translated to the following general program:</span></p>
 
-<p class=p-el style='tab-stops:269.0pt'><span lang=EN-US>notflies(X):-mammal(X),not
-flying_mammal(X).<br>
+<p class=p-el style='tab-stops:269.0pt'><span lang=EN-US>notflies(X):-mammal(X),not flying_mammal(X).<br>
 flies(X):-bat(X),not nonflying_bat(X).<br>
 notflies(X):-dead(X),not flying_deadthing(X)<br>
 mammal(X):-bat(X).<br>
@@ -3760,9 +3902,55 @@ predicate:as abducible&quot; </span><![endif]--><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=EN-US>s as abducibles: </span></p>
 
-<p class=p-el><span lang=EN-US>abducible(flying_mammal(X)).<br>
-abducible(nonflying_bat(X)).<br>
-abducible(flying_deadthing(X)).</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.8.4.1" style="display: block;" 
+query-text="?- abduce(flies(X),E). ?- abduce(notflies(X),E)."
+
+source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
+abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
+abduce(A,E,E):-element(A,E).           % already assumed
+abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
+abduce_not(B,E0,E).
+abduce_not(A,E0,E):-setof(B,cl(A,B),L),abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+
+"
+source-text-end="
+	
+cl(notflies(X),(mammal(X),not flying_mammal(X))).
+cl(notflies(X),(dead(X),not flying_deadthing(X))).
+cl(flies(X),(bat(X),not nonflying_bat(X))).
+
+cl(mammal(X),bat(X)).
+cl(bat(dracula),true).
+cl(dead(dracula),true).
+cl(flying_mammal(X),bat(X)).
+cl(nonflying_bat(X),dead(X)).
+
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+">
+abducible(flying_mammal(_X)).
+abducible(nonflying_bat(_X)).
+abducible(flying_deadthing(_X)).
+</pre>
 
 <p class=p-laatst><span lang=EN-US>?-abduce(flies(X),E)<br>
 No.</span></p>
@@ -3921,9 +4109,7 @@ mso-break-type:section-break'>
 
 <div class=WordSection4>
 
-<p id="inductive_reasoning" class=cijfer><span lang=EN-US>9</span></p>
-
-<h2 id="h_inductive_reasoning"><span lang=EN-US>Inductive reasoning</span></h2>
+  <p id="inductive_reasoning" class=cijfer><span lang=EN-US>9</span></p><h2 id="h_inductive_reasoning"><span lang=EN-US>Inductive reasoning</span></h2>
 
 <p class=sektie1><i style='mso-bidi-font-style:normal'><span lang=EN-US>Induction</span></i><!--[if supportFields]><span
 lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -3972,41 +4158,41 @@ to perform induction. We assume that the set of possible hypotheses is given by
 means of the predicate </span><span lang=EN-US style='font-family:Courier'>inducible/1</span><span
 lang=EN-US>.</span></p>
 
-<p class=oms-eerst><span lang=EN-US>% induce(E,H) &lt;- H is inductive
-explanation of E</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.9.0.1" style="display: block;" 
+query-text="?- induce(flies(tweety),H). ?- induce(flies(polly),H)."
 
-<p class=pi-laatst style='tab-stops:188.0pt'><span lang=EN-US>induce</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;induce/2&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(E,H):-<br>
-induce(E,[],H).</span></p>
+source-text-start="
+:-op(900,fy,not).
+"
+source-text-end="
 
-<p class=pi style='tab-stops:188.0pt'><span lang=EN-US>induce(true,H,H).</span></p>
+inducible((flies(X):-bird(X),has_feathers(X),has_beak(X))).
+inducible((flies(X):-has_feathers(X),has_beak(X))).
+inducible((flies(X):-bird(X),has_beak(X))).
+inducible((flies(X):-bird(X),has_feathers(X))).
+inducible((flies(X):-bird(X))).
+inducible((flies(X):-has_feathers(X))).
+inducible((flies(X):-has_beak(X))).
+inducible((flies(_X):-true)).
 
-<p class=pi style='page-break-after:auto;tab-stops:188.0pt'><span lang=EN-US>induce((A,B),H0,H):-<br>
-induce(A,H0,H1),<br>
-induce(B,H1,H).</span></p>
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+">
+% induce(E,H) <- H is inductive explanation of E
+induce(E,H):-induce(E,[],H).
 
-<p class=pi style='page-break-after:auto;tab-stops:188.0pt'><span lang=EN-US>induce(A,H0,H):-<br>
-clause(A,B),<br>
-induce(B,H0,H).</span></p>
-
-<p class=pi style='page-break-after:auto;tab-stops:188.0pt'><span lang=EN-US>induce(A,H0,H):-<br>
-element((A:-B),H0),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-already assumed<br>
-induce(B,H0,H).<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-proceed with body of rule</span></p>
-
-<p class=pi-laatst style='tab-stops:188.0pt'><span lang=EN-US>induce(A,H0,[(A:-B)|H]):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>% A:-B can be added to H<br>
-inducible((A:-B)),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-if it's inducible, and<br>
-not element((A:-B),H0),<span style='mso-tab-count:1'> </span>% if it's not
-already there<br>
-induce(B,H0,H).<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-proceed with body of rule</span></p>
+induce(true,H,H).
+induce((A,B),H0,H):-induce(A,H0,H1),induce(B,H1,H).
+induce(A,H0,H):-clause(A,B),induce(B,H0,H).
+induce(A,H0,H):-
+element((A:-B),H0),     % already assumed
+induce(B,H0,H).         % proceed with body of rule
+induce(A,H0,[(A:-B)|H]):-    % A:-B can be added to H
+inducible((A:-B)),      % if it's inducible, and
+not element((A:-B),H0), % if it's not already there
+induce(B,H0,H).         % proceed with body of rule
+</pre>
 
 <p class=tekst><span lang=EN-US>Whenever a clause is added to the inductive
 hypothesis</span><!--[if supportFields]><span lang=EN-US style='display:none;
@@ -4423,61 +4609,47 @@ lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'
 style='mso-bidi-font-style:normal'><span lang=EN-US>s</span></i><span
 lang=EN-US>.</span></p>
 
-<p class=pi-el><span lang=EN-US>:-op(600,xfx,'&lt;-'). % operator for inverse
-substitution</span></p>
+<pre class="source swish temp" data-variant-id="group-2" id="swish.9.1.1" style="display: block;" 
+query-text="?- anti_unify(2*2=2+2,2*3=3+3,T,[],S1,[],S2)."
 
-<p class=oms style='tab-stops:172.0pt'><span lang=EN-US>% anti_unify(T1,T2,T)
-&lt;-<span style='mso-tab-count:1'>&nbsp; </span>T is the anti-unification <br>
-%<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>of
-T1 and T2</span></p>
+source-text-start="
+"
+source-text-end="
+">
+:-op(600,xfx,'<-'). % operator for inverse substitution
 
-<p class=pi-laatst><span lang=EN-US>anti_unify</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;anti_unify/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>(Term1,Term2,Term):-<br>
-anti_unify(Term1,Term2,Term,[],S1,[],S2).</span></p>
+% anti_unify(T1,T2,T) <-  T is the anti-unification 
+%                         of T1 and T2
+anti_unify(Term1,Term2,Term):-
+anti_unify(Term1,Term2,Term,[],_S1,[],_S2).
 
-<p class=pi><span lang=EN-US>% anti-unification with inverse subst.s and
-accumulators</span></p>
+% anti-unification with inverse subst.s and accumulators
+anti_unify(Term1,Term2,Term1,S1,S1,S2,S2):-
+Term1 == Term2,!.                        % same terms
+anti_unify(Term1,Term2,V,S1,S1,S2,S2):-       % already 
+subs_lookup(S1,S2,Term1,Term2,V),!.      % substituted
+anti_unify(Term1,Term2,Term,S10,S1,S20,S2):-
+nonvar(Term1),nonvar(Term2),
+functor(Term1,F,N),functor(Term2,F,N),!, % same 
+functor(Term,F,N),                       % functor
+anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2).
+anti_unify(T1,T2,V,S10,[T1<-V|S10],S20,[T2<-V|S20]).
 
-<p class=pi style='tab-stops:290.0pt'><span lang=EN-US>anti_unify(Term1,Term2,Term1,S1,S1,S2,S2):-<br>
-Term1 == Term2,!.<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-same terms</span></p>
+anti_unify_args(0,_Term1,_Term2,_Term,S1,S1,S2,S2).
+anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2):-
+N>0,N1 is N-1,
+arg(N,Term1,Arg1),
+arg(N,Term2,Arg2),
+arg(N,Term,Arg),
+anti_unify(Arg1,Arg2,Arg,S10,S11,S20,S21),
+anti_unify_args(N1,Term1,Term2,Term,S11,S1,S21,S2).
 
-<p class=pi style='tab-stops:290.0pt'><span lang=EN-US>anti_unify(Term1,Term2,V,S1,S1,S2,S2):-<span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>% already <br>
-subs_lookup(S1,S2,Term1,Term2,V),!.<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-substituted</span></p>
-
-<p class=pi style='tab-stops:290.0pt'><span lang=EN-US>anti_unify(Term1,Term2,Term,S10,S1,S20,S2):-<br>
-nonvar(Term1),nonvar(Term2),<br>
-functor(Term1,F,N),functor(Term2,F,N),!,<span style='mso-tab-count:1'> </span>%
-same <br>
-functor(Term,F,N),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-functor<br>
-anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>anti_unify(T1,T2,V,S10,[T1&lt;-V|S10],S20,[T2&lt;-V|S20]).</span></p>
-
-<p class=pi><span lang=EN-US>anti_unify_args(0,Term1,Term2,Term,S1,S1,S2,S2).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2):-<br>
-N&gt;0,N1 is N-1,<br>
-arg(N,Term1,Arg1),<br>
-arg(N,Term2,Arg2),<br>
-arg(N,Term,Arg),<br>
-anti_unify(Arg1,Arg2,Arg,S10,S11,S20,S21),<br>
-anti_unify_args(N1,Term1,Term2,Term,S11,S1,S21,S2).</span></p>
-
-<p class=pi><span lang=EN-US>subs_lookup([T1&lt;-V|Subs1],[T2&lt;-V|Subs2],Term1,Term2,V):-<br>
-T1 == Term1,<br>
-T2 == Term2,!.<span style='mso-tab-count:1'>&nbsp; </span>% no alternative
-solutions needed</span></p>
-
-<p class=pi-laatst><span lang=EN-US>subs_lookup([S1|Subs1],[S2|Subs2],Term1,Term2,V):-<br>
-subs_lookup(Subs1,Subs2,Term1,Term2,V).</span></p>
+subs_lookup([T1<-V|_Subs1],[T2<-V|_Subs2],Term1,Term2,V):-
+T1 == Term1,
+T2 == Term2,!.  % no alternative solutions needed
+subs_lookup([_S1|Subs1],[_S2|Subs2],Term1,Term2,V):-
+subs_lookup(Subs1,Subs2,Term1,Term2,V).
+</pre>
 
 <p class=tekst><span lang=EN-US>The following query illustrates the operation
 of the program, including the use of inverse substitutions:</span></p>
@@ -4536,43 +4708,32 @@ lang=EN-US style='font-family:Symbol'>q</span><span lang=EN-US>-LGG&rsquo;s is g
 below. Note that the inverse substitutions found in each step are passed on to
 the next, so that the literals share variables.</span></p>
 
-<p class=oms-eerst><span lang=EN-US>% theta_lgg(C1,C2,C) &lt;- C is the </span><span
-lang=EN-US style='font-family:Symbol'>q</span><span lang=EN-US>-LGG of clause
-C1 and C2</span></p>
+<pre class="source swish inherit" data-variant-id="group-2" id="swish.9.1.2" inherit-id="swish.9.1.1" style="display: block;" 
+query-text="?- theta_lgg((element(c,[b,c]):-[element(c,[c])]),(element(d,[b,c,d]):-[element(d,[c,d]),element(d,[d])]),C)."
 
-<p class=pi-laatst style='tab-stops:320.0pt'><span lang=EN-US>theta_lgg</span><!--[if supportFields]><span
-lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;theta_lgg/3&quot;
-</span><![endif]--><!--[if supportFields]><span lang=EN-US style='display:none;
-mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>((H1:-B1),(H2:-B2),(H:-B)):-<br>
-anti_unify(H1,H2,H,[],S10,[],S20),<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%
-heads<br>
-theta_lgg_bodies(B1,B2,[],B,S10,S1,S20,S2).<span style='mso-tab-count:1'>&nbsp;&nbsp; </span>%
-bodies</span></p>
+source-text-start="
+:-op(900,fy,not).
+"
+source-text-end="
+% same_predicate(L1,L2) <- literals L1 and L2 have 
+%                          the same predicate and arity
+same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
+">
+% theta_lgg(C1,C2,C) <- C is the q-LGG of clause C1 and C2
+theta_lgg((H1:-B1),(H2:-B2),(H:-B)):-anti_unify(H1,H2,H,[],S10,[],S20),            % heads
+theta_lgg_bodies(B1,B2,[],B,S10,_S1,S20,_S2).   % bodies
 
-<p class=oms><span lang=EN-US>% select literal from first body...</span></p>
+% select literal from first body...
+theta_lgg_bodies([],_B2,B,B,S1,S1,S2,S2).
+theta_lgg_bodies([L|B1],B2,B0,B,S10,S1,S20,S2):-theta_lgg_literal(L,B2,B0,B00,S10,S11,S20,S21),theta_lgg_bodies(B1,B2,B00,B,S11,S1,S21,S2).
 
-<p class=pi><span lang=EN-US>theta_lgg_bodies([],B2,B,B,S1,S1,S2,S2).</span></p>
+% and one from second body
+theta_lgg_literal(_L1,[],B,B,S1,S1,S2,S2).
+theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-same_predicate(L1,L2),anti_unify(L1,L2,L,S10,S11,S20,S21),theta_lgg_literal(L1,B2,[L|B0],B,S11,S1,S21,S2).
+theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-not same_predicate(L1,L2),theta_lgg_literal(L1,B2,B0,B,S10,S1,S20,S2).
 
-<p class=pi-laatst><span lang=EN-US>theta_lgg_bodies([L|B1],B2,B0,B,S10,S1,S20,S2):-<br>
-theta_lgg_literal(L,B2,B0,B00,S10,S11,S20,S21),<br>
-theta_lgg_bodies(B1,B2,B00,B,S11,S1,S21,S2).</span></p>
-
-<p class=oms><span lang=EN-US>% and one from second body</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>theta_lgg_literal(L1,[],B,B,S1,S1,S2,S2).</span></p>
-
-<p class=pi style='page-break-after:auto'><span lang=EN-US>theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-<br>
-same_predicate(L1,L2),<br>
-anti_unify(L1,L2,L,S10,S11,S20,S21),<br>
-theta_lgg_literal(L1,B2,[L|B0],B,S11,S1,S21,S2).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-<br>
-not same_predicate(L1,L2),<br>
-theta_lgg_literal(L1,B2,B0,B,S10,S1,S20,S2).</span></p>
-
-<p class=pi-laatst><span lang=EN-US>%%% same_predicate/2: see Appendix A.2</span></p>
+%%% same_predicate/2: see Appendix A.2
+</pre>
 
 <p class=tekst><span lang=EN-US>To check the above example, we pose the
 following query:</span></p>
