@@ -936,12 +936,12 @@ style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 negation</span></p>
 
 <p class=tekst><span lang=EN-US>In addition, a universally quantified formula
-of the form </span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+of the form </span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US style='font-family:Courier'>X:F</span><span lang=EN-US> is
 represented by the term </span><span lang=EN-US style='font-family:Courier'>forall(X,F)</span><span
 lang=EN-US>. For instance, the formula</span></p>
 
-<p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=p-el><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>S: student_of(S,peter)</span><span lang=EN-US style='font-family:
 Symbol'>&rarr;</span><span lang=EN-US>likes(peter,S)</span></p>
 
@@ -950,7 +950,7 @@ Symbol'>&rarr;</span><span lang=EN-US>likes(peter,S)</span></p>
 <p class=p-el><span lang=EN-US>forall(S,student_of(peter)=&gt;likes(peter,S)). </span></p>
 
 <p class=tekst><span lang=EN-US>Likewise, an existentially quantified formula
-of the form </span><span lang=EN-US style='font-family:Symbol'>$</span><span
+of the form </span><span lang=EN-US style='font-family:Symbol'>&exist;</span><span
 lang=EN-US style='font-family:Courier'>X:F</span><span lang=EN-US> is
 represented by the term </span><span lang=EN-US style='font-family:Courier'>exists(X,F)</span><span
 lang=EN-US>. </span></p>
@@ -1398,9 +1398,9 @@ avoid considering </span><span lang=EN-US style='font-family:Courier'>not/1</spa
 lang=EN-US> as an undefined predicate, and also to check the negated literal
 itself. After constructing the list of undefined literals occuring in clause
 bodies, each of them is transformed into a formula of the form </span><span
-lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
+lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US
 style='font-family:Courier'>X1</span><span lang=EN-US>&hellip;</span><span lang=EN-US
-style='font-family:Symbol'>&quot;</span><span lang=EN-US style='font-family:
+style='font-family:Symbol'>&forall;</span><span lang=EN-US style='font-family:
 Courier'>Xn: </span><span lang=EN-US>&not;</span><span lang=EN-US style='font-family:
 Courier'>p(X1,&hellip;,Xn)</span><span lang=EN-US>: </span></p>
 
@@ -2438,23 +2438,23 @@ style='font-family:Courier'>innocent(john)</span><span lang=EN-US>}.</span></p>
   lang=EN-US>Exercise 2.14</span></i><span lang=EN-US>. Translate to clausal
   logic:<br>
   (<i style='mso-bidi-font-style:normal'>a</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-  lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
-  style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>$</span><span
+  lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US
+  style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>&exist;</span><span
   lang=EN-US style='font-family:Courier'>Y: mouse(X)</span><span lang=EN-US
   style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>tail_of(Y,X)</span><span
   lang=EN-US>;<br>
   (<i style='mso-bidi-font-style:normal'>b</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-  lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
-  style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>$</span><span
+  lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US
+  style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>&exist;</span><span
   lang=EN-US style='font-family:Courier'>Y: loves(X,Y)</span><span lang=EN-US
   style='font-family:Symbol'>&and;</span><span lang=EN-US style='font-family:Courier'>(</span><span
-  lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
+  lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US
   style='font-family:Courier'>Z: loves(Y,Z))</span><span lang=EN-US>;<br>
   (<i style='mso-bidi-font-style:normal'>c</i>)<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-  lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US
-  style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+  lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US
+  style='font-family:Courier'>X</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
   lang=EN-US style='font-family:Courier'>Y</span><span lang=EN-US
-  style='font-family:Symbol'>$</span><span lang=EN-US style='font-family:Courier'>Z:
+  style='font-family:Symbol'>&exist;</span><span lang=EN-US style='font-family:Courier'>Z:
   number(X)</span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
   lang=EN-US style='font-family:Courier'>number(Y)</span><span lang=EN-US
   style='font-family:Symbol'>&rarr;</span><span lang=EN-US style='font-family:Courier'>maximum(X,Y,Z)</span><span
@@ -3690,11 +3690,11 @@ Exercise 2.6.) </span></p>
 
 <p class=answer><span lang=EN-US>The completion of this program is</span></p>
 
-<p class=pi-eerst><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=pi-eerst><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>X: wise(X)</span><span lang=EN-US style='font-family:Symbol'>&harr;</span><span
 lang=EN-US> &not;teacher(X)</span></p>
 
-<p class=pi-laatst><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=pi-laatst><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>X: teacher(X)</span><span lang=EN-US style='font-family:Symbol'>&harr; </span><span
 lang=EN-US>(X=peter </span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US> wise(peter))</span></p>

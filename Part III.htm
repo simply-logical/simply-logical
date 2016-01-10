@@ -2514,8 +2514,8 @@ lang=EN-US style='display:none;mso-hide:all'><span style='mso-element:field-end'
 lang=EN-US>. For instance, the above clause could be completed to the following
 full definition:</span></p>
 
-<p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
-lang=EN-US>X</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=p-el><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
+lang=EN-US>X</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>S:likes(X,S)</span><span lang=EN-US style='font-family:Symbol'>&harr;</span><span
 lang=EN-US>X=peter</span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US>student_of(S,peter)</span></p>
@@ -2586,8 +2586,8 @@ likes(X,Y):-friend(Y,X).</span></p>
 into a single formula in Predicate Logic:</span></p>
 
 <p class=p-el style='margin-left:86.0pt;text-indent:-69.0pt'><span lang=EN-US
-style='font-family:Symbol'>&quot;</span><span lang=EN-US>X</span><span
-lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US>Y:likes(X,Y)</span><span
+style='font-family:Symbol'>&forall;</span><span lang=EN-US>X</span><span
+lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US>Y:likes(X,Y)</span><span
 lang=EN-US style='font-family:Symbol'>&not;</span><span lang=EN-US> ((X=peter</span><span
 lang=EN-US style='font-family:Symbol'>&and;</span><span lang=EN-US>student_of(Y,peter))</span><span
 lang=EN-US style='font-family:Symbol'>&or;</span><span lang=EN-US>friend(Y,X))</span></p>
@@ -2613,19 +2613,19 @@ ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).</span></p>
 <p class=tekst><span lang=EN-US>Here, the second clause is equivalent with the
 formula</span></p>
 
-<p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
-lang=EN-US>X</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
-lang=EN-US>Y</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=p-el><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
+lang=EN-US>X</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
+lang=EN-US>Y</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>Z:ancestor(X,Y)</span><span lang=EN-US style='font-family:Symbol'>&not;</span><span
 lang=EN-US>(parent(X,Z)</span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US>ancestor(Z,Y))</span></p>
 
 <p class=tekst><span lang=EN-US>but also with the formula</span></p>
 
-<p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
-lang=EN-US>X</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=p-el><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
+lang=EN-US>X</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>Y:ancestor(X,Y)</span><span lang=EN-US style='font-family:Symbol'>&not;</span><span
-lang=EN-US>(</span><span lang=EN-US style='font-family:Symbol'>$</span><span
+lang=EN-US>(</span><span lang=EN-US style='font-family:Symbol'>&exist;</span><span
 lang=EN-US>Z:parent(X,Z)</span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US>ancestor(Z,Y))</span></p>
 
@@ -2643,11 +2643,11 @@ existential quantification in the body, because we want all clauses to have
 exactly the same head. The two original clauses are thus converted to</span></p>
 
 <p class=p-el style='margin-left:86.0pt;text-indent:-69.0pt'><span lang=EN-US
-style='font-family:Symbol'>&quot;</span><span lang=EN-US>X</span><span
-lang=EN-US style='font-family:Symbol'>&quot;</span><span lang=EN-US>Y:ancestor(X,Y)</span><span
+style='font-family:Symbol'>&forall;</span><span lang=EN-US>X</span><span
+lang=EN-US style='font-family:Symbol'>&forall;</span><span lang=EN-US>Y:ancestor(X,Y)</span><span
 lang=EN-US style='font-family:Symbol'>&not; </span><span lang=EN-US>(parent(X,Y)</span><span
 lang=EN-US style='font-family:Symbol'>&or;</span><span lang=EN-US>(</span><span
-lang=EN-US style='font-family:Symbol'>$</span><span lang=EN-US>Z:parent(X,Z)</span><span
+lang=EN-US style='font-family:Symbol'>&exist;</span><span lang=EN-US>Z:parent(X,Z)</span><span
 lang=EN-US style='font-family:Symbol'>&and;</span><span lang=EN-US>ancestor(Z,Y)))</span></p>
 
 <p class=sektie><span lang=EN-US>A <i style='mso-bidi-font-style:normal'>program</i></span><!--[if supportFields]><span
@@ -2715,14 +2715,14 @@ flies(X):-bird(X),not abnormal(X).</span></p>
 <p class=tekst><span lang=EN-US>Predicate Completion produces the following
 formulas:</span></p>
 
-<p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=p-el><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>X:bird(X)</span><span lang=EN-US style='font-family:Symbol'>&harr;</span><span
 lang=EN-US>X=tweety<br>
-</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>X:flies(X)</span><span lang=EN-US style='font-family:Symbol'>&harr;</span><span
 lang=EN-US>(bird(X)</span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US>&not;abnormal(X))<br>
-</span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+</span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>X:&not;abnormal(X)</span></p>
 
 <p class=tekst><span lang=EN-US>In words: Tweety is the only bird, something
@@ -2755,7 +2755,7 @@ friendly, and </span><span lang=EN-US style='font-family:Courier'>friendly(peter
 lang=EN-US> should be a logical consquence of the intended program associated
 with this clause. Predicate Completion will construct the formula</span></p>
 
-<p class=p-el><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+<p class=p-el><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US>X: friendly(X)</span><span lang=EN-US style='font-family:Symbol'>&harr;</span><span
 lang=EN-US>(X=peter </span><span lang=EN-US style='font-family:Symbol'>&and;</span><span
 lang=EN-US> &not;friendly(peter))</span></p>
@@ -6573,12 +6573,12 @@ lang=EN-US>If </span><span lang=EN-US style='font-family:Courier'>X</span><span
 lang=EN-US> is a variable occurring in </span><span lang=EN-US
 style='font-family:Courier'>Body</span><span lang=EN-US> but not in </span><span
 lang=EN-US style='font-family:Courier'>Head</span><span lang=EN-US>, the
-formula </span><span lang=EN-US style='font-family:Symbol'>&quot;</span><span
+formula </span><span lang=EN-US style='font-family:Symbol'>&forall;</span><span
 lang=EN-US style='font-family:Courier'>X: Head</span><span lang=EN-US
 style='font-family:Symbol'>&not;</span><span lang=EN-US style='font-family:Courier'>Body</span><span
 lang=EN-US> is logically equivalent with </span><span lang=EN-US
 style='font-family:Courier'>Head</span><span lang=EN-US style='font-family:
-Symbol'>&not;$</span><span lang=EN-US style='font-family:Courier'>X:Body</span><span
+Symbol'>&not;&exist;</span><span lang=EN-US style='font-family:Courier'>X:Body</span><span
 lang=EN-US>. Such variables are called <i style='mso-bidi-font-style:normal'>existential
 variables</i>.</span></p>
 
