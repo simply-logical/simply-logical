@@ -196,9 +196,11 @@ connected via <i style="mso-bidi-font-style:normal">L</i>, then <i style="mso-bi
 normal">Y</i> are also nearby. We can formulate this in logic as follows:</p>
 
 
-<pre class="source swish inherit temp" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;">
+<pre class="source swish inherit" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;">
 nearby(X,Y):-connected(X,Y,L).
 nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).
+<!-- nearby(X,Y):-connected(X,Y,L). 
+-->
 </pre>
 
 <p class="tekst">In these formulas, the symbol &lsquo;<span style="font-family:Courier">:-</span>&rsquo;
@@ -260,9 +262,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;query&quot; </i><![endif]--><!--[if 
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>like &lsquo;which station is nearby Tottenham
 Court Road?&rsquo; will be written as </p>
 
-<pre class="source swish inherit query" data-variant-id="group-1" inherit-id="swish.1.0.1 swish.1.0.3" id="query114" style="display: block;">
-?-nearby(tottenham_court_road,W).
-</pre>
+<pre class="query" id="query.1.1.1"><span class="swish query">?- nearby(tottenham_court_road,W).</span></pre>
 
 <p class="tekst">where the prefix &lsquo;<span style="font-family:Courier">?-</span>&rsquo;
 indicates that this is a query rather than a fact. An <i style="mso-bidi-font-style:
@@ -544,12 +544,9 @@ the entire London underground, we would need a lot more, longer and longer
 rules. Recursion is a much more convenient and natural way to define such
 chains of arbitrary length:</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.3" id="query116" style="display: block;">
-reachable(X,Y):-connected(X,Y,L).
-reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
-</pre>
-<pre class="query" id="query15" style="display: none;"><span class="swish query">?-reachable(bond_street,W).</span></pre>
-<pre class="query" id="query15" style="display: none;"><span class="swish query">?-reachable(charing_cross,W).</span></pre>
+<p class="p-eerst">reachable(X,Y):-connected(X,Y,L).</p>
+
+<p class="p-laatst">reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).</p>
 
 <p class="tekst">The reading of the second rule is as follows: &lsquo;<i style="mso-bidi-font-style:normal">Y</i> is reachable from <i style="mso-bidi-font-style:
 normal">X</i> if <i style="mso-bidi-font-style:normal">Z</i> is directly
@@ -655,14 +652,14 @@ datastructures, such as a list of stations representing a route. Suppose we
 want to redefine the reachability relation, such that it also specifies the intermediate
 stations. We could adapt the non-recursive definition of <span style="font-family:Courier">reachable</span> as follows:</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query117" style="display: block;">
-reachable0(X,Y):-connected(X,Y,L).
-reachable1(X,Y,Z):-connected(X,Z,L1),
-                   connected(Z,Y,L2).
-reachable2(X,Y,Z1,Z2):-connected(X,Z1,L1),
-                       connected(Z1,Z2,L2),
-                       connected(Z2,Y,L3).
-</pre>
+<p class="p-eerst" style="margin-left:167.0pt;text-indent:-150.0pt">reachable0(X,Y):-connected(X,Y,L).</p>
+
+<p class="programma" style="margin-left:136.0pt;text-indent:-119.0pt">reachable1(X,Y,Z):-<span style="mso-tab-count:1"> </span>connected(X,Z,L1),<br>
+connected(Z,Y,L2).</p>
+
+<p class="p-laatst" style="margin-left:160.0pt;text-indent:-143.0pt">reachable2(X,Y,Z1,Z2):-<span style="mso-tab-count:1"> </span>connected(X,Z1,L1),<br>
+connected(Z1,Z2,L2),<br>
+connected(Z2,Y,L3).</p>
 
 <p class="tekst">The suffix of reachable indicates the number of intermediate
 stations; it is added to stress that relations with different number of
@@ -709,18 +706,17 @@ could be represented by </p>
 <p class="tekst">Note that this is not a ground fact, but rather an argument for
 a logical formula. The reachability relation can now be defined as follows:</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query118" style="display: block;">
-reachable(X,Y,noroute):-connected(X,Y,L).
-reachable(X,Y,route(Z)):-connected(X,Z,L1),
-                         connected(Z,Y,L2).
-reachable(X,Y,route(Z1,Z2)):-connected(X,Z1,L1),
-                             connected(Z1,Z2,L2),
-                             connected(Z2,Y,L3).
-</pre>
+<p class="p-eerst" style="margin-left:195.0pt;text-indent:-178.0pt">reachable(X,Y,noroute):-connected(X,Y,L).</p>
 
-<p class="tekst">The query</p>
-<pre class="query" id="query17"><span class="swish query">?-reachable(oxford_circus,charing_cross,R).</span></pre>
-<p class="tekst">now has three possible answers:</p>
+<p class="programma" style="margin-left:174.0pt;text-indent:-157.0pt">reachable(X,Y,route(Z)):-<span style="mso-tab-count:1"> </span>connected(X,Z,L1),<br>
+connected(Z,Y,L2).</p>
+
+<p class="p-laatst" style="margin-left:195.0pt;text-indent:-178.0pt">reachable(X,Y,route(Z1,Z2)):-<span style="mso-tab-count:1"> </span>connected(X,Z1,L1),<br>
+connected(Z1,Z2,L2),<br>
+connected(Z2,Y,L3).</p>
+
+<p class="tekst">The query <span style="font-family:Courier">?-reachable(oxford_circus,charing_cross,R)</span>
+now has three possible answers:</p>
 
 <p class="tekst" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
 margin-left:18.0pt">{<span style="font-family:Courier">R</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">route(piccadilly_circus)</span>}<br>
@@ -755,17 +751,16 @@ margin-left:18.0pt">{<span style="font-family:Courier">R</span><span style="font
 definition of the reachability relation, in which case we use functors in a
 somewhat different way.</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query119" style="display: block;">
-reachable(X,Y,noroute):-connected(X,Y,L).
-reachable(X,Y,route(Z,R)):-connected(X,Z,L),
-                           reachable(Z,Y,R).
-</pre>
+<p class="p-eerst" style="margin-left:185.0pt;text-indent:-168.0pt">reachable(X,Y,noroute):-connected(X,Y,L).</p>
+
+<p class="p-laatst" style="margin-left:185.0pt;text-indent:-168.0pt">reachable(X,Y,route(Z,R)):-<span style="mso-tab-count:1"> </span>connected(X,Z,L),<br>
+reachable(Z,Y,R).</p>
 
 <p class="tekst">At first sight, there does not seem to be a big difference
 between this and the use of functors in the non-recursive program. However, the
 query</p>
 
-<pre class="query" id="query17"><span class="swish query">?-reachable(oxford_circus,charing_cross,R).</span></pre>
+<p class="p-el">?-reachable(oxford_circus,charing_cross,R)</p>
 
 <p class="tekst">now has the following answers: </p>
 
@@ -917,15 +912,12 @@ whether there is an intermediate station or not. For both cases, there is a
 clause. Expressing the route as a list, we can state the final definition of
 the reachability relation:</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query120" style="display: block;">
-reachable(X,Y,[]):-connected(X,Y,L).
-reachable(X,Y,[Z|R]):-connected(X,Z,L),
-                      reachable(Z,Y,R).
-</pre>
+<p class="p-eerst">reachable(X,Y,[]):-connected(X,Y,L).</p>
 
-<p class="tekst">The query</p>
-<pre class="query" id="query15"><span class="swish query">?-reachable(oxford_circus,charing_cross,R).</span></pre>
-<p class="tekst">now results in the following answers:</p>
+<p class="p-laatst">reachable(X,Y,[Z|R]):-connected(X,Z,L),reachable(Z,Y,R).</p>
+
+<p class="tekst">The query <span style="font-family:Courier">?-reachable(oxford_circus,charing_cross,R)</span>
+now results in the following answers:</p>
 
 <p class="tekst" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
 margin-left:18.0pt">{<span style="font-family:Courier">R</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">[tottenham_court_road,leicester_square]</span>}<br>
@@ -939,7 +931,8 @@ notation.</p>
 Charing Cross can be reached via a route with four intermediate stations, we
 should ask the query</p>
 
-<pre class="query" id="query15"><span class="swish query">?-reachable(X,charing_cross,[A,B,C,D]).</span></pre>
+<p class="sektie" style="margin-top:3.0pt;margin-right:0cm;margin-bottom:3.0pt;
+margin-left:0cm"><span style="font-family:Courier">?-reachable(X,charing_cross,[A,B,C,D])</span></p>
 
 <p class="tekst">which results in two answers:</p>
 
@@ -1141,9 +1134,9 @@ Courier">,</span>&rsquo; (<b style="mso-bidi-font-weight:normal">and</b>), we ca
 combine atoms to form <i style="mso-bidi-font-style:normal">clauses</i>. For
 instance,</p>
 
-<pre class="source swish" data-variant-id="group-1" id="swish.2.1.1" style="display: block;">
+<p class="p-el">
 	married;bachelor:-man,adult
-</pre>
+</p>
 <!-- Original text <p class="p-el">married;bachelor:-man,adult</p> -->
 
 <p class="tekst">is a clause<!--[if supportFields]><span style='display:none;
@@ -1189,21 +1182,21 @@ padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.1.</i>
 Translate the following statements into clauses, using the atoms <span style="font-family:Courier">person</span>, <span style="font-family:Courier">sad</span>
 and <span style="font-family:Courier">happy</span>:<br>
-
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.1" style="display: block;">
-	(a) persons are happy or sad;
-</pre>
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.2" style="display: block;">
-	(b) no person is both happy and sad;
-</pre>
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.3" style="display: block;">
-	(c) sad persons are not happy;
-</pre>
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e1.4" style="display: block;">
-	(d) non-happy persons are sad.
-</pre>
+(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>persons
+are happy or sad;<br>
+(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>no
+person is both happy and sad;<br>
+(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>sad
+persons are not happy;<br>
+(<i style="mso-bidi-font-style:normal">d</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>non-happy
+persons are sad.</p>
 
 </div>
+
+
+
+
+
 
 
 
@@ -1216,7 +1209,8 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 terminated by a period. The clauses are to be read conjunctively; for example,
 the program</p>
 
-<p class="p-el">woman;man:-human.<br>
+<p class="p-el">
+woman;man:-human.<br>
 human:-woman.<br>
 human:-man.</p>
 
@@ -1377,24 +1371,24 @@ padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
 margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.2.</i> Given
 the program<br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">married;bachelor:-man,adult.<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">married;bachelor:-man,adult.<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>man.<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>:-bachelor.</span><br>
 determine which of the following clauses are logical consequences of this
 program:<br>
+(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">married:-adult</span>;<br>
+(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">married:-bachelor</span>;<br>
+(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">bachelor:-man</span>;<br>
+(<i style="mso-bidi-font-style:normal">d</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">bachelor:-bachelor</span>.</p>
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.1" style="display: block;">
-	(a) married:-adult;
-</pre>
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.2" style="display: block;">
-	(b) married:-bachelor;
-</pre>
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.3" style="display: block;">
-	(c) bachelor:-man;
-</pre>
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e2.4" style="display: block;">
-	(d) bachelor:-bachelor;
-</pre>
+
+
+
+
+
+
+
+
 
 </div>
 
@@ -1438,6 +1432,7 @@ normal">minimal model semantics</i>. </p>
 <p class="sektie">Unfortunately, this approach is only applicable to a restricted
 class of programs. Consider the following program:</p>
 
+
 <p class="p-el">woman;man:-human.<br>
 human.</p>
 
@@ -1470,6 +1465,8 @@ based on definite clause logic. In principle, this means that clauses like <span
 Prolog. However, such a clause can be transformed into a &lsquo;pseudo-definite&rsquo;
 clause by moving one of the literals in the head to the body, extended with an
 extra negation. This gives the following two possibilities:</p>
+
+
 
 <p class="p-el">woman:-human,not(man).<br>
 man:-human,not(woman).</p>
@@ -1521,9 +1518,9 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e3" style="display: block;">
-	Exercise 2.3. Write down the six Herbrand interpretations that are not models of the program.
-</pre>
+<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.3.</i> Write
+down the six Herbrand interpretations that are not models of the program.</p>
 
 </div>
 
@@ -1660,14 +1657,15 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e4" style="display: block;">
-Exercise 2.4. Give a derivation of friendly from the following program:
-    <tab/> happy;friendly:-teacher.
-    <tab/> friendly:-teacher,happy.
-    <tab/> teacher;wise.
-    <tab/> teacher:-wise.
-</pre>
-
+<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.4.</i> Give a
+derivation of <span style="font-family:Courier">friendly</span> from the
+following program:<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">happy;friendly:-teacher.<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>friendly:-teacher,happy.<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>teacher;wise.<br>
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>teacher:-wise.</span></p>
 </div>
 
 <p class="sektie1"><!--[if supportFields]><span style='display:none;mso-hide:
@@ -1813,12 +1811,12 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.1.e5" style="display: block;">
-Exercise 2.5. Prove by refutation that <span style="font-family:Courier">friendly:-has_friends</span> 
-	is a logical consequence of the following clauses:
-	<tab/> 	happy:-has_friends.
-	<tab/> 	friendly:-happy.
-</pre>
+<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.5.</i> Prove
+by refutation that <span style="font-family:Courier">friendly:-has_friends</span>
+is a logical consequence of the following clauses: <br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">happy:-has_friends.<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>friendly:-happy.</span></p>
 
 </div>
 
@@ -1948,12 +1946,15 @@ propositional clausal logic, in particular those of literal, clause and
 program, stay the same. So, the following clauses are meant to represent the
 above statements:</p>
 
-<pre class="source swish" data-variant-id="group-1" id="swish.2.2.1" style="display: block;">
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.1" style="display: block;"
+query-text="?- likes(peter,S)."
+>
 likes(peter,S):-student_of(S,peter).
 student_of(maria,peter).
-likes(peter,maria).
 </pre>
-
+<pre class="swish query" source-id="swish.2.2.1">
+?- likes(peter,maria).
+</pre>
 <p class="tekst">The intended meaning of these clauses are, respectively, &lsquo;<b style="mso-bidi-font-weight:normal">if</b> <i style="mso-bidi-font-style:normal">S</i>
 is a student of Peter <b style="mso-bidi-font-weight:normal">then</b> Peter
 likes <i style="mso-bidi-font-style:normal">S</i>&rsquo;, &lsquo;Maria is a student of
@@ -2108,11 +2109,12 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.2.e6" style="display: block;">
-Exercise 2.6. How many models does <i style="mso-bidi-font-style:normal">C</i> have over the Herbrand universe
-	{<span style="font-family:Courier">peter</span>, <span style="font-family:Courier">maria</span>}?
-</pre>
-
+<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.6.</i> How
+many models does <i style="mso-bidi-font-style:normal">C</i> have over the
+Herbrand universe <br>
+{<span style="font-family:Courier">peter</span>, <span style="font-family:Courier">maria</span>}?
+</p>
 </div>
 
 <p class="sektie1"><!--[if supportFields]><span style='display:none;mso-hide:
@@ -2140,8 +2142,12 @@ occurs in both clauses; rather, we require that there is a pair of atoms <i styl
 terms for variables</i>. For instance, let <i style="mso-bidi-font-style:normal">P</i>
 be the following program:</p>
 
-<p class="p-el">likes(peter,S):-student_of(S,peter).<br>
-student_of(maria,T):-follows(maria,C),teaches(T,C).</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.2" style="display: block;">
+likes(peter,S):-student_of(S,peter).
+student_of(maria,T):-follows(maria,C),teaches(T,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
 <p class="tekst">The second clause is intended to mean: &lsquo;Maria is a student of
 any teacher who teaches a course she follows&rsquo;. From these two clauses we should
@@ -2150,9 +2156,11 @@ Maria follows a course taught by Peter&rsquo;. This means that we want to resolv
 two clauses on the <span style="font-family:Courier">student_of</span>
 literals. </p>
 
-<p class="sektie">The two atoms <span style="font-family:Courier">student_of(S,peter)</span>
-and <span style="font-family:Courier">student_of(maria,T)</span> can be made
-equal by replacing <span style="font-family:Courier">S</span> by <span style="font-family:Courier">maria</span> and <span style="font-family:Courier">T</span>
+<p class="sektie">The two atoms </p>
+<pre class="swish query" source-id="swish.2.2.2">?- student_of(S,peter). </pre> 
+<p class="sektie"> and </p>
+<pre class="swish query" source-id="swish.2.2.2">?- student_of(maria,T). </pre> 
+<p class="sektie"> can be made equal by replacing <span style="font-family:Courier">S</span> by <span style="font-family:Courier">maria</span> and <span style="font-family:Courier">T</span>
 by <span style="font-family:Courier">peter</span>, by means of the substitution
 {<span style="font-family:Courier">S</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maria</span>, <span style="font-family:Courier">T</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">peter</span>}.
 This process is called <i style="mso-bidi-font-style:normal">unification</i><!--[if supportFields]><span
@@ -2176,7 +2184,11 @@ student_of(maria,peter):-follows(maria,C), <br>
 construct the resolvent in the usual way, by dropping the literal resolved upon
 and combining the remaining literals, which yields the required clause</p>
 
-<p class="p-el">likes(peter,maria):-follows(maria,C),teaches(peter,C)</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.3" style="display: block;">
+likes(peter,maria):-follows(maria,C),teaches(peter,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
 <div style="mso-element:frame;mso-element-frame-hspace:0cm;mso-element-frame-vspace:
 0cm;mso-element-wrap:auto;mso-element-anchor-vertical:page;mso-element-anchor-horizontal:
@@ -2191,11 +2203,13 @@ margin;mso-element-top:123.95pt;mso-height-rule:exactly">
   mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
   padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.2.e7" style="display: block;">
-	Exercise 2.7. Write a clause expressing that Peter teaches all the first-year courses,     
-	<tab/> 	and apply resolution to this clause and the above resolvent.
-</pre>
-  
+   <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:
+  18.0pt;margin-left:0cm;mso-element:frame;mso-element-frame-hspace:0cm;
+  mso-element-frame-vspace:0cm;mso-element-wrap:auto;mso-element-anchor-vertical:
+  page;mso-element-anchor-horizontal:margin;mso-element-top:123.95pt;
+  mso-height-rule:exactly"><i style="mso-bidi-font-style:normal">Exercise 2.7</i>.
+  Write a clause expressing that Peter teaches all the first-year courses, and
+  apply resolution to this clause and the above resolvent.</p> 
   </div>
   </td>
  </tr>
@@ -2205,8 +2219,12 @@ margin;mso-element-top:123.95pt;mso-height-rule:exactly">
 <p class="sektie">Consider the following two-clause program <i style="mso-bidi-font-style:
 normal">P</i><span style="font-family:Symbol">&prime;</span>:</p>
 
-<p class="p-el">likes(peter,S):-student_of(S,peter).<br>
-student_of(X,T):-follows(X,C),teaches(T,C).</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.4" style="display: block;">
+likes(peter,S):-student_of(S,peter).
+student_of(X,T):-follows(X,C),teaches(T,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
 <p class="tekst">which differs from the previous program <i style="mso-bidi-font-style:
 normal">P</i> in that the constant <span style="font-family:Courier">maria</span>
@@ -2219,7 +2237,11 @@ Extra;mso-hansi-font-family:Extra;mso-bidi-font-family:&quot;Times New Roman&quo
 the logical consequences of <i style="mso-bidi-font-style:normal">P</i><span style="font-family:Symbol">&prime;</span> are also logical consequences of <i style="mso-bidi-font-style:normal">P</i>. For instance, we can again derive the
 clause </p>
 
-<p class="p-el">likes(peter,maria):-follows(maria,C),teaches(peter,C)</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.5" style="display: block;">
+likes(peter,maria):-follows(maria,C),teaches(peter,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
 <p class="tekst">from <i style="mso-bidi-font-style:normal">P</i><span style="font-family:Symbol">&prime;</span> by means of the unifier {<span style="font-family:Courier">S</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maria</span>, <span style="font-family:Courier">X</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maria</span>,
 <span style="font-family:Courier">T</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">peter</span>}.</p>
@@ -2229,7 +2251,11 @@ substitution {<span style="font-family:Courier">X</span><span style="font-family
 Symbol">&rarr;</span><span style="font-family:Courier">S</span>, <span style="font-family:Courier">T</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">peter</span>} also unifies the two <span style="font-family:Courier">student_of</span> literals, and the two clauses
 then resolve to</p>
 
-<p class="p-el">likes(peter,S):-follows(S,C),teaches(peter,C)</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.6" style="display: block;">
+likes(peter,S):-follows(S,C),teaches(peter,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
 <p class="tekst">The first unifier replaces more variables by terms than strictly
 necessary, while the second contains only those substitutions that are needed
@@ -2279,10 +2305,12 @@ set of clauses is inconsistent <i style="mso-bidi-font-style:normal">under the
 substitutions that are needed for unification of literals</i>. For instance,
 consider the program</p>
 
-<p class="p-el">likes(peter,S):-student_of(S,peter).<br>
-student_of(S,T):-follows(S,C),teaches(T,C).<br>
-teaches(peter,ai_techniques).<br>
-follows(maria,ai_techniques).</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.7" style="display: block;">
+likes(peter,S):-student_of(S,peter).
+student_of(S,T):-follows(S,C),teaches(T,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
 <p class="tekst">If we want to find out if there is anyone whom Peter likes, we
 add to the program the negation of this statement, i.e. &lsquo;Peter likes nobody&rsquo; or
@@ -2342,24 +2370,27 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 suppose that Peter does not only like his students, but also the people his
 students like (and the people those people like, and &hellip;):</p>
 
-<p class="p-el">likes(peter,S):-student_of(S,peter).<br>
-likes(peter,Y):-likes(peter,X),likes(X,Y).<br>
-likes(maria,paul).<br>
-student_of(S,T):-follows(S,C),teaches(T,C).<br>
-teaches(peter,ai_techniques).<br>
-follows(maria,ai_techniques).</p>
+<pre class="source swish" data-variant-id="group-1" id="swish.2.2.8" style="display: block;">
+likes(peter,S):-student_of(S,peter).
+likes(peter,Y):-likes(peter,X),likes(X,Y),!.
+likes(maria,paul).
+student_of(S,T):-follows(S,C),teaches(T,C).
+teaches(peter,ai_techniques).
+follows(maria,ai_techniques).
+</pre>
 
-<p class="tekst">The query <span style="font-family:Courier">:-likes(peter,N)</span>
-will now have two answers.</p>
+<p class="tekst">The query</p> 
+<pre class="swish query" source-id="swish.2.2.3 swish.2.2.4 swish.2.2.5 swish.2.2.6 swish.2.2.7 swish.2.2.8">?- likes(peter,N).</pre>
+<p class="tekst">will now have two answers.</p>
 
 <div style="mso-element:para-border-div;border-top:solid windowtext 1.0pt;
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.2.e8" style="display: block;">
-	Exercise 2.8. Draw the proof tree for the answer {<span style="font-family:Courier">N</span><span style="font-family:Symbol">-></span><span style="font-family:Courier">paul</span>}.</p>
-</pre>
+<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.8</i>. Draw
+the proof tree for the answer {<span style="font-family:Courier">N</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">paul</span>}.</p>
 
 </div>
 
@@ -2412,11 +2443,11 @@ margin-left:0cm">Everybody loves somebody.</p>
 logic, is by explicitly listing every pair of persons such that the first loves
 the second, e.g.</p>
 
-<pre class="source swish" data-variant-id="group-1" id="swish.2.3.1" style="display: block;">
-loves(peter,peter).
-loves(anna,paul).
-loves(paul,anna).
-</pre>
+<p class="p-el">
+loves(peter,peter).<br/>
+loves(anna,paul).<br/>
+loves(paul,anna).<br/>
+</p>
 
 <p class="tekst">First of all, this is not a precise translation of the above
 statement into logic, because it is too explicit (e.g. the fact that Peter
@@ -2448,13 +2479,15 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.3.e9" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.9</i>. Translate to clausal logic:<br>
-(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>every mouse has a tail;<br>
-(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>somebody loves everybody;<br>
-(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>every two numbers have a maximum.</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.9</i>.
+Translate to clausal logic:<br>
+(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>every
+mouse has a tail;<br>
+(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>somebody
+loves everybody;<br>
+(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>every
+two numbers have a maximum.</p>
 </div>
 
 <p class="sektie1"><!--[if supportFields]><span style='display:none;mso-hide:
@@ -2520,10 +2553,10 @@ constructed from the constants and functors in <i style="mso-bidi-font-style:
 normal">P</i> (if <i style="mso-bidi-font-style:normal">P</i> contains no
 constants, choose an arbitrary one). For instance, let <i style="mso-bidi-font-style:
 normal">P</i> be the program</p>
-<pre class="source swish" data-variant-id="group-1" id="swish.2.3.1" style="display: block;">
-plus(0,X,X).
-plus(s(X),Y,s(Z)):-plus(X,Y,Z).
-</pre>
+<p class="p-el">
+plus(0,X,X).<br/>
+plus(s(X),Y,s(Z)):-plus(X,Y,Z).<br/>
+</p>
 
 <p class="tekst">then the Herbrand universe of <i style="mso-bidi-font-style:
 normal">P</i> is {<span style="font-family:Courier">0</span>, <span style="font-family:Courier">s(0)</span>, <span style="font-family:Courier">s(s(0))</span>,
@@ -2536,15 +2569,15 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.3.e10" style="display: block;">
-
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.10</i>. Determine the Herbrand universe of the following program:
-<span style="font-family:Courier">
-<tab/>  length([],0).
-<tab/>  length([X|Y],s(L)):-length(Y,L).
-</span>(Hint: recall that <span style="font-family:Courier">[]</span> is a constant, and that <span style="font-family:Courier">[X|Y]</span> is an alternative notation for the complex term <span style="font-family:Courier">.(X,Y)</span> with binary functor &lsquo;<span style="font-family:Courier">.</span>&rsquo;!)</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.10</i>.
+Determine the Herbrand universe of the following program:<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">length([],0).<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>length([X|Y],s(L)):-length(Y,L).<br>
+</span>(Hint: recall that <span style="font-family:Courier">[]</span> is a constant,
+and that <span style="font-family:Courier">[X|Y]</span> is an alternative
+notation for the complex term <span style="font-family:Courier">.(X,Y)</span>
+with binary functor &lsquo;<span style="font-family:Courier">.</span>&rsquo;!)</p>
 
 </div>
 
@@ -2839,14 +2872,14 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.3.e11" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.11</i>. If possible, unify the following pairs of terms:
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.11</i>. If
+possible, unify the following pairs of terms:<br>
 (<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">plus(X,Y,s(Y))</span> and <span style="font-family:
-Courier">plus(s(V),W,s(s(V)))</span>;
-(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">length([X|Y],s(0))</span> and <span style="font-family:Courier">length([V],V)</span>;
+Courier">plus(s(V),W,s(s(V)))</span>;<br>
+(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">length([X|Y],s(0))</span> and <span style="font-family:Courier">length([V],V)</span>;<br>
 (<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">larger(s(s(X)),X)</span> and <span style="font-family:Courier">larger(V,s(V))</span>.</p>
-</pre>
+
 </div>
 
 <p class="sektie">The disadvantage of the occur check<!--[if supportFields]><span
@@ -2944,10 +2977,10 @@ married(paul):-adult(paul)</p>
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.4.e12" style="display: block;">
+
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.12</i>. Draw the proof tree for each of these derivations.</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.12</i>. Draw
+the proof tree for each of these derivations.</p>
 </div>
 
 <p class="sektie">In each of these derivations, the first clause in the program
@@ -3082,11 +3115,11 @@ are actually preferring the general clause</p>
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.4.e13" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.13.</i> Write a clause for the statement &lsquo;somebody is innocent unless proven guilty&rsquo;, and give its intended model (supposing that <span style="font-family:Courier">john</span> is the only individual in the 
-Herbrand universe).</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.13.</i> Write
+a clause for the statement &lsquo;somebody is innocent unless proven guilty&rsquo;, and
+give its intended model (supposing that <span style="font-family:Courier">john</span>
+is the only individual in the Herbrand universe).</p>
 </div>
 
 <p class="sektie">An alternative approach to general clauses is to treat <span style="font-family:Courier">not</span> as a special Prolog predicate, as will
@@ -3104,9 +3137,9 @@ Logic is (first-order) <a name="bk0">Predicate Logic. Predicate logic is more
 expressive in the sense that statements expressed in Predicate Logic often
 result in shorter formulas than would result if they were expressed in clausal
 logic. This is due to the larger vocabulary and less restrictive syntax of
-Predicate Logic, which includes quantifiers (&lsquo;for all&rsquo; (</a><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>) and
+Predicate Logic, which includes quantifiers (&lsquo;for all&rsquo; (</a><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>) and
 &lsquo;there exists&rsquo; (</span><span style="mso-bookmark:bk0"><span style="font-family:
-Symbol">$</span>)), and various logical connectives (conjunction</span><!--[if supportFields]><span
+Symbol">&exist;</span>)), and various logical connectives (conjunction</span><!--[if supportFields]><span
 style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
 style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
 style="mso-spacerun:yes">&nbsp;</span>&quot;conjunction&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
@@ -3293,7 +3326,7 @@ against resolution proofs).</span></p>
   statement </span></p>
   <p class="intermezzo" style="margin-top:0cm;margin-right:0cm;margin-bottom:
   3.0pt;margin-left:0cm;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
-  gray-10 auto"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">equal(X,Y)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier"> (</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(X)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(Y))</span></span></p>
+  gray-10 auto"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">equal(X,Y)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier"> (</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(X)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(Y))</span></span></p>
   <p class="intermezzo" style="margin-top:0cm;margin-right:0cm;margin-bottom:
   3.0pt;margin-left:0cm;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
   gray-10 auto"><span style="mso-bookmark:bk0">defining two individuals to be
@@ -3306,8 +3339,8 @@ against resolution proofs).</span></p>
   from second-order Predicate Logic is </span></p>
   <p class="intermezzo" style="margin-top:0cm;margin-right:0cm;margin-bottom:
   3.0pt;margin-left:0cm;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
-  gray-10 auto"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">transitive(P)</span>
-  </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier"> (</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Z</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(X,Y)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&and;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(Y,Z)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&rarr;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(X,Z))</span></span></p>
+  gray-10 auto"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">transitive(P)</span>
+  </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier"> (</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Z</span>: </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(X,Y)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&and;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(Y,Z)</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&rarr;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">P(X,Z))</span></span></p>
   <p class="intermezzo" style="margin-top:0cm;margin-right:0cm;margin-bottom:
   18.0pt;margin-left:0cm;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
   gray-10 auto"><span style="mso-bookmark:bk0">This statement defines the
@@ -3343,7 +3376,7 @@ reachable(Z,Y,R).</span></p>
 <p class="tekst"><span style="mso-bookmark:bk0">becomes</span></p>
 
 <p class="p-el" align="center" style="text-align:center"><span style="mso-bookmark:
-bk0"><span style="font-family:Symbol">"</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>Y</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>Z</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>R</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>L:
+bk0"><span style="font-family:Symbol">&forall;</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>Y</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>Z</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>R</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>L:
 &not;connected(X,Z,L)</span><span style="mso-bookmark:bk0"><span style="font-family:
 Symbol"> &or; </span>&not;reachable(Z,Y,R)</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; <br>
 </span>reachable(X,Y,route(Z,R))</span></p>
@@ -3365,7 +3398,7 @@ bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="
 to reason about individuals without naming them. For example, the statement
 &lsquo;everybody loves somebody&rsquo; is represented by the Predicate Logic formula</span></p>
 
-<p class="p-el"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">$</span>Y: loves(X,Y)</span></p>
+<p class="p-el"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&exist;</span>Y: loves(X,Y)</span></p>
 
 <p class="tekst"><span style="mso-bookmark:bk0">Recall that we translated this
 same statement into clausal logic as</span></p>
@@ -3387,8 +3420,8 @@ the same model).</span></p>
 <p class="sektie"><span style="mso-bookmark:bk0">So, existential quantifiers are
 replaced by functors. The arguments of the functor are given by the universal
 quantifiers in whose scope the existential quantifier occurs. In the above
-example, </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">$</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span> occurs
-within the scope of </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span>, so we replace </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span> everywhere
+example, </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&exist;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span> occurs
+within the scope of </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span>, so we replace </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span> everywhere
 in the formula by </span><span style="mso-bookmark:bk0"><span style="font-family:
 Courier">person_loved_by(X)</span>, where </span><span style="mso-bookmark:
 bk0"><span style="font-family:Courier">person_loved_by</span> should be a <b style="mso-bidi-font-weight:normal">new</b> functor, not occurring anywhere
@@ -3413,7 +3446,7 @@ normal'><span style="mso-spacerun:yes">&nbsp;</span>&quot;Skolem constant&quot;
 \b </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span
 style='mso-bookmark:bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">. For example, the formula</span></p>
 
-<p class="p-el"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">$</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">"</span>Y:
+<p class="p-el"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&exist;</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>Y:
 loves(X,Y)</span></p>
 
 <p class="tekst"><span style="mso-bookmark:bk0">(&lsquo;somebody loves everybody&rsquo;) is
@@ -3430,24 +3463,24 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 Consider the sentence &lsquo;Everyone has a mother, but not every woman has a child&rsquo;.
 In Predicate Logic, this can be represented as</p>
 
-<p class="p-el"><span style="font-family:Symbol">"</span>Y<span style="font-family:Symbol">$</span>X: mother_of(X,Y) <span style="font-family:
-Symbol">&and;</span> &not;<span style="font-family:Symbol">"</span>Z<span style="font-family:Symbol">$</span>W: woman(Z)<span style="font-family:Symbol">&rarr;</span>mother_of(Z,W)</p>
+<p class="p-el"><span style="font-family:Symbol">&forall;</span>Y<span style="font-family:Symbol">&exist;</span>X: mother_of(X,Y) <span style="font-family:
+Symbol">&and;</span> &not;<span style="font-family:Symbol">&forall;</span>Z<span style="font-family:Symbol">&exist;</span>W: woman(Z)<span style="font-family:Symbol">&rarr;</span>mother_of(Z,W)</p>
 
-<p class="tekst">First, we push the negation inside by means of the equivalences <span style="font-family:Symbol">&not;"</span><i style="mso-bidi-font-style:normal">X</i>:
+<p class="tekst">First, we push the negation inside by means of the equivalences <span style="font-family:Symbol">&not;&forall;</span><i style="mso-bidi-font-style:normal">X</i>:
 <i style="mso-bidi-font-style:normal">F</i><span style="font-family:Symbol"> &equiv;
-$</span><i style="mso-bidi-font-style:normal">X</i>: <span style="font-family:
-Symbol">&not;</span><i style="mso-bidi-font-style:normal">F</i> and <span style="font-family:Symbol">&not;$</span><i style="mso-bidi-font-style:normal">Y</i>:
+&exist;</span><i style="mso-bidi-font-style:normal">X</i>: <span style="font-family:
+Symbol">&not;</span><i style="mso-bidi-font-style:normal">F</i> and <span style="font-family:Symbol">&not;&exist;</span><i style="mso-bidi-font-style:normal">Y</i>:
 <i style="mso-bidi-font-style:normal">G</i><span style="font-family:Symbol"> &equiv;
-"</span><i style="mso-bidi-font-style:normal">Y</i>: <span style="font-family:Symbol">&not;</span><i style="mso-bidi-font-style:normal">G</i>,
+&forall;</span><i style="mso-bidi-font-style:normal">Y</i>: <span style="font-family:Symbol">&not;</span><i style="mso-bidi-font-style:normal">G</i>,
 and the previously given propositional equivalences, giving</p>
 
-<p class="p-el"><span style="font-family:Symbol">"</span>Y<span style="font-family:Symbol">$</span>X: mother_of(X,Y) <span style="font-family:
-Symbol">&and;</span> <span style="font-family:Symbol">$</span>Z<span style="font-family:Symbol">"</span>W: woman(Z)<span style="font-family:
+<p class="p-el"><span style="font-family:Symbol">&forall;</span>Y<span style="font-family:Symbol">&exist;</span>X: mother_of(X,Y) <span style="font-family:
+Symbol">&and;</span> <span style="font-family:Symbol">&exist;</span>Z<span style="font-family:Symbol">&forall;</span>W: woman(Z)<span style="font-family:
 Symbol"> &and; </span>&not;mother_of(Z,W)</p>
 
 <p class="tekst">The existential quantifiers are Skolemised: <span style="font-family:Courier">X</span> is replaced by <span style="font-family:
 Courier">mother(Y)</span>, because it is in the scope of the universal
-quantifier <span style="font-family:Symbol">"</span><span style="font-family:Courier">Y</span>. <span style="font-family:Courier">Z</span>,
+quantifier <span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">Y</span>. <span style="font-family:Courier">Z</span>,
 however, is not in the scope of a universal quantifier; therefore it is
 replaced by a Skolem constant <span style="font-family:Courier">childless_woman</span>.
 The universal quantifiers can now be dropped:</p>
@@ -3466,14 +3499,14 @@ woman(childless_woman).<span style="font-family:Symbol"><br>
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.2.5.e14" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.14</i>. Translate to clausal logic:<br>
-(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Symbol">"</span><span style="font-family:Courier">X</span><span style="font-family:Symbol">$</span><span style="font-family:Courier">Y: mouse(X)</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 2.14</i>.
+Translate to clausal logic:<br>
+(<i style="mso-bidi-font-style:normal">a</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">X</span><span style="font-family:Symbol">&exist;</span><span style="font-family:Courier">Y: mouse(X)</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:
 Courier">tail_of(Y,X)</span>;<br>
-(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Symbol">"</span><span style="font-family:Courier">X</span><span style="font-family:Symbol">$</span><span style="font-family:Courier">Y: loves(X,Y)</span><span style="font-family:Symbol">&and;</span><span style="font-family:Courier">(</span><span style="font-family:Symbol">"</span><span style="font-family:Courier">Z: loves(Y,Z))</span>;<br>
-(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Symbol">"</span><span style="font-family:Courier">X</span><span style="font-family:Symbol">"</span><span style="font-family:Courier">Y</span><span style="font-family:Symbol">$</span><span style="font-family:Courier">Z: number(X)</span><span style="font-family:Symbol">&and;</span><span style="font-family:Courier">number(Y)</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maximum(X,Y,Z)</span>.</p>
-</pre>
+(<i style="mso-bidi-font-style:normal">b</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">X</span><span style="font-family:Symbol">&exist;</span><span style="font-family:Courier">Y: loves(X,Y)</span><span style="font-family:Symbol">&and;</span><span style="font-family:Courier">(</span><span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">Z: loves(Y,Z))</span>;<br>
+(<i style="mso-bidi-font-style:normal">c</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">X</span><span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">Y</span><span style="font-family:Symbol">&exist;</span><span style="font-family:Courier">Z: number(X)</span><span style="font-family:Symbol">&and;</span><span style="font-family:Courier">number(Y)</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maximum(X,Y,Z)</span>.</p>
+
 </div>
 
 <h3 id="further_reading_2">Further reading</h3>
@@ -3642,13 +3675,12 @@ teaches(peter,ai_techniques).
 teaches(peter,computer_science).
 </pre>
 
-<p class="tekst">The query <span style="font-family:Courier">?-student_of(S,peter)</span>
-has two possible answers: {<span style="font-family:Courier">S</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">paul</span>}
+<p class="tekst">The query</p><pre class="swish query" id="query3.1.1"> ?- student_of(S,peter).</pre><p class="tekst">has two possible answers: {<span style="font-family:Courier">S</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">paul</span>}
 and {<span style="font-family:Courier">S</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maria</span>}. In order to find these answers, we
 first resolve the query with the first clause, yielding </p>
-<pre class="query" id="query3.1.1"><span class="swish query">
+<pre class="swish query" id="query3.1.2">
 ?- follows(S,C),teaches(peter,C).
-</span></pre>
+</pre>
 <p class="tekst">Now we have to decide whether we will search for a clause which
 resolves on <span style="font-family:Courier">follows(S,C)</span>, or for a
 clause which resolves on <span style="font-family:Courier">teaches(peter,C)</span>.
@@ -3663,7 +3695,7 @@ There are three of these, so now we must decide which one to try first. Prolog
 searches the clauses in the program top-down, so Prolog finds the answer {<span style="font-family:Courier">S</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">paul</span>} first. Note that the second choice
 leads to a dead end: the resolvent is </p>
 
-<pre class="source swish inherit" inherit-id="swish.3.1.1" data-variant-id="group-1" id="swish.3.1.2" style="display: block;">
+<pre class="source swish inherit" inherit-id="swish.3.1.1" data-variant-id="group-1" query-id="query3.1.1 query3.1.2" id="swish.3.1.2" style="display: block;">
 teaches(peter,expert_systems).
 </pre>
 <p class="tekst">which doesn&rsquo;t resolve with any clause in the program.</p>
@@ -3721,10 +3753,10 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.1.e1" style="display: block;">
-<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;margin-left:0cm">
-<i style="mso-bidi-font-style:normal">Exercise 3.1.</i> Draw the proof trees for the two success branches in fig. 3.1.</p>
-</pre>
+<p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.1.</i> Draw
+the proof trees for the two success branches in fig. 3.1.</p>
+
 </div>
 
 <p class="sektie">As remarked already, Prolog searches the clauses in the program
@@ -3736,8 +3768,8 @@ recursive. As an example, consider the following program: </p>
 
 
 <pre class="source swish" data-variant-id="group-2" id="swish.3.1.3" style="display: block;">
-brother_of(X,Y):-brother_of(Y,X).
 brother_of(paul,peter).
+brother_of(X,Y):-brother_of(Y,X).
 </pre>
 
 
@@ -3797,7 +3829,9 @@ mso-element-top:bottom;mso-height-rule:exactly">
 <!--[if !supportTextWrap]--><br clear="ALL">
 <!--[endif]-->
 
-<p class="tekst">An SLD-tree for the query <span style="font-family:Courier">?-brother_of(peter,B)</span>
+<p class="tekst">An SLD-tree for the query</p>
+<pre class="swish query" id="query3.1.3">
+?- brother_of(peter,B).</pre><p class="tekst">
 is depicted in fig. 3.2. If we descend this tree taking the left branch at
 every node, we will never reach a leaf. On the other hand, if we take the right
 branch at every node, we almost immediately reach a success branch. Taking
@@ -3813,7 +3847,7 @@ still has some problems. For one thing, the query <span style="font-family:
 Courier">?-brother_of(peter,B)</span> will be answered an infinite number of
 times, because there are infinitely many refutations of it. But, even worse,
 consider a query that does <b style="mso-bidi-font-weight:normal">not</b> have
-an answer, like <span style="font-family:Courier">?-brother(peter,maria)</span>.
+an answer, like </p><pre class="swish query" id="query3.1.4">?- brother_of(peter,maria).</pre><p class="sektie">
 No matter the order in which the SLD-tree is descended, Prolog will never
 discover that the query has in fact no answer, <i style="mso-bidi-font-style:
 normal">simply because the SLD-tree is infinite</i>. So, one should be careful
@@ -3860,8 +3894,8 @@ brother_of(peter,adrian).
 brother_of(X,Y):-brother_of(X,Z),brother_of(Z,Y).
 </pre>
 
-<p class="tekst">The third clause ensures that <span style="font-family:Courier">brother_of(paul,adrian)</span>
-is a logical consequence of the program. The SLD-tree for the query <span style="font-family:Courier">?-brother_of(paul,B)</span> is depicted in fig.
+<p class="tekst">The third clause ensures that </p><pre class="swish query" id="query3.1.5">?- brother_of(paul,adrian).</pre><p class="tekst">
+is a logical consequence of the program. The SLD-tree for the query </p><pre class="swish query" id="query3.1.6">?- brother_of(paul,B).</pre><p class="tekst"> is depicted in fig.
 3.3. Not only is this SLD-tree infinite, but the resolvents get longer and
 longer on deeper levels in the tree. </p>
 
@@ -3923,13 +3957,13 @@ border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.1.e2" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.2.</i> Draw the SLD-tree for the following program:<br>
-<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">list([]).<br>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.2.</i> Draw
+the SLD-tree for the following program:<br>
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:Courier">list([]).<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>list([H|T]):-list(T).</span><br>
 and the query <span style="font-family:Courier">?-list(L)</span>.</p>
-</pre>
+
 </div>
 
 <h3 id="pruning_the_search_by_means_of_cut">3.2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span>Pruning the search by means of cut</h3>
@@ -3969,9 +4003,9 @@ The resolvent<!--[if supportFields]><span style='display:none;mso-hide:all'><spa
 style='mso-element:field-begin'></span> XE </span><span
 style="mso-spacerun:yes">&nbsp;</span>&quot;resolvent&quot; <![endif]--><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>in the middle branch </p>
-
-<p class="p-el">:-teaches(peter,expert_systems) </p>
-
+<pre class="source swish inherit" inherit-id="swish.3.1.1" data-variant-id="group-1" id="swish.3.2.1" style="display: block;">
+teaches(peter,expert_systems).
+</pre>
 <p class="tekst">cannot be reduced any further, and thus represents a failure
 branch<!--[if supportFields]><span style='display:none;mso-hide:all'><span
 style='mso-element:field-begin'></span> XE </span><span
@@ -3979,8 +4013,12 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;failure branch&quot; <![endif]--><!-
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->.
 At that point, the stack contains (top-down) the previous resolvents </p>
 
-<p class="p-el">:-follows(S,C),teaches(peter,C)<br>
-?-student_of(S,peter)</p>
+<pre class="swish query" id="query3.2.1">
+?- follows(S,C),teaches(peter,C).
+</pre>
+<pre class="swish query" id="query3.2.2">
+?- student_of(S,peter).
+</pre>
 
 <p class="tekst">The top one is popped from the stack; it has been most recently
 resolved with <span style="font-family:Courier">follows(paul,expert_systems)</span>,
@@ -4043,13 +4081,15 @@ part of the SLD-tree.</p>
 <p class="sektie">To illustrate the effect of cut, consider the following
 program.</p>
 
-<pre class="source swish" data-variant-id="group-2" id="swish.3.2.1" style="display: block;">
+<pre class="source swish" data-variant-id="group-2" id="swish.3.2.2" style="display: block;"
+query-text="?- parent(mary,Y)."
+>
 parent(X,Y):-father(X,Y).
 parent(X,Y):-mother(X,Y).
 father(john,paul).
 mother(mary,paul).
 </pre>
-<p class="tekst">The SLD-tree for the query <span style="font-family:Courier">?-parent(john,C)</span>
+<p class="tekst">The SLD-tree for the query <pre class="swish query" id="query3.2.3">?- parent(john,C).</pre>
 is given in fig. 3.4. The answer given by Prolog is {<span style="font-family:
 Courier">C</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">paul</span>}. By asking whether there are any other
 answers, we force Prolog to backtrack to the most recent choice point for which
@@ -4061,8 +4101,12 @@ Courier">parent</span>, but discovers that this leads to a failure branch.</p>
 that this backtracking step did not make sense: if John is a father of anyone,
 he can&rsquo;t be a mother. We can express this by adding a cut to the first <span style="font-family:Courier">parent</span> clause:</p>
 
-<p class="p-el">parent(X,Y):-father(X,Y),!.<br>
-parent(X,Y):-mother(X,Y).</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.2.3" query-id="query3.2.3" style="display: block;">
+parent(X,Y):-father(X,Y),!.
+parent(X,Y):-mother(X,Y).
+father(john,paul).
+mother(mary,paul).
+</pre>
 
 <div style="mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly">
 
@@ -4142,7 +4186,7 @@ alternatives.</p>
 <p class="sektie">This seems to be true for the above program: John is the father
 of only one child, and no-one is both a father and a mother. However, note that
 we only analysed the situation with regard to a particular query. We can show
-that the cut is in fact red by asking the query <span style="font-family:Courier">?&#8209;parent(P,paul)</span>
+that the cut is in fact red by asking the query </p><pre class="swish query" id="query3.2.3" source-id="swish.3.2.2 swish.3.2.3">?- parent(P,paul).</pre><p class="sektie">
 (fig. 3.7). The answer {<span style="font-family:Courier">P</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">mary</span>}
 is pruned by the cut. That is, the </p>
 
@@ -4189,7 +4233,9 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 <p class="sektie">Note that success branches are also pruned for the first query
 if John has several children:</p>
 
-<pre class="source swish" data-variant-id="group-2" id="swish.3.2.2" style="display: block;">
+<pre class="source swish" data-variant-id="group-2" id="swish.3.2.4" style="display: block;"
+query-text="?- parent(mary,Y)."
+>
 parent(X,Y):-father(X,Y),!.
 parent(X,Y):-mother(X,Y).
 father(john,paul).
@@ -4198,7 +4244,7 @@ mother(mary,paul).
 mother(mary,peter).
 </pre>
 
-<p class="tekst">The SLD-tree for the query <span style="font-family:Courier">?-parent(john,C)</span>
+<p class="tekst">The SLD-tree for the query </p><pre class="swish query" id="query3.2.4">?- parent(john,C).</pre><p class="tekst">
 is given in fig. 3.8. Indeed, the second answer {<span style="font-family:Courier">C</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">peter</span>}
 is pruned by the cut. This clearly shows that the effect of a cut is not only
 determined by the clause in which it occurs but also by other clauses.
@@ -4288,18 +4334,18 @@ be considered in the next two sections. </p>
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.1.e3" style="display: block;">
-
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.3.</i> Draw the SLD-tree for the query <span style="font-family:Courier">?-likes(A,B)</span>, given the following program:<br>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.3.</i> Draw
+the SLD-tree for the query <span style="font-family:Courier">?-likes(A,B)</span>,
+given the following program:<br>
 <span style="font-family:Courier"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>likes(peter,Y):-friendly(Y).<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>likes(T,S):-student_of(S,T).<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>student_of(maria,peter).<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>student_of(paul,peter).<br>
 <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>friendly(maria).<br>
-</span>Add a cut in order to prune away one of the answers {<span style="font-family:Courier">A</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">peter</span>, <span style="font-family:Courier">B</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maria</span>}, and indicate the result in the SLD-tree. Can this be done without pruning away
-the third answer?</p>
-</pre>
+</span>Add a cut in order to prune away one of the answers {<span style="font-family:Courier">A</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">peter</span>, <span style="font-family:Courier">B</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">maria</span>},
+and indicate the result in the SLD-tree. Can this be done without pruning away
+the third answer?<span style="font-family:Courier"><o:p></o:p></span></p>
 </div>
 
 <h3 id="negation_as_failure">3.3<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span>Negation as
@@ -4309,8 +4355,8 @@ failure</h3>
 
 
 <pre class="source swish" data-variant-id="group-2" id="swish.3.3.1" style="display: block;">
-max(M,N,M):-M  >= N.
-max(M,N,N):-M  =< N.
+max(M,N,M):- M >= N.
+max(M,N,N):- M =< N.
 </pre>
 
 
@@ -4338,9 +4384,10 @@ equal. We could of course remove one of the equality symbols, but suppose that
 we use a cut instead:</p>
 
 
-<pre class="source swish" data-variant-id="group-2" id="swish.3.3.2" style="display: block;">
-max(M,N,M):-M >= N,!.
-max(M,N,N).
+<pre class="source swish" data-variant-id="group-2" id="swish.3.3.2" style="display: block;"
+query-text="?- max(3,X,6).">
+max(M,N,M):- M >= N,!.
+max(_M,N,N).
 </pre>
 
 <p class="tekst">With a red cut, this program can only be understood
@@ -4348,9 +4395,9 @@ procedurally. The question is: does the procedural meaning correspond to the
 intended meaning? Perhaps surprisingly, the answer is no! For instance, the
 query </p>
 
-<pre class="query" id="query3.3.1"><span class="swish query">
-?- max(5,3,3).
-</span></pre>
+<pre class="swish query" id="query3.3.1" source-id="swish.3.3.1 swish.3.3.2">
+?- max(5,3,X).
+</pre>
 <p class="tekst">succeeds: the cut is never reached, because the literal in the
 query does not unify with the head of the first clause. The second program is
 in fact a very bad program: the declarative and procedural meanings differ, and
@@ -4368,12 +4415,12 @@ margin;mso-element-left:center;mso-height-rule:exactly">
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
   mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
   padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-  <pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.1.e4" style="display: block;">
   <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:
   18.0pt;margin-left:0cm;mso-element:frame;mso-element-wrap:auto;mso-element-anchor-horizontal:
   margin;mso-element-left:center;mso-height-rule:exactly"><i style="mso-bidi-font-style:
-  normal">Exercise 3.4.</i> Show that this cut is red, by drawing an SLD-tree in which a success branch is pruned.</p>
-  </pre>
+  normal">Exercise 3.4.</i> Show that this cut is red, by drawing an SLD-tree
+  in which a success branch is pruned.</p>
+
   </div>
   </td>
  </tr>
@@ -4419,10 +4466,11 @@ the second clause when <span style="font-family:Courier">q</span> succeeds.</p>
 <p class="sektie">This approach is not very practical, because it only works for
 a single proposition symbol, without variables. We would like to treat the
 literal to be negated as a parameter, as in</p>
-<pre class="source swish" data-variant-id="group-2" id="swish.3.3.3" style="display: block;">
-not(Goal):- /* execute Goal, */ !,fail.
+
+<p class="p-el">
+not(Goal):- /* execute Goal, */ !,fail. <br/>
 not(Goal).
-</pre>
+</p>
 <p class="tekst">The problem now is to execute a goal which is passed to the
 predicate <span style="font-family:Courier">not</span> as a term. Prolog
 provides two facilities for this. One is the built-in predicate <span style="font-family:Courier">call</span><!--[if supportFields]><span
@@ -4440,9 +4488,10 @@ is merely a shorthand for this: instead of writing <span style="font-family:
 Courier">call(Goal)</span>, one may simply write <span style="font-family:Courier">Goal</span>,
 as in</p>
 
-<pre class="source swish" data-variant-id="group-2" id="swish.3.3.3" style="display: block;">
-not(Goal):-Goal,!,fail.
-not(Goal).
+<pre class="source swish" data-variant-id="group-2" id="swish.3.3.2" style="display: block;"
+query-text="?- not(true). ?- not(false).">
+not(Goal):- Goal,!,fail.
+not(_Goal).
 </pre>
 
 <p class="tekst">This is a slight abuse of the syntax rules, because a variable
@@ -4610,8 +4659,9 @@ style='font-family:Courier'>&quot; </span><![endif]--><!--[if supportFields]><sp
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>illustrated above can lead to problems if
 variables are involved. Take a look at the following program:</p>
 
-<pre class="source swish" data-variant-id="group-2" id="swish.3.3.4" style="display: block;">
-bachelor(X):-not(married(X)),man(X).
+<pre class="source swish" data-variant-id="group-2" id="swish.3.3.3" style="display: block;"
+query-text="?- bachelor(fred). ?- bachelor(peter).">
+bachelor(X):-man(X),not(married(X)).
 man(fred).
 man(peter).
 married(fred).
@@ -4622,10 +4672,11 @@ married(fred).
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.3.e5" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.5.</i> Draw the SLD-trees for the queries <span style="font-family:Courier">?-bachelor(fred)</span> and <span style="font-family:Courier">?-bachelor(peter)</span>.</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.5.</i> Draw
+the SLD-trees for the queries <span style="font-family:Courier">?-bachelor(fred)</span>
+and <br>
+<span style="font-family:Courier">?-bachelor(peter)</span>.</p>
 </div>
 
 <div style="mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly">
@@ -4745,11 +4796,11 @@ of <span style="font-family:Courier">G</span> by literals preceding <span style=
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.3.e6" style="display: block;">
-
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.6.</i> Show that the modified program produces the right answer, by drawing the SLD-tree for the query <span style="font-family:Courier">?-bachelor(X)</span>.</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.6.</i> Show
+that the modified program produces the right answer, by drawing the SLD-tree
+for the query <span style="font-family:Courier">?-bachelor(X)</span>.</p>
+
 </div>
 
 <p class="sektie">Thus, we see that changing the order of the literals in the
@@ -4795,10 +4846,10 @@ u.</p>
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.4.e7" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.7.</i> Show that the query <span style="font-family:Courier">?-p</span> succeeds, but that <span style="font-family:Courier">q</span> and <span style="font-family:Courier">r</span> are tried twice.</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.7.</i> Show
+that the query <span style="font-family:Courier">?-p</span> succeeds, but that <span style="font-family:Courier">q</span> and <span style="font-family:Courier">r</span>
+are tried twice.</p>
 </div>
 
 <p class="tekst">This inefficiency can be avoided by putting <span style="font-family:Courier">s,!</span> at the beginning of the body of the
@@ -4814,10 +4865,10 @@ if_s_then_t_else_u:-u.</p>
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
 mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext .25pt;
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
-<pre class="answer swish" answer="This is an answer for this question!" data-variant-id="group-2" id="swish.3.4.e8" style="display: block;">
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.8.</i> Show that <span style="font-family:Courier">q</span> and <span style="font-family: Courier">r</span> are now tried only once.</p>
-</pre>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.8.</i> Show
+that <span style="font-family:Courier">q</span> and <span style="font-family:
+Courier">r</span> are now tried only once.</p>
 </div>
 
 <p class="sektie">Just as we did with <span style="font-family:Courier">not</span>,
@@ -4947,33 +4998,48 @@ number, and if <i style="mso-bidi-font-style:normal">X</i> is a natural number,
 then the successor of <i style="mso-bidi-font-style:normal">X</i> is also a
 natural number&rsquo;. In Prolog, this is expressed as</p>
 
-<p class="p-el">nat(0).<br>
-nat(s(X)):-nat(X).</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.5.0" style="display: block;"
+query-text="?- nat(s(s(0))).">
+nat(0).
+nat(s(X)):-nat(X).
+</pre>
 
 <p class="tekst">Addition of natural numbers is defined in terms of successors:</p>
 
-<p class="p-el">add(0,X,X).<br>
-add(s(X),Y,s(Z)):-add(X,Y,Z).</p>
+<pre class="source swish temp" data-variant-id="group-2" id="swish.3.5.1" style="display: block;"
+query-text="?- add(s(s(0)),Y,s(s(s(0)))).">
+add(0,X,X).
+add(s(X),Y,s(Z)):-add(X,Y,Z).
+</pre>
 
 <p class="tekst">The following query asks for the sum of two and three: </p>
 
-<p class="p-el">?-add(s(s(0)),s(s(s(0))),Z).<br>
-Z = s(s(s(s(s(0)))))</p>
+<pre class="swish query" id="query3.5.1">
+?- add(s(s(0)),s(s(s(0))),Z).
+</pre>
+<p class="p-el">Z = s(s(s(s(s(0)))))</p>
 
 <p class="tekst">We can also find an <i style="mso-bidi-font-style:normal">X</i>
 such that the sum of <i style="mso-bidi-font-style:normal">X</i> and <i style="mso-bidi-font-style:normal">Y</i> is <i style="mso-bidi-font-style:normal">Z</i>
 (i.e., subtract <i style="mso-bidi-font-style:normal">Y</i> from <i style="mso-bidi-font-style:normal">Z</i>): </p>
 
-<p class="p-el">?-add(X,s(s(s(0))),s(s(s(s(s(0)))))).<br>
-X = s(s(0))</p>
+
+<pre class="swish query" id="query3.5.1">
+?- add(X,s(s(s(0))),s(s(s(s(s(0)))))).
+</pre>
+<p class="p-el">X = s(s(0))</p>
 
 <p class="tekst">We can even find all <i style="mso-bidi-font-style:normal">X</i>
 and <i style="mso-bidi-font-style:normal">Y</i> which add up to a given sum.
 Thus, this program is fully declarative. Similarly, multiplication is repeated
 addition:</p>
 
-<p class="p-el">mul(0,X,0).<br>
-mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).</p>
+
+<pre class="source swish inherit" data-variant-id="group-2" id="swish.3.5.2" inherit-id="swish.3.5.1" style="display: block;"
+query-text="?- mul(0,X,0). ?- mul(s(s(0)),s(s(s(0))),Z).">
+mul(0,_X,0).
+mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
+</pre>
 
 <p class="sektie">There are two problems with this approach to representing and
 manipulating natural numbers. First, naming natural numbers by means of the
@@ -5072,6 +5138,11 @@ with an error-message if this test fails.</p>
 built-in feature of Prolog, and is declared as an infix operator. Its behaviour
 is illustrated by the following queries: </p>
 
+<pre class="source swish" data-variant-id="group-2" id="swish.3.5.4" style="display: block;"
+query-text="?- X is 5+7-3. ?- 9 is 5+7-3. ?- 9 is X+7-3. ?- X is 5*3+7/2.">
+% Run prolog.
+</pre>
+
 <p class="query" style="page-break-after:auto">?-X is 5+7-3<br>
 X = 9</p>
 
@@ -5104,6 +5175,11 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;unification</i>: vs. evaluation<i
 style='mso-bidi-font-style:normal'>&quot; </i><![endif]--><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>rather than arithmetic evaluation (see
 also section 2.3). The following queries illustrate the operation of <span style="font-family:Courier">=</span>: </p>
+
+<pre class="source swish" data-variant-id="group-2" id="swish.3.5.5" style="display: block;"
+query-text="?- X = 5+7-3. ?- 9 = 5+7-3. ?- 9 = X+7-3. ?- X = Y+7-3. ?- X = f(X).">
+% Run prolog.
+</pre>
 
 <p class="query">?-X = 5+7-3<br>
 X = 5+7-3</p>
@@ -5185,11 +5261,11 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;recursion:memory requirements&quot;
 <![endif]--><!--[if supportFields]><span style='display:none;mso-hide:all'><span
 style='mso-element:field-end'></span></span><![endif]-->.</p>
 
-<p class="p-el">length<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;length/2&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->([],0).<br>
-length([H|T],N):-length(T,M),N is M+1.</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.6.0" style="display: block;"
+query-text="?- length([a,b,c],N). ?- length([],N).">
+length([],0).
+length([_H|T],N):-length(T,M),N is M+1.
+</pre>
 
 <div style="mso-element:para-border-div;border-top:solid windowtext 1.0pt;
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
@@ -5221,13 +5297,12 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;recursion:transformation into tail
 recursion&quot; <![endif]--><!--[if supportFields]><span style='display:none;
 mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--></p>
 
-<p class="p-eerst">length_acc<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;length_acc/2&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->(L,N):-length_acc(L,0,N).</p>
-
-<p class="p-el">length_acc([],N,N).<br>
-length_acc([H|T],N0,N):-N1 is N0+1,length_acc(T,N1,N).</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.6.1" style="display: block;"
+query-text="?- length_acc([],N).">
+length_acc(L,N):-length_acc(L,0,N).
+length_acc([],N,N).
+length_acc([_H|T],N0,N):-N1 is N0+1,length_acc(T,N1,N).
+</pre>
 
 <p class="tekst"><span style="font-family:Courier">length_acc(L,N0,N)</span> is
 true if <span style="font-family:Courier">N</span> is the number of elements in
@@ -5255,23 +5330,13 @@ the proof tree for the query <span style="font-family:Courier">?-length_acc([a,b
 to reverse the order of elements in a list. We could do this by recursively
 reversing the tail of the list, and putting the head at the end of the result:</p>
 
-<p class="pi-eerst">naive_reverse<!--[if supportFields]><span style='display:
-none;mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;naive_reverse/2&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->([],[]).</p>
-
-<p class="pi-laatst">naive_reverse([H|T],R):-<br>
-naive_reverse(T,R1),<br>
-append(R1,[H],R).</p>
-
-<p class="pi">append<!--[if supportFields]><span style='display:none;mso-hide:
-all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;append/3&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->([],Y,Y).</p>
-
-<p class="pi-laatst">append([H|T],Y,[H|Z]):-<br>
-append(T,Y,Z).</p>
-
+<pre class="source swish" data-variant-id="group-2" id="swish.3.6.2" style="display: block;"
+query-text="?- naive_reverse([a],R).">
+naive_reverse([],[]).
+naive_reverse([H|T],R):-naive_reverse(T,R1),append(R1,[H],R).
+append([],Y,Y).
+append([H|T],Y,[H|Z]):-append(T,Y,Z).
+</pre>
 <p class="tekst">This predicate is called &lsquo;naive&rsquo; because a lot of unnecessary
 work is done by the <span style="font-family:Courier">append</span> calls in
 the recursive clause. </p>
@@ -5289,18 +5354,15 @@ the proof tree for the query <span style="font-family:Courier">?-naive_reverse([
 
 <p class="tekst">By using an accumulator, we can get rid of the <span style="font-family:Courier">append</span> predicate, as follows: </p>
 
-<p class="pi-el">reverse<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;reverse/2&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->(X,Y):-<br>
-reverse(X,[],Y).</p>
 
-<p class="pi">reverse([],Y,Y).</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.6.3" style="display: block;"
+query-text="?- reverse([a],R). ?- reverse([a,b,c,d],R).">
+reverse(X,Y):- reverse(X,[],Y).
+reverse([],Y,Y).
+reverse([H|T],Y0,Y):- reverse(T,[H|Y0],Y).
+</pre>
 
-<p class="pi-laatst">reverse([H|T],Y0,Y):-<br>
-reverse(T,[H|Y0],Y).</p>
-
-<p class="tekst"><span style="font-family:Courier">reverse(X,Y0,Y)</span> is true
+<pre class="swish query" id="query3.6.4">?- reverse(X,Y0,Y).</pre><p class="tekst"> is true
 if <span style="font-family:Courier">Y</span> consists of the reversal of <span style="font-family:Courier">X</span> followed by <span style="font-family:Courier">Y0</span>.
 Initialising <span style="font-family:Courier">Y0</span> to <span style="font-family:Courier">[]</span> results in <span style="font-family:Courier">Y</span>
 returning the reversal of <span style="font-family:Courier">X</span>. </p>
@@ -5574,17 +5636,15 @@ predicate as</p>
 <p class="tekst">Suppose now you have the following facts in your program, and
 you want to collect all the children of a particular parent in a list: </p>
 
-<p class="p-eerst">parent(john,peter).</p>
 
-<p class="programma">parent(john,paul).</p>
-
-<p class="programma">parent(john,mary).</p>
-
-<p class="programma">parent(mick,davy).</p>
-
-<p class="programma">parent(mick,dee).</p>
-
-<p class="p-laatst">parent(mick,dozy).</p>
+<pre class="source swish temp" data-variant-id="group-2" id="swish.3.7.1" style="display: block;">
+parent(john,peter).
+parent(john,paul).
+parent(john,mary).
+parent(mick,davy).
+parent(mick,dee).
+parent(mick,dozy).
+</pre>
 
 <p class="tekst">Of course, it is easy to generate all the children upon
 backtracking; the problem is to collect them in a global list. To this end,
@@ -5602,9 +5662,13 @@ style='font-family:Courier;display:none;mso-hide:all'><span style='mso-element:
 field-end'></span></span><![endif]-->. For instance, we could use the following
 program and query:</p>
 
-<p class="pi-el">children(Parent,Children):-<br>
-findall(C,parent(Parent,C),Children).</p>
+<pre class="source swish inherit" data-variant-id="group-2" id="swish.3.7.2" inherit-id="swish.3.7.1" style="display: block;">
+children(Parent,Children):- findall(C,parent(Parent,C),Children).
+</pre>
 
+<pre class="swish query" id="query3.7.1">
+?- children(john,Children).
+</pre>
 <p class="query" style="margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;
 margin-left:28.9pt;page-break-after:auto">?-children(john,Children).<br>
 Children = [peter,paul,mary]</p>
@@ -5625,18 +5689,18 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;bagof/3&quot; </span><![endif]--><!-
 style='font-family:Courier;display:none;mso-hide:all'><span style='mso-element:
 field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>predicate acts similarly. However, its
 behaviour is different when the goal contains free variables. Consider the
-query </p>
-
-<p class="p-el">?-bagof(C,parent(P,C),L)</p>
-
-<p class="tekst">in which the variable <span style="font-family:Courier">P</span>
+query </p><p class="query"> ?- bagof(C,parent(P,C),L)</p><p class="tekst">in which the variable <span style="font-family:Courier">P</span>
 is unbound. This query has two possible interpretations: &lsquo;find a parent and a
 list of his children&rsquo;, and &lsquo;find the list of children <i style="mso-bidi-font-style:
 normal">that have a parent</i>&rsquo;. In the first case, we get a possible value for
 <span style="font-family:Courier">P</span> and a list of <span style="font-family:Courier">P</span>&rsquo;s children, which means that there are two
 solutions: </p>
 
-<p class="query">?-bagof(C,parent(P,C),L).<br>
+<pre class="swish query" id="query3.7.2" source-id="swish.3.7.1" >
+?- bagof(C,parent(P,C),L).
+</pre>
+
+<p class="query">
 C = _951<br>
 P = john<br>
 L = [peter,paul,mary];</p>
@@ -5649,12 +5713,20 @@ L = [davy,dee,dozy]</p>
 is true&rsquo;, which means that the variable <span style="font-family:Courier">P</span>
 is existentially quantified. This is signalled by prefixing the goal with <span style="font-family:Courier">P^</span>:</p>
 
-<p class="query" style="margin-bottom:6.0pt">?-bagof(C,P^parent(P,C),L).<br>
+<pre class="swish query" id="query3.7.3" source-id="swish.3.7.1" >
+?- bagof(C,P^parent(P,C),L).
+</pre>
+<p class="query" style="margin-bottom:6.0pt">
 C = _957<br>
 P = _958<br>
 L = [peter,paul,mary,davy,dee,dozy]</p>
 
-<p class="tekst">The query <span style="font-family:Courier">?-findall(C,parent(P,C),L)</span>
+
+<p class="tekst">The query </p>
+<pre class="swish query" id="query3.7.4" source-id="swish.3.7.1" >
+?- findall(C,parent(P,C),L).</span>
+</pre>
+<p class="tekst">
 (without existential quantification) can only generate this second solution. </p>
 
 <p class="sektie">Finally, Prolog provides the predicate <span style="font-family:
@@ -5714,23 +5786,18 @@ style='mso-element:field-end'></span></span><![endif]--></p>
 <p class="sektie">For instance, suppose we have the following biological
 knowledge, expressed as propositional if-then rules:</p>
 
-<p class="p-eerst">% if A and B then C means if(then(and(A,B),C))</p>
-
-<p class="pi">:-op(900,fx,if).</p>
-
-<p class="pi">:-op(800,xfx,then).</p>
-
-<p class="pi">:-op(700,yfx,and).</p>
-
-<p class="p-eerst">% object-level rules</p>
-
-<p class="pi">if has_feathers and lays_eggs then is_bird.</p>
-
-<p class="pi">if has_gills and lays_eggs then is_fish.</p>
-
-<p class="pi">if tweety then has_feathers.</p>
-
-<p class="p-laatst">if tweety then lays_eggs.</p>
+<pre class="source swish temp" data-variant-id="group-2" id="swish.3.8.1" style="display: block;" 
+query-text="?- if tweety then is_bird. ?- if tweety then lays_eggs.">
+% if A and B then C means if(then(and(A,B),C))
+:-op(900,fx,if).
+:-op(800,xfx,then).
+:-op(700,yfx,and).
+% object-level rules
+if has_feathers and lays_eggs then is_bird.
+if has_gills and lays_eggs then is_fish.
+if tweety then has_feathers.
+if tweety then lays_eggs.
+</pre>
 
 <p class="tekst">Suppose we want to prove that Tweety is a bird. That is, we want
 to show that the rule</p>
@@ -5740,29 +5807,17 @@ to show that the rule</p>
 <p class="tekst">follows logically from the given rules This can be done by a
 meta-program, which manipulates the rules on the object-level: </p>
 
-<p class="pi-eerst">% meta-program</p>
-
-<p class="pi">derive<!--[if supportFields]><span style='display:none;mso-hide:
-all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;derive/1&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->(if
-Assumptions then Goal):-<br>
-if Body then Goal,<br>
-derive(if Assumptions then Body).</p>
-
-<p class="pi">derive(if Assumptions then Goal1 and Goal2):-<br>
-derive(if Assumptions then Goal1),<br>
-derive(if Assumptions then Goal2).</p>
-
-<p class="pi">derive(if Assumptions then Goal):-<br>
-assumed(Goal,Assumptions).</p>
-
-<p class="pi-eerst">assumed(A,A).</p>
-
-<p class="pi">assumed(A,A and As).</p>
-
-<p class="pi-laatst">assumed(A,B and As):-<br>
-assumed(A,As).</p>
+<pre class="source swish inherit" data-variant-id="group-2" id="swish.3.8.2" inherit-id="swish.3.8.1" style="display: block;" 
+query-text="?- derive(if tweety then is_bird). ?- derive(if tweety then lays_eggs).">
+% meta-program
+derive(if Assumptions then Goal):- if Body then Goal,
+derive(if Assumptions then Body).
+derive(if Assumptions then Goal1 and Goal2):- derive(if Assumptions then Goal1), derive(if Assumptions then Goal2).
+derive(if Assumptions then Goal):- assumed(Goal,Assumptions).
+assumed(A,A).
+assumed(A,A and _As).
+assumed(A,_B and As):- assumed(A,As).
+</pre>
 
 <p class="tekst" style="page-break-after:avoid">The three clauses for the <span style="font-family:Courier">derive</span> predicate represent the three
 possible cases:</p>
@@ -6035,39 +6090,35 @@ prove_r(B).</p>
 <p class="tekst">We now extend <span style="font-family:Courier">prove_r/1</span>
 with a second argument, which returns the proof tree as a list of pairs <span style="font-family:Courier">p(Resolvent,Clause)</span>: </p>
 
-<p class="pi-eerst">% display a proof tree</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.8.2" style="display: block;" 
+query-text="?- prove_p(student_of(S,T))."
+source-text-start="
+:-op(900,fy,not).
+"
+source-text-end="
+conj_append(true,Ys,Ys).
+conj_append(X,Ys,(X,Ys)):-not X=true,not X=(One,TheOther).
+conj_append((X,Xs),Ys,(X,Zs)):-conj_append(Xs,Ys,Zs).
 
-<p class="pi-laatst">prove_p<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;prove_p/1&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->(A):-<br>
-prove_p(A,P),<br>
-write_proof(P).</p>
+student_of(S,T):-teaches(T,C),follows(S,C).
+teaches(peter,cs).
+teaches(peter,ai).
+follows(maria,cs).
+follows(paul,ai).
+"
+>
+% display a proof tree
+prove_p(A):-prove_p(A,P),write_proof(P).
 
-<p class="pi">% prove_p(A,P) &lt;- P is proof tree of A</p>
+% prove_p(A,P) <- P is proof tree of A
+prove_p(true,[]):-!.
+prove_p((A,B),[p((A,B),(A:-C))|Proof]):-!,clause(A,C),conj_append(C,B,D),prove_p(D,Proof).
+prove_p(A,[p(A,(A:-B))|Proof]):-clause(A,B),prove_p(B,Proof).
 
-<p class="pi">prove_p(true,[]):-!.</p>
-
-<p class="pi">prove_p((A,B),[p((A,B),(A:-C))|Proof]):-!,<br>
-clause(A,C),<br>
-conj_append(C,B,D),<br>
-prove_p(D,Proof).</p>
-
-<p class="pi-laatst">prove_p(A,[p(A,(A:-B))|Proof]):-<br>
-clause(A,B),<br>
-prove_p(B,Proof).</p>
-
-<p class="pi">write_proof<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;write_proof/1&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->([]):-<br>
-tab(15),write('[]'),nl.</p>
-
-<p class="pi-laatst">write_proof([p(A,B)|Proof]):-<br>
-write((:-A)),nl,<br>
-tab(5),write('|'),tab(10),write(B),nl,<br>
-tab(5),write('|'),tab(20),write('/'),nl,<br>
-write_proof(Proof).</p>
+write_proof([]):-write('               []'),nl.
+write_proof([p(A,B)|Proof]):-write((:-A)),nl,write('     |'),write(          B),
+	nl,write('     |'),write('                    /'),nl,write_proof(Proof).
+</pre>
 
 <p class="tekst">For instance, given the following clauses: </p>
 
@@ -6259,26 +6310,15 @@ partition(Tail,N,Littles,Bigs)</span></p>
 needed to cover the case that </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Head</span> is larger than or equal to </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">N</span>, in which
 case it must be added to </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Bigs</span>. The final program looks as follows: </span></p>
 
-<p class="oms-eerst"><span style="mso-bookmark:bk1">% partition(L,N,Littles,Bigs)
-&lt;- Littles contains numbers <br>
-%<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>in L smaller than N, <br>
-%<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>Bigs contains the rest</span></p>
-
-<p class="pi"><span style="mso-bookmark:bk1">partition</span><!--[if supportFields]><span
-style='mso-bookmark:bk1'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk1'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;partition/4&quot; </span><![endif]--><span style="mso-bookmark:bk1"></span><!--[if supportFields]><span style='mso-bookmark:
-bk1'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk1">([],N,[],[]).</span></p>
-
-<p class="pi"><span style="mso-bookmark:bk1">partition([Head|Tail],N,[Head|Littles],Bigs):-<br>
-Head &lt; N,<br>
-partition(Tail,N,Littles,Bigs).</span></p>
-
-<p class="pi-laatst"><span style="mso-bookmark:bk1">partition([Head|Tail],N,Littles,[Head|Bigs]):-<br>
-Head &gt;= N,<br>
-partition(Tail,N,Littles,Bigs).</span></p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.9.1" style="display: block;" 
+query-text="?- partition([1,9,6,3,5],5,Littles,Bigs). ?- partition([11,7,5],5,Littles,Bigs).">
+% partition(L,N,Littles,Bigs) <- Littles contains numbers 
+%                                in L smaller than N, 
+%                                Bigs contains the rest
+partition([],_N,[],[]).
+partition([Head|Tail],N,[Head|Littles],Bigs):- Head < N, partition(Tail,N,Littles,Bigs).
+partition([Head|Tail],N,Littles,[Head|Bigs]):- Head >= N, partition(Tail,N,Littles,Bigs).
+</pre>
 
 <p class="sektie"><span style="mso-bookmark:bk1">The approach taken here can be
 formulated as a general strategy for writing Prolog predicates. The steps to be
@@ -6372,14 +6412,17 @@ style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></s
 have to insert <span style="font-family:Courier">Head</span> in an already
 sorted list. We thus arrive at the following definition:</p>
 
-<p class="pi-eerst">sort<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;sort/2&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->([],[]).</p>
 
-<p class="pi-laatst">sort([Head|Tail],WholeSorted):-<br>
-sort(Tail,Sorted),<br>
-insert(Head,Sorted,WholeSorted).</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.9.2" style="display: block;" 
+query-text="?- sort([3,6,2,8,1],Sorted). ?- sort([6,5,4,3,2,1],Sorted)."
+source-text-end="
+insert(X,[],[X]).
+insert(X,[Head|Tail],[Head|Inserted]):- X > Head, insert(X,Tail,Inserted).
+insert(X,[Head|Tail],[X,Head|Tail]):- X =< Head."
+>
+sort([],[]).
+sort([Head|Tail],WholeSorted):- sort(Tail,Sorted), insert(Head,Sorted,WholeSorted).
+</pre>
 
 <p class="sektie">In order to implement <span style="font-family:Courier">insert/3</span>,
 we follow the same steps. The second argument is the recursion argument, and
@@ -6421,17 +6464,12 @@ be added before <span style="font-family:Courier">Head</span>: </p>
 
 <p class="tekst">The complete program is given below: </p>
 
-<p class="pi-eerst">insert<!--[if supportFields]><span style='display:none;
-mso-hide:all'><span style='mso-element:field-begin'></span> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;insert/3&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->(X,[],[X]).</p>
-
-<p class="pi">insert(X,[Head|Tail],[Head|Inserted]):-<br>
-X &gt; Head,<br>
-insert(X,Tail,Inserted).</p>
-
-<p class="pi-laatst">insert(X,[Head|Tail],[X,Head|Tail]):-<br>
-X =&lt; Head.</p>
+<pre class="source swish" data-variant-id="group-2" id="swish.3.9.3" style="display: block;" 
+query-text="?- insert(4,[2,3,5,7],Inserted). ?- insert(1,[2,3,5,7],Inserted). ?- insert(8,[2,3,5,7],Inserted).">
+insert(X,[],[X]).
+insert(X,[Head|Tail],[Head|Inserted]):- X &gt; Head, insert(X,Tail,Inserted).
+insert(X,[Head|Tail],[X,Head|Tail]):- X =&lt; Head.
+</pre>
 
 <div style="mso-element:para-border-div;border-top:solid windowtext 1.0pt;
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
