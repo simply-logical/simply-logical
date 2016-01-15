@@ -218,7 +218,7 @@ normal">L</i>, <i style="mso-bidi-font-style:normal">X</i> is nearby <i style="m
 simply lists all pairs of stations that are nearby each other, and one in terms
 of direct connections. Logical formulas of the first type, such as</p>
 
-<p class=p-el>?-nearby(bond_street,oxford_circus) </p>
+<p class=p-el>nearby(bond_street,oxford_circus) </p>
 
 <p class="tekst">will be called <i style="mso-bidi-font-style:normal">fact</i><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
@@ -227,7 +227,7 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;fact&quot; \b </i><![endif]--><!--[i
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><i style="mso-bidi-font-style:normal">s</i>, and formulas of the second type, such
 as</p>
 
-<p class=p-el>?-nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L) </p>
+<p class=p-el>nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L) </p>
 
 <p class="tekst">will be called <i style="mso-bidi-font-style:normal">rule</i><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
