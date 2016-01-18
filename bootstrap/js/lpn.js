@@ -12,14 +12,14 @@
   var currentSWISHElem = null;
   var database = new Array();
   var keepingSource = [];
-  
+
   var SWISH = "http://swish.swi-prolog.org/";
 
   /** @lends $.fn.LPN */
   var methods = {
     _init: function(options) {
     var currentSource = null;
-	
+
     return this.each(function() {
 		var elem = $(this);
 		var data = {};			/* private data */
@@ -34,13 +34,13 @@
 
 		  return obj;
 		}
-		
+
 		// Begin edited by TW.
 		if( elem.hasClass("temp") ) {
 			database[elem.attr("id")] = elem.text();
 		}
 		// End edit.
-		
+
 		if ( elem.hasClass("exercise") ) {
 		  currentSource = null;		/* make them independent */
 		  if ( elem.find(".swish").length == 0 ) {
@@ -52,31 +52,32 @@
 			elem = run;
 			appendRunButtonTo(elem.parent());
 		  }
-		} 
-		
+		}
+
 		// Begin edited by TW.
-		
+
 		else if ( elem.hasClass("answer") ) {
 			elem.wrap("<div class='answer'></div>");
 			data.answer = elem.attr("answer");
 			appendRunButtonTo(elem.parent());
 		}
-		
+
 		// End edit.
 		//
-		// Begin modified by TW & CH. 
+		// Begin modified by TW & CH.
 		else if ( elem.hasClass("source") ) {
 		  data.queries = [];
 		  data.id = elem.attr("id");
 		  if ( elem.hasClass("inherit") ) {
 			var inherits = elem.attr("inherit-id").split(" ");
-			var text = "/*\n This part is inherited from others. \n*/ \n";
+			var text = "";
 			for (index = 0; index < inherits.length; index++) {
 			  if(database[inherits[index]]) {
+          text += "/*This part is inherited from: " + inherits[index] + "*/\n";
 				  text += database[inherits[index]];
+		      text += "/*This is the end of inheritance.*/\n\n";
 			  }
       }
-		  text += "/*\n This is the end of inheritance.\n*/\n";
 			if ( elem.hasClass("query") ) {
 				data.queries.push(elem.text(), "\n");
 				data.source = text;
@@ -85,25 +86,25 @@
 			}
 		  }
 		  else {
-			
+
 			var startText = "";
 			var endText = "";
-			  
+
 			var attr = $(this).attr('source-text-end');
-			if (typeof attr !== typeof undefined && attr !== false) {	  
+			if (typeof attr !== typeof undefined && attr !== false) {
 				endText = elem.attr("source-text-end");
 			}
-			
+
 			attr = $(this).attr('source-text-start');
-			if (typeof attr !== typeof undefined && attr !== false) {	  
+			if (typeof attr !== typeof undefined && attr !== false) {
 				startText = elem.attr("source-text-start");
 			}
-			 
+
 			data.source = startText + elem.text() + endText;
 		  }
-		  
+
 		  var attr = $(this).attr('query-id');
-		  if (typeof attr !== typeof undefined && attr !== false) {	  
+		  if (typeof attr !== typeof undefined && attr !== false) {
 			var queryIds = elem.attr("query-id").split(" ");
 			for(var i = 0; i < queryIds.length ; ++i) {
 				var newElem = document.getElementById(queryIds[i]);
@@ -112,24 +113,24 @@
 				}
 			}
 		  }
-		  
+
 		  var attr = $(this).attr('query-text');
-		  if (typeof attr !== typeof undefined && attr !== false) {	  
+		  if (typeof attr !== typeof undefined && attr !== false) {
 			var queryTexts = elem.attr("query-text").split(" ");
 			for(var i = 0; i < queryTexts.length ; ++i) {
 				data.queries.push(queryTexts[i], "\n");
 			}
 		  }
-		  
+
 		  currentSource = data;
 		  keepingSource.push(data);
 		  elem.wrap("<div class='source'></div>");
 		  appendRunButtonTo(elem.parent());
 		}
-		
+
 		else if ( elem.hasClass("query") ) {
 		  var attr = $(this).attr('source-id');
-		  if (typeof attr !== typeof undefined && attr !== false) {	  
+		  if (typeof attr !== typeof undefined && attr !== false) {
 			var sourceIds = elem.attr("source-id").split(" ");
 			for(var i = 0; i < sourceIds.length ; ++i) {
 				function Find(id) {
@@ -138,19 +139,19 @@
 							return keepingSource[i];
 						}
 					}
-					
+
 					return false;
 				}
-				
+
 				var data = Find(sourceIds[i]);
 				if (data != false) {
 					data.queries.push(elem.text(), "\n");
 				}
 			}
-		  } 
-		  
+		  }
+
 		  // End modified.
-		  
+
 		  else if ( currentSource ) {
 			currentSource.queries.push(elem.text(), "\n");
 		  } else {
@@ -158,8 +159,8 @@
 			elem.wrap("<div class='query'></div>");
 			appendRunButtonTo(elem.parent());
 		  }
-		} 
-		
+		}
+
 		else if ( elem.hasClass("query-list") ) {
 		  function addQueries(list) {
 			elem.children().each(function() {
@@ -188,7 +189,7 @@
     function attr(name, value) {
       content.push(" ", name, '="', value, '"');
     }
-	
+
     var data    = elem.data(pluginName);
 	if ( data.swish ) {
       var swish = data.swish;
@@ -201,11 +202,11 @@
 	.resizable('destroy')
         .css("height", "auto");
     } else
-    { 
+    {
 	  var query   = data.swishURL;
       var content = [ "<iframe " ];
       var q = "?";
-		  
+
       if ( currentSWISHElem )
 		toggleSWISH(currentSWISHElem);
 
@@ -213,7 +214,7 @@
 		query += q +"code="+encodeURIComponent(data.source);
 		q = "&";
       }
-	  
+
       if ( data.queries && data.queries.length > 0 ) {
 		query += q + "examples=" + encodeURIComponent(data.queries.join(""));
 		q = "&";
