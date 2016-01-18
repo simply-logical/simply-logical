@@ -70,13 +70,13 @@
 		  data.id = elem.attr("id");
 		  if ( elem.hasClass("inherit") ) {
 			var inherits = elem.attr("inherit-id").split(" ");
-			var text = "/*\n This part is inherited from others. \n*/ \n";
+			var text = "/*\n INHERITED CLAUSES. \n*/ \n";
 			for (index = 0; index < inherits.length; index++) {
 			  if(database[inherits[index]]) {
 				  text += database[inherits[index]];
 			  }
       }
-		  text += "/*\n This is the end of inheritance.\n*/\n";
+		  text += "/*\n END OF INHERITANCE.\n*/\n";
 			if ( elem.hasClass("query") ) {
 				data.queries.push(elem.text(), "\n");
 				data.source = text;

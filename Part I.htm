@@ -103,7 +103,7 @@ specifies which stations are directly connected by which lines. If we follow
 the lines from left to right (Northern downwards), we come up with the
 following 11 formulas:</p>
 
-<pre class="source swish temp" data-variant-id="group-1" id="swish.1.0.1" style="display: block;">
+<pre class="source swish temp" data-variant-id="group-1" id="swish.1.0.1" style="display: block;" query-text="?-connected(X,Y,L1),connected(Y,Z,L2). ?-connected(X,Y,L),connected(Y,Z,L). ?-connected(X,Y,L1),connected(Y,X,L2). ?-connected(X,X,L).">
 connected(bond_street,oxford_circus,central).
 connected(oxford_circus,tottenham_court_road,central).
 connected(bond_street,green_park,jubilee).
@@ -196,11 +196,9 @@ connected via <i style="mso-bidi-font-style:normal">L</i>, then <i style="mso-bi
 normal">Y</i> are also nearby. We can formulate this in logic as follows:</p>
 
 
-<pre class="source swish inherit" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;">
+<pre class="source swish inherit temp" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;">
 nearby(X,Y):-connected(X,Y,L).
 nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).
-<!-- nearby(X,Y):-connected(X,Y,L). 
--->
 </pre>
 
 <p class="tekst">In these formulas, the symbol &lsquo;<span style="font-family:Courier">:-</span>&rsquo;
@@ -544,9 +542,10 @@ the entire London underground, we would need a lot more, longer and longer
 rules. Recursion is a much more convenient and natural way to define such
 chains of arbitrary length:</p>
 
-<p class="p-eerst">reachable(X,Y):-connected(X,Y,L).</p>
-
-<p class="p-laatst">reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).</p>
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query116" style="display: block;" query-text="?-reachable(bond_street,W). ?-reachable(charing_cross,W).">
+reachable(X,Y):-connected(X,Y,L).
+reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
+</pre>
 
 <p class="tekst">The reading of the second rule is as follows: &lsquo;<i style="mso-bidi-font-style:normal">Y</i> is reachable from <i style="mso-bidi-font-style:
 normal">X</i> if <i style="mso-bidi-font-style:normal">Z</i> is directly
@@ -6467,8 +6466,8 @@ be added before <span style="font-family:Courier">Head</span>: </p>
 <pre class="source swish" data-variant-id="group-2" id="swish.3.9.3" style="display: block;" 
 query-text="?- insert(4,[2,3,5,7],Inserted). ?- insert(1,[2,3,5,7],Inserted). ?- insert(8,[2,3,5,7],Inserted).">
 insert(X,[],[X]).
-insert(X,[Head|Tail],[Head|Inserted]):- X &gt; Head, insert(X,Tail,Inserted).
-insert(X,[Head|Tail],[X,Head|Tail]):- X =&lt; Head.
+insert(X,[Head|Tail],[Head|Inserted]):- X > Head, insert(X,Tail,Inserted).
+insert(X,[Head|Tail],[X,Head|Tail]):- X =< Head.
 </pre>
 
 <div style="mso-element:para-border-div;border-top:solid windowtext 1.0pt;
