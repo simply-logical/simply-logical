@@ -103,7 +103,7 @@ specifies which stations are directly connected by which lines. If we follow
 the lines from left to right (Northern downwards), we come up with the
 following 11 formulas:</p>
 
-<pre class="source swish temp" data-variant-id="group-1" id="swish.1.0.1" style="display: block;" query-text="?-connected(X,Y,L1),connected(Y,Z,L2). ?-connected(X,Y,L),connected(Y,Z,L). ?-connected(X,Y,L1),connected(Y,X,L2). ?-connected(X,X,L).">
+<pre class="source swish temp" data-variant-id="group-1" id="swish.1.0.1" style="display: block;" query-text="?-connected(bond_street,Y,L). ?-connected(X,piccadilly_circus,L). ?-connected(X,Y,piccadilly). ?-connected(X,Y,L),connected(Y,Z,L).">
 connected(bond_street,oxford_circus,central).
 connected(oxford_circus,tottenham_court_road,central).
 connected(bond_street,green_park,jubilee).
@@ -121,7 +121,7 @@ connected(leicester_square,charing_cross,northern).
 normal">nearby</i> if they are on the same line, with at most one station in
 between. This relation can also be represented by a set of logical formulas:</p>
 
-<pre class="source swish" data-variant-id="group-1" id="swish.1.0.2" style="display: block;">
+<pre class="source swish" data-variant-id="group-1" id="swish.1.0.2" style="display: block;" query-text="?-nearby(bond_street,Y). ?-nearby(X,piccadilly_circus). ?-nearby(X,Y). ?-nearby(X,Y),nearby(Y,Z).">
 nearby(bond_street,oxford_circus).
 nearby(oxford_circus,tottenham_court_road).
 nearby(bond_street,tottenham_court_road).
@@ -196,7 +196,7 @@ connected via <i style="mso-bidi-font-style:normal">L</i>, then <i style="mso-bi
 normal">Y</i> are also nearby. We can formulate this in logic as follows:</p>
 
 
-<pre class="source swish inherit temp" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;">
+<pre class="source swish inherit temp" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.3" style="display: block;" query-text="?-nearby(tottenham_court_road,leicester_square). ?-nearby(tottenham_court_road,W). ?-nearby(X,leicester_square).">
 nearby(X,Y):-connected(X,Y,L).
 nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).
 </pre>
@@ -248,6 +248,12 @@ margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 1.1.</i> Two
 stations are &lsquo;not too far&rsquo; if they are on the same or a different line, with at
 most one station in between. Define rules for the predicate <span style="font-family:Courier">not_too_far</span>.</p>
 
+<pre class="source swish inherit" inherit-id="swish.1.0.1" data-variant-id="group-1" id="swish.1.0.4" style="display: none;" query-text="?-not_too_far(X,Y).">
+not_too_far(X,Y):-true. % replace 'true' with your definition
+not_too_far(X,Y):-true. % add more clauses as needed
+
+</pre>
+
 </div>
 
 <h3 id="answering_queries">1.1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span>Answering
@@ -260,7 +266,8 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;query&quot; </i><![endif]--><!--[if 
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>like &lsquo;which station is nearby Tottenham
 Court Road?&rsquo; will be written as </p>
 
-<pre class="query" id="query.1.1.1"><span class="swish query">?- nearby(tottenham_court_road,W).</span></pre>
+<!--<pre class="query" id="query.1.1.1"><span class="swish query">?- nearby(tottenham_court_road,W).</span></pre>-->
+<p class="p-el">?-nearby(tottenham_court_road,W).</pre>
 
 <p class="tekst">where the prefix &lsquo;<span style="font-family:Courier">?-</span>&rsquo;
 indicates that this is a query rather than a fact. An <i style="mso-bidi-font-style:
@@ -278,7 +285,8 @@ style="mso-spacerun:yes">&nbsp;</span>&quot;substitution&quot; </i><![endif]--><
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>of values for variables, such that the
 statement in the query, i.e. </p>
 
-<pre class="query" id="query15"><span class="swish query">?-nearby(tottenham_court_road,leicester_square).</span></pre>
+<!--<pre class="query" id="query.1.1.2"><span class="swish query">?-nearby(tottenham_court_road,leicester_square).</span></pre>-->
+<p class="p-el">?-nearby(tottenham_court_road,leicester_square).</pre>
 
 <p class="tekst">is true. Now, if the nearby-relation is defined by means of a
 list of facts, answers to queries are easily found: just look for a fact that <i style="mso-bidi-font-style:normal">matches</i> the query, by which is meant
@@ -296,7 +304,7 @@ we match it with the conclusion of the rule </p>
 <span style="font-family:Courier">Y</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">W</span>}. We then try to find an answer for the
 premises of the rule under this substitution, i.e. we try to answer the query </p>
 
-<pre class="query" id="query15"><span class="swish query">?-connected(tottenham_court_road,W,L). </span></pre>
+<p class="p-el">?-connected(tottenham_court_road,W,L).</pre>
 
 <p class="tekst">That is, we can find a station nearby Tottenham Court Road, if
 we can find a station directly connected to it. This second query is answered
@@ -505,26 +513,28 @@ normal">reachability</i> in our underground example, where a station is
 reachable from another station if they are connected by one or more lines. We
 could define it by the following 20 ground facts:</p>
 
-<p class="p-el" style="mso-pagination:widow-orphan">reachable(bond_street,charing_cross).<br>
-reachable(bond_street,green_park).<br>
-reachable(bond_street,leicester_square).<br>
-reachable(bond_street,oxford_circus).<br>
-reachable(bond_street,piccadilly_circus).<br>
-reachable(bond_street,tottenham_court_road).<br>
-reachable(green_park,charing_cross).<br>
-reachable(green_park,leicester_square).<br>
-reachable(green_park,oxford_circus).<br>
-reachable(green_park,piccadilly_circus).<br>
-reachable(green_park,tottenham_court_road).<br>
-reachable(leicester_square,charing_cross).<br>
-reachable(oxford_circus,charing_cross).<br>
-reachable(oxford_circus,leicester_square).<br>
-reachable(oxford_circus,piccadilly_circus).<br>
-reachable(oxford_circus,tottenham_court_road).<br>
-reachable(piccadilly_circus,charing_cross).<br>
-reachable(piccadilly_circus,leicester_square).<br>
-reachable(tottenham_court_road,charing_cross).<br>
-reachable(tottenham_court_road,leicester_square).</p>
+<pre class="source swish temp" data-variant-id="group-1" id="swish.1.1.1" style="display: block;" query-text="?-reachable(bond_street,Y). ?-reachable(X,green_park). ?-reachable(X,Y).">
+reachable(bond_street,charing_cross).
+reachable(bond_street,green_park).
+reachable(bond_street,leicester_square).
+reachable(bond_street,oxford_circus).
+reachable(bond_street,piccadilly_circus).
+reachable(bond_street,tottenham_court_road).
+reachable(green_park,charing_cross).
+reachable(green_park,leicester_square).
+reachable(green_park,oxford_circus).
+reachable(green_park,piccadilly_circus).
+reachable(green_park,tottenham_court_road).
+reachable(leicester_square,charing_cross).
+reachable(oxford_circus,charing_cross).
+reachable(oxford_circus,leicester_square).
+reachable(oxford_circus,piccadilly_circus).
+reachable(oxford_circus,tottenham_court_road).
+reachable(piccadilly_circus,charing_cross).
+reachable(piccadilly_circus,leicester_square).
+reachable(tottenham_court_road,charing_cross).
+reachable(tottenham_court_road,leicester_square).
+</pre>
 
 <p class="tekst">Since any station is reachable from any other station by a route
 with at most two intermediate stations, we could instead use the following
@@ -542,7 +552,7 @@ the entire London underground, we would need a lot more, longer and longer
 rules. Recursion is a much more convenient and natural way to define such
 chains of arbitrary length:</p>
 
-<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="query116" style="display: block;" query-text="?-reachable(bond_street,W). ?-reachable(charing_cross,W).">
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="swish.1.1.2" style="display: block;" query-text="?-reachable(bond_street,Y). ?-reachable(X,green_park). ?-reachable(X,Y).">
 reachable(X,Y):-connected(X,Y,L).
 reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
 </pre>
@@ -705,14 +715,20 @@ could be represented by </p>
 <p class="tekst">Note that this is not a ground fact, but rather an argument for
 a logical formula. The reachability relation can now be defined as follows:</p>
 
-<p class="p-eerst" style="margin-left:195.0pt;text-indent:-178.0pt">reachable(X,Y,noroute):-connected(X,Y,L).</p>
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="swish.1.2.1" style="display: block;" query-text="?-reachable(oxford_circus,charing_cross,R).">
+reachable(X,Y,noroute):-connected(X,Y,L).
+reachable(X,Y,route(Z)):-connected(X,Z,L1),
+                         connected(Z,Y,L2).
+reachable(X,Y,route(Z1,Z2)):-connected(X,Z1,L1),
+                             connected(Z1,Z2,L2),
+                             connected(Z2,Y,L3).
+</pre>
 
-<p class="programma" style="margin-left:174.0pt;text-indent:-157.0pt">reachable(X,Y,route(Z)):-<span style="mso-tab-count:1"> </span>connected(X,Z,L1),<br>
-connected(Z,Y,L2).</p>
-
-<p class="p-laatst" style="margin-left:195.0pt;text-indent:-178.0pt">reachable(X,Y,route(Z1,Z2)):-<span style="mso-tab-count:1"> </span>connected(X,Z1,L1),<br>
-connected(Z1,Z2,L2),<br>
-connected(Z2,Y,L3).</p>
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="swish.1.2.2" style="display: block;" query-text="?-reachable(oxford_circus,charing_cross,R).">
+reachable(X,Y,noroute):-connected(X,Y,L).
+reachable(X,Y,route(Z,R)):-connected(X,Z,L),
+                         connected(Z,Y,R).
+</pre>
 
 <p class="tekst">The query <span style="font-family:Courier">?-reachable(oxford_circus,charing_cross,R)</span>
 now has three possible answers:</p>
@@ -750,10 +766,11 @@ margin-left:18.0pt">{<span style="font-family:Courier">R</span><span style="font
 definition of the reachability relation, in which case we use functors in a
 somewhat different way.</p>
 
-<p class="p-eerst" style="margin-left:185.0pt;text-indent:-168.0pt">reachable(X,Y,noroute):-connected(X,Y,L).</p>
-
-<p class="p-laatst" style="margin-left:185.0pt;text-indent:-168.0pt">reachable(X,Y,route(Z,R)):-<span style="mso-tab-count:1"> </span>connected(X,Z,L),<br>
-reachable(Z,Y,R).</p>
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="swish.1.2.2" style="display: block;" query-text="?-reachable(oxford_circus,charing_cross,R).">
+reachable(X,Y,noroute):-connected(X,Y,L).
+reachable(X,Y,route(Z,R)):-connected(X,Z,L),
+                           reachable(Z,Y,R).
+</pre>
 
 <p class="tekst">At first sight, there does not seem to be a big difference
 between this and the use of functors in the non-recursive program. However, the
@@ -911,9 +928,11 @@ whether there is an intermediate station or not. For both cases, there is a
 clause. Expressing the route as a list, we can state the final definition of
 the reachability relation:</p>
 
-<p class="p-eerst">reachable(X,Y,[]):-connected(X,Y,L).</p>
-
-<p class="p-laatst">reachable(X,Y,[Z|R]):-connected(X,Z,L),reachable(Z,Y,R).</p>
+<pre class="source swish inherit" data-variant-id="group-1" inherit-id="swish.1.0.1" id="swish.1.2.3" style="display: block;" query-text="?-reachable(oxford_circus,charing_cross,R). ?-reachable(X,charing_cross,[A,B,C,D]). ?-reachable(bond_street,piccadilly_circus,[A,B|L]).">
+reachable(X,Y,[]):-connected(X,Y,L).
+reachable(X,Y,[Z|R]):-connected(X,Z,L),
+                      reachable(Z,Y,R).
+</pre>
 
 <p class="tekst">The query <span style="font-family:Courier">?-reachable(oxford_circus,charing_cross,R)</span>
 now results in the following answers:</p>
