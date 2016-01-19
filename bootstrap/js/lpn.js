@@ -238,7 +238,7 @@
 	// End of edit.
 
       data.swish = $(content.join("")).hide().insertAfter(elem);
-      elem.parent().css("height", "300px").resizable({handles:'s'});
+      elem.parent().css("height", "450px").resizable({handles:'s'});
       elem.hide(400);
       data.swish.show(400, function() { elem.parent().addClass("swish"); });
 
