@@ -7,7 +7,7 @@ part: Part_I
 
 <div class="WordSection1">
 
-<p id="logic_and_logic_programming" class="romeinscijfer">I<span style="font-size:36.0pt;mso-bidi-font-size:10.0pt"><o:p></o:p></span></p>
+<p id="logic_and_logic_programming" class="romeinscijfer">I</p>
 
 <div style="mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.5pt;
 padding:0cm 0cm 0cm 0cm;margin-left:1.0cm;margin-right:0cm">
@@ -3130,31 +3130,16 @@ Logic is (first-order) Predicate Logic. Predicate logic is more
 expressive in the sense that statements expressed in Predicate Logic often
 result in shorter formulas than would result if they were expressed in clausal
 logic. This is due to the larger vocabulary and less restrictive syntax of
-Predicate Logic, which includes quantifiers (&lsquo;for all&rsquo; (<span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>) and
-&lsquo;there exists&rsquo; (</span><span style="mso-bookmark:bk0"><span style="font-family:
-Symbol">&exist;</span>)), and various logical connectives (conjunction</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;conjunction&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>(</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&and;</span>),
-disjunction</span><!--[if supportFields]><span style='mso-bookmark:bk0'></span><span
-style='mso-element:field-begin'></span><span style='mso-bookmark:bk0'><span
-style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;disjunction&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>(</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&or;</span>), negation (</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&not;</span>),
-implication</span><!--[if supportFields]><span style='mso-bookmark:bk0'></span><span
-style='mso-element:field-begin'></span><span style='mso-bookmark:bk0'><span
-style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;implication&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>(</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&rarr;</span>), and
-equivalence</span><!--[if supportFields]><span style='mso-bookmark:bk0'></span><span
-style='mso-element:field-begin'></span><span style='mso-bookmark:bk0'><span
-style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;equivalence&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>(</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&harr;</span>)) which may
-occur anywhere within a formula. </span></p>
+Predicate Logic, which includes quantifiers (&lsquo;for all&rsquo; (<span style="font-family:Symbol">&forall;</span>) and
+&lsquo;there exists&rsquo; (<span style="font-family:Symbol">&exist;</span>)), 
+and various logical connectives (conjunction<span style="mso-spacerun:yes">&nbsp;</span>
+(<span style="font-family:Symbol">&and;</span>), disjunction<span style="mso-spacerun:yes">&nbsp;</span>
+(<span style="font-family:Symbol">&or;</span>), negation (<span style="font-family:Symbol">&not;</span>),
+implication<span style="mso-spacerun:yes">&nbsp;</span>(<span style="font-family:Symbol">&rarr;</span>), and
+equivalence<span style="mso-spacerun:yes">&nbsp;</span>(<span style="font-family:Symbol">&harr;</span>)) which may
+occur anywhere within a formula.</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">Being syntactically quite
+<p class="sektie">Being syntactically quite
 different, clausal logic and Predicate Logic are semantically equivalent in the
 following sense: every set of clauses is, after minor modifications, a formula
 in Predicate Logic, and conversely, every formula in Predicate Logic can be
@@ -3163,85 +3148,59 @@ Predicate Logic at all in this book? The main reason is that in Chapter 8, we
 will discuss an alternative semantics of logic programs, defined in terms of
 Predicate Logic. In this section, we will illustrate the semantic equivalence
 of clausal logic and Predicate Logic. We will assume a basic knowledge of the
-syntax and semantics of Predicate Logic. </span></p>
+syntax and semantics of Predicate Logic.</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">We start with the propositional
-case. Any clause like</span></p>
+<p class="sektie">We start with the propositional
+case. Any clause like</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">married;bachelor:-man,adult</span></p>
+<p class="p-el">married;bachelor:-man,adult</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">can be rewritten by reversing
-head</span><!--[if supportFields]><span style='mso-bookmark:bk0'></span><span
-style='mso-element:field-begin'></span><span style='mso-bookmark:bk0'><span
-style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;head:of a clause&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>and body</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;body of a clause&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>and
-replacing the &lsquo;</span><span style="mso-bookmark:bk0"><span style="font-family:
-Courier">:-</span>&rsquo; sign by an implication &lsquo;</span><span style="mso-bookmark:
-bk0"><span style="font-family:Symbol">&rarr;</span>&rsquo;, replacing &lsquo;</span><span style="mso-bookmark:bk0"><span style="font-family:Courier">,</span>&rsquo; by a
-conjunction &lsquo;</span><span style="mso-bookmark:bk0"><span style="font-family:
-Symbol">&and;</span>&rsquo;, and replacing &lsquo;</span><span style="mso-bookmark:bk0"><span style="font-family:Courier">;</span>&rsquo; by a disjunction &lsquo;</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&or;</span>&rsquo;, which
-yields</span></p>
+<p class="tekst">can be rewritten by reversing
+head<span style="mso-spacerun:yes">&nbsp;</span>and body<span style="mso-spacerun:yes">&nbsp;</span>and
+replacing the &lsquo;<span style="font-family:Courier">:-</span>&rsquo; sign by an implication &lsquo;
+<span style="font-family:Symbol">&rarr;</span>&rsquo;, replacing &lsquo;<span style="font-family:Courier">,</span>&rsquo; by a
+conjunction &lsquo;<span style="font-family:Symbol">&and;</span>&rsquo;, and replacing &lsquo;
+<span style="font-family:Courier">;</span>&rsquo; by a disjunction &lsquo;<span style="font-family:Symbol">&or;</span>&rsquo;, which
+yields</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">man</span><span style="mso-bookmark:
-bk0"><span style="font-family:Symbol"> &and; </span>adult</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &rarr; </span>married</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>bachelor</span></p>
+<p class="p-el">man<span style="font-family:Symbol"> &and; </span>adult<span style="font-family:Symbol"> &rarr; </span>married
+<span style="font-family:Symbol"> &or; </span>bachelor</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">By using the logical laws <i style="mso-bidi-font-style:normal">A</i></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&rarr;</span><i style="mso-bidi-font-style:normal">B</i> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&equiv;</span> </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&not;</span><i style="mso-bidi-font-style:normal">A</i></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&or;</span><i style="mso-bidi-font-style:normal">B</i>
-and </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&not;</span>(<i style="mso-bidi-font-style:normal">C</i></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&and;</span><i style="mso-bidi-font-style:normal">D</i>)
-</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&equiv;</span>
-</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&not;</span><i style="mso-bidi-font-style:normal">C</i></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&or;&not;</span><i style="mso-bidi-font-style:normal">D</i>,
-this can be rewritten into the logically equivalent formula</span></p>
+<p class="tekst">By using the logical laws <i style="mso-bidi-font-style:normal">A</i><span style="font-family:Symbol">&rarr;</span><i style="mso-bidi-font-style:normal">B</i> <span style="font-family:Symbol">&equiv;</span> <span style="font-family:Symbol">&not;</span><i style="mso-bidi-font-style:normal">A</i><span style="font-family:Symbol">&or;</span><i style="mso-bidi-font-style:normal">B</i>
+and <span style="font-family:Symbol">&not;</span>(<i style="mso-bidi-font-style:normal">C</i><span style="font-family:Symbol">&and;</span><i style="mso-bidi-font-style:normal">D</i>)
+<span style="font-family:Symbol">&equiv;</span>
+<span style="font-family:Symbol">&not;</span><i style="mso-bidi-font-style:normal">C</i><span style="font-family:Symbol">&or;&not;</span><i style="mso-bidi-font-style:normal">D</i>,
+this can be rewritten into the logically equivalent formula</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">&not;man</span><span style="mso-bookmark:
-bk0"><span style="font-family:Symbol"> &or; </span>&not;adult</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>married</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>bachelor</span></p>
+<p class="p-el">&not;man<span style="font-family:Symbol"> &or; </span>&not;adult<span style="font-family:Symbol"> &or; </span>married<span style="font-family:Symbol"> &or; </span>bachelor</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">which, by the way, clearly
+<p class="tekst">which, by the way, clearly
 demonstrates the origin of the terms <i style="mso-bidi-font-style:normal">negative</i>
-literal</span><!--[if supportFields]><span style='mso-bookmark:bk0'></span><span
-style='mso-element:field-begin'></span><span style='mso-bookmark:bk0'><span
-style='display:none;mso-hide:all'> XE </span><i style='mso-bidi-font-style:
-normal'><span style="mso-spacerun:yes">&nbsp;</span>&quot;negative</i> literal<i
-style='mso-bidi-font-style:normal'>&quot; </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>and <i style="mso-bidi-font-style:normal">positive</i> literal</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><i
-style='mso-bidi-font-style:normal'><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;positive</i> literal<i
-style='mso-bidi-font-style:normal'>&quot; </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">!</span></p>
+literal<span style="mso-spacerun:yes">&nbsp;</span>and <i style="mso-bidi-font-style:normal">positive</i> literal!</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">A set of clauses can be
+<p class="sektie">A set of clauses can be
 rewritten by rewriting each clause separately, and combining the results into a
-single conjunction, e.g.</span></p>
+single conjunction, e.g.</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">married;bachelor:-man,adult.<br>
-has_wife:-man,married.</span></p>
+<p class="p-el">married;bachelor:-man,adult.<br>
+has_wife:-man,married.</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">becomes</span></p>
+<p class="tekst">becomes</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">(&not;man</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>&not;adult</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>married</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>bachelor)</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &and; <br>
-</span>(&not;man</span><span style="mso-bookmark:bk0"><span style="font-family:
-Symbol"> &or; </span>&not;married</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>has_wife)</span></p>
+<p class="p-el">(&not;man<span style="font-family:Symbol"> &or; </span>&not;adult<span style="font-family:Symbol"> &or; </span>married<span style="font-family:Symbol"> &or; </span>bachelor)<span style="font-family:Symbol"> &and; <br>
+</span>(&not;man<span style="font-family:Symbol"> &or; </span>&not;married<span style="font-family:Symbol"> &or; </span>has_wife)</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">Formulas like these, i.e.
-conjunctions of disjunctions of atoms and negated atoms, are said to be in <i style="mso-bidi-font-style:normal">conjunctive normal form</i></span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><i
-style='mso-bidi-font-style:normal'><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;conjunctive normal form&quot; \b </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>(CNF). </span></p>
+<p class="tekst">Formulas like these, i.e.
+conjunctions of disjunctions of atoms and negated atoms, are said to be in <i style="mso-bidi-font-style:normal">conjunctive normal form</i>
+<span style="mso-spacerun:yes">&nbsp;</span>(CNF).</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">The term &lsquo;normal form&rsquo; here
+<p class="sektie">The term &lsquo;normal form&rsquo; here
 indicates that <i style="mso-bidi-font-style:normal">every formula of Predicate
 Logic can be rewritten into a unique equivalent formula in conjunctive normal
 form</i>, and therefore to a unique equivalent set of clauses. For instance,
-the formula</span></p>
+the formula</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">(married</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>&not;child)</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &rarr; </span>(adult</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &and; </span>(man</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; </span>woman))</span></p>
+<p class="p-el">(married<span style="font-family:Symbol"> &or; </span>&not;child)<span style="font-family:Symbol"> &rarr; </span>(adult<span style="font-family:Symbol"> &and; </span>(man<span style="font-family:Symbol"> &or; </span>woman))</p>
 
 <p class="tekst"><span style="mso-bookmark:bk0">can be rewritten into CNF as
 (replace <i style="mso-bidi-font-style:normal">A</i></span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&rarr;</span><i style="mso-bidi-font-style:normal">B</i> by </span><span style="mso-bookmark:
@@ -3348,111 +3307,75 @@ against resolution proofs).</span></p>
 
 </div>
 
-<p class="sektie"><span style="mso-bookmark:bk0">For rewriting clauses from full
-clausal logic to Predicate Logic</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;Predicate Logic:translation from
-clausal logic&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">, we use the same rewrite rules as for propositional
-clauses. Additionally, we have to add universal quantifier</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;universal quantifier&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">s for every variable in the clause. For example, the
-clause</span></p>
+<p class="sektie">For rewriting clauses from full
+clausal logic to Predicate Logic, we use the same rewrite rules as for propositional
+clauses. Additionally, we have to add universal quantifiers for every variable in the clause. For example, the
+clause</p>
 
-<p class="pi-el"><span style="mso-bookmark:bk0">reachable(X,Y,route(Z,R)):-<br>
+<p class="pi-el">
+reachable(X,Y,route(Z,R)):-<br>
 connected(X,Z,L),<br>
-reachable(Z,Y,R).</span></p>
+reachable(Z,Y,R).
+</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">becomes</span></p>
+<p class="tekst">becomes</p>
 
-<p class="p-el" align="center" style="text-align:center"><span style="mso-bookmark:
-bk0"><span style="font-family:Symbol">&forall;</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>Y</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>Z</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>R</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>L:
-&not;connected(X,Z,L)</span><span style="mso-bookmark:bk0"><span style="font-family:
-Symbol"> &or; </span>&not;reachable(Z,Y,R)</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol"> &or; <br>
-</span>reachable(X,Y,route(Z,R))</span></p>
+<p class="p-el" align="center" style="text-align:center">
+<span style="font-family:Symbol">&forall;</span>X
+<span style="font-family:Symbol">&forall;</span>Y
+<span style="font-family:Symbol">&forall;</span>Z
+<span style="font-family:Symbol">&forall;</span>R
+<span style="font-family:Symbol">&forall;</span>L:
+&not;connected(X,Z,L)
+<span style="font-family:Symbol"> &or; </span>&not;reachable(Z,Y,R)
+<span style="font-family:Symbol"> &or; <br></span>reachable(X,Y,route(Z,R))</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">The reverse process of rewriting
-a formula of Predicate Logic</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;Predicate Logic:translation to
-clausal logic&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>into an
+<p class="sektie">The reverse process of rewriting
+a formula of Predicate Logic<span style="mso-spacerun:yes">&nbsp;</span>into an
 equivalent set of clauses is somewhat complicated if existential quantifiers
 are involved (the exact procedure is given as a Prolog program in Appendix
-B.1). An existential quantifier</span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;existential quantifier&quot; </span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0"><span style="mso-spacerun:yes">&nbsp;</span>allows us
+B.1). An existential quantifier<span style="mso-spacerun:yes">&nbsp;</span>allows us
 to reason about individuals without naming them. For example, the statement
-&lsquo;everybody loves somebody&rsquo; is represented by the Predicate Logic formula</span></p>
+&lsquo;everybody loves somebody&rsquo; is represented by the Predicate Logic formula</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&exist;</span>Y: loves(X,Y)</span></p>
+<p class="p-el"><span style="font-family:Symbol">&forall;</span>X<span style="font-family:Symbol">&exist;</span>Y: loves(X,Y)</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">Recall that we translated this
-same statement into clausal logic as</span></p>
+<p class="tekst">Recall that we translated this
+same statement into clausal logic as</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">loves(X,person_loved_by(X))</span></p>
+<p class="p-el">loves(X,person_loved_by(X))</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">These two formulas are not
-logically equivalent! That is, the Predicate Logic formula has models like {</span><span style="mso-bookmark:bk0"><span style="font-family:Courier">loves(paul,anna)</span>}
+<p class="tekst">These two formulas are not
+logically equivalent! That is, the Predicate Logic formula has models like {<span style="font-family:Courier">loves(paul,anna)</span>}
 which are <b style="mso-bidi-font-weight:normal">not</b> models of the clause.
 The reason for this is, that in clausal logic we are forced to introduce
 abstract names, while in Predicate Logic we are not (we use existential
 quantification instead). On the other hand, every model of the Predicate Logic
 formula, if not a model of the clause, can always be converted to a model of
-the clause, like {</span><span style="mso-bookmark:bk0"><span style="font-family:
-Courier">loves(paul,person_loved_by(paul))</span>}. Thus, we have that the
+the clause, like {<span style="font-family:Courier">loves(paul,person_loved_by(paul))</span>}. Thus, we have that the
 formula has a model if and only if the clause has a model (but not necessarily
-the same model).</span></p>
+the same model).</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">So, existential quantifiers are
+<p class="sektie">So, existential quantifiers are
 replaced by functors. The arguments of the functor are given by the universal
 quantifiers in whose scope the existential quantifier occurs. In the above
-example, </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&exist;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span> occurs
-within the scope of </span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span></span><span style="mso-bookmark:bk0"><span style="font-family:Courier">X</span>, so we replace </span><span style="mso-bookmark:bk0"><span style="font-family:Courier">Y</span> everywhere
-in the formula by </span><span style="mso-bookmark:bk0"><span style="font-family:
-Courier">person_loved_by(X)</span>, where </span><span style="mso-bookmark:
-bk0"><span style="font-family:Courier">person_loved_by</span> should be a <b style="mso-bidi-font-weight:normal">new</b> functor, not occurring anywhere
-else in the clause (or in any other clause). This new functor is called a <i style="mso-bidi-font-style:normal">Skolem functor</i></span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><i
-style='mso-bidi-font-style:normal'><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;Skolem functor&quot; \b </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">, and the whole process is called <i style="mso-bidi-font-style:
-normal">Skolemisation</i></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk0'><span style='display:none;mso-hide:all'> XE </span><i
-style='mso-bidi-font-style:normal'><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;Skolemisation&quot; \b </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span style='mso-bookmark:
-bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">. Note that, if the existential quantifier does not
+example, <span style="font-family:Symbol">&exist;</span><span style="font-family:Courier">Y</span> occurs
+within the scope of <span style="font-family:Symbol">&forall;</span><span style="font-family:Courier">X</span>, so we replace <span style="font-family:Courier">Y</span> everywhere
+in the formula by <span style="font-family:Courier">person_loved_by(X)</span>, where <span style="font-family:Courier">person_loved_by</span> should be a <b style="mso-bidi-font-weight:normal">new</b> functor, not occurring anywhere
+else in the clause (or in any other clause). This new functor is called a <i style="mso-bidi-font-style:normal">Skolem functor</i>, and the whole process is called <i style="mso-bidi-font-style:normal">Skolemisation</i>. Note that, if the existential quantifier does not
 occur inside the scope of a universal quantifier, the Skolem functor does not
 get any arguments, i.e. it becomes a <i style="mso-bidi-font-style:normal">Skolem
-constant</i></span><!--[if supportFields]><span style='mso-bookmark:bk0'></span><span
-style='mso-element:field-begin'></span><span style='mso-bookmark:bk0'><span
-style='display:none;mso-hide:all'> XE </span><i style='mso-bidi-font-style:
-normal'><span style="mso-spacerun:yes">&nbsp;</span>&quot;Skolem constant&quot;
-\b </i></span><![endif]--><span style="mso-bookmark:bk0"></span><!--[if supportFields]><span
-style='mso-bookmark:bk0'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk0">. For example, the formula</span></p>
+constant</i>. For example, the formula</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&exist;</span>X</span><span style="mso-bookmark:bk0"><span style="font-family:Symbol">&forall;</span>Y:
-loves(X,Y)</span></p>
+<p class="p-el"><span style="font-family:Symbol">&exist;</span>X<span style="font-family:Symbol">&forall;</span>Y:
+loves(X,Y)</p>
 
-<p class="tekst"><span style="mso-bookmark:bk0">(&lsquo;somebody loves everybody&rsquo;) is
-translated to the clause</span></p>
+<p class="tekst">(&lsquo;somebody loves everybody&rsquo;) is translated to the clause</p>
 
-<p class="p-el"><span style="mso-bookmark:bk0">loves(someone_who_loves_everybody,X)</span></p>
+<p class="p-el">loves(someone_who_loves_everybody,X)</p>
 
-<p class="sektie"><span style="mso-bookmark:bk0">Finally, we illustrate the whole
-process of converting from Predicate Logic</span><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span style="mso-spacerun:yes">&nbsp;</span>&quot;Predicate
-Logic&quot; \r &quot;bk0&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>to clausal logic by means of an example.
+<p class="sektie">Finally, we illustrate the whole process of converting from Predicate Logic
+<span style="mso-spacerun:yes">&nbsp;</span>to clausal logic by means of an example.
 Consider the sentence &lsquo;Everyone has a mother, but not every woman has a child&rsquo;.
 In Predicate Logic, this can be represented as</p>
 
@@ -4082,8 +4005,9 @@ parent(X,Y):-mother(X,Y).
 father(john,paul).
 mother(mary,paul).
 </pre>
-<p class="tekst">The SLD-tree for the query <pre class="swish query" id="query3.2.3">?- parent(john,C).</pre>
-is given in fig. 3.4. The answer given by Prolog is {<span style="font-family:
+<p class="tekst">The SLD-tree for the query</p>
+<pre class="swish query" id="query3.2.3">?- parent(john,C).</pre>
+<p class="tekst">is given in fig. 3.4. The answer given by Prolog is {<span style="font-family:
 Courier">C</span><span style="font-family:Symbol">&rarr;</span><span style="font-family:Courier">paul</span>}. By asking whether there are any other
 answers, we force Prolog to backtrack to the most recent choice point for which
 there are any alternatives left, which is the root of the SLD-tree (i.e. the
@@ -6268,40 +6192,40 @@ arguments&quot; \b </i><![endif]--><!--[if supportFields]><span
 style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]-->,
 whose relation to the variables in the recursive call still has to be decided.
 It should be noted that not all predicates are tail recursive, so it is not yet
-known whether the recursive call will be last indeed.<a name="bk1"> Notice also
+known whether the recursive call will be last indeed. Notice also
 that the output arguments in the recursive call have been given meaningful
-names, which is, in general, a good idea. </a></p>
+names, which is, in general, a good idea. </p>
 
-<p class="sektie"><span style="mso-bookmark:bk1">Once we have &lsquo;chopped off&rsquo; the
+<p class="sektie">Once we have &lsquo;chopped off&rsquo; the
 first number in the list, we have to do something with it. Depending on whether
-it is smaller than </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">N</span> or not, it has to be added to the </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Littles</span> or
-the </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Bigs</span>.
-Suppose </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Head</span>
-is smaller than </span><span style="mso-bookmark:bk1"><span style="font-family:
-Courier">N</span>:</span></p>
+it is smaller than <span style="font-family:Courier">N</span> or not, it has to 
+be added to the <span style="font-family:Courier">Littles</span> or
+the <span style="font-family:Courier">Bigs</span>.
+Suppose <span style="font-family:Courier">Head</span>
+is smaller than <span style="font-family:Courier">N</span>:</p>
 
-<p class="pi-el"><span style="mso-bookmark:bk1">partition([Head|Tail],N,?Littles,?Bigs):-<br>
+<p class="pi-el">partition([Head|Tail],N,?Littles,?Bigs):-<br>
 Head &lt; N,<br>
-partition(Tail,N,Littles,Bigs)</span></p>
+partition(Tail,N,Littles,Bigs)</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">Thus, </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Head</span> must be
-added to </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Littles</span>.
+<p class="tekst">Thus, <span style="font-family:Courier">Head</span> must be
+added to <span style="font-family:Courier">Littles</span>.
 In this case, it does not matter in which position it is added: obviously, the
-most simple way is to add it to the head of the list:</span></p>
+most simple way is to add it to the head of the list:</p>
 
-<p class="pi-el"><span style="mso-bookmark:bk1">?Littles = [Head|Littles]</span></p>
+<p class="pi-el">?Littles = [Head|Littles]</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">In such cases, where output
+<p class="tekst">In such cases, where output
 arguments are simply constructed by unification, the unification is performed
-implicitly in the head of the clause (the fourth argument remains unchanged): </span></p>
+implicitly in the head of the clause (the fourth argument remains unchanged):</p>
 
-<p class="pi-el"><span style="mso-bookmark:bk1">partition([Head|Tail],N,[Head|Littles],Bigs):-<br>
+<p class="pi-el">partition([Head|Tail],N,[Head|Littles],Bigs):-<br>
 Head &lt; N,<br>
-partition(Tail,N,Littles,Bigs)</span></p>
+partition(Tail,N,Littles,Bigs)</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">A second recursive clause is
-needed to cover the case that </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Head</span> is larger than or equal to </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">N</span>, in which
-case it must be added to </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Bigs</span>. The final program looks as follows: </span></p>
+<p class="tekst">A second recursive clause is
+needed to cover the case that <span style="font-family:Courier">Head</span> is larger than or equal to <span style="font-family:Courier">N</span>, in which
+case it must be added to <span style="font-family:Courier">Bigs</span>. The final program looks as follows:</p>
 
 <pre class="source swish" data-variant-id="group-2" id="swish.3.9.1" style="display: block;" 
 query-text="?- partition([1,9,6,3,5],5,Littles,Bigs). ?- partition([11,7,5],5,Littles,Bigs).">
@@ -6313,30 +6237,30 @@ partition([Head|Tail],N,[Head|Littles],Bigs):- Head < N, partition(Tail,N,Little
 partition([Head|Tail],N,Littles,[Head|Bigs]):- Head >= N, partition(Tail,N,Littles,Bigs).
 </pre>
 
-<p class="sektie"><span style="mso-bookmark:bk1">The approach taken here can be
+<p class="sektie">The approach taken here can be
 formulated as a general strategy for writing Prolog predicates. The steps to be
-performed according to this strategy are summarised below: </span></p>
+performed according to this strategy are summarised below:</p>
 
-<p class="opsomming" style="margin-top:6.0pt"><span style="mso-bookmark:bk1">(<i style="mso-bidi-font-style:normal">i</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span>write
-down a declarative specification; </span></p>
+<p class="opsomming" style="margin-top:6.0pt">(<i style="mso-bidi-font-style:normal">i</i>)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span>write
+down a declarative specification;</p>
 
-<p class="opsomming"><span style="mso-bookmark:bk1">(<i style="mso-bidi-font-style:
+<p class="opsomming">(<i style="mso-bidi-font-style:
 normal">ii</i>)<span style="mso-tab-count:1">&nbsp;&nbsp; </span>identify the
-recursion argument, and the output arguments; </span></p>
+recursion argument, and the output arguments;</p>
 
-<p class="opsomming"><span style="mso-bookmark:bk1">(<i style="mso-bidi-font-style:
+<p class="opsomming">(<i style="mso-bidi-font-style:
 normal">iii</i>)<span style="mso-tab-count:1">&nbsp; </span>write down a
-skeleton; </span></p>
+skeleton;</p>
 
-<p class="opsomming"><span style="mso-bookmark:bk1">(<i style="mso-bidi-font-style:
+<p class="opsomming">(<i style="mso-bidi-font-style:
 normal">iv</i>)<span style="mso-tab-count:1">&nbsp; </span>complete the bodies
-of the clauses;</span></p>
+of the clauses;</p>
 
-<p class="opsomming" style="margin-bottom:6.0pt"><span style="mso-bookmark:bk1">(<i style="mso-bidi-font-style:normal">v</i>)<span style="mso-tab-count:1">&nbsp;&nbsp; </span>fill
-in the output arguments. </span></p>
+<p class="opsomming" style="margin-bottom:6.0pt">(<i style="mso-bidi-font-style:normal">v</i>)<span style="mso-tab-count:1">&nbsp;&nbsp; </span>fill
+in the output arguments.</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">Notice that step (<i style="mso-bidi-font-style:normal">iv</i>) comprises most of the work, while
-the other steps are meant to make this work as easy as possible. </span></p>
+<p class="tekst">Notice that step (<i style="mso-bidi-font-style:normal">iv</i>) comprises most of the work, while
+the other steps are meant to make this work as easy as possible.</p>
 
 <div style="mso-element:para-border-div;border-top:solid windowtext 1.0pt;
 border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
@@ -6344,64 +6268,56 @@ mso-border-top-alt:solid windowtext .25pt;mso-border-bottom-alt:solid windowtext
 padding:6.0pt 0cm 6.0pt 0cm;margin-left:1.0cm;margin-right:1.0cm">
 
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
-margin-left:0cm"><span style="mso-bookmark:bk1"><i style="mso-bidi-font-style:
-normal">Exercise 3.18.</i> Implement a predicate </span><span style="mso-bookmark:
-bk1"><span style="font-family:Courier">permutation/2</span>, such that </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">permutation(L,P)</span>
-is true if </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">P</span>
-contains the same elements as the list </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">L</span> but (possibly) in a different order,
-following these steps. (One auxiliary predicate is needed.)</span></p>
+margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.18.</i> Implement a predicate 
+<span style="font-family:Courier">permutation/2</span>, such that 
+<span style="font-family:Courier">permutation(L,P)</span>
+is true if <span style="font-family:Courier">P</span>
+contains the same elements as the list <span style="font-family:Courier">L</span> but (possibly) in a different order,
+following these steps. (One auxiliary predicate is needed.)</p>
 
 </div>
 
-<p class="sektie"><span style="mso-bookmark:bk1">As a second example, consider
-the problem of sorting a list</span><!--[if supportFields]><span
-style='mso-bookmark:bk1'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk1'><span style='display:none;mso-hide:all'> XE </span><span
-style="mso-spacerun:yes">&nbsp;</span>&quot;sorting a list&quot; </span><![endif]--><span style="mso-bookmark:bk1"></span><!--[if supportFields]><span style='mso-bookmark:
-bk1'></span><span style='mso-element:field-end'></span><![endif]--><span style="mso-bookmark:bk1"><span style="mso-spacerun:yes">&nbsp;</span>of
-numbers. The declarative specification is as follows:</span></p>
+<p class="sektie">As a second example, consider
+the problem of sorting a list<span style="mso-spacerun:yes">&nbsp;</span>of
+numbers. The declarative specification is as follows:</p>
 
-<p class="oms-eerst" style="margin-bottom:6.0pt"><span style="mso-bookmark:bk1">%
-sort(L,S) &lt;- S is a sorted permutation of list L</span></p>
+<p class="oms-eerst" style="margin-bottom:6.0pt">%sort(L,S) &lt;- S is a sorted permutation of list L</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">Note that this specification can
-immediately be translated to Prolog:</span></p>
+<p class="tekst">Note that this specification can immediately be translated to Prolog:</p>
 
-<p class="pi-el"><span style="mso-bookmark:bk1">sort(L,S):-<br>
+<p class="pi-el">
+sort(L,S):-<br>
 permutation(L,S),<br>
-sorted(S).</span></p>
+sorted(S).</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">This program first guesses a
-permutation of </span><span style="mso-bookmark:bk1"><span style="font-family:
-Courier">L</span>, and then checks if the permutation happens to be sorted.
+<p class="tekst">This program first guesses a
+permutation of <span style="font-family:Courier">L</span>, and then checks if the permutation happens to be sorted.
 Declaratively, this program is correct; procedurally, it is extremely
 inefficent since there are <i style="mso-bidi-font-style:normal">n</i>!
 different permutations of a list of length <i style="mso-bidi-font-style:normal">n</i>.
-Thus, we have to think of a more efficient algorithm. </span></p>
+Thus, we have to think of a more efficient algorithm.</p>
 
-<p class="sektie"><span style="mso-bookmark:bk1">The recursion and output
+<p class="sektie">The recursion and output
 arguments are easily identified as the first and second argument, respectively.
 The base case states that the empty list is already sorted, while the recursive
-clause states that a non-empty list is sorted by sorting its tail separately: </span></p>
+clause states that a non-empty list is sorted by sorting its tail separately:</p>
 
-<p class="pi-eerst"><span style="mso-bookmark:bk1">sort([],[]).</span></p>
+<p class="pi-eerst">sort([],[]).</p>
 
-<p class="pi-laatst"><span style="mso-bookmark:bk1">sort([Head|Tail],?Sorted):-<br>
+<p class="pi-laatst">
+sort([Head|Tail],?Sorted):-<br>
 /* do something with Head */<br>
-sort(Tail,Sorted).</span></p>
+sort(Tail,Sorted).</p>
 
-<p class="tekst"><span style="mso-bookmark:bk1">It remains to decide what the
-relation is between </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">?Sorted</span>, </span><span style="mso-bookmark:
-bk1"><span style="font-family:Courier">Head</span> and </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Sorted</span>.
-Obviously, </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Head</span>
-cannot be simply added to the front of </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Sorted</span>, but has to be inserted in the proper
-place. We thus need an auxiliary predicate </span><span style="mso-bookmark:
-bk1"><span style="font-family:Courier">insert/3</span>, to add </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Head</span> at the
-proper position in </span><span style="mso-bookmark:bk1"><span style="font-family:Courier">Sorted</span>. Note that tail recursion</span><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span style="mso-spacerun:yes">&nbsp;</span>&quot;tail
-recursion&quot; \r &quot;bk1&quot; <![endif]--><!--[if supportFields]><span
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span>is not applicable in this case, since we
+<p class="tekst">It remains to decide what the
+relation is between <span style="font-family:Courier">?Sorted</span>, 
+<span style="font-family:Courier">Head</span> and <span style="font-family:Courier">Sorted</span>.
+Obviously, <span style="font-family:Courier">Head</span>
+cannot be simply added to the front of <span style="font-family:Courier">Sorted</span>, but has to be inserted in the proper
+place. We thus need an auxiliary predicate <span style="font-family:Courier">insert/3</span>, to add 
+<span style="font-family:Courier">Head</span> at the
+proper position in <span style="font-family:Courier">Sorted</span>. Note that tail 
+recursion<span style="mso-spacerun:yes">&nbsp;</span>is not applicable in this case, since we
 have to insert <span style="font-family:Courier">Head</span> in an already
 sorted list. We thus arrive at the following definition:</p>
 

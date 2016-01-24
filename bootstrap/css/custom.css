@@ -7,3 +7,6 @@ body {
 abar {
   padding-top: 55px;
 }
+table.figure {
+  width: 75%;
+}

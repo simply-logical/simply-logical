@@ -4347,39 +4347,33 @@ lang=EN-US>[b,b,b,e,w,w,w]-9<br>
 <p class=pi-laatst><span lang=EN-US>C = 15</span></p>
 
 <p class=tekst><span lang=EN-US>Since the only moves that are considered are
-those that are on the final solution path, there is no <a name=bk1>backtracking.
+those that are on the final solution path, there is no backtracking.
 This seems to suggest that the heuristic works quite well. On the other hand,
 the first few moves seem a bit awkward: in particular, the first and the fourth
-move are relatively expensive.</a></span></p>
+move are relatively expensive.</span></p>
 
-<p class=sektie><span style='mso-bookmark:bk1'><span lang=EN-US>Let&rsquo;s try
+<p class=sektie><span lang=EN-US>Let&rsquo;s try
 another heuristic, which counts the number of tiles out of place: a wrong tile
 on the first or seventh square gives 3, on the second or sixth square 2, and on
-the third or fifth square 1.</span></span></p>
+the third or fifth square 1.</span></p>
 
-<p class=pi-el><span style='mso-bookmark:bk1'><span lang=EN-US>eval</span></span><!--[if supportFields]><span
-style='mso-bookmark:bk1'></span><span style='mso-element:field-begin'></span><span
-style='mso-bookmark:bk1'><span lang=EN-US style='display:none;mso-hide:all'> XE
-</span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;eval/2&quot;
-</span></span><![endif]--><span style='mso-bookmark:bk1'></span><!--[if supportFields]><span
-style='mso-bookmark:bk1'></span><span style='mso-element:field-end'></span><![endif]--><span
-style='mso-bookmark:bk1'><span lang=EN-US>(Pos,Value):-<br>
-outOfPlace(Pos,1,0,Value).</span></span></p>
+<p class=pi-el><span lang=EN-US>eval(Pos,Value):-<br>
+outOfPlace(Pos,1,0,Value).</span></p>
 
-<p class=pi><span style='mso-bookmark:bk1'><span lang=EN-US>outOfPlace(Pos,8,N,N).</span></span></p>
+<p class=pi><span lang=EN-US>outOfPlace(Pos,8,N,N).</span></p>
 
-<p class=pi-laatst><span style='mso-bookmark:bk1'><span lang=EN-US>outOfPlace(Pos,K,N0,N):-<br>
+<p class=pi-laatst><span lang=EN-US>outOfPlace(Pos,K,N0,N):-<br>
 K&lt;8, K1 is K+1,<br>
 ( K&lt;4,get_tile(Pos,K,b) -&gt; N1 is N0-(K-4)<br>
 ; K&gt;4,get_tile(Pos,K,w) -&gt; N1 is N0+(K-4)<br>
 ; otherwise -&gt; N1=N0 ),<br>
-outOfPlace(Pos,K1,N1,N).</span></span></p>
+outOfPlace(Pos,K1,N1,N).</span></p>
 
-<p class=tekst><span style='mso-bookmark:bk1'><span lang=EN-US>We get the
-following result: </span></span></p>
+<p class=tekst><span lang=EN-US>We get the following result: </span></p>
 
-<p class=p-eerst style='mso-pagination:widow-orphan;page-break-after:auto'><span
-style='mso-bookmark:bk1'><span lang=EN-US>[b,b,b,e,w,w,w]-12<br>
+<p class=p-eerst style='mso-pagination:widow-orphan;page-break-after:auto'>
+<span lang=EN-US>
+[b,b,b,e,w,w,w]-12<br>
 [b,b,b,w,w,w,e]-9<br>
 [e,b,b,b,w,w,w]-9<br>
 [b,b,b,w,w,e,w]-10<br>
@@ -4390,24 +4384,22 @@ style='mso-bookmark:bk1'><span lang=EN-US>[b,b,b,e,w,w,w]-12<br>
 [w,b,b,w,w,b,e]-4<br>
 [w,b,b,w,w,e,b]-4<br>
 [w,b,e,w,w,b,b]-3<br>
-[w,b,w,w,e,b,b]-2</span></span></p>
+[w,b,w,w,e,b,b]-2
+</span></p>
 
-<p class=pi style='margin-left:48.0pt;text-indent:-31.0pt'><span
-style='mso-bookmark:bk1'><span lang=EN-US>M = [[b,b,b,e,w,w,w],[b,b,b,w,w,e,w],[b,b,e,w,w,b,w],<br>
+<p class=pi style='margin-left:48.0pt;text-indent:-31.0pt'>
+<span lang=EN-US>
+M = [[b,b,b,e,w,w,w],[b,b,b,w,w,e,w],[b,b,e,w,w,b,w],<br>
 [e,b,b,w,w,b,w],[w,b,b,e,w,b,w],[w,b,b,w,w,b,e],<br>
 [w,b,b,w,w,e,b],[w,b,e,w,w,b,b],[w,b,w,w,e,b,b],<br>
-[w,e,w,w,b,b,b]]</span></span></p>
+[w,e,w,w,b,b,b]]
+</span></p>
 
-<p class=pi-laatst><span style='mso-bookmark:bk1'><span lang=EN-US>C = 14</span></span></p>
+<p class=pi-laatst><span lang=EN-US>C = 14</span></p>
 
-<p class=tekst><span style='mso-bookmark:bk1'><span lang=EN-US>We observe a
+<p class=tekst><span lang=EN-US>We observe a
 couple of differences with the previous heuristic. First of all, there is
-backtracking</span></span><!--[if supportFields]><span lang=EN-US
-style='display:none;mso-hide:all'><span style='mso-element:field-begin'></span>
-XE </span><span lang=EN-US><span style="mso-spacerun:yes">&nbsp;</span>&quot;backtracking&quot;
-\r &quot;bk1&quot; </span><![endif]--><!--[if supportFields]><span lang=EN-US
-style='display:none;mso-hide:all'><span style='mso-element:field-end'></span></span><![endif]--><span
-lang=EN-US>: the first, second and fourth moves are not pursued any further.
+backtracking: the first, second and fourth moves are not pursued any further.
 Furthermore, the solution found requires two moves less, and is also cheaper. </span></p>
 
 <div style='mso-element:frame;mso-element-wrap:auto;mso-height-rule:exactly'>
