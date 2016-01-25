@@ -3,15 +3,15 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-3">
-          <h2 class="h2">About author</h2>
+          <h2 class="h2">{{ site.title }}</h2>
           <h4 class="h4">Peter Flach,<br>University of Bristol</h4>
           <ul class="contact-list">
-            <li><a href="https://www.cs.bris.ac.uk/~flach/index.html">Peter's website</a></li>
-            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            <li><a href="{{ site.website }}">Book website</a></li>
+            <li><a href="mailto:{{ site.email }}">Email author</a></li>
           </ul>
         </div>
         <div class="col-md-9">
-          <h2 class="h2">{{ site.title }}</h2>
+          <h2 class="h2">{{ site.subtitle }}</h2>
           <p>{{ site.description }}</p>
           <p><a class="btn btn-default" href="{{ site.baseurl }}/about.html#About" data-target="#About" role="button">Read more &raquo;</a></p>
         </div>
