@@ -10,6 +10,7 @@ description: > # this means to ignore newlines until "baseurl:"
   implement aspects of intelligent behaviour on a computer. 
 baseurl: "/simply-logical" # the subpath of your site, e.g. /blog/
 url: "http://so-cool.github.io" # the base hostname & protocol for your site
+repo: "https://github.com/So-Cool"
 # twitter_username: jekyllrb
 # github_username:  jekyll
 
