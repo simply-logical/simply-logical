@@ -9,8 +9,8 @@ description: > # this means to ignore newlines until "baseurl:"
   various kinds of reasoning, and Artificial Intelligence, which seeks to 
   implement aspects of intelligent behaviour on a computer. 
 baseurl: "/simply-logical" # the subpath of your site, e.g. /blog/
-url: "http://so-cool.github.io" # the base hostname & protocol for your site
-repo: "https://github.com/So-Cool"
+url: "http://flach.github.io" # the base hostname & protocol for your site
+repo: "https://github.com/flach"
 # twitter_username: jekyllrb
 # github_username:  jekyll
 
