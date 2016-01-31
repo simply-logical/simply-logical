@@ -5578,7 +5578,7 @@ children(Parent,Children):- findall(C,parent(Parent,C),Children).
 ?-children(john,Children).
 </pre>
 <p class="query" style="margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;
-margin-left:28.9pt;page-break-after:auto">?-children(john,Children).<br>
+margin-left:28.9pt;page-break-after:auto">
 Children = [peter,paul,mary]</p>
 
 <p class="tekst">In general, the query </p>
@@ -5695,7 +5695,7 @@ style='mso-element:field-end'></span></span><![endif]--></p>
 knowledge, expressed as propositional if-then rules:</p>
 
 <pre class="source swish temp" data-variant-id="group-2" id="swish.3.8.1" style="display: block;" 
-query-text="?-if tweety then is_bird. ?-if tweety then lays_eggs.">
+query-text="?-if tweety then C. ?-if A and lays_eggs then is_bird.">
 % if A and B then C means if(then(and(A,B),C))
 :-op(900,fx,if).
 :-op(800,xfx,then).
@@ -5716,12 +5716,17 @@ to show that the rule</p>
 meta-program, which manipulates the rules on the object-level: </p>
 
 <pre class="source swish inherit" data-variant-id="group-2" id="swish.3.8.2" inherit-id="swish.3.8.1" style="display: block;" 
-query-text="?-derive(if tweety then is_bird). ?-derive(if tweety then lays_eggs).">
+query-text="?-derive(if tweety then is_bird). ?-derive(if tweety then C). ?-derive(if A then is_bird).">
 % meta-program
-derive(if Assumptions then Goal):- if Body then Goal,
-derive(if Assumptions then Body).
-derive(if Assumptions then Goal1 and Goal2):- derive(if Assumptions then Goal1), derive(if Assumptions then Goal2).
-derive(if Assumptions then Goal):- assumed(Goal,Assumptions).
+derive(if Assumptions then Goal):-
+	if Body then Goal,
+	derive(if Assumptions then Body).
+derive(if Assumptions then Goal1 and Goal2):-
+	derive(if Assumptions then Goal1),
+	derive(if Assumptions then Goal2).
+derive(if Assumptions then Goal):-
+	assumed(Goal,Assumptions).
+	
 assumed(A,A).
 assumed(A,A and _As).
 assumed(A,_B and As):- assumed(A,As).
@@ -6272,12 +6277,12 @@ following these steps. (One auxiliary predicate is needed.)</p>
 the problem of sorting a list<span style="mso-spacerun:yes">&nbsp;</span>of
 numbers. The declarative specification is as follows:</p>
 
-<p class="oms-eerst" style="margin-bottom:6.0pt">%sort(L,S) &lt;- S is a sorted permutation of list L</p>
+<p class="oms-eerst" style="margin-bottom:6.0pt">%mySort(L,S) &lt;- S is a sorted permutation of list L</p>
 
 <p class="tekst">Note that this specification can immediately be translated to Prolog:</p>
 
 <p class="pi-el">
-sort(L,S):-<br>
+mySort(L,S):-<br>
 permutation(L,S),<br>
 sorted(S).</p>
 
@@ -6293,12 +6298,12 @@ arguments are easily identified as the first and second argument, respectively.
 The base case states that the empty list is already sorted, while the recursive
 clause states that a non-empty list is sorted by sorting its tail separately:</p>
 
-<p class="pi-eerst">sort([],[]).</p>
+<p class="pi-eerst">mySort([],[]).</p>
 
 <p class="pi-laatst">
-sort([Head|Tail],?Sorted):-<br>
+mySort([Head|Tail],?Sorted):-<br>
 /* do something with Head */<br>
-sort(Tail,Sorted).</p>
+mySort(Tail,Sorted).</p>
 
 <p class="tekst">It remains to decide what the
 relation is between <span style="font-family:Courier">?Sorted</span>, 
@@ -6314,14 +6319,14 @@ sorted list. We thus arrive at the following definition:</p>
 
 
 <pre class="source swish" data-variant-id="group-2" id="swish.3.9.2" style="display: block;" 
-query-text="?-sort([3,6,2,8,1],Sorted). ?-sort([6,5,4,3,2,1],Sorted)."
+query-text="?-mySort([3,6,2,8,1],Sorted). ?-mySort([6,5,4,3,2,1],Sorted)."
 source-text-end="
 insert(X,[],[X]).
 insert(X,[Head|Tail],[Head|Inserted]):- X > Head, insert(X,Tail,Inserted).
 insert(X,[Head|Tail],[X,Head|Tail]):- X =< Head."
 >
-sort([],[]).
-sort([Head|Tail],WholeSorted):- sort(Tail,Sorted), insert(Head,Sorted,WholeSorted).
+mySort([],[]).
+mySort([Head|Tail],WholeSorted):- mySort(Tail,Sorted), insert(Head,Sorted,WholeSorted).
 </pre>
 
 <p class="sektie">In order to implement <span style="font-family:Courier">insert/3</span>,
