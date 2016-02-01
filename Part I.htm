@@ -3678,8 +3678,8 @@ recursive. As an example, consider the following program: </p>
 
 
 <pre class="source swish" data-variant-id="group-2" id="swish.3.1.3" style="display: block;">
-brother_of(paul,peter).
 brother_of(X,Y):-brother_of(Y,X).
+brother_of(paul,peter).
 </pre>
 
 
@@ -3872,7 +3872,7 @@ margin-left:0cm"><i style="mso-bidi-font-style:normal">Exercise 3.2.</i> Draw
 the SLD-tree for the following program:</p>
 <pre class="source swish" data-variant-id="group-1" id="swish.2.3.2" style="display: block;">
 list([]).
-list([_X|Y]):-list(Y).
+list([_H|T]):-list(T).
 </pre>
 <p class="exercise" style="margin-top:18.0pt;margin-right:0cm;margin-bottom:18.0pt;
 margin-left:0cm">and the query </p>
@@ -6004,13 +6004,10 @@ prove_r(B).</p>
 with a second argument, which returns the proof tree as a list of pairs <span style="font-family:Courier">p(Resolvent,Clause)</span>: </p>
 
 <pre class="source swish" data-variant-id="group-2" id="swish.3.8.2" style="display: block;" 
-query-text="?-prove_p(student_of(S,T))."
-source-text-start="
-:-op(900,fy,not).
-"
+query-text="?-prove_p(student_of(S,T)). ?-prove_p(is_bird(X))."
 source-text-end="
 conj_append(true,Ys,Ys).
-conj_append(X,Ys,(X,Ys)):-not X=true,not X=(One,TheOther).
+conj_append(X,Ys,(X,Ys)):-X\=true,X\=(_One,_TheOther).
 conj_append((X,Xs),Ys,(X,Zs)):-conj_append(Xs,Ys,Zs).
 
 student_of(S,T):-teaches(T,C),follows(S,C).
@@ -6018,6 +6015,11 @@ teaches(peter,cs).
 teaches(peter,ai).
 follows(maria,cs).
 follows(paul,ai).
+
+is_bird(X):-has_feathers(X),lays_eggs(X).
+is_fish(X):-has_gills(X),lays_eggs(X).
+has_feathers(tweety).
+lays_eggs(tweety).
 "
 >
 % display a proof tree
@@ -6025,12 +6027,21 @@ prove_p(A):-prove_p(A,P),write_proof(P).
 
 % prove_p(A,P) <- P is proof tree of A
 prove_p(true,[]):-!.
-prove_p((A,B),[p((A,B),(A:-C))|Proof]):-!,clause(A,C),conj_append(C,B,D),prove_p(D,Proof).
-prove_p(A,[p(A,(A:-B))|Proof]):-clause(A,B),prove_p(B,Proof).
+prove_p((A,B),[p((A,B),(A:-C))|Proof]):-!,
+	clause(A,C),
+	conj_append(C,B,D),
+	prove_p(D,Proof).
+prove_p(A,[p(A,(A:-B))|Proof]):-
+	clause(A,B),
+	prove_p(B,Proof).
 
-write_proof([]):-write('               []'),nl.
-write_proof([p(A,B)|Proof]):-write((:-A)),nl,write('     |'),write(          B),
-	nl,write('     |'),write('                    /'),nl,write_proof(Proof).
+write_proof([]):-
+	write('...............[]'),nl.
+write_proof([p(A,B)|Proof]):-
+	write((:-A)),nl,
+	write('.....|'),write('..........'),write(B),nl,
+	write('.....|'),write('..................../'),nl,
+	write_proof(Proof).
 </pre>
 
 <p class="tekst">For instance, given the following clauses: </p>
@@ -6229,8 +6240,12 @@ query-text="?-partition([1,9,6,3,5],5,Littles,Bigs). ?-partition([11,7,5],5,Litt
 %                                in L smaller than N, 
 %                                Bigs contains the rest
 partition([],_N,[],[]).
-partition([Head|Tail],N,[Head|Littles],Bigs):- Head < N, partition(Tail,N,Littles,Bigs).
-partition([Head|Tail],N,Littles,[Head|Bigs]):- Head >= N, partition(Tail,N,Littles,Bigs).
+partition([Head|Tail],N,[Head|Littles],Bigs):-
+	Head < N,
+	partition(Tail,N,Littles,Bigs).
+partition([Head|Tail],N,Littles,[Head|Bigs]):-
+	Head >= N,
+	partition(Tail,N,Littles,Bigs).
 </pre>
 
 <p class="sektie">The approach taken here can be
@@ -6322,11 +6337,16 @@ sorted list. We thus arrive at the following definition:</p>
 query-text="?-mySort([3,6,2,8,1],Sorted). ?-mySort([6,5,4,3,2,1],Sorted)."
 source-text-end="
 insert(X,[],[X]).
-insert(X,[Head|Tail],[Head|Inserted]):- X > Head, insert(X,Tail,Inserted).
-insert(X,[Head|Tail],[X,Head|Tail]):- X =< Head."
+insert(X,[Head|Tail],[Head|Inserted]):-
+	X > Head,
+	insert(X,Tail,Inserted).
+insert(X,[Head|Tail],[X,Head|Tail]):-
+	X =< Head."
 >
 mySort([],[]).
-mySort([Head|Tail],WholeSorted):- mySort(Tail,Sorted), insert(Head,Sorted,WholeSorted).
+mySort([Head|Tail],WholeSorted):-
+	mySort(Tail,Sorted),
+	insert(Head,Sorted,WholeSorted).
 </pre>
 
 <p class="sektie">In order to implement <span style="font-family:Courier">insert/3</span>,
@@ -6372,8 +6392,11 @@ be added before <span style="font-family:Courier">Head</span>: </p>
 <pre class="source swish" data-variant-id="group-2" id="swish.3.9.3" style="display: block;" 
 query-text="?-insert(4,[2,3,5,7],Inserted). ?-insert(1,[2,3,5,7],Inserted). ?-insert(8,[2,3,5,7],Inserted).">
 insert(X,[],[X]).
-insert(X,[Head|Tail],[Head|Inserted]):- X > Head, insert(X,Tail,Inserted).
-insert(X,[Head|Tail],[X,Head|Tail]):- X =< Head.
+insert(X,[Head|Tail],[Head|Inserted]):-
+	X > Head,
+	insert(X,Tail,Inserted).
+insert(X,[Head|Tail],[X,Head|Tail]):-
+	X =< Head.
 </pre>
 
 <div style="mso-element:para-border-div;border-top:solid windowtext 1.0pt;
@@ -6626,6 +6649,104 @@ the discussion about the order of a logic in section 2.5.</p>
 </div>
 
 </div>
+
+<p />
+
+
+<h2>Additional material</h2>
+
+<h3>Section 3.1</h3>
+
+<pre class="source swish" data-variant-id="group-1" id="plist" style="display: block;"
+query-text="?-plist(L).">
+plist([]).
+plist([H|T]):-p(H),plist(T).
+
+p(1).
+p(2).
+</pre>
+
+
+
+<h3>Section 3.6</h3>
+
+<pre class="source swish" data-variant-id="group-1" id="fib" style="display: block;"
+query-text="?-fib(10,F). ?-fib(20,F). ?-fib(30,F). ?-fibn(30,F). ?-fibn(50,F). ?-fibn(100,F).">
+% fib(N,F) <- F is the N-th Fibonacci number
+% inefficient doubly-recursive version
+fib(1,1).
+fib(2,1).
+fib(N,F):-
+	N>2,N1 is N-1,N2 is N-2,
+	fib(N1,F1),fib(N2,F2),
+	F is F1+F2.
+
+% We can get a more efficient version 
+% by solving a more general problem!
+
+% fibn(N,Na,Nb,F) <- F is the N-th Fibonacci number
+%                   in the sequence starting with Na, Nb
+fibn(1,Na,_,Na).
+fibn(2,_,Nb,Nb).
+fibn(N,Na,Nb,F):-
+	N>2, N1 is N-1,
+	Nc is Na+Nb,
+	fibn(N1,Nb,Nc,F).
+
+fibn(N,F):-
+	fibn(N,1,1,F).
+</pre>
+
+
+
+<h3>Section 3.7</h3>
+
+<pre class="source swish" data-variant-id="group-1" id="biglist" style="display: block;"
+query-text="?-biglist(1,15,L).">
+biglist(Low,High,L):-
+    bagof(X,between(Low,High,X),L).
+    
+between(Low,_High,Low).
+between(Low,High,Number):-
+	Low < High,
+	NewLow is Low+1,
+	between(NewLow,High,Number).
+</pre>
+
+
+
+<h3>Section 3.9</h3>
+
+<pre class="source swish" data-variant-id="group-1" id="powerset" style="display: block;"
+query-text="?-powerset([a,b,c,d,e],PS). ?-powerset1([a,b,c,d,e],PS). ?-powerset2([a,b,c,d,e],PS). ?-biglist(1,20,S),powerset(S,PS). ?-biglist(1,20,S),powerset1(S,PS). ?-biglist(1,20,S),powerset2(S,PS). "
+source-text-end="
+%%% For testing
+biglist(Low,High,L):-bagof(X,between(Low,High,X),L)."
+>
+%%% Good generator, but not tail-recursive 
+powerset([],[[]]).
+powerset([H|T],PowerSet):-
+	powerset(T,PowerSetOfT),             % generator (GOOD) 
+	extend_pset(H,PowerSetOfT,PowerSet). % not tail-recursive
+	
+extend_pset(_,[],[]).
+extend_pset(H,[List|MoreLists],[List,[H|List]|More]):-
+	extend_pset(H,MoreLists,More).
+	
+%%% Bad generator, tail-recursive
+powerset1([],[[]]).
+powerset1([H|T],PowerSet):-
+	extend_pset(H,PowerSetOfT,PowerSet), % generator (BAD)
+	powerset1(T,PowerSetOfT).            % tail-recursive
+
+%%% Good generator, tail-recursive
+powerset2([],PowerSet,PowerSet).
+powerset2([H|T],Acc,PowerSet):-
+	extend_pset(H,Acc,Acc1),             % generator (GOOD) 
+	powerset2(T,Acc1,PowerSet).          % tail-recursive
+
+powerset2(Set,PowerSet):-powerset2(Set,[[]],PowerSet).
+</pre>
 
 
 
