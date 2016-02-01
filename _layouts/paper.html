@@ -3,7 +3,9 @@
 
   <head>
     {% include headB.html %}
-    {% include {{ page.part }}_head.htm %}
+    <meta name=Title content="{{ page.part }}">
+    <meta name=Keywords content="">
+    <title>{{ page.part }}</title>
   </head>
 
   <body data-spy="scroll" data-target=".navbar">
