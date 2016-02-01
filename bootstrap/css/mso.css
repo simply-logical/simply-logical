@@ -1,0 +1,470 @@
+@font-face{
+  font-family:Times;
+  panose-1:2 0 5 0 0 0 0 0 0 0;
+}
+@page WordSection2{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+@page WordSection3{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+@page WordSection1{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+@page WordSection4{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+p.romeinscijfer,li.romeinscijfer,div.romeinscijfer{
+  margin-top:60.0pt;
+  margin-right:0cm;
+  margin-bottom:40.0pt;
+  margin-left:0cm;
+  text-align:right;
+  page-break-before:always;
+  page-break-after:avoid;
+  font-size:100.0pt;
+  font-family:Times;
+}
+p.intermezzo,li.intermezzo,div.intermezzo{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  background:#E5E5E5;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.citaat,li.citaat,div.citaat{
+  margin-top:3.0pt;
+  margin-right:17.2pt;
+  margin-bottom:3.0pt;
+  margin-left:18.0pt;
+  text-indent:.35pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+h2{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  page-break-after:avoid;
+  font-size:18.0pt;
+  font-family:Times;
+}
+h3{
+  margin-top:24.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  line-height:15.0pt;
+  page-break-after:avoid;
+  font-size:12.0pt;
+  font-family:"Avant Garde";
+}
+p.tekst,li.tekst,div.tekst{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.pi,li.pi,div.pi{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:45.35pt;
+  margin-bottom:.0001pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.sektie1,li.sektie1,div.sektie1{
+  margin-top:12.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+div.WordSection2{
+  page:WordSection2;
+}
+p.answer,li.answer,div.answer{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  text-indent:18.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+div.WordSection4{
+  page:WordSection4;
+}
+p.small-caption,li.small-caption,div.small-caption{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+div.WordSection3{
+  page:WordSection3;
+}
+div.WordSection1{
+  page:WordSection1;
+}
+p.referenties,li.referenties,div.referenties{
+  margin-top:12.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:39.65pt;
+  margin-bottom:.0001pt;
+  text-indent:-41.1pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.med-caption,li.med-caption,div.med-caption{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.cijfer,li.cijfer,div.cijfer{
+  margin-top:96.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  page-break-before:always;
+  page-break-after:avoid;
+  font-size:48.0pt;
+  font-family:Times;
+  font-weight:bold;
+}
+p.programma,li.programma,div.programma{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.pi-el,li.pi-el,div.pi-el{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:45.35pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.MsoFootnoteText,li.MsoFootnoteText,div.MsoFootnoteText{
+  margin-top:0cm;
+  margin-right:30.0pt;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  line-height:10.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.pi-laatst,li.pi-laatst,div.pi-laatst{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:45.35pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.MsoNormal,li.MsoNormal,div.MsoNormal{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.oms-eerst,li.oms-eerst,div.oms-eerst{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.Caption1,li.Caption1,div.Caption1{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+h1{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:48.0pt;
+  margin-left:1.0cm;
+  text-align:right;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:24.0pt;
+  font-family:Times;
+}
+p.figure,li.figure,div.figure{
+  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.exercise,li.exercise,div.exercise{
+  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  line-height:11.0pt;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:12.0pt;
+  margin-left:1.0cm;
+  line-height:11.0pt;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.p-el,li.p-el,div.p-el{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:17.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.sektie,li.sektie,div.sektie{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  text-indent:18.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.p-laatst,li.p-laatst,div.p-laatst{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:17.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.inter-title,li.inter-title,div.inter-title{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:6.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  page-break-after:avoid;
+  background:#E5E5E5;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+  font-weight:bold;
+}
+p.query,li.query,div.query{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:28.9pt;
+  margin-bottom:.0001pt;
+  text-indent:-12.0pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.small-figure,li.small-figure,div.small-figure{
+  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.p-eerst,li.p-eerst,div.p-eerst{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.oms,li.oms,div.oms{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.formule,li.formule,div.formule{
+  margin-top:6.0pt;
+  margin-right:-.05pt;
+  margin-bottom:6.0pt;
+  margin-left:2.0cm;
+  line-height:18.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+/*  margin-top:6.0pt;
+  margin-right:-.05pt;
+  margin-bottom:6.0pt;
+  margin-left:2.0cm;
+  font-size:10.0pt;
+  font-family:Times;
+*//*  margin-top:6.0pt;
+  margin-right:-.05pt;
+  margin-bottom:6.0pt;
+  margin-left:2.0cm;
+  line-height:18.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+*/}
+p.caption,li.caption,div.caption{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.opsomming,li.opsomming,div.opsomming{
+  margin-top:0cm;
+  margin-right:28.3pt;
+  margin-bottom:0cm;
+  margin-left:39.0pt;
+  margin-bottom:.0001pt;
+  text-indent:-21.15pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.grammar,li.grammar,div.grammar{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:17.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.pi-eerst,li.pi-eerst,div.pi-eerst{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:45.35pt;
+  margin-bottom:.0001pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+span.MsoFootnoteReference{
+  position:relative;
+  top:-0.0pt;
+}
+p.med-figure,li.med-figure,div.med-figure{
+  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
