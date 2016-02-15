@@ -1580,6 +1580,7 @@ inherit_fr(Class,SpecificProps,AllProps):-
   append(Children,Rest,NewAgenda),<br>
   search_df(NewAgenda,Goal).
 </p>
+
  <p class="tekst">
   The <tt>children/2</tt> predicate finds all children of a given node. If arcs in the search space are defined as before by the <tt>arc/2</tt> predicate, we could define <tt>children/2</tt> as
  </p>
@@ -1590,6 +1591,31 @@ inherit_fr(Class,SpecificProps,AllProps):-
  <p class="tekst">
   In this way, all children of the current node are generated and stored on the agenda before examining the next node.
  </p>
+
+
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="search_df" query-text="?-search_df([[a,d,a,m]],Goal).">
+% an example of depth-first search
+search_df([Goal|Rest],Goal):-
+	goal(Goal).
+search_df([Current|Rest],Goal):-
+	children(Current,Children),
+	append(Children,Rest,NewAgenda),
+	search_df(NewAgenda,Goal).
+
+children(Node,Children):-
+	findall(C,arc(Node,C),Children).
+
+% nodes are lists of letters
+arc(T,[H|T]):-
+	length(T,N),N<11,
+	member(H,[a,d,i,m]).
+
+% find palindromes
+goal(L):-
+    reverse(L,L).
+</pre>
+
+
  <p class="sektie">
   This depth-first search program can be refined in several ways, of which we will consider two: returning a path to the goal, and loop detection. In the above implementation, it is impossible to return a path if we discover a goal node on the agenda, because we do not know how that goal node was reached. Instead of putting a single node on the agenda, we will store a complete path to that node. This is simply accomplished by changing the <tt>children/2</tt> predicate as follows:
  </p>
@@ -1713,6 +1739,41 @@ inherit_fr(Class,SpecificProps,AllProps):-
   D1 is D+1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% increase depth<br>
   search_id(D1,Current,Goal).
 </p>
+
+
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="search_id" query-text="?-search_id([a,d,a,m],Goal).">
+% an example of iterative deepening
+search_id(First,Goal):-
+	search_id(1,First,Goal).     % start with depth 1
+
+search_id(D,Current,Goal):-
+	search_d(D,Current,Goal).
+search_id(D,Current,Goal):-
+	D1 is D+1,                   % increase depth
+	search_id(D1,Current,Goal).
+
+% backtracking depth-first search with depth bound
+search_d(D,Goal,Goal):-
+	goal(Goal).
+search_d(D,Current,Goal):-
+	D>0, D1 is D-1,
+	arc(Current,Child),
+	search_d(D1,Child,Goal).
+
+children(Node,Children):-
+	findall(C,arc(Node,C),Children).
+
+% nodes are lists of letters
+arc(T,[H|T]):-
+	%length(T,N),N<11,	% depth bound no longer needed
+	member(H,[a,d,i,m]).
+
+% find palindromes
+goal(L):-
+    reverse(L,L).
+</pre>
+
+
  <p class="tekst">
   A big advantage of iterative deepening&nbsp;over simple depth-first search is that iterative deepening is complete: it will find all the goals at depth <i>d</i> and less before proceeding to depth <i>d</i> + <i>n</i>. Moreover, if we set the depth increment <i>n</i> to 1, iterative deepening&nbsp;is also optimal: it will find shorter paths first. A disadvantage of iterative deepening is that upper parts of the search space are searched more than once (and goals in those upper parts are found more than once as well).
  </p>
@@ -1735,6 +1796,29 @@ inherit_fr(Class,SpecificProps,AllProps):-
   append(Rest,Children,NewAgenda),<br>
   search_bf(NewAgenda,Goal).
 </p>
+
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="search_bf" query-text="?-search_bf([[a,d,a,m]],Goal).">
+% an example of breadth-first search
+search_bf([Goal|Rest],Goal):-
+	goal(Goal).
+search_bf([Current|Rest],Goal):-
+	children(Current,Children),
+	append(Rest,Children,NewAgenda),
+	search_bf(NewAgenda,Goal).
+
+children(Node,Children):-
+	findall(C,arc(Node,C),Children).
+
+% nodes are lists of letters
+arc(T,[H|T]):-
+	length(T,N),N<11,	% try removing the depth bound
+	member(H,[a,d,i,m]).
+
+% find palindromes
+goal(L):-
+    reverse(L,L).
+</pre>
+
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.2.</i> Implement the predicate <tt>term_write_bf/1</tt>, which writes the tree represented by a term from the root downward (as opposed to the predicate <tt>term_write/1</tt> of section 4.1, which writes from left to right). Employ breadth-first search with two agendas, one for nodes at depth <i>n</i> and the other for nodes at depth <i>n</i> +1.
@@ -1980,55 +2064,52 @@ inherit_fr(Class,SpecificProps,AllProps):-
  <p class="sektie">
   The program for model generation&nbsp;by forward chaining is given below. It is a fairly simple forward chainer, in the sense that it simply chooses the first clause which fires. More sophisticated forward chainers use <i>conflict resolution</i>&nbsp;strategies in order to choose among the rules which fire at a certain stage.
  </p>
- <p class="oms-eerst">
-  % model(M) &lt;- M is a model of the clauses defined by cl/1
- </p>
- <p class="pi-laatst">
-  model(M):-<br>
-  model([],M).
-</p>
- <p class="pi">
-  model(M0,M):-<br>
-  is_violated(Head,M0),!,% instance of violated clause<br>
-  disj_element(L,Head),&nbsp;&nbsp;% L: ground literal from head<br>
-  model([L|M0],M).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% add L to the model
-</p>
- <p class="pi-laatst">
-  model(M,M).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% no more violated clauses
- </p>
- <p class="pi-laatst">
-  is_violated(H,M):-<br>
-  cl((H:-B)),<br>
-  satisfied_body(B,M),&nbsp;&nbsp;&nbsp;% grounds the variables<br>
-  not satisfied_head(H,M).
-</p>
- <p class="pi">
-  satisfied_body(true,M).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% body is a conjunction
- </p>
- <p class="pi">
-  satisfied_body(A,M):-<br>
-  element(A,M).
-</p>
- <p class="pi-laatst">
-  satisfied_body((A,B),M):-<br>
-  element(A,M),<br>
-  satisfied_body(B,M).
-</p>
- <p class="pi">
-  satisfied_head(A,M):-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% head is a disjunction<br>
-  element(A,M).
-</p>
- <p class="pi">
-  satisfied_head((A;B),M):-<br>
-  element(A,M).
-</p>
- <p class="pi-laatst">
-  satisfied_head((A;B),M):-<br>
-  satisfied_head(B,M).
-</p>
- <p class="pi-laatst">
-  %%% disj_element/2: see Appendix A.2
- </p>
+ 
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="model" query-text="?-model(M).">
+% model(M) <- M is a model of the clauses defined by cl/1
+model(M):-
+	model([],M).
+
+model(M0,M):-
+	is_violated(Head,M0),!,% instance of violated clause
+	disj_element(L,Head),  % L: ground literal from head
+	model([L|M0],M).       % add L to the model
+model(M,M).                 % no more violated clauses
+
+is_violated(H,M):-
+	cl((H:-B)),
+	satisfied_body(B,M),   % grounds the variables
+	\+ satisfied_head(H,M).
+
+satisfied_body(true,_M).     % body is a conjunction
+satisfied_body(A,M):-
+	member(A,M).
+satisfied_body((A,B),M):-
+	member(A,M),
+	satisfied_body(B,M).
+
+satisfied_head(A,M):-       % head is a disjunction
+	member(A,M).
+satisfied_head((A;_B),M):-
+	member(A,M).
+satisfied_head((_A;B),M):-
+	satisfied_head(B,M).
+
+%%% from Appendix A.2
+disj_element(X,X):-          % single-element disjunction
+	X\=false,
+	X\=(_;_).
+disj_element(X,(X;_Ys)).
+disj_element(X,(_Y;Ys)):-
+	disj_element(X,Ys).
+
+%%% Example disjunctive clauses to compute model for
+cl((married(X);bachelor(X):-man(X),adult(X))).
+cl((has_wife(X):-married(X),man(X))).
+cl((man(paul):-true)).
+cl((adult(paul):-true)).
+</pre>
+
  <p class="tekst">
   Given the following clauses:
  </p>
