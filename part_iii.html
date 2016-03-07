@@ -351,6 +351,8 @@ intransitive_verb(plural)     --&gt; [sleep].
   (for brevity, syntactic categories are abbreviated). The following grammar indicates how parse trees are built up from their constituents.
  </p>
  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.2.1" query-text="?- phrase(sentence(T),[achilles,beats,the,lazy,turtle]). ?- phrase(sentence(s(np(pn(achilles)),vp(tv(beats),np(art(the),adj(lazy),n(turtle))))),L).">
+%:-use_rendering(svgtree).	% uncomment to render parse tree graphically
+
 sentence(s(NP,VP))            --&gt; noun_phrase(NP),
                                   verb_phrase(VP).
 noun_phrase(np(N))            --&gt; proper_noun(N).
