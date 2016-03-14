@@ -986,8 +986,7 @@ show_answer(Answer):-write('! '),write(Answer),nl.
  </p>
  <p class="p-el">
   default((flies(X):-bird(X))).<br>
-  rule
-((not flies(X):-penguin(X))).<br>
+  rule((not flies(X):-penguin(X))).<br>
 rule((bird(X):-penguin(X))).<br>
 rule((penguin(tweety):-true)).<br>
 rule((bird(opus):-true)).
@@ -1000,36 +999,47 @@ default((flies(X):-bird(X))).
 rule((not flies(X):-penguin(X))).
 rule((bird(X):-penguin(X))).
 rule((penguin(tweety):-true)).
-rule((bird(opus):-true))." source-text-start="
+rule((bird(opus):-true)).">
 :-op(900,fy,not).
-">
 
 % explain(F,E) &lt;- E explains F from rules and defaults
-explain(F,E):-explain(F,[],E).
+explain(F,E):-
+	explain(F,[],E).
 
 % meta-interpreter for rules and defaults
 explain(true,E,E):-!.
-explain((A,B),E0,E):-!,explain(A,E0,E1),explain(B,E1,E).
-explain(A,E0,E):-prove_e(A,E0,E).         % explain by rules only
-explain(A,E0,[default((A:-B))|E]):-default((A:-B)),explain(B,E0,E),
-not contradiction(A,E).  % A consistent with E
+explain((A,B),E0,E):-!,
+	explain(A,E0,E1),
+	explain(B,E1,E).
+explain(A,E0,E):-
+	prove_e(A,E0,E).         % explain by rules only
+explain(A,E0,[default((A:-B))|E]):-
+	default((A:-B)),
+	explain(B,E0,E),
+	not contradiction(A,E).  % A consistent with E
 
 % meta-interpreter for rules
 prove_e(true,E,E):-!.
-prove_e((A,B),E0,E):-!,prove_e(A,E0,E1),prove_e(B,E1,E).
-prove_e(A,E0,[rule((A:-B))|E]):-rule((A:-B)),prove_e(B,E0,E).
+prove_e((A,B),E0,E):-!,
+	prove_e(A,E0,E1),
+	prove_e(B,E1,E).
+prove_e(A,E0,[rule((A:-B))|E]):-
+	rule((A:-B)),
+	prove_e(B,E0,E).
 
 % check contradiction against rules
-contradiction(not A,E):-!,prove_e(A,E,_E1).
-contradiction(A,E):-prove_e(not A,E,_E1).
+contradiction(not A,E):-!,
+	prove_e(A,E,_E1).
+contradiction(A,E):-
+	prove_e(not A,E,_E1).
 </pre>
  <p class="tekst">
   The query <tt>?-explain(flies(X),E)</tt> has only one answer:
  </p>
  <p class="p-el">
-  X = polly<br>
-  E = [ default((flies(polly):-bird(polly))),<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((bird(polly):-true)) ]
+  X = opus<br>
+  E = [ default((flies(opus):-bird(opus))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((bird(opus):-true)) ]
 </p>
  <p class="MsoNormal">
   Tweety does not fly, since <tt>not flies(tweety)</tt> is provable from the rules:
@@ -1097,12 +1107,18 @@ rule((dead(dracula):-true)).
  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.1.4" query-text="?- explain(flies(dracula),E). ?- explain(not flies(dracula),E)." source-text-end="
 % meta-interpreter for rules
 prove_e(true,E,E):-!.
-prove_e((A,B),E0,E):-!,prove_e(A,E0,E1),prove_e(B,E1,E).
-prove_e(A,E0,[rule((A:-B))|E]):-rule((A:-B)),prove_e(B,E0,E).
+prove_e((A,B),E0,E):-!,
+	prove_e(A,E0,E1),
+	prove_e(B,E1,E).
+prove_e(A,E0,[rule((A:-B))|E]):-
+	rule((A:-B)),
+	prove_e(B,E0,E).
 
 % check contradiction against rules
-contradiction(not A,E):-!,prove_e(A,E,_E1).
-contradiction(A,E):-prove_e(not A,E,_E1).
+contradiction(not A,E):-!,
+	prove_e(A,E,_E1).
+contradiction(A,E):-
+	prove_e(not A,E,_E1).
 
 % default(Name,Rule)
 default(mammals_dont_fly(X),(not flies(X):-mammal(X))).
@@ -1113,22 +1129,27 @@ rule((bat(dracula):-true)).
 rule((dead(dracula):-true)).
 % bats are flying mammals
 rule((not mammals_dont_fly(X):-bat(X))).
-% dead bats don&acirc;&Atilde;&Atilde;&acute;t fly
+% dead bats don't fly
 rule((not bats_fly(X):-dead(X))).
 " source-text-start=":-op(900,fy,not).
+
 % explain(F,E) &lt;- E explains F from rules and defaults
-explain(F,E):-explain(F,[],E).
+explain(F,E):-
+	explain(F,[],E).
 
 % meta-interpreter for rules and defaults
 explain(true,E,E):-!.
-explain((A,B),E0,E):-!,explain(A,E0,E1),explain(B,E1,E).
-explain(A,E0,E):-prove_e(A,E0,E).         % explain by rules only
+explain((A,B),E0,E):-!,
+	explain(A,E0,E1),
+	explain(B,E1,E).
+explain(A,E0,E):-
+	prove_e(A,E0,E).         % explain by rules only
 ">
 explain(A,E0,[default(Name)|E]):-
-default(Name,(A:-B)),       % explain by default rule
-explain(B,E0,E),
-not contradiction(Name,E),  % default applicable
-not contradiction(A,E).     % A consistent with E
+	default(Name,(A:-B)),       % explain by default rule
+	explain(B,E0,E),
+	not contradiction(Name,E),  % default applicable
+	not contradiction(A,E).     % A consistent with E
 </pre>
  <p class="tekst">
   There are two changes: (<i>i</i>) when applying a default, its name is tested for consistency with the rules, and (<i>ii</i>) the name of the default is added to the explanation, instead of the default itself. The above queries are now handled correctly:
@@ -1164,7 +1185,7 @@ not contradiction(A,E).     % A consistent with E
   <span class="AutoStyle09">
    &cup;
   </span>
-  <i>B</i> and <i>P</i> <tt>A</tt> }
+  <i>B</i> and <i>P</i> !&#8872; <tt>A</tt> }
  </p>
  <p class="tekst">
   We refer to <i>CWA</i> (<i>P</i>)
@@ -1580,6 +1601,9 @@ not contradiction(A,E).     % A consistent with E
  <p class="tekst">
   A <i>stratified</i>&nbsp;program is a program without recursion through negation. One can prove that for stratified programs, Predicate Completion never results in inconsistencies.
  </p>
+ 
+ 
+
  <h3 id="abduction_and_diagnostic_reasoning">
   8.3&nbsp;&nbsp;&nbsp;Abduction and diagnostic reasoning
  </h3>
@@ -1594,7 +1618,7 @@ not contradiction(A,E).     % A consistent with E
   <span class="AutoStyle09">
    &cup;
   </span>
-  <i>Explanation</i> = <i>Observation</i>
+  <i>Explanation</i> &#8872; <i>Observation</i>
  </p>
  <p class="tekst">
   i.e. the <i>Observation</i> follows logically from the <i>Theory</i> extended with the <i>Explanation</i>. For instance, if <i>Theory</i> consists of the following clauses
@@ -1614,7 +1638,8 @@ not contradiction(A,E).     % A consistent with E
  </p>
  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.1" query-text="?- abduce(likes(peter,paul),Explanation). ?- abduce(flies(tweety),Explanation)." source-text-end="
 element(X,[X|_Ys]).
-element(X,[_Y|Ys]):-	element(X,Ys).
+element(X,[_Y|Ys]):-
+	element(X,Ys).
 
 cl(likes(peter,S),student_of(S,peter)).
 cl(likes(X,Y),friend(Y,X)).
@@ -1630,15 +1655,25 @@ cl(bird(X),sparrow(X)).
 % abduce(O,E) &lt;- observation O follows by SLD-resolution 
 %                from the theory defined by clause/2, 
 %                extended with a list of unit clauses E
-abduce(O,E) :-abduce(O,[],E).
+abduce(O,E) :-
+	abduce(O,[],E).
 
 % with accumulator for explanations
 abduce(true,E,E):-!.
-abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
-abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
-abduce(A,E,E):-element(A,E).
-abduce(A,E,[A|E]):-not element(A,E),abducible(A).
-abducible(A):-not cl(A,_B).
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),	% query clauses enumerated by cl/2
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A).
+	
+abducible(A):-
+	not cl(A,_B).
 </pre>
  <p class="tekst">
   The last two clauses of <tt>abduce/3</tt> extend the original depth-first meta-interpreter. The program uses an accumulator containing the partial explanation found so far, such that literals are not unnecessarily duplicated in the final explanation. The query
@@ -1682,15 +1717,17 @@ abducible(A):-not cl(A,_B).
  <p class="tekst">
   In order to prevent the query <tt>abducible(not(A))</tt> from succeeding, we change the definition of <tt>abducible/1</tt>&nbsp;to
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.1" query-text="?- abduce(flies(tweety),Explanation). ?- abduce(not(abnormal(tweety)),[penguin(tweety)],[penguin(tweety)]). ?- abduce(not(abnormal(tweety)),[],[])." source-text-end="
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.1" query-text="?- abduce(flies(tweety),Explanation). ?- abduce(not(abnormal(tweety)),[penguin(tweety)],[penguin(tweety)]). ?- abduce(not(abnormal(tweety)),[],[]). ?- abduce(flies1(tweety),Explanation). " source-text-end="
 
 element(X,[X|_Ys]).
-element(X,[_Y|Ys]):-	element(X,Ys).
+element(X,[_Y|Ys]):-
+	element(X,Ys).
 
 cl(likes(peter,S),student_of(S,peter)).
 cl(likes(X,Y),friend(Y,X)).
 
 cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(flies1(X),(not(abnormal(X),bird(X)))).
 cl(abnormal(X),penguin(X)).
 cl(abnormal(X),dead(X)).
 cl(bird(X),penguin(X)).
@@ -1702,15 +1739,24 @@ cl(bird(X),sparrow(X)).
 % abduce(O,E) &lt;- observation O follows by SLD-resolution 
 %                from the theory defined by clause/2, 
 %                extended with a list of unit clauses E
-abduce(O,E) :-abduce(O,[],E).
+abduce(O,E) :-
+	abduce(O,[],E).
 
 % with accumulator for explanations
 abduce(true,E,E):-!.
-abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
-abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
-abduce(A,E,E):-element(A,E).
-abduce(not(A),E,E):-not abduce(A,E,E).   % if E doesn't explain A
-abduce(A,E,[A|E]):-not element(A,E),abducible(A).
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),	% query clauses enumerated by cl/2
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A).
+abduce(not(A),E,E):-% E explains not(A)
+	not abduce(A,E,E).  % if E doesn't explain A
 
 ">
 abducible(A):-A \= not(B),not cl(A,B).
@@ -1858,24 +1904,47 @@ abduce(O,E) :-abduce(O,[],E).
 % abduce(O,E0,E) &lt;- E is abductive explanation of O, given 
 %                   E0 (works also for general programs)
 abduce(true,E,E):-!.
-abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
-abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
-abduce(A,E,E):-element(A,E).           % already assumed
-abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
-abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
 
 % abduce_not(O,E0,E) &lt;- E is abductive expl. of not(O)
-abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
-abduce_not(B,E0,E).
-abduce_not(A,E0,E):-setof(B,cl(A,B),L),abduce_not_l(L,E0,E).
-abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
-abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
-abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,cl(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
 
 abduce_not_l([],E,E).
-abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
 
-abducible(A):-A \= not(B),not cl(A,B).
+abducible(A):-
+	A \= not(B),
+	not cl(A,B).
 ">
 cl(flies1(X),(not(abnormal(X)),bird(X))).
 cl(flies(X),(bird(X),not(abnormal(X)))).
@@ -2056,25 +2125,47 @@ abduce(O,E) :-abduce(O,[],E).
 % abduce(O,E0,E) &lt;- E is abductive explanation of O, given 
 %                   E0 (works also for general programs)
 abduce(true,E,E):-!.
-abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
-abduce(A,E0,E):-clause(A,B),abduce(B,E0,E).
-abduce(A,E,E):-element(A,E).           % already assumed
-abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
-abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	clause(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
 
 % abduce_not(O,E0,E) &lt;- E is abductive expl. of not(O)
-abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
-abduce_not(B,E0,E).
-abduce_not(A,E0,E):-setof(B,clause(A,B),L),abduce_not_l(L,E0,E).
-abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
-abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
-abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,clause(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
 
 abduce_not_l([],E,E).
-abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
 
 ">
-diagnosis(Observation,Diagnosis):-abduce(Observation,Diagnosis).
+diagnosis(Observation,Diagnosis):-
+	abduce(Observation,Diagnosis).
 
 abducible(fault(_X)).
 </pre>
@@ -2158,29 +2249,53 @@ abduce(O,E) :-abduce(O,[],E).
 % abduce(O,E0,E) &lt;- E is abductive explanation of O, given 
 %                   E0 (works also for general programs)
 abduce(true,E,E):-!.
-abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
-abduce(A,E0,E):-clause(A,B),abduce(B,E0,E).
-abduce(A,E,E):-element(A,E).           % already assumed
-abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
-abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	clause(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
 
 % abduce_not(O,E0,E) &lt;- E is abductive expl. of not(O)
-abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
-abduce_not(B,E0,E).
-abduce_not(A,E0,E):-setof(B,clause(A,B),L),abduce_not_l(L,E0,E).
-abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
-abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
-abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,clause(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
 
 abduce_not_l([],E,E).
-abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
 
-diagnosis(Observation,Diagnosis):-abduce(Observation,Diagnosis).
+diagnosis(Observation,Diagnosis):-
+	abduce(Observation,Diagnosis).
 
 abducible(fault(_X)).
 
 ">
-min_diagnosis(O,D):-diagnosis(O,D),not((diagnosis(O,D1),proper_subset(D1,D))).
+min_diagnosis(O,D):-
+	diagnosis(O,D),
+	not((diagnosis(O,D1),proper_subset(D1,D))).
 </pre>
  <p class="p-laatst">
   ?-min_diagnosis(adder(a,0,0,1,0,1),D).<br>
@@ -2215,23 +2330,23 @@ min_diagnosis(O,D):-diagnosis(O,D),not((diagnosis(O,D1),proper_subset(D1,D))).
   If we strengthen our proof procedure, we must strengthen the semantics accordingly. Since the original program is incomplete it has several models, one of which we need to choose. One way to do this is to transform the original program into a new, complete program, which we declare to be the <i>intended</i> program. The only model of this complete program is taken as the intended model&nbsp;of the original program. The <i>Closed World Assumption</i>&nbsp;is a rather naive way to achieve this, while <i>Predicate Completion</i>&nbsp;can also handle a restricted subclass of the class of general programs (so-called <i>stratified</i>&nbsp;programs).
  </p>
  <p class="sektie">
-  The relation between SLDNF-resolution and Predicate Completion is as follows. Let <i>P</i> be a general program, let <i>Comp</i> (<i>P</i>) denote the completion of <i>P</i>, and let|
+  The relation between SLDNF-resolution and Predicate Completion is as follows. Let <i>P</i> be a general program, let <i>Comp</i> (<i>P</i>) denote the completion of <i>P</i>, and let &#8866
   <span class="AutoStyle71">
    SLDNF
   </span>
   &nbsp;denote provability by SLDNF-resolution, treating negated literals in the body of clauses by negation as failure; then the following relation holds:
  </p>
  <p class="formule">
-  <i>P</i> |
+  <i>P</i> &#8866
   <span class="AutoStyle71">
    SLDNF
   </span>
   &nbsp;<i>q</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <span class="AutoStyle09">
-   &THORN;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &#8658;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </span>
   <i>Comp</i> (<i>P</i>)
-  = <i>q</i>
+  &#8872; <i>q</i>
  </p>
  <p class="tekst">
   This is a <i>soundness</i> result for SLDNF-resolution. The corresponding completeness result is not so easily proved, and holds only for specific sub-classes of programs.
@@ -2316,22 +2431,43 @@ abduce(O,E) :-abduce(O,[],E).
 % abduce(O,E0,E) &lt;- E is abductive explanation of O, given 
 %                   E0 (works also for general programs)
 abduce(true,E,E):-!.
-abduce((A,B),E0,E):-!,abduce(A,E0,E1),abduce(B,E1,E).
-abduce(A,E0,E):-cl(A,B),abduce(B,E0,E).
-abduce(A,E,E):-element(A,E).           % already assumed
-abduce(A,E,[A|E]):-not element(A,E),abducible(A),not abduce_not(A,E,E).  % and E doesn't explain not(A)
-abduce(not(A),E0,E):-not element(A,E0),abduce_not(A,E0,E).
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
 
 % abduce_not(O,E0,E) &lt;- E is abductive expl. of not(O)
-abduce_not((A,B),E0,E):-!,abduce_not(A,E0,E);       % disjunction
-abduce_not(B,E0,E).
-abduce_not(A,E0,E):-setof(B,cl(A,B),L),abduce_not_l(L,E0,E).
-abduce_not(A,E,E):-element(not(A),E).        % not(A) already assumed
-abduce_not(A,E,[not(A)|E]):-not element(not(A),E),abducible(A),not abduce(A,E,E).        % and E doesn't explain A
-abduce_not(not(A),E0,E):-not element(not(A),E0),abduce(A,E0,E).
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,cl(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
 
 abduce_not_l([],E,E).
-abduce_not_l([B|Bs],E0,E):-abduce_not(B,E0,E1),abduce_not_l(Bs,E1,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
 
 ">
 abducible(flying_mammal(_X)).
@@ -2468,7 +2604,7 @@ abducible(flying_deadthing(_X)).
   <span class="AutoStyle09">
    &cup;
   </span>
-  <i>Hypothesis</i> = <i>Examples</i>
+  <i>Hypothesis</i> &#8872; <i>Examples</i>
  </p>
  <p class="tekst">
   The main difference with abduction is that <i>Hypothesis</i> is allowed to be a set of clauses, rather than a set of ground facts as in abduction.
