@@ -938,21 +938,21 @@ show_answer(Answer):-write('! '),write(Answer),nl.
   This example shows that in default reasoning, <i>new information can invalidate previous conclusions</i>, if these conclusions are based on unprovable assumptions which are contradicted by the new information. This property clearly distinguishes default reasoning from deductive reasoning, which is <i>monotonic</i> in the following sense:
  </p>
  <p class="formule">
-  <i>Theory</i> | <i>Conclusion</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>Theory</i> &#8866; <i>Conclusion</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <span class="AutoStyle09">
-   &THORN;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &#8658;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </span>
   <i>Theory</i>
   <span class="AutoStyle09">
    &cup;
   </span>
-  { <i>AnyFormula</i> }| <i>Conclusion</i>
+  { <i>AnyFormula</i> }&#8866; <i>Conclusion</i>
  </p>
  <p class="tekst">
   That is, adding <i>AnyFormula</i> to a set of formulas <i>Theory</i> does not invalidate any <i>Conclusion</i> drawn from <i>Theory</i> alone. If we define the <i>deductive closure</i>&nbsp;of a theory as the set of conclusions that can be drawn from it:
  </p>
  <p class="formule">
-  <i>Closure</i> (<i>Theory</i>) = { <i>Conclusion</i> | <i>Theory</i> | <i>Conclusion</i> }
+  <i>Closure</i> (<i>Theory</i>) = { <i>Conclusion</i> | <i>Theory</i> &#8866; <i>Conclusion</i> }
  </p>
  <p class="tekst">
   then the property of monotonicity can also be stated as a relation between theories and their closures:
@@ -964,7 +964,7 @@ show_answer(Answer):-write('! '),write(Answer),nl.
   </span>
   <i>Theory2</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <span class="AutoStyle09">
-   &THORN;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &#8658;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </span>
   <i>Closure</i> (<i>Theory1</i>)
   <span class="AutoStyle09">
