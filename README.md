@@ -33,8 +33,7 @@ git push origin gh-pages
 git checkout master
 ```
 
-# To do #
-- [ ] Fix PDF release.
+# Fixes #
 - [X] Figure 4.1 is missing.
 - [X] Fix rendering of *¨*, *Ô*, etc..
 
@@ -76,6 +75,5 @@ git checkout master
 | È   | NULL     |
 
 - [X] Fix repeating header's ids.
-- [ ] Merge external changes (Dropbox).
-- [ ] Create better stylesheet.
+- [X] Merge external changes (Dropbox).
 - [X] Split `htm` files into proper modules.
