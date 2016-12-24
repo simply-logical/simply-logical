@@ -1,0 +1,3955 @@
+---
+layout: paper
+part: Part III
+---
+<div class="WordSection1">
+ <p class="romeinscijfer" id="advanced_reasoning_techniques">
+  III
+ </p>
+ <div class="AutoStyle00">
+  <h1 class="AutoStyle01" id="h_advanced_reasoning_techniques">
+   Advanced<br>
+   reasoning techniques
+</h1>
+ </div>
+ <p class="sektie1">
+  In Part I, we introduced the formalism of clausal logic and showed how it can be used in practice to perform logical inferences. In Part II, we discussed the basic issues one encounters when writing a program to solve some reasoning task: how to represent the knowledge needed to solve the task, and how to search the space of possible solutions. In Part III, we will go beyond the power of clausal logic in a number of ways.
+ </p>
+ <p class="sektie">
+  Why would one want to have a formalism more powerful than first-order clausal logic? One reason could be that we want to perform inferences that are simply not expressible in first-order clausal logic. We might want to express knowledge such as &lsquo;he inherited all his father&rsquo;s bad characteristics&rsquo;, which is a second-order statement&nbsp;(section 2.5). We might want to express statements like &lsquo;Peter believes his boss knows he is writing a book&rsquo;, where &lsquo;Peter&rsquo;s boss knows&rsquo; is a <i>modality</i>&nbsp;of the formula &lsquo;Peter is writing a book&rsquo;, and &lsquo;Peter believes&rsquo; is a modality of the formula &lsquo;Peter&rsquo;s boss knows Peter is writing a book&rsquo;. We might want to reason about sequences of events happening over time. Each of these examples requires a specialised logic extending the syntax of first-order logic. Needless to say, this increased expressiveness also requires more powerful semantics and proof theory.
+ </p>
+ <p class="sektie">
+  There are also reasoning tasks which use the language of clausal logic, but differ nonetheless from standard clausal logic in the validity of the conclusions drawn. For instance, the truth of a conclusion might not be guaranteed but only plausible, given the premises. Alternatively, a conclusion might be a general theory derived from a number of specific observations, a theory which might be falsified by new contradicting evidence. Typically, such non-standard reasoning tasks require a more elaborate semantic and proof-theoretic characterisation than required for standard logical inference.
+ </p>
+ <p class="sektie">
+  Thirdly, the knowledge required for the reasoning task might be available in non-logical form only: think of pictures, spoken or written text, or video images. In such cases, the reasoning task requires pre- and postprocessing stages, in which the non-logical data are converted to and from logical formulas.
+ </p>
+ <p class="sektie">
+  In the following three chapters, we will encounter each of these three types of reasoning. Chapter 7 is devoted to reasoning with knowledge expressed in natural language. We demonstrate how to translate sentences like &lsquo;Socrates is human&rsquo; and &lsquo;all humans are mortal&rsquo;, and questions like &lsquo;is Socrates mortal?&rsquo; into clausal logic, and how to obtain a natural language sentence as the answer. In Chapter 8, we discuss a number of approaches to reasoning with incomplete information. Most of these approaches are of the second type, extending semantics and proof theory but not syntax of clausal logic; one approach extends syntax as well. We provide a detailed discussion of how these approaches are related. Finally, inductive reasoning is discussed in Chapter 9. Induction aims at completing partial knowledge about specific instances of a theory, and is therefore, although related to, much harder than the forms of reasoning with incomplete knowledge discussed in Chapter 8. We give an in-depth analysis of the problem, and develop two Prolog programs that can inductively infer simple predicate definitions from exampes.
+ </p>
+</div>
+<b>
+ <span class="AutoStyle02">
+  <br clear="all"/>
+ </span>
+</b>
+<div class="WordSection2">
+ <p class="cijfer" id="reasoning_with_natural_language">
+  7
+ </p>
+ <h2 id="h_reasoning_with_natural_language">
+  Reasoning with natural language
+ </h2>
+ <p class="sektie1">
+  A language which is used for communication between humans is commonly called a <i>natural language</i>, in order to distinguish it from an artificial computer language. Despite their apparent differences, artificial and natural language can be described by the same tools, some of which will be studied in this chapter.
+ </p>
+ <p class="sektie">
+  Natural language can be described on a number of different levels:
+ </p>
+ <p class="opsomming">
+  (<i>i</i>)&nbsp;&nbsp;&nbsp;<i>Prosody</i>: rhythm and intonation of spoken language;
+ </p>
+ <p class="opsomming">
+  (<i>ii</i>)&nbsp;&nbsp;<i>Phonology</i>: how to combine simple sounds (<i>phonemes</i>) in spoken language;
+ </p>
+ <p class="opsomming">
+  (<i>iii</i>)&nbsp;<i>Morphology</i>: how to build words from meaningful components (<i>morphemes</i>);
+ </p>
+ <p class="opsomming">
+  (<i>iv</i>)&nbsp;<i>Syntax</i>: how to build sentences from words;
+ </p>
+ <p class="opsomming">
+  (<i>v</i>)&nbsp;&nbsp;<i>Semantics</i>: how to assign meaning to words and sentences;
+ </p>
+ <p class="opsomming">
+  (<i>vi</i>)&nbsp;<i>Pragmatics</i>: how to use sentences in communication.
+ </p>
+ <p class="tekst">
+  Here, we are mainly concerned with written language, so we will not talk about prosody and phonology. Morphology tells us, for instance, that in English the plural of many nouns can be obtained by adding the suffix -s (house&ndash;houses, chair&ndash;chairs). Syntax allows us to distinguish well-formed sentences (like &lsquo;I sleep&rsquo;) from ill-formed ones (like &lsquo;me sleeps&rsquo;), and to discover their grammatical structure. Semantics allows us to understand sentences like &lsquo;time flies like an arrow, but fruit flies like a banana&rsquo;. Pragmatics tells us that &lsquo;yes&rsquo; is in general not a very helpful answer to questions of the form &lsquo;do you know &hellip;?&rsquo;.
+ </p>
+ <p class="sektie">
+  It should be noted that this distinction between different levels is not as clear-cut as it may seem. For instance, the sentences &lsquo;time flies like an arrow&rsquo; and &lsquo;fruit flies like a banana&rsquo; look very similar; yet, semantic analysis shows that they have a different grammatical structure: &lsquo;time (noun) flies (verb) like an arrow&rsquo; in the first case, and &lsquo;fruit flies (noun) like (verb) a banana (noun phrase)&rsquo; in the second. That is, both sentences have at least two possible grammatical structures, and we need semantics to prefer one over the other.
+ </p>
+ <p class="sektie">
+  Without doubt, the language level which has been formalised most successfully is the syntactic level. The process of deriving the grammatical structure of a sentence is called <i>parsing</i>. The outcome of the parsing process is a <i>parse tree</i>, showing the grammatical constituents of the sentence, like verb phrase and noun phrase. This grammatical structure can be further used in the semantic analyis of the sentence. The reverse process, starting from a semantic representation and producing a sentence, is called <i>sentence generation</i>. It is applied in dialogue systems, where answers to queries must be formulated in natural language.
+ </p>
+ <h3 id="grammars_and_parsing">
+  7.1&nbsp;&nbsp;&nbsp;Grammars and parsing
+ </h3>
+ <p class="sektie1">
+  The syntax of a language is specified by a <i>grammar</i>, which is a set of <i>grammar rules</i> of the form
+ </p>
+ <p class="p-eerst">
+  Category1 --> Category2,Category3
+ </p>
+ <p class="p-laatst">
+  Category2 --> [Terminal]
+ </p>
+ <p class="tekst">
+  Here, <tt>CategoryX</tt> denotes a <i>syntactic category</i>, specifying the type of a sentence part (e.g. noun, noun phrase, etc.). The first rule states that a <tt>Category2</tt> followed by a <tt>Category3</tt> is a <tt>Category1</tt>. For instance, the fact that a sentence may consist of a noun phrase followed by a verb phrase is expressed by the rule
+ </p>
+ <p class="p-el">
+  sentence --> noun_phrase,verb_phrase
+ </p>
+ <p class="tekst">
+  A <i>terminal</i>&nbsp;is any word which occurs in the language. The second rule above assigns a syntactic category to a word. For instance:
+ </p>
+ <p class="p-el">
+  noun --> [bicycle]
+ </p>
+ <p class="tekst">
+  Syntactic categories are also called <i>non-terminals</i>.
+ </p>
+ <p class="sektie">
+  A grammar which specifies a tiny bit of the English language is given below. As in clausal logic, grammar rules are separated by periods.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.1.1" query-text="?- phrase(sentence,[achilles,beats,the,lazy,turtle]).">
+sentence             --> noun_phrase,verb_phrase.
+noun_phrase          --> proper_noun.
+noun_phrase          --> article,adjective,noun.
+noun_phrase          --> article,noun.
+verb_phrase          --> intransitive_verb.
+verb_phrase          --> transitive_verb,noun_phrase.
+article              --> [the].
+adjective            --> [lazy].
+adjective            --> [rapid].
+proper_noun          --> [achilles].
+noun                 --> [turtle].
+intransitive_verb    --> [sleeps].
+transitive_verb      --> [beats].
+</pre>
+ <p class="tekst">
+  Some sentences generated by this grammar are: &lsquo;the lazy turtle sleeps&rsquo;, &lsquo;Achilles beats the turtle&rsquo;, and &lsquo;the rapid turtle beats Achilles&rsquo;. The grammatical structure of these sentences can be described by a <i>parse tree</i>, which is a tree containing the words of the sentence as leaves, and the syntactic categories assigned to parts of the sentence as nodes (fig. 7.1).
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle05">
+      <p class="figure">
+       <img src="img/part_iii/image002.svg" v:shapes="Picture_x0020_1" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="Caption1">
+      <b>Figure   7.1.</b> Parse tree for the sentence &lsquo;the rapid   turtle beats Achilles&rsquo;.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 7.1</i>. Redraw this parse tree in the manner of an SLD proof tree, where &lsquo;resolvents&rsquo; are partially parsed sentences such as<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>[the],[rapid],noun,verb_phrase</tt><br>
+   and &lsquo;clauses&rsquo; are grammar rules.
+</p>
+ </div>
+ <p class="sektie">
+  Such a parse tree can be constructed by starting with the non-terminal <tt>sentence</tt>, and repeatedly replacing non-terminals by the righthand side of an applicable rule, until the given sentence is obtained as a sequence of terminals. This method is called <i>top-down&nbsp;parsing</i>. Alternatively, we could start with the sentence and look for parts of it which occur on the righthand side of a rule, and replace that part of the sentence with the non-terminal on the lefthand side of the rule, until we obtain the single non-terminal <tt>sentence</tt>. This procedure is called <i>bottom-up&nbsp;parsing</i>. It should be noted that both methods require search: at any stage, several rules might be applicable.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 7.2</i>. Draw the search space generated by the above grammar for a top-down parse, if grammar rules are applied to sentences from left to right. Discuss the similarities and differences with SLD-trees.
+  </p>
+ </div>
+ <p class="sektie">
+  In general, grammar rules are allowed to be recursive. For instance, a noun phrase can contain several adjectives, as described by the following rules:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.1.2" query-text="?- phrase(sentence,[the,lazy,rapid,turtle]).">
+sentence             --> noun_phrase.
+noun_phrase          --> article,noun_phrase2.
+noun_phrase2         --> noun.
+noun_phrase2         --> adjective,noun_phrase2.
+article              --> [the].
+adjective            --> [lazy].
+adjective            --> [rapid].
+noun                 --> [turtle].
+</pre>
+ <p class="tekst">
+  This set of rules allows &lsquo;the lazy rapid turtle&rsquo; as a noun phrase. Recursion extends the descriptive power of a grammar considerably, by allowing repetitive structures.
+ </p>
+ <p class="sektie">
+  Grammars like the ones we have seen are called <i>context-free grammars</i>. This name derives from the fact that only one non-terminal is allowed on the left of a grammar rule. A grammar rule which contains several non-terminals on its lefthand side is called <i>context-sensitive</i>: some of those non-terminals act as a <i>context</i> for the others, allowing the rule to be used only when that context is present. As an example, consider a grammar which would rule out sentences like &lsquo;the turtles sleeps&rsquo;, in which the &lsquo;plurality&rsquo; (singular, plural) of noun and verb disagree. A candidate would be:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.1.3">
+noun_phrase 			--> article,noun.
+plurality 			--> singular.
+plurality			--> plural.
+verb_phrase			--> intransitive_verb.
+article				--> [the].
+noun,singular			--> [turtle],singular.
+noun,plural			--> [turtles],plural.
+singular,intransitive_verb	--> [sleeps].
+plural,intransitive_verb	--> [sleep].
+</pre>
+ <p class="tekst">
+  In this grammar, the non-terminal <tt>plurality</tt> creates a context for the applicability of the rewrite rules for noun and intransitive verb. Procedural programming languages like Pascal are also, to some extent, context-sensitive: statements like <tt>X:=10</tt> can only be parsed in the context created by the declaration of the variable <tt>X</tt> (if it is declared to be a Boolean, the statement is illegal). Apart from this, such programming languages are context-free: each statement can be parsed without referring to its context.
+ </p>
+ <p class="sektie">
+  Context-sensitive grammars greatly increase the complexity of the parsing task; moreover, the grammatical structure of sentences cannot be simply described by a parse tree. In this chapter, we will restrict attention to context-free grammars, extended with some Prolog-specific features. The resulting grammars are called <i>Definite Clause Grammars</i>, and will be introduced in the next section.
+ </p>
+ <h3 id="definite_clause_grammars">
+  7.2&nbsp;&nbsp;&nbsp;Definite Clause Grammars
+ </h3>
+ <p class="sektie1">
+  If we want to build a parser in Prolog, we need a representation&nbsp;for sentences. Ignoring capitals and punctuation marks, a sentence can simply be represented by the list of its words in the same order, for instance
+ </p>
+ <p class="p-el">
+  [the,rapid,turtle,beats,achilles]
+ </p>
+ <p class="tekst">
+  Given this representation, a grammar rule like
+ </p>
+ <p class="p-el">
+  sentence --> noun_phrase,verb_phrase
+ </p>
+ <p class="tekst">
+  has the following meaning: a list of words representes a sentence, if some first part of it represents a noun phrase, and the rest represents a verb phrase. This statement can easily be expressed as a Prolog clause:
+ </p>
+ <p class="pi-el">
+  sentence(S):-<br>
+  noun_phrase(NP),<br>
+  verb_phrase(VP),<br>
+  append(NP,VP,S)
+</p>
+ <p class="tekst">
+  Similarly, a grammar rule containing a terminal
+ </p>
+ <p class="p-el">
+  verb --> [sleeps]
+ </p>
+ <p class="tekst">
+  means: a list of words represents a verb if it is the list consisting of the single word &lsquo;sleeps&rsquo;. Translated to Prolog:
+ </p>
+ <p class="p-el">
+  verb([sleeps])
+ </p>
+ <p class="tekst">
+  Obviously, there is a very close relationship between context-free grammar rules and definite clauses, and any context-free grammar&nbsp;can easily be translated to a set of Prolog clauses. The exciting thing about this is that these Prolog clauses are nothing less than a parsing program: for instance, we could ask the query
+ </p>
+ <p class="p-el">
+  ?-sentence([the,rapid,turtle,beats,achilles]).
+ </p>
+ <p class="tekst">
+  and get an affirmative answer.
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle05">
+      <p class="figure">
+       <img src="img/part_iii/image004.svg" v:shapes="Picture_x0020_2" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="Caption1">
+      <b>Figure   7.2.</b> The use of difference lists in grammar   rules.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <p class="sektie">
+  We can actually push the correspondence between grammar rules and definite clauses further by employing difference lists (section 3.6). This allows us to get rid of the <tt>append</tt> literals:
+ </p>
+ <p class="pi-el">
+  sentence(NP1-VP2):-<br>
+  noun_phrase(NP1-VP1),<br>
+  verb_phrase(VP1-VP2)
+</p>
+ <p class="tekst">
+  This clause should be read as follows: <tt>NP1</tt> is a sentence followed by <tt>VP2</tt>, if <tt>NP1</tt> is a noun phrase followed by <tt>VP1</tt>, and <tt>VP1</tt> is a verb phrase followed by <tt>VP2</tt> (fig. 7.2). Queries now should take the form
+ </p>
+ <p class="p-el">
+  ?-sentence([the,rapid,turtle,beats,achilles]-[])
+ </p>
+ <p class="tekst">
+  (after parsing the initial part of the list as a sentence, nothing should be left).
+ </p>
+ <p class="sektie">
+  We have shown that there is a one-to-one correspondence between context-free grammars and Prolog programs interpreting those grammars. In fact, the translation from the first to the second is so straightforward that it is built into Prolog. That is, meta-level&nbsp;grammar rules like
+ </p>
+ <p class="p-el">
+  sentence --> noun_phrase,verb_phrase
+ </p>
+ <p class="tekst">
+  are allowed in Prolog programs. When interpreting these rules, Prolog will invisibly convert them to object-level&nbsp;program clauses like
+ </p>
+ <p class="pi-el">
+  sentence(L,L0):-<br>
+  noun_phrase(L,L1),<br>
+  verb_phrase(L1,L0)
+</p>
+ <p class="tekst">
+  in which the additional variable is an accumulator&nbsp;rather than the minus list&nbsp;of a difference list (section 3.6). Furthermore, Prolog provides the meta-level predicate <tt>phrase/2</tt>, such that the object-level query <tt>?-sentence(L,[])</tt> can be replaced by the meta-level query <tt>?-phrase(sentence,L)</tt> (fig. 7.3).
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle05">
+      <p class="figure">
+       <img src="img/part_iii/image006.svg" v:shapes="Picture_x0020_3" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="Caption1">
+      <b>Figure   7.3.</b> Meta-level and object-level in Definite   Clause Grammars.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <p class="sektie">
+  These Prolog grammars are known as <i>Definite Clause Grammars</i> (DCG&rsquo;s). They are an excellent illustration of the power of declarative programming: <i>specifying a grammar gives you the parser for free</i>. That is, a grammar is a declarative specification of the corresponding parser, and Prolog directly converts this specification into an executable parser. Moreover, since a grammar is purely declarative, the program is also a sentence&nbsp;<b>generator</b>: for instance, it is possible to generate every sentence starting with &lsquo;Achilles&rsquo; by means of the query <tt>?-phrase(sentence,[achilles|Rest])</tt>.
+ </p>
+ <p class="sektie">
+  Definite Clause Grammars further extend the power of context-free grammars in two ways:
+ </p>
+ <p class="opsomming">
+  (<i>i</i>)&nbsp;&nbsp;&nbsp;arguments can be added to non-terminals;
+ </p>
+ <p class="opsomming">
+  (<i>ii</i>)&nbsp;&nbsp;Prolog goals can be added to the body of grammar rules.
+ </p>
+ <p class="tekst">
+  As an illustration of the first feature, we show how plurality&nbsp;agreement can be achieved by means of a DCG instead of a context-sensitive grammar:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.2.1" query-text="?- phrase(sentence,L).">
+sentence                      --> noun_phrase(N),verb_phrase(N).
+noun_phrase(N)                --> article(N),noun(N).
+verb_phrase(N)                --> intransitive_verb(N).
+article(singular)             --> [a].
+article(singular)             --> [the].
+article(plural)               --> [the].
+noun(singular)                --> [turtle].
+noun(plural)                  --> [turtles].
+intransitive_verb(singular)   --> [sleeps].
+intransitive_verb(plural)     --> [sleep].
+</pre>
+ <p class="tekst">
+  The first rule states that the pluralities of noun phrase and verb phrase should correspond. The second rule states that the plurality of a noun phrase is determined by both article and noun, which should have corresponding pluralities as well. The remaining rules assign pluralities to specific articles, nouns and verbs.
+ </p>
+ <p class="sektie">
+  We can also use this feature to construct a parse tree&nbsp;while parsing a sentence. Parse trees can be represented by Prolog terms (section 4.1):
+ </p>
+ <p class="opsomming AutoStyle61">
+  &bull;&nbsp;a parse tree for a terminal <tt>T</tt> of syntactic category <tt>S</tt> is represented by the term <tt>S(T)</tt>;
+ </p>
+ <p class="opsomming AutoStyle61">
+  &bull;&nbsp;a parse tree for a sequence <tt>N1</tt> &hellip; <tt>Nk</tt> of non-terminals of syntactic category <tt>S</tt> is represented by the term <tt>S(N1,</tt> &hellip; <tt>,Nk)</tt>.
+ </p>
+ <p class="tekst">
+  Thus, a parse tree for the verb &lsquo;sleeps&rsquo; is represented by the term <tt>verb(sleeps)</tt>, and a parse tree for the sentence &lsquo;the turtle sleeps&rsquo; is represented by the term
+ </p>
+ <p class="p-el">
+  s(np(art(the),n(turtle)),vp(iv(sleeps)))
+ </p>
+ <p class="tekst">
+  (for brevity, syntactic categories are abbreviated). The following grammar indicates how parse trees are built up from their constituents.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.2.1" query-text="?- phrase(sentence(T),[achilles,beats,the,lazy,turtle]). ?- phrase(sentence(s(np(pn(achilles)),vp(tv(beats),np(art(the),adj(lazy),n(turtle))))),L).">
+%:-use_rendering(svgtree).	% uncomment to render parse tree graphically
+
+sentence(s(NP,VP))            --> noun_phrase(NP),
+                                  verb_phrase(VP).
+noun_phrase(np(N))            --> proper_noun(N).
+noun_phrase(np(Art,Adj,N))    --> article(Art),
+                                  adjective(Adj),
+                                  noun(N).
+noun_phrase(np(Art,N))        --> article(Art),noun(N).
+verb_phrase(vp(IV))           --> intransitive_verb(IV).
+verb_phrase(vp(TV,NP))        --> transitive_verb(TV),
+                                  noun_phrase(NP).
+article(art(the))             --> [the].
+adjective(adj(lazy))          --> [lazy].
+adjective(adj(rapid))         --> [rapid].
+proper_noun(pn(achilles))     --> [achilles].
+noun(n(turtle))               --> [turtle].
+intransitive_verb(iv(sleeps)) --> [sleeps].
+transitive_verb(tv(beats))    --> [beats].
+</pre>
+ <p class="tekst">
+  In the query, the argument of the non-terminal <tt>sentence</tt> will be instantiated to the final parse tree:
+ </p>
+ <p class="query AutoStyle45">
+  ?-phrase(sentence(T),[achilles,beats,the,lazy,turtle]).<br>
+  T = s(np(pn(achilles)),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vp(tv(beats),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;np(art(the),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj(lazy),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n(turtle))))
+</p>
+ <p class="tekst">
+  If we use the predicate <tt>term_write/1</tt>&nbsp;given in section 4.1, a nice tree-like output is obtained:
+ </p>
+ <p class="query AutoStyle45">
+  ?-phrase(sentence(T),[achilles,beats,the,lazy,turtle]),<br>
+  term_write(T).
+</p>
+ <p class="p-laatst">
+  ---------s--------np--------pn--achilles<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------vp--------tv-----beats<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------np-------art-------the<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-------adj------lazy<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------n----turtle
+</p>
+ <p class="sektie">
+  These examples show one way to use arguments of non-terminals: to collect information coming out of the parsing process. In addition, we might want to express that arguments of different non-terminals in a rule are related in some way. To this end, we can add Prolog goals to the body of grammar rules, by enclosing them in curly brackets <tt>{}</tt>. For instance, suppose we have a grammar for English numerals like &lsquo;one hundred twenty three&rsquo;, and we want to calculate the number represented by such numerals during parsing. We could write the following DCG:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.2.2" query-text="?- phrase(numeral(N),[nine,thousand,nine,hundred,ninety,nine]).">
+numeral(N) --> n1_999(N).
+numeral(N) --> n1_9(N1),[thousand],n1_999(N2),{N is N1*1000+N2}.
+
+n1_999(N)  --> n1_99(N).
+n1_999(N)  --> n1_9(N1),[hundred],n1_99(N2),{N is N1*100+N2}.
+
+n1_99(N)   --> n0_9(N).
+n1_99(N)   --> n10_19(N).
+n1_99(N)   --> n20_90(N).
+n1_99(N)   --> n20_90(N1),n1_9(N2),{N is N1+N2}.
+
+n0_9(0)    --> [].
+n0_9(N)    --> n1_9(N).
+
+n1_9(1)    --> [one].
+n1_9(2)    --> [two].
+n1_9(3)    --> [three].
+n1_9(4)    --> [four].
+n1_9(5)    --> [five].
+n1_9(6)    --> [six].
+n1_9(7)    --> [seven].
+n1_9(8)    --> [eight].
+n1_9(9)    --> [nine].
+
+n10_19(10) --> [ten].
+n10_19(11) --> [eleven].
+n10_19(12) --> [twelve].
+n10_19(13) --> [thirteen].
+n10_19(14) --> [fourteen].
+n10_19(15) --> [fifteen].
+n10_19(16) --> [sixteen].
+n10_19(17) --> [seventeen].
+n10_19(18) --> [eighteen].
+n10_19(19) --> [nineteen].
+
+n20_90(20) --> [twenty].
+n20_90(30) --> [thirty].
+n20_90(40) --> [fourty].
+n20_90(50) --> [fifty].
+n20_90(60) --> [sixty].
+n20_90(70) --> [seventy].
+n20_90(80) --> [eighty].
+n20_90(90) --> [ninety].
+</pre>
+ <p class="tekst">
+  We could use this DCG for parsing a given numeral, but also for generating the numeral corresponding to a given number:
+ </p>
+ <pre class="swish query" id="query7.2.1">
+?- phrase(numeral(2211),N).
+</pre>
+ <p class="query AutoStyle45">
+  N = [two,thousand,two,hundred,eleven]
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 7.3.</i> Write a DCG that parses time indications like &lsquo;twenty minutes to four&rsquo;, and converts them to terms like <tt>3:40</tt>.
+  </p>
+ </div>
+ <p class="sektie">
+  In this section, we have seen that writing parsers in Prolog is easy: just write the context-free grammar, possibly extended by arguments to non-terminals and Prolog goals in the body of grammar rules, and you have a program for parsing and sentence generation. However, parsing is not an end in itself: we want to assign an interpretation to a sentence. This is the topic of the following section.
+ </p>
+ <h3 id="interpretation_of_natural_language">
+  7.3&nbsp;&nbsp;&nbsp;Interpretation of natural language
+ </h3>
+ <p class="sektie1">
+  Suppose we want to build a rulebase&nbsp;consisting of rules like &lsquo;every human is mortal&rsquo; and &lsquo;Socrates is a human&rsquo;. A small grammar for rules of this form is given below.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.3.1" query-text="?- phrase(sentence,[every,human,is,mortal]). ?- phrase(sentence,[socrates,is,a,human]).">
+sentence      --> determiner,noun,verb_phrase.
+sentence      --> proper_noun,verb_phrase.
+verb_phrase   --> [is],property.
+property      --> [a],noun.
+property      --> [mortal].
+determiner    --> [every].
+proper_noun   --> [socrates].
+noun          --> [human].
+</pre>
+ <p class="tekst">
+  If the rulebase consists of Prolog clauses, then we need a way to convert natural language rules to clauses. For instance, &lsquo;every man is human&rsquo; must be translated to the clause <tt>human(X):-man(X)</tt>. The clause represents the <i>meaning</i> of the sentence, and assigning clauses to sentences can be seen as <i>interpreting</i> the sentences.
+ </p>
+ <p class="sektie">
+  We will build such an interpreter by extending each non-terminal in the above grammar with one or more arguments, which give the meaning of that non-terminal. We start with the simplest case: the meaning of the proper noun &lsquo;Socrates&rsquo; is the term <tt>socrates</tt>:
+ </p>
+ <p class="p-el">
+  proper_noun(socrates) --> [socrates]
+ </p>
+ <p class="tekst">
+  Proper nouns occur in the second rule for sentences:
+ </p>
+ <p class="p-el">
+  sentence --> proper_noun,verb_phrase
+ </p>
+ <p class="tekst">
+  which can be used to construct the sentence &lsquo;Socrates is a human&rsquo;. The meaning of this sentence is the clause <tt>human(socrates):-true</tt>, which can be constructed as follows:
+ </p>
+ <p class="p-el">
+  sentence((P(X):-true)) --> proper_noun(X),verb_phrase(P)
+ </p>
+ <p class="tekst">
+  This rule states: <tt>P(X):-true</tt> is the meaning of a sentence if it is composed of a proper noun with meaning <tt>X</tt> followed by a verb phrase with meaning <tt>P</tt>.
+ </p>
+ <p class="sektie">
+  However, there are several problems with this grammar rule. For one thing, not every Prolog interpreter allows a variable in functor position, as in <tt>P(X)</tt>. This could be solved by constructing the literal <tt>P(X)</tt> separately by means of a Prolog goal:
+ </p>
+ <p class="grammar">
+  sentence((L:-true))&nbsp;--> proper_noun(X),verb_phrase(P),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{L=..[P,X]}
+</p>
+ <p class="tekst">
+  A more serious problem, however, is that verb phrases are not necessarily interpreted as unary predicates. For instance, transitive verbs are interpreted as binary predicates, and the meaning of the verb phrase &lsquo;likes Achilles&rsquo; is the literal <tt>likes(X,achilles)</tt>, where <tt>X</tt> is the meaning of the proper noun preceding the verb phrase.
+ </p>
+ <p class="sektie">
+  In general, a verb phrase defines a <i>mapping</i> from a term <tt>X</tt> to a literal <tt>L</tt>:
+ </p>
+ <p class="grammar">
+  sentence((L:-true))&nbsp;--> proper_noun(X),verb_phrase(X=>L)
+ </p>
+ <p class="tekst">
+  The declarative reading of this rule is: a sentence is interpreted as <tt>L:-true</tt> if it starts with a proper noun with meaning <tt>X</tt>, and it ends with a verb phrase whose meaning is <i>applied</i> to <tt>X</tt> to yield <tt>L</tt>. The meaning of the verb phrase is a mapping from terms to literals indicated as <tt>X=>L</tt>, where &lsquo; <tt>=></tt> &rsquo; is a user-defined operator. In our case, the mapping is determined by the property in the verb phrase:
+ </p>
+ <p class="grammar">
+  verb_phrase(M)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> [is],property(M).<br>
+  property(M)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> [a],noun(M).<br>
+  property(X=>mortal(X))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> [mortal].<br>
+  noun(X=>human(X))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> [human].
+</p>
+ <p class="tekst">
+  For instance, the declarative reading of the last rule is: the meaning of the noun &lsquo;human&rsquo; is a mapping from <tt>X</tt> to <tt>human(X)</tt>.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 7.4</i>. Extend the following grammar rules with arguments expressing their interpretation:<br>
+   <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verb_phrase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> transitive_verb,proper_noun.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transitive_verb&nbsp;--> [likes].</tt>
+  </p>
+ </div>
+ <p class="sektie">
+  It remains to consider the first rule for sentences:
+ </p>
+ <p class="grammar">
+  sentence&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> determiner,noun,verb_phrase
+ </p>
+ <p class="tekst">
+  which constructs sentences like &lsquo;every human is mortal&rsquo;. As explained above, the meaning of the noun in this sentence is the mapping from <tt>X</tt> to <tt>human(X)</tt>, and the meaning of the verb phrase is the mapping from <tt>X</tt> to <tt>mortal(X)</tt>. These two mappings are &lsquo;glued together&rsquo; by the non-terminal <tt>determiner</tt>:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.3.2" query-text="?- phrase(sentence(C),S)." source-text-end="verb_phrase(M)   --> [is],property(M).
+property(M) --> [a],noun(M).
+property(X=>mortal(X)) --> [mortal].
+noun(X=>human(X)) --> [human].
+proper_noun(socrates) --> [socrates]." source-text-start=":-op(600,xfy,'=>').
+sentence((L:-true))  --> proper_noun(X),verb_phrase(X=>L).
+">
+sentence(C)   			--> 	determiner(M1,M2,C), noun(M1),verb_phrase(M2).
+determiner(X=>B,X=>H,(H:-B))  	--> 	[every].
+</pre>
+ <p class="tekst">
+  One could say that the meaning of the determiner &lsquo;every&rsquo; is a <i>second-order mapping</i> which, given the mappings defined by the noun and verb phrase, determines a clause. Note that the noun determines the body literal, while the verb phrase determines the head; note also that the variables in the two literals are unified in the determiner rule.
+ </p>
+ <p class="sektie">
+  With this DCG, the query <tt>?-phrase(sentence(C),S)</tt> now produces the following answers:
+ </p>
+ <p class="p-el">
+  C = human(X):-human(X)<br>
+  S = [every,human,is,a,human];<br>
+  C = mortal(X):-human(X)<br>
+  S = [every,human,is,mortal];<br>
+  C = human(socrates):-true<br>
+  S = [socrates,is,a,human];<br>
+  C = mortal(socrates):-true<br>
+  S = [socrates,is,mortal]
+</p>
+ <p class="tekst">
+  Note that this very simple language already allows some form of reasoning: for instance, given the second and third sentence, we could conclude the fourth. We will implement a program which performs this kind of reasoning, taking sentences and questions in natural language, converting them to clausal logic, and converting the answers back to natural language. In order to make the program a bit more interesting, we will extend the grammar with existentially quantified sentences.
+ </p>
+ <p class="sektie">
+  Consider the sentence &lsquo;some living beings are mortal&rsquo;, where &lsquo;some&rsquo; is a determiner. The meaning of this sentence is &lsquo;some things are living beings, and they are mortal&rsquo;, which can be expressed by two clauses:
+ </p>
+ <p class="p-el">
+  living_being(sk):-true<br>
+  mortal(sk):-true.
+</p>
+ <p class="tekst">
+  where <tt>sk</tt> is a Skolem constant&nbsp;introducing a new name for the things known to exist (see section 2.5). The two head literals in these clauses are determined by the noun and the verb phrase, and the only thing we have to do is to substitute the Skolem constant and add the empty body:
+ </p>
+ <p class="p-el">
+  determiner(sk=>H1,sk=>H2,[(H1:-true),(H2:-true)])--> [some]
+ </p>
+ <p class="sektie">
+  The complete DCG is given below. Since the determiner &lsquo;some&rsquo; requires a plural form of noun and verb phrase, an argument for plurality&nbsp;(<tt>s</tt> for singular, <tt>p</tt> for plural) has been added to each non-terminal. Furthermore, since the determiner &lsquo;some&rsquo; results in a list of clauses, the other rules for determiner and sentence have been changed accordingly.
+ </p>
+ <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.7.3.3" query-text="?- phrase(sentence(C),S). ?- phrase(sentence([(mortal(socrates):-true)]),Answer).">
+:-op(600,xfy,'=>').
+sentence(C)                   --> determiner(N,M1,M2,C), noun(N,M1), verb_phrase(N,M2).
+sentence([(L:-true)])         --> proper_noun(N,X), verb_phrase(N,X=>L).
+verb_phrase(s,M)              --> [is],property(s,M).
+verb_phrase(p,M)              --> [are],property(p,M).
+property(s,M)                 --> [a],noun(s,M).
+property(p,M)                 --> noun(p,M).
+property(_N,X=>mortal(X))      --> [mortal].
+determiner(s,X=>B,X=>H,[(H:-B)]) --> [every].
+determiner(p,sk=>H1,sk=>H2,[(H1:-true),(H2:-true)]) --> [some].
+proper_noun(s,socrates)       --> [socrates].
+noun(s,X=>human(X))           --> [human].
+noun(p,X=>human(X))           --> [humans].
+noun(s,X=>living_being(X))    --> [living],[being].
+noun(p,X=>living_being(X))    --> [living],[beings].
+</pre>
+ <p class="tekst">
+  In addition, we give a small grammar for allowable questions, which are of the form &lsquo;who is mortal?&rsquo;, &lsquo;is Socrates mortal?&rsquo;, and &lsquo;are some living beings mortal?&rsquo;:
+ </p>
+ <pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.7.3.4" inherit-id="swish.7.3.3" query-text="?- phrase(question(human(L)),[is,socrates,a,human]). ?- phrase(sentence([(mortal(socrates):-true)]),Answer).">
+question(Q)          --> [who],[is],property(s,_X=>Q).
+question(Q)          --> [is],proper_noun(N,X),
+                         property(N,X=>Q).
+question((Q1,Q2))    --> [are],[some],noun(p,sk=>Q1),
+                         property(p,sk=>Q2).
+</pre>
+ <p class="sektie">
+  The program below is a shell for interactively building up and querying a small rulebase. User inputs are handled by the predicate <tt>handle_input/2</tt>; possible inputs are &lsquo;stop&rsquo;, &lsquo;show&rsquo;, a new rule, or a question. For the latter to be answered, we use a simple depth-first meta-interpreter, which possibly instantiates variables in the query. For instance, the question &lsquo;who is mortal&rsquo; is interpreted as the goal <tt>mortal(X)</tt>, which is instantiated by the meta-interpreter to <tt>mortal(socrates)</tt>.
+ </p>
+ <p class="sektie">
+  Interestingly, for transforming this answer back to natural language we do not need a separate grammar for answers: we can use the existing grammar for sentences! For instance, we can <b>generate</b> the answer &lsquo;Socrates is mortal&rsquo; by means of the query
+ </p>
+ <p class="p-el">
+  ?-phrase(sentence([(mortal(socrates):-true)]),Answer)<br>
+  Answer = [socrates,is,mortal]
+</p>
+ <p class="tekst">
+  Therefore, the only thing we have to do after the meta-interpreter has found an answer is to transform the instantiated query (a conjunction of literals) to a list of clauses with empty body (see predicate <tt>transform/2</tt>). Again, we encounter the declarative power of DCG&rsquo;s, which can at the same time be used for interpreting natural language sentences, and for constructing sentences that express a certain logical meaning.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.7.3.5" query-text="?- nl_shell(Rulebase)." source-text-end="/*
+ This part is inherited from others. 
+*/ 
+:-op(600,xfy,'=>').
+sentence(C)                   --> determiner(N,M1,M2,C), noun(N,M1), verb_phrase(N,M2).
+sentence([(L:-true)])         --> proper_noun(N,X), verb_phrase(N,X=>L).
+verb_phrase(s,M)              --> [is],property(s,M).
+verb_phrase(p,M)              --> [are],property(p,M).
+property(s,M)                 --> [a],noun(s,M).
+property(p,M)                 --> noun(p,M).
+property(_N,X=>mortal(X))      --> [mortal].
+determiner(s,X=>B,X=>H,[(H:-B)]) --> [every].
+determiner(p,sk=>H1,sk=>H2,[(H1:-true),(H2:-true)]) --> [some].
+proper_noun(s,socrates)       --> [socrates].
+noun(s,X=>human(X))           --> [human].
+noun(p,X=>human(X))           --> [humans].
+noun(s,X=>living_being(X))    --> [living],[being].
+noun(p,X=>living_being(X))    --> [living],[beings].
+
+question(Q)          --> [who],[is],property(s,_X=>Q).
+question(Q)          --> [is],proper_noun(N,X),
+                         property(N,X=>Q).
+question((Q1,Q2))    --> [are],[some],noun(p,sk=>Q1),
+                         property(p,sk=>Q2).
+/*
+ This is the end of inheritance.
+*/">
+% natural language shell
+nl_shell(Rulebase):- get_input(Input),handle_input(Input,Rulebase).
+
+
+% handle input from user
+handle_input(stop,_Rulebase):-!.
+handle_input(show,Rulebase):-!,show_rules(Rulebase),nl_shell(Rulebase).
+handle_input(Sentence,Rulebase):-phrase(sentence(Rule),Sentence),!,nl_shell([Rule|Rulebase]).
+handle_input(Question,Rulebase):-phrase(question(Query),Question),prove_rb(Query,Rulebase),!,
+	transform(Query,Clauses),phrase(sentence(Clauses),Answer),show_answer(Answer),nl_shell(Rulebase).
+handle_input(_Question,Rulebase):-show_answer('No'),nl_shell(Rulebase).
+
+% show current rulebase
+show_rules([]).
+show_rules([Rule|Rules]):-phrase(sentence(Rule),Sentence),show_answer(Sentence),show_rules(Rules).
+
+% meta-interpreter
+prove_rb(true,_Rulebase):-!.
+prove_rb((A,B),Rulebase):-!,prove_rb(A,Rulebase),prove_rb(B,Rulebase).
+prove_rb(A,Rulebase):-find_clause((A:-B),Rulebase),prove_rb(B,Rulebase).
+
+% find applicable clause in rulebase
+find_clause(Clause,[Rule|_Rules]):- copy_element(Clause,Rule). 
+find_clause(Clause,[_Rule|Rules]):- find_clause(Clause,Rules).
+
+copy_element(X,Ys):-element(X1,Ys),copy_term(X1,X).
+
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]). 
+element(X,[_Y|Ys]):-element(X,Ys).
+
+% transform query to answer
+transform((A,B),[(A:-true)|Rest]):-!,transform(B,Rest).
+transform(A,[(A:-true)]).
+
+% get input from user
+get_input(Input):-write('? '),read(Input).
+
+% show answer to user
+show_answer(Answer):-write('! '),write(Answer),nl.
+</pre>
+ <p class="tekst">
+  A conversation with this program might proceed as follows (following <tt>?</tt> is user input, following <tt>!</tt> is program output):
+ </p>
+ <p class="p-el">
+  ? [every,human,is,mortal].<br>
+  ? [socrates,is,a,human].<br>
+  ? [who,is,mortal].<br>
+  ! [socrates,is,mortal]<br>
+  ? [some,living,beings,are,humans].<br>
+  ? show.<br>
+  ! [some,living,beings,are,humans]<br>
+  ! [socrates,is,a,human]<br>
+  ! [every,human,is,mortal]<br>
+  ? [are,some,living,beings,mortal].<br>
+  ! [some,living,beings,are,mortal]<br>
+  ? stop.
+</p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 7.5.</i> The predicates for user-interaction <tt>nl_shell/1</tt> and <tt>handle_input/2</tt> are mutually recursive. This might cause memory<br>
+   problems in longer sessions. Rewrite the interactive loop into a<br>
+   so-called <i>failure-driven loop</i>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>shell:-repeat,get_input(X),handle_input(X).<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handle_input(stop):-!.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handle_input(X):- /* do something */,fail.<br>
+    handle_input/1</tt> is now a predicate which always fails, unless the loop should be terminated. Upon its failure, the first clause will backtrack to <tt>repeat</tt>, which is a built-in predicate which succeeds an indefinite number of times. Thus, <tt>get_input/1</tt> will again be called.<br>
+   (NB. Since it is impossible to pass arguments on to the next iteration, the changes to the rulebase have to be made through side-effects, i.e. by means of <tt>assert/1</tt>&nbsp;and <tt>retract/1</tt>.)
+  </p>
+ </div>
+ <h3 id="further_reading_7">
+  Further reading
+ </h3>
+ <p class="sektie1">
+  (Pereira &amp; Warren, 1980) contains a detailed discussion of the DCG formalism. More Prolog programs for natural language processing can be found in (Gazdar &amp; Mellish, 1989) and (Pereira &amp; Shieber, 1987).
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   G. Gazdar &amp; C. Mellish (
+  </span>
+  1989)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  <i>Natural Language Processing in Prolog</i>, Addison-Wesley.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   F.C.N. Pereira &amp; D.H.D. Warren (
+  </span>
+  1980)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Definite Clause Grammars for language analysis: a survey of the formalism and a comparison with Augmented Transition Networks&rsquo;, <i>Artificial Intelligence</i> <b>13</b>: 231-278.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   F.C.N. Pereira &amp; S.M. Shieber (
+  </span>
+  1987)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  <i>Prolog and Natural-language Analysis</i>, Center for the Study of Language and Information, Menlo Park, CA.
+ </p>
+</div>
+<b>
+ <span class="AutoStyle02">
+  <br clear="all"/>
+ </span>
+</b>
+<div class="WordSection3">
+ <p class="cijfer" id="reasoning_with_incomplete_information">
+  8
+ </p>
+ <h2 id="h_reasoning_with_incomplete_information">
+  Reasoning with incomplete information
+ </h2>
+ <p class="sektie1">
+  In everyday life, we use a surprising number of different reasoning methods, exemplified by the following arguments:
+ </p>
+ <p class="opsomming">
+  &mdash; &lsquo;It is getting dark already, it must be after five.&rsquo;
+ </p>
+ <p class="opsomming">
+  &mdash; &lsquo;If I push this button, the light in my room will switch on.&rsquo;
+ </p>
+ <p class="opsomming">
+  &mdash; &lsquo;The light doesn&rsquo;t switch on!? The lightbulb must be broken!&rsquo;
+ </p>
+ <p class="tekst">
+  The first argument is based on general knowledge about the regular hours of sunset. This knowledge is reached after numerous observations, and it is embedded in a theory about the movements of the heavenly bodies. We are pretty confident that this theory is <b>true</b>; that is, it accurately describes the actual state of affairs. This justifies its use to predict events in the future. However, it should be noted that we can never be <b>absolutely</b> sure that the theory is true: tomorrow the sun may set at eleven in the morning, falsifying our theory. The theory is reached by <i>induction</i>: given a number of distinct but similar observations, conclude that they are governed by a general law. Induction is an important reasoning method in the natural sciences, and it also underlies some forms of learning, like <i>learning from examples</i>. Despite this common usage, it is surprisingly hard to formalise inductive reasoning: in particular, what it takes to <i>justify</i> an inductive hypothesis remains a largely unresolved question.
+ </p>
+ <p class="sektie">
+  The second argument above seems perfectly alright, given knowledge about how the switch is connected to the lightbulb and the power supply. However, this argument requires a lot of implicit assumptions: the switch is not broken, the connections are in order, the lightbulb is not broken, there is a supply of power, and so on. The argument is not in general true, but it describes the normal case; there might be some exceptional circumstance, invalidating the argument. Typically, we assume things to be normal, unless there is evidence to the contrary. We call this <i>default reasoning</i>.
+ </p>
+ <p class="sektie">
+  In the third argument, we give an <i>explanation</i>&nbsp;for the observation that the light doesn&rsquo;t switch on. It is a sort of reversed implication: we know that if the lightbulb is broken, the light won&rsquo;t switch on; we observe that the light doesn&rsquo;t work, so we conclude that the lightbulb must be broken. This is but one of several possible explanations, however: the switch might be broken, or the power supply might be down. This process of finding explanations for observed facts is called <i>abduction</i>.
+ </p>
+ <p class="sektie">
+  The common characteristic of these three types of reasoning is that their conclusions, however plausible they may seem, are not guaranteed to be true in the intended interpretation, because the information we have is <i>incomplete</i>. In default reasoning, the conclusion might be false because the state of affairs is not so normal as it is assumed to be. In abduction, there might be several alternative explanations, and we do not know which one to choose. In induction, we typically base our conclusion on only a fraction of the possible observations. Thus, the general rule (e.g. all swans are white) might be invalidated by the next observation (a black swan).
+ </p>
+ <p class="sektie">
+  In other words, such common-sense arguments are <i>unsound</i>.&nbsp;Recall that an inference rule is sound if the truth of its conclusion is guaranteed by the truth of its premises. Sound reasoning is also called <i>deduction</i>; it is the only allowed form of reasoning in fields where rigorous arguments are needed, like mathematics. However, deductive conclusions only make explicit what is already implicitly present in the premises (e.g. the mathematical axioms, or a logic program). In everyday reasoning we often want to reach conclusions which contain <b>new</b> information, information that is not present in the premises. In this chapter, we will take a closer look at various forms of reasoning with incomplete information, such as default reasoning, abduction, and diagnostic reasoning. Inductive reasoning is a subject which deserves a chapter of its own (Chapter 9).
+ </p>
+ <h3 id="default_reasoning">
+  8.1&nbsp;&nbsp;&nbsp;Default reasoning
+ </h3>
+ <p class="sektie1">
+  Consider the following argument:
+ </p>
+ <p class="opsomming AutoStyle50">
+  &lsquo;Tweety is a bird.&rsquo;
+ </p>
+ <p class="opsomming">
+  &lsquo;Normally, birds fly.&rsquo;
+ </p>
+ <p class="opsomming AutoStyle45">
+  &lsquo;Therefore, Tweety flies.&rsquo;
+ </p>
+ <p class="tekst">
+  There are several ways to translate this argument into logic. One is to read the second statement as &lsquo;normal birds fly&rsquo;, such that the following clauses represent the premises of the argument:
+ </p>
+ <p class="p-el">
+  bird(tweety).<br>
+  flies(X):-bird(X),normal(X).
+</p>
+ <p class="tekst">
+  Can we draw the conclusion that Tweety flies? There are three models:
+ </p>
+ <p class="p-el">
+  <span class="AutoStyle25">
+   {
+  </span>
+  bird(tweety)
+  <span class="AutoStyle25">
+   }
+  </span><br>
+  <span class="AutoStyle25">
+   {
+  </span>
+  bird(tweety)
+  <span class="AutoStyle25">
+   ,
+  </span>
+  flies(tweety)
+  <span class="AutoStyle25">
+   }
+  </span><br>
+  <span class="AutoStyle25">
+   {
+  </span>
+  bird(tweety)
+  <span class="AutoStyle25">
+   ,
+  </span>
+  flies(tweety)
+  <span class="AutoStyle25">
+   ,
+  </span>
+  normal(tweety)
+  <span class="AutoStyle25">
+   }
+  </span>
+ </p>
+ <p class="tekst">
+  In the first two models, Tweety is a bird but not normal; hence, it might or might not fly. In the third model, Tweety is a normal flying bird. Since <tt>flies(tweety)</tt> is not true in every model, it is not a logical consequence&nbsp;of the program.
+ </p>
+ <p class="sektie">
+  If we want to conclude that Tweety flies, we must explicitly state that Tweety is a normal bird, thus ruling out the first two of the above models. However, in default reasoning we do not want to say that a case is normal: rather, we assume a case to be normal, unless it is known to be abormal. Therefore, it is more natural to use a predicate <tt>abnormal/1</tt>&nbsp;representing the negation of <tt>normal/1</tt>. Adding <tt>abnormal(X)</tt> to the head of the clause leads to the indefinite clause
+ </p>
+ <p class="p-el">
+  flies(X);abnormal(X):-bird(X)
+ </p>
+ <p class="tekst">
+  As has already been indicated in section 2.4, such indefinite clauses can be transformed into &lsquo;pseudo-definite&rsquo; or <i>general clause</i> s by moving all but one of the positive literals to the body of the clause, preceded by the negation symbol <tt>not</tt>. This results in the following program:
+ </p>
+ <p class="p-el">
+  bird(tweety).<br>
+  flies(X):-bird(X),not abnormal(X).
+</p>
+ <p class="tekst">
+  Since general clauses extend the language of definite clauses, we must extend both proof theory and semantics to deal with the negation symbol <tt>not</tt>. A practical way to do this has been discussed in section 3.3, where we treated <tt>not/1</tt>&nbsp;as a Prolog meta-predicate, implemented by means of cut. Under this interpretation, we can prove that Tweety flies<br>
+  (fig. 8.1).
+</p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle20">
+      <p class="med-figure AutoStyle07">
+       <img src="img/part_iii/image008.svg" v:shapes="Picture_x0020_4" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="med-caption">
+      <b>Figure   8.1.</b> Tweety flies by negation as failure.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <p class="sektie">
+  What happens if we learn that Tweety is an ostrich, and that ostriches are non-flying birds? We should add a clause which says that ostriches are abnormal (when it comes to flying):
+ </p>
+ <p class="p-el">
+  bird(tweety).<br>
+  ostrich(tweety).<br>
+  flies(X):-bird(X),not abnormal(X).<br>
+  abnormal(X):-ostrich(X).
+</p>
+ <p class="tekst">
+  As the SLD-tree&nbsp;in fig. 8.2 shows, Prolog is now unable to prove that Tweety flies, since Tweety is provably abnormal. We say that the <i>default rule</i>&nbsp;&lsquo;normally birds fly&rsquo; is <i>cancelled</i> by a more <i>specific</i> rule (about ostriches).
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle20">
+      <p class="med-figure AutoStyle07">
+       <img src="img/part_iii/image010.svg" v:shapes="Picture_x0020_5" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="med-caption">
+      <b>Figure   8.2.</b> Tweety doesn&rsquo;t fly, since it is an ostrich.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 8.1</i>. Give the models of this program (interpreting the general clause as the corresponding indefinite clause). Which one is the intended model (see section 2.4)?
+  </p>
+ </div>
+ <p class="sektie">
+  This example shows that in default reasoning, <i>new information can invalidate previous conclusions</i>, if these conclusions are based on unprovable assumptions which are contradicted by the new information. This property clearly distinguishes default reasoning from deductive reasoning, which is <i>monotonic</i> in the following sense:
+ </p>
+ <p class="formule">
+  <i>Theory</i> &#8866; <i>Conclusion</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="AutoStyle09">
+   &#8658;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+  <i>Theory</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  { <i>AnyFormula</i> }&#8866; <i>Conclusion</i>
+ </p>
+ <p class="tekst">
+  That is, adding <i>AnyFormula</i> to a set of formulas <i>Theory</i> does not invalidate any <i>Conclusion</i> drawn from <i>Theory</i> alone. If we define the <i>deductive closure</i>&nbsp;of a theory as the set of conclusions that can be drawn from it:
+ </p>
+ <p class="formule">
+  <i>Closure</i> (<i>Theory</i>) = { <i>Conclusion</i> | <i>Theory</i> &#8866; <i>Conclusion</i> }
+ </p>
+ <p class="tekst">
+  then the property of monotonicity can also be stated as a relation between theories and their closures:
+ </p>
+ <p class="formule">
+  <i>Theory1</i>
+  <span class="AutoStyle09">
+   &sube;
+  </span>
+  <i>Theory2</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="AutoStyle09">
+   &#8658;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+  <i>Closure</i> (<i>Theory1</i>)
+  <span class="AutoStyle09">
+   &sube;
+  </span>
+  <i>Closure</i> (<i>Theory2</i>)
+ </p>
+ <p class="tekst">
+  This formulation clearly demonstrates the use of the term &lsquo;monotonic&rsquo;. Since default reasoning lacks this property, it is often called <i>non-monotonic reasoning</i>.
+ </p>
+ <p class="sektie">
+  Although Prolog&rsquo;s <tt>not/1</tt>&nbsp;meta-predicate can handle default arguments such as the above, there are a couple of problems. First of all, as has been shown in section 3.3, the implementation of <tt>not/1</tt> by means of cut may misbehave if the goal to be negated contains variables. The second problem is that, since cut is a procedural feature without declarative semantics, we likewise have no declarative semantics for <tt>not</tt> implemented by means of cut. Thus, even if we avoid the first problem by a clever re-ordering of literals in a clause, we do not know what we are computing! This problem will be addressed in the next section.
+ </p>
+ <p class="sektie1">
+  An alternative to handling possible exceptions to rules via negation as failure, is to distinguish between two possible types of rules, those with exceptions, and those without exceptions. For instance, the rule &lsquo;penguins are birds&rsquo; is a rule without exceptions, whereas the rule &lsquo;birds fly&rsquo; is a rule with exceptions. Let us call a rule with exceptions a <i>default</i> rule, or simply a default. Rules and defaults are then treated differently when trying to prove something: a rule is applied whenever possible, while a default is applied only when it does not lead to an inconsistency. So, if we only know that Tweety is a bird, the default &lsquo;birds fly&rsquo; can be used to conclude that Tweety flies, but if we also know that Tweety is a penguin and that penguins don&rsquo;t fly, the default cannot be applied. Thus, instead of expressing our knowledge as a general program and using Prolog to derive conclusions, we will extend the syntax of clausal logic to distinguish between defaults and rules. We will develop a meta-interpreter which implements the inference rules for this extended logic.
+ </p>
+ <p class="sektie">
+  The Tweety example can be expressed in terms of rules and defaults as follows.
+ </p>
+ <p class="p-el">
+  default((flies(X):-bird(X))).<br>
+  rule((not flies(X):-penguin(X))).<br>
+rule((bird(X):-penguin(X))).<br>
+rule((penguin(tweety):-true)).<br>
+rule((bird(opus):-true)).
+</p>
+ <p class="tekst">
+  In order to explain why Opus flies but Tweety doesn&rsquo;t, we use two meta-interpreters. One is the familiar <tt>prove</tt> meta-interpreter for definite clauses, extended with two arguments to collect the rules used in the proof. The other meta-interpreter&nbsp;applies a default whenever it does not lead to a contradiction.
+ </p>
+ <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.8.1.1" query-text="?- explain(flies(X),E). ?- explain(not flies(X),E)." source-text-end="
+default((flies(X):-bird(X))).
+rule((not flies(X):-penguin(X))).
+rule((bird(X):-penguin(X))).
+rule((penguin(tweety):-true)).
+rule((bird(opus):-true)).">
+:-op(900,fy,not).
+
+% explain(F,E) <- E explains F from rules and defaults
+explain(F,E):-
+	explain(F,[],E).
+
+% meta-interpreter for rules and defaults
+explain(true,E,E):-!.
+explain((A,B),E0,E):-!,
+	explain(A,E0,E1),
+	explain(B,E1,E).
+explain(A,E0,E):-
+	prove_e(A,E0,E).         % explain by rules only
+explain(A,E0,[default((A:-B))|E]):-
+	default((A:-B)),
+	explain(B,E0,E),
+	not contradiction(A,E).  % A consistent with E
+
+% meta-interpreter for rules
+prove_e(true,E,E):-!.
+prove_e((A,B),E0,E):-!,
+	prove_e(A,E0,E1),
+	prove_e(B,E1,E).
+prove_e(A,E0,[rule((A:-B))|E]):-
+	rule((A:-B)),
+	prove_e(B,E0,E).
+
+% check contradiction against rules
+contradiction(not A,E):-!,
+	prove_e(A,E,_E1).
+contradiction(A,E):-
+	prove_e(not A,E,_E1).
+</pre>
+ <p class="tekst">
+  The query <tt>?-explain(flies(X),E)</tt> has only one answer:
+ </p>
+ <p class="p-el">
+  X = opus<br>
+  E = [ default((flies(opus):-bird(opus))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((bird(opus):-true)) ]
+</p>
+ <p class="MsoNormal">
+  Tweety does not fly, since <tt>not flies(tweety)</tt> is provable from the rules:
+ </p>
+ <p class="p-el">
+  ?-explain(not flies(X), E)<br>
+  X = tweety<br>
+  E = [ rule((not flies(tweety):-penguin(tweety))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((penguin(tweety):-true)) ]
+</p>
+ <p class="sektie">
+  Sometimes, both a fact and its negation can be explained. Consider the following set of defaults and rules:
+ </p>
+ <pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.8.1.2" inherit-id="swish.8.1.1" query-text="?- explain(flies(dracula),E). ?- explain(not flies(dracula),E)." source-text-start="
+:-op(900,fy,not).
+">
+default((not flies(X):-mammal(X))).
+default((flies(X):-bat(X))).
+default((not flies(X):-dead(X))).
+rule((mammal(X):-bat(X))).
+rule((bat(dracula):-true)).
+rule((dead(dracula):-true)).
+</pre>
+ <p class="tekst">
+  Does Dracula fly or not? One explanation claims he does, because he is a bat, and bats typically fly:
+ </p>
+ <p class="p-el">
+  ?-explain(flies(dracula),E)<br>
+  E = [ default((flies(dracula):-bat(dracula))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((bat(dracula):-true)) ]
+</p>
+ <p class="tekst">
+  However, there are also two explanations stating that Dracula doesn&rsquo;t fly; after all, he&rsquo;s not only a mammal, and mammals typically don&rsquo;t fly, but he&rsquo;s also dead, and dead things typically don&rsquo;t fly either:
+ </p>
+ <p class="p-el">
+  ?-explain(not flies(dracula), E)<br>
+  E = [ default((not flies(dracula):-mammal(dracula))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((mammal(dracula):-bat(dracula))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((bat(dracula):-true)) ];<br>
+  E = [ default((not flies(dracula):-dead(dracula))),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((dead(dracula):-true)) ]
+</p>
+ <p class="tekst">
+  It seems that only the third of these explanations is acceptable. Thus, we need a way to cancel particular defaults in certain situations.
+ </p>
+ <p class="sektie">
+  This can be done by attaching <i>names</i> to defaults, which are parametrised with the variables in the default. Then, we can refer to a default in the conclusion of a rule:
+ </p>
+ <p class="p-el">
+  % default(Name,Rule)<br>
+  default(mammals_dont_fly(X),(not flies(X):-mammal(X))).<br>
+  default(bats_fly(X),(flies(X):-bat(X))).<br>
+  default(dead_things_dont_fly(X),(not flies(X):-dead(X))).<br>
+  rule((mammal(X):-bat(X))).<br>
+  rule((bat(dracula):-true)).<br>
+  rule((dead(dracula):-true)).<br>
+  % bats are flying mammals<br>
+  rule((not mammals_dont_fly(X):-bat(X))).<br>
+  % dead bats don&rsquo;t fly<br>
+  rule((not bats_fly(X):-dead(X))).
+</p>
+ <p class="tekst">
+  We change the fourth clause of the <tt>explain/3</tt> predicate accordingly:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.1.4" query-text="?- explain(flies(dracula),E). ?- explain(not flies(dracula),E)." source-text-end="
+% meta-interpreter for rules
+prove_e(true,E,E):-!.
+prove_e((A,B),E0,E):-!,
+	prove_e(A,E0,E1),
+	prove_e(B,E1,E).
+prove_e(A,E0,[rule((A:-B))|E]):-
+	rule((A:-B)),
+	prove_e(B,E0,E).
+
+% check contradiction against rules
+contradiction(not A,E):-!,
+	prove_e(A,E,_E1).
+contradiction(A,E):-
+	prove_e(not A,E,_E1).
+
+% default(Name,Rule)
+default(mammals_dont_fly(X),(not flies(X):-mammal(X))).
+default(bats_fly(X),(flies(X):-bat(X))).
+default(dead_things_dont_fly(X),(not flies(X):-dead(X))).
+rule((mammal(X):-bat(X))).
+rule((bat(dracula):-true)).
+rule((dead(dracula):-true)).
+% bats are flying mammals
+rule((not mammals_dont_fly(X):-bat(X))).
+% dead bats don't fly
+rule((not bats_fly(X):-dead(X))).
+" source-text-start=":-op(900,fy,not).
+
+% explain(F,E) <- E explains F from rules and defaults
+explain(F,E):-
+	explain(F,[],E).
+
+% meta-interpreter for rules and defaults
+explain(true,E,E):-!.
+explain((A,B),E0,E):-!,
+	explain(A,E0,E1),
+	explain(B,E1,E).
+explain(A,E0,E):-
+	prove_e(A,E0,E).         % explain by rules only
+">
+explain(A,E0,[default(Name)|E]):-
+	default(Name,(A:-B)),       % explain by default rule
+	explain(B,E0,E),
+	not contradiction(Name,E),  % default applicable
+	not contradiction(A,E).     % A consistent with E
+</pre>
+ <p class="tekst">
+  There are two changes: (<i>i</i>) when applying a default, its name is tested for consistency with the rules, and (<i>ii</i>) the name of the default is added to the explanation, instead of the default itself. The above queries are now handled correctly:
+ </p>
+ <p class="p-el">
+  ?-explain(flies(dracula),E)<br>
+  No.
+</p>
+ <p class="p-laatst">
+  ?-explain(not flies(dracula), E)<br>
+  E = [ default(dead_things_dont_fly(dracula)),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule((dead(dracula):-true)) ];<br>
+  No more solutions.
+</p>
+ <p class="tekst">
+  We thus see that it is the programmer&rsquo;s responsibility to avoid inconsistencies by specifying appropriate cancellation rules.
+ </p>
+ <h3 id="the_semantics_of_incomplete_information">
+  8.2&nbsp;&nbsp;&nbsp;The semantics of incomplete information
+ </h3>
+ <p class="sektie1">
+  In this section, we present a way to interpret <tt>not</tt> as a logical symbol rather than a meta-predicate. In this way, it can be assigned a declarative semantics of its own, without reference to procedural features like cut. The basic idea is to transform the given program into an <i>intended</i> (possibly indefinite) program, which explicitly captures the intended meaning of the original general program. We will see that the intended program&nbsp;is <i>complete</i>, in the sense that for every ground fact in the Herbrand base, either that fact or its negation is a logical consequence of the intended program. Consequently, the intended program will have exactly one model, which is taken to be the intended model of the original program. We will discuss two methods to construct a complete program. The first, simple method is called the Closed World Assumption; it is simple in the sense that it only works for definite clauses without negation. The second method is called Predicate Completion; it can handle general programs with negated literals in the body of clauses.
+ </p>
+ <p class="sektie1">
+  Informally, the <i>Closed World Assumption</i>&nbsp;(CWA) states that <i>everything that is not known to be true, must be false</i>. Under the CWA, we need not say that something is not true: we simply say nothing about it. This is motivated by the assumption that, in general, there are many more false statements that can be made than true statements. Let us state the CWA more precisely. It suffices to know the truth or falsity of every ground atom in the Herbrand base, since this results in a single model from which the truth or falsity of any clause can be determined. Saying that such a ground atom <tt>A</tt> is false, is the same as saying that <tt>:-A</tt> is true. Thus, if <i>P</i> is a program and <i>B</i> is its Herbrand base, then we define the <i>CWA-closure</i>&nbsp;<i>CWA</i> (<i>P</i>) of <i>P</i> as
+ </p>
+ <p class="formule">
+  <i>CWA</i> (<i>P</i>) = <i>P</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  { <tt>:-A</tt> | <tt>A</tt>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  <i>B</i> and <i>P</i> !&#8872; <tt>A</tt> }
+ </p>
+ <p class="tekst">
+  We refer to <i>CWA</i> (<i>P</i>)
+  <span class="AutoStyle09">
+   -
+  </span>
+  <i>P</i> as the <i>CWA-complement</i>&nbsp;of <i>P</i>. <i>CWA</i> (<i>P</i>) is the <i>intended</i> program according to the Closed World Assumption.
+ </p>
+ <p class="sektie">
+  For instance, if <i>P</i> is the program
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  student_of(paul,peter).
+</p>
+ <p class="tekst">
+  then the ground atoms which are logical consequences of <i>P</i> are <tt>likes(peter,paul</tt>) and <tt>student_of(paul,peter)</tt>.
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle06">
+      <p class="exercise AutoStyle07">
+       <i>Exercise 8.2</i>. Give the   models of <i>P</i>.
+      </p>
+     </div>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <p class="tekst">
+  The remaining ground atoms in the Herbrand base are not known to be true, and we add their negation to obtain <i>CWA</i> (<i>P</i>):
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  student_of(paul,peter).<br>
+  :-student_of(paul,paul).<br>
+  :-student_of(peter,paul).<br>
+  :-student_of(peter,peter).<br>
+  :-likes(paul,paul).<br>
+  :-likes(paul,peter).<br>
+  :-likes(peter,peter).
+</p>
+ <p class="tekst">
+  Note that <i>CWA</i> (<i>P</i>) has only one model:
+ </p>
+ <p class="sektie AutoStyle37">
+  { <tt>student_of(paul,peter)</tt>, <tt>likes(peter,paul)</tt> }
+ </p>
+ <p class="tekst">
+  That is, <i>CWA</i> (<i>P</i>) is a complete program, assigning <b>true</b> or <b>false</b> to every ground atom in the Herbrand base. While our original program had several, alternative models, the extended program has exactly one model. This model is then declared to be the <i>intended model</i>&nbsp;of the original program.
+ </p>
+ <p class="sektie">
+  If we add the clause <i>C</i> = <tt>likes(paul,X)</tt> to <i>P</i>, we find that <i>CWA</i> (<i>P</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  { <i>C</i> }) is
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  student_of(paul,peter).<br>
+  likes(paul,X).<br>
+  :-student_of(paul,paul).<br>
+  :-student_of(peter,paul).<br>
+  :-student_of(peter,peter).<br>
+  :-likes(peter,peter).
+</p>
+ <p class="tekst">
+  This example shows that extending the set of clauses results in a smaller CWA-complement, just as we would expect from a non-monotonic&nbsp;form of reasoning.
+ </p>
+ <p class="sektie">
+  The CWA is limited to definite clauses: if it is applied to indefinite clauses, the resulting CWA-closure will be inconsistent. For instance, let <i>P</i> be
+ </p>
+ <p class="p-el">
+  bird(tweety).<br>
+  flies(X);abnormal(X):-bird(X).
+</p>
+ <p class="tekst">
+  then the Herbrand base is
+ </p>
+ <p class="p-el">
+  {bird(tweety), abnormal(tweety), flies(tweety)
+  <span class="AutoStyle25">
+   }
+  </span>
+ </p>
+ <p class="tekst">
+  of which only the first ground atom follows logically from <i>P</i>. Thus, <i>CWA</i> (<i>P</i>) is
+ </p>
+ <p class="p-el">
+  bird(tweety).<br>
+  flies(X);abnormal(X):-bird(X).<br>
+  :-flies(tweety)<br>
+  :-abnormal(tweety)
+</p>
+ <p class="tekst">
+  which is inconsistent: it does not have a model, since the first two clauses require that at least one of <tt>abnormal(tweety)</tt>, <tt>flies(tweety)</tt> is true. Since the Closed World Assumption is unable to handle indefinite clauses, it is equally unable to handle general clauses with negated literals in the body. The CWA originates from the field of databases, where all information is stored in the form of ground atoms, so that indefinite (disjunctive) information does not occur.
+ </p>
+ <p class="sektie1">
+  A more sophisticated way to construct complete programs is called <i>Predicate Completion</i>. The basic idea of Predicate Completion is to view each clause as part of the <i>definition</i> of a specific predicate. For instance, a clause like
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter)
+ </p>
+ <p class="tekst">
+  is seen as part of the definition of the <tt>likes</tt> predicate. Such a clause gives values for <tt>X</tt> and <tt>Y</tt> in which <tt>likes(X,Y)</tt> is true. In other words, it belongs to the <i>if</i> part&nbsp;of the definition: &lsquo; <i>X</i> likes <i>Y</i> if &hellip;&rsquo;. This definition can be <i>completed</i> by adding the <i>only-if</i> parts, resulting in a full definition: &lsquo; <i>X</i> likes <i>Y</i> if and only if &hellip;&rsquo;. Such a full definition is most easily expressed in Predicate Logic. For instance, the above clause could be completed to the following full definition:
+ </p>
+ <p class="p-el">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  S:likes(X,S)
+  <span class="AutoStyle09">
+   &harr;
+  </span>
+  X=peter
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  student_of(S,peter)
+ </p>
+ <p class="tekst">
+  In words: &lsquo; <i>X</i> likes <i>S</i> if and only if <i>X</i> is Peter, and <i>S</i> is a student of Peter&rsquo;, that is, Peter is the only one who likes people, and the people Peter likes are his students, and nobody else. We can translate this formula back to clausal form (see section 2.5), which yields a set of clauses
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  X=peter:-likes(X,S).<br>
+  student_of(S,peter):-likes(X,S).
+</p>
+ <p class="tekst">
+  The first clause was originally given; the other two are added by the Completion process.
+ </p>
+ <p class="sektie">
+  In general, the procedure for completing a predicate definition consists of the following steps (a Prolog program which performs Predicate Completion is given in Appendix B.2):
+ </p>
+ <p class="opsomming AutoStyle50">
+  (1)&nbsp;&nbsp;make sure that every argument of the predicate in the head of each clause is a distinct variable, by adding literals of the form <tt>Var=Term</tt> to the body;
+ </p>
+ <p class="opsomming">
+  (2)&nbsp;&nbsp;if there are several clauses, combine them into a single formula with a disjunctive body (this is possible since after step (1) each clause has the same head);
+ </p>
+ <p class="opsomming AutoStyle45">
+  (3)&nbsp;&nbsp;turn the implication&nbsp;in this formula into an equivalence.
+ </p>
+ <p class="tekst">
+  Step (3) is the actual Completion step; the first two steps are preparatory.
+ </p>
+ <p class="sektie">
+  As an example, consider the following set of clauses:
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  likes(X,Y):-friend(Y,X).
+</p>
+ <p class="tekst">
+  The first step results in the clauses
+ </p>
+ <p class="p-el">
+  likes(X,S):-X=peter,student_of(S,peter).<br>
+  likes(X,Y):-friend(Y,X).
+</p>
+ <p class="tekst">
+  In the second step, these clauses are combined into a single formula in Predicate Logic:
+ </p>
+ <p class="p-el AutoStyle69">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  Y:likes(X,Y)
+  <span class="AutoStyle09">
+   &not;
+  </span>
+  ((X=peter
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  student_of(Y,peter))
+  <span class="AutoStyle09">
+   &or;
+  </span>
+  friend(Y,X))
+ </p>
+ <p class="tekst">
+  This is a formula which is logically equivalent with the original set of clauses
+  <span class="CustomFootnote">
+   <a href="#_ftn1" name="_ftnref1" title="">
+    <span class="MsoFootnoteReference">
+     <span class="AutoStyle13">
+      <span class="AutoStyle14">
+       [18]
+      </span>
+     </span>
+    </span>
+   </a>
+  </span>
+  . The Completion step is done by turning the implication into an equivalence.
+ </p>
+ <p class="sektie">
+  Care should be taken if one of the original clauses contains variables in the body which do not occur in the head, for example
+ </p>
+ <p class="p-el">
+  ancestor(X,Y):-parent(X,Y).<br>
+  ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+</p>
+ <p class="tekst">
+  Here, the second clause is equivalent with the formula
+ </p>
+ <p class="p-el">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  Y
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  Z:ancestor(X,Y)
+  <span class="AutoStyle09">
+   &not;
+  </span>
+  (parent(X,Z)
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  ancestor(Z,Y))
+ </p>
+ <p class="tekst">
+  but also with the formula
+ </p>
+ <p class="p-el">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  Y:ancestor(X,Y)
+  <span class="AutoStyle09">
+   &not;
+  </span>
+  (
+  <span class="AutoStyle09">
+   &exist;
+  </span>
+  Z:parent(X,Z)
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  ancestor(Z,Y))
+ </p>
+ <p class="tekst">
+  For this reason, variables which occur in the body of a clause but not in the head are often called <i>existential</i> variables. When performing Predicate Completion we must use the <b>second</b> formula, with explicit existential quantification in the body, because we want all clauses to have exactly the same head. The two original clauses are thus converted to
+ </p>
+ <p class="p-el AutoStyle69">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  Y:ancestor(X,Y)
+  <span class="AutoStyle09">
+   &not;
+  </span>
+  (parent(X,Y)
+  <span class="AutoStyle09">
+   &or;
+  </span>
+  (
+  <span class="AutoStyle09">
+   &exist;
+  </span>
+  Z:parent(X,Z)
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  ancestor(Z,Y)))
+ </p>
+ <p class="sektie">
+  A <i>program&nbsp;P</i> consisting of several predicate definitions is completed by completing each predicate definition separately; for those predicates <tt>P(X1,</tt> &hellip; <tt>,Xn)</tt> which occur in the body of clauses but are themselves not defined, a clause <tt>:‑P(X1,</tt> &hellip; <tt>,Xn)</tt> is added. The resulting set of clauses is denoted <i>Comp</i> (<i>P</i>). For instance, if <i>P</i> is
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  student_of(paul,peter).
+</p>
+ <p class="tekst">
+  then <i>Comp</i> (<i>P</i>) is
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  X=peter:-likes(X,S).<br>
+  student_of(S,peter):-likes(X,S).<br>
+  student_of(paul,peter).<br>
+  X=paul:-student_of(X,Y).<br>
+  Y=peter:-student_of(X,Y).
+</p>
+ <p class="tekst">
+  It is easily checked that the completed program has only one model:
+ </p>
+ <p class="p-el">
+  {student_of(paul,peter), likes(peter,paul)
+  <span class="AutoStyle25">
+   }
+  </span>
+ </p>
+ <p class="tekst">
+  and is thus complete. As we saw earlier, this is also the single model of <i>CWA</i> (<i>P</i>), which means that, in this case, <i>Comp</i> (<i>P</i>) and <i>CWA</i> (<i>P</i>) are logically equivalent. This is true in general, provided <i>P</i> is a set of definite clauses.
+ </p>
+ <p class="sektie">
+  Predicate Completion extends the Closed World Assumption by also being able to handle programs containing general clauses, like
+ </p>
+ <p class="p-el">
+  bird(tweety).<br>
+  flies(X):-bird(X),not abnormal(X).
+</p>
+ <p class="tekst">
+  Predicate Completion produces the following formulas:
+ </p>
+ <p class="p-el">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X:bird(X)
+  <span class="AutoStyle09">
+   &harr;
+  </span>
+  X=tweety<br>
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X:flies(X)
+  <span class="AutoStyle09">
+   &harr;
+  </span>
+  (bird(X)
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  &not;abnormal(X))<br>
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X:&not;abnormal(X)
+ </p>
+ <p class="tekst">
+  In words: Tweety is the only bird, something flies if and only if it is a bird which is not abnormal, and there are no abnormal birds. The last formula is added because there is no predicate definition for <tt>abnormal</tt>.&nbsp;The only model of this set of formulas is
+ </p>
+ <p class="p-el">
+  {bird(tweety), flies(tweety)}
+ </p>
+ <p class="sektie">
+  However, there are also general clauses which Predicate Completion cannot handle. One such a clause is the following:
+ </p>
+ <p class="p-el">
+  friendly(peter):-not friendly(peter)
+ </p>
+ <p class="tekst">
+  This clause states that the assumption that Peter is not friendly leads to a contradiction; therefore Peter must be friendly, and <tt>friendly(peter)</tt> should be a logical consquence of the intended program associated with this clause. Predicate Completion will construct the formula
+ </p>
+ <p class="p-el">
+  <span class="AutoStyle09">
+   &forall;
+  </span>
+  X: friendly(X)
+  <span class="AutoStyle09">
+   &harr;
+  </span>
+  (X=peter
+  <span class="AutoStyle09">
+   &and;
+  </span>
+  &not;friendly(peter))
+ </p>
+ <p class="tekst">
+  It is easy to see that this formula is inconsistent.
+ </p>
+ <p class="sektie">
+  Admittedly, the above clause is a bit awkward, since it is logically equivalent with
+ </p>
+ <p class="p-el">
+  friendly(peter)
+ </p>
+ <p class="tekst">
+  However, there are many programs which exhibit the same problem. Basically, the problem is caused by &lsquo;recursion through negation&rsquo;. For instance, the completion of the following two clauses is also inconsistent:
+ </p>
+ <p class="p-el">
+  wise(X):-not teacher(X).<br>
+  teacher(peter):-wise(peter).
+</p>
+ <p class="tekst">
+  These clauses say &lsquo;anybody who is not a teacher is wise&rsquo; and &lsquo;if Peter is wise, he is a teacher&rsquo;. Assuming that Peter is not a teacher leads to a contradiction; therefore, he must be a teacher (and he may or may not be wise). However, Predicate Completion leads to inconsistencies.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 8.3</i>. Apply Predicate Completion to this program.
+  </p>
+ </div>
+ <p class="tekst">
+  A <i>stratified</i>&nbsp;program is a program without recursion through negation. One can prove that for stratified programs, Predicate Completion never results in inconsistencies.
+ </p>
+ 
+ 
+
+ <h3 id="abduction_and_diagnostic_reasoning">
+  8.3&nbsp;&nbsp;&nbsp;Abduction and diagnostic reasoning
+ </h3>
+ <p class="sektie1">
+  Abduction extends default reasoning by not only making assumptions about what is false, but also about what is true. For instance, in the lightbulb example given earlier, we know that if the lightbulb is broken, the light doesn&rsquo;t switch on. If we observe that the light doesn&rsquo;t switch on, a possible explanation is that the lightbulb is broken. Since this is only one of the possible explanations, it cannot be guaranteed to be true. For instance, there might be a problem with the power supply instead, or the switch might be broken.
+ </p>
+ <p class="sektie">
+  The general problem of abduction&nbsp;can be stated as follows. Given a <i>Theory</i> and an <i>Observation</i>, find an <i>Explanation</i> such that
+ </p>
+ <p class="formule">
+  <i>Theory</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  <i>Explanation</i> &#8872; <i>Observation</i>
+ </p>
+ <p class="tekst">
+  i.e. the <i>Observation</i> follows logically from the <i>Theory</i> extended with the <i>Explanation</i>. For instance, if <i>Theory</i> consists of the following clauses
+ </p>
+ <p class="p-el">
+  likes(peter,S):-student_of(S,peter).<br>
+  likes(X,Y):-friend(Y,X).
+</p>
+ <p class="tekst">
+  and we have the <i>Observation</i> <tt>likes(peter,paul)</tt>, then possible <i>Explanations</i> are { <tt>student_of(paul,peter)</tt> } and { <tt>friend(paul,peter)</tt> }.
+ </p>
+ <p class="sektie">
+  Other <i>Explanations</i> which satisfy the problem specification are { <tt>likes(X,paul)</tt> } and { <tt>likes(X,Y):-friendly(Y)</tt>, <tt>friendly(paul)</tt> }. However, abductive explanations are usually restricted to ground literals with predicates that are undefined in <i>Theory</i> (such literals are called <i>abducibles</i>). Inferring general rules from specific observations is called induction, and is discussed in the next chapter.
+ </p>
+ <p class="sektie">
+  Procedurally, we can construct an abductive explanation&nbsp;by trying to prove the <i>Observation</i> from the initial <i>Theory</i> alone: whenever we encounter a literal for which there is no clause to resolve with, we add the literal to the <i>Explanation</i>. This leads to the following abductive meta-interpreter.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.1" query-text="?- abduce(likes(peter,paul),Explanation). ?- abduce(flies(tweety),Explanation)." source-text-end="
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-
+	element(X,Ys).
+
+cl(likes(peter,S),student_of(S,peter)).
+cl(likes(X,Y),friend(Y,X)).
+
+cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(abnormal(X),penguin(X)).
+cl(abnormal(X),dead(X)).
+cl(bird(X),penguin(X)).
+cl(bird(X),sparrow(X)).
+
+" source-text-start=":-op(900,fy,not).
+">
+% abduce(O,E) <- observation O follows by SLD-resolution 
+%                from the theory defined by clause/2, 
+%                extended with a list of unit clauses E
+abduce(O,E) :-
+	abduce(O,[],E).
+
+% with accumulator for explanations
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),	% query clauses enumerated by cl/2
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A).
+	
+abducible(A):-
+	not cl(A,_B).
+</pre>
+ <p class="tekst">
+  The last two clauses of <tt>abduce/3</tt> extend the original depth-first meta-interpreter. The program uses an accumulator containing the partial explanation found so far, such that literals are not unnecessarily duplicated in the final explanation. The query
+ </p>
+ <p class="p-el">
+  ?-abduce(likes(peter,paul),Explanation)
+ </p>
+ <p class="tekst">
+  results in the answers
+ </p>
+ <p class="p-el">
+  Explanation = [student_of(paul,peter)];<br>
+  Explanation = [friend(paul,peter)]
+</p>
+ <p class="sektie">
+  Interestingly, this abductive meta-interpreter also works for general clauses, but it does not always produce correct explanations. For instance, suppose the initial <i>Theory</i> contains a general clause:
+ </p>
+ <p class="p-el">
+  flies(X):-bird(X),not abnormal(X).<br>
+  abnormal(X):-penguin(X).<br>
+  bird(X):-penguin(X).<br>
+  bird(X):-sparrow(X).
+</p>
+ <p class="tekst">
+  If asked to explain <tt>flies(tweety)</tt>, the above program will try to find a clause explaining <tt>not(abnormal(tweety))</tt>; since there is no such clause, this negated literal will be added to the explanation. As a result, the program will give the following explanations:
+ </p>
+ <p class="p-el">
+  Explanation = [not abnormal(tweety),penguin(tweety)];<br>
+  Explanation = [not abnormal(tweety),sparrow(tweety)]
+</p>
+ <p class="tekst">
+  There are two problems with these explanations. First of all, the first explanation is inconsistent with the theory. Secondly, <tt>abnormal/1</tt> is not an abducible predicate, and should not appear in an abductive explanation. For these reasons, we have to deal explicitly with negated literals in our abduction program.
+ </p>
+ <p class="sektie">
+  As a first try, we can extend our abductive meta-interpreter with negation as failure, by adding the following clause (see also section 3.8):
+ </p>
+ <p class="pi-el">
+  abduce(not(A),E,E):-% E explains not(A)<br>
+  not abduce(A,E,E).&nbsp;&nbsp;% if E doesn't explain A
+</p>
+ <p class="tekst">
+  In order to prevent the query <tt>abducible(not(A))</tt> from succeeding, we change the definition of <tt>abducible/1</tt>&nbsp;to
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.1" query-text="?- abduce(flies(tweety),Explanation). ?- abduce(not(abnormal(tweety)),[penguin(tweety)],[penguin(tweety)]). ?- abduce(not(abnormal(tweety)),[],[]). ?- abduce(flies1(tweety),Explanation). " source-text-end="
+
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-
+	element(X,Ys).
+
+cl(likes(peter,S),student_of(S,peter)).
+cl(likes(X,Y),friend(Y,X)).
+
+cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(flies1(X),(not(abnormal(X),bird(X)))).
+cl(abnormal(X),penguin(X)).
+cl(abnormal(X),dead(X)).
+cl(bird(X),penguin(X)).
+cl(bird(X),sparrow(X)).
+
+" source-text-start="
+:-op(900,fy,not).
+
+% abduce(O,E) <- observation O follows by SLD-resolution 
+%                from the theory defined by clause/2, 
+%                extended with a list of unit clauses E
+abduce(O,E) :-
+	abduce(O,[],E).
+
+% with accumulator for explanations
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),	% query clauses enumerated by cl/2
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A).
+abduce(not(A),E,E):-% E explains not(A)
+	not abduce(A,E,E).  % if E doesn't explain A
+
+">
+abducible(A):-A \= not(B),not cl(A,B).
+</pre>
+ <p class="tekst">
+  With this extended abductive meta-interpreter, the query
+ </p>
+ <p class="p-el">
+  ?-abduce(flies(tweety),Explanation).
+ </p>
+ <p class="tekst">
+  now results in the following, correct answer:
+ </p>
+ <p class="p-el">
+  Explanation = [sparrow(tweety)]
+ </p>
+ <p class="tekst">
+  The explanation <tt>[penguin(tweety)]</tt> is found to be inconsistent, since
+ </p>
+ <p class="p-el">
+  ?-abduce(not(abnormal(tweety)),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[penguin(tweety)],[penguin(tweety)])
+</p>
+ <p class="tekst">
+  will fail, as it should.
+ </p>
+ <p class="sektie">
+  However, this approach relies on the fact that negated literals are checked <b>after</b> the abductive explanation has been constructed. To illustrate this, supppose that <i>Theory</i> is extended with the following clause:
+ </p>
+ <p class="p-el">
+  flies1(X):-not abnormal(X),bird(X)
+ </p>
+ <p class="tekst">
+  Since
+ </p>
+ <p class="p-el">
+  ?-abduce(not(abnormal(tweety)),[],[]).
+ </p>
+ <p class="tekst">
+  succeeds, any explanation of <tt>bird(tweety)</tt> will also be an explanation of <tt>flies1(tweety)</tt>, which is of course wrong. The problem here is that the fact that <tt>abnormal(tweety)</tt> is considered to be <b>false</b> is not reflected in the explanation. Thus, we need a separate predicate <tt>abduce_not/3</tt> for building explanations for literals assumed to be false.
+ </p>
+ <p class="sektie">
+  The full program is given below. There are two changes in <tt>abduce/3</tt>: in the fifth clause, an abducible <tt>A</tt> is only added to the explanation <tt>E</tt> if it is consistent with it; i.e. if <tt>E</tt> does not explain <tt>not(A)</tt>. In the sixth clause, an explicit explanation for <tt>not(A)</tt> is constructed.
+ </p>
+ <p class="oms-eerst">
+  % abduce(O,E0,E) <- E is abductive explanation of O, given<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E0 (works also for general programs)
+</p>
+ <p class="pi">
+  abduce(true,E,E):-!.
+ </p>
+ <p class="pi">
+  abduce((A,B),E0,E):-!,<br>
+  abduce(A,E0,E1),<br>
+  abduce(B,E1,E).
+</p>
+ <p class="pi">
+  abduce(A,E0,E):-<br>
+  clause(A,B),<br>
+  abduce(B,E0,E).
+</p>
+ <p class="pi">
+  abduce(A,E,E):-<br>
+  element(A,E).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% already assumed
+</p>
+ <p class="pi">
+  abduce(A,E,[A|E]):-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% A can be added to E<br>
+  not element(A,E),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% if it's not already there,<br>
+  abducible(A),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% if it's abducible,<br>
+  not abduce_not(A,E,E).&nbsp;% and E doesn't explain not(A)
+</p>
+ <p class="pi-laatst">
+  abduce(not(A),E0,E):-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% find explanation for not(A)<br>
+  not element(A,E0),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% should be consistent<br>
+  abduce_not(A,E0,E).
+</p>
+ <p class="tekst">
+  The definition of <tt>abduce_not/3</tt> closely mirrors the clauses for <tt>abduce/3</tt>:
+ </p>
+ <p class="opsomming">
+  (<i>i</i>)&nbsp;&nbsp;&nbsp;a negated conjunction <tt>not((A,B))</tt> is explained by either explaining <tt>not(A)</tt> <b>or</b> <tt>not(B)</tt>;
+ </p>
+ <p class="opsomming">
+  (<i>ii</i>)&nbsp;&nbsp;if there are clauses for <tt>A</tt>, then <tt>not(A)</tt> is explained by constructing an explanation for <tt>not(B)</tt>, for <b>every</b> body <tt>B</tt>;
+ </p>
+ <p class="opsomming">
+  (<i>iii</i>)&nbsp;<tt>not(A)</tt> is explained if it is already part of the explanation;
+ </p>
+ <p class="opsomming">
+  (<i>iv</i>)&nbsp;otherwise, <tt>not(A)</tt> is explained by itself, if <tt>A</tt> is abducible and not explained;
+ </p>
+ <p class="opsomming">
+  (<i>v</i>)&nbsp;&nbsp;<tt>not(not(A))</tt> is explained by explaining <tt>A</tt>.
+ </p>
+ <p class="tekst">
+  There is no clause for <tt>true</tt>, since <tt>not(true)</tt> cannot be explained.
+ </p>
+ <p class="oms-eerst">
+  % abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+ </p>
+ <p class="pi">
+  abduce_not((A,B),E0,E):-!,<br>
+  abduce_not(A,E0,E);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% disjunction<br>
+  abduce_not(B,E0,E).
+</p>
+ <p class="pi">
+  abduce_not(A,E0,E):-<br>
+  setof(B,clause(A,B),L),<br>
+  abduce_not_l(L,E0,E).
+</p>
+ <p class="pi">
+  abduce_not(A,E,E):-<br>
+  element(not(A),E).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% not(A) already assumed
+</p>
+ <p class="pi">
+  abduce_not(A,E,[not(A)|E]):-&nbsp;% not(A) can be added to E<br>
+  not element(not(A),E),&nbsp;&nbsp;&nbsp;% if it's not already there,<br>
+  abducible(A),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% if A is abducible<br>
+  not abduce(A,E,E).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% and E doesn't explain A
+</p>
+ <p class="pi-laatst">
+  abduce_not(not(A),E0,E):-&nbsp;&nbsp;&nbsp;&nbsp;% find explanation for A<br>
+  not element(not(A),E0),&nbsp;&nbsp;% should be consistent<br>
+  abduce(A,E0,E).
+</p>
+ <p class="pi">
+  abduce_not_l([],E,E).
+ </p>
+ <p class="pi-laatst">
+  abduce_not_l([B|Bs],E0,E):-<br>
+  abduce_not(B,E0,E1),<br>
+  abduce_not_l(Bs,E1,E).
+</p>
+ <p class="sektie">
+  We illustrate the program on the following set of clauses. Notice that there are several explanations for <tt>abnormal(tweety)</tt>.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.2" query-text="?- abduce(flies(tweety),Explanation). ?- abduce(flies1(tweety),Explanation)." source-text-end="
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+" source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,cl(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
+
+abducible(A):-
+	A \= not(B),
+	not cl(A,B).
+">
+cl(flies1(X),(not(abnormal(X)),bird(X))).
+cl(flies(X),(bird(X),not(abnormal(X)))).
+cl(abnormal(X),penguin(X)).
+cl(abnormal(X),dead(X)).
+cl(bird(X),penguin(X)).
+cl(bird(X),sparrow(X)).
+</pre>
+ <p class="tekst">
+  The following queries show that the order of unnegated and negated literals in a clause only influences the order in which abducibles are added to the explanation, but not the explanation itself:
+ </p>
+ <p class="p-eerst AutoStyle70">
+  ?-abduce(flies(tweety),Explanation).<br>
+  Explanation =<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;[not&nbsp;penguin(tweety),not&nbsp;dead(tweety),sparrow(tweety)]
+</p>
+ <p class="p-el AutoStyle70">
+  ?-abduce(flies1(tweety),Explanation).<br>
+  Explanation =<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;[sparrow(tweety),not&nbsp;penguin(tweety),not&nbsp;dead(tweety)]
+</p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 8.4</i>. The abductive meta-interpreter will loop on the program<br>
+   <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wise(X):-not teacher(X).<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teacher(peter):-wise(peter).<br></tt> with the query <tt>?-abduce(teacher(peter),E)</tt> (see section 8.2). Change the interpreter such that this query is handled correctly, by adding <b>all</b> literals collected in the proof to the abductive explanation.
+  </p>
+ </div>
+ <p class="sektie1">
+  Abduction&nbsp;can be used for formulating hypotheses about faulty components in a malfunctioning system. Here, the <i>Theory</i> is a description of the operation of the system, an <i>Observation</i> is a combination of input values and the observed output values, and <i>Explanation</i> is a <i>diagnosis</i>, telling us which components are malfunctioning. As an example we consider a logical circuit for adding three binary digits. Such a circuit can be built from two XOR-gates, two AND-gates, and an OR-gate (fig. 8.3). Its behaviour can be described logically as follows:
+ </p>
+ <p class="pi-el">
+  adder(X,Y,Z,Sum,Carry):-<br>
+  xor(X,Y,S),<br>
+  xor(Z,S,Sum),<br>
+  and(X,Y,C1),<br>
+  and(Z,S,C2),<br>
+  or(C1,C2,Carry).
+</p>
+ <p class="pi">
+  xor(0,0,0).&nbsp;&nbsp;&nbsp;&nbsp;and(0,0,0).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or(0,0,0).
+ </p>
+ <p class="pi">
+  xor(0,1,1).&nbsp;&nbsp;&nbsp;&nbsp;and(0,1,0).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or(0,1,1).
+ </p>
+ <p class="pi">
+  xor(1,0,1).&nbsp;&nbsp;&nbsp;&nbsp;and(1,0,0).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or(1,0,1).
+ </p>
+ <p class="pi-laatst">
+  xor(1,1,0).&nbsp;&nbsp;&nbsp;&nbsp;and(1,1,1).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or(1,1,1).
+ </p>
+ <p class="sektie">
+  These clauses describe the normal operation of the system. However, since diagnosis deals with faulty operation of components, we have to extend the system description with a so-called <i>fault model</i>. Such a fault model describes the behaviour of each component when it is in a faulty state. We distinguish two faulty states: the output of a component can be stuck at 0, or it can be stuck at 1. Faulty states are expressed by literals of the form <tt>fault(Name=State)</tt>, where <tt>State</tt> is either <tt>s0</tt> (stuck at 0) or <tt>s1</tt> (stuck at 1). The <tt>Name</tt> of a component is given by the system that contains it. Since components might be nested (e.g. the adder might itself be part of a circuit that adds two 8-bits binary numbers), the names of the components of a sub-system are prefixed by the name of that sub-system. This results in the following system description:
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle05">
+      <p class="figure">
+       <img src="img/part_iii/image012.svg" v:shapes="Picture_x0020_6" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="Caption1">
+      <b>Figure   8.3.</b> A 3-bit adder.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <p class="pi-el">
+  adder(N,X,Y,Z,Sum,Carry):-<br>
+  xorg(N-xor1,X,Y,S),<br>
+  xorg(N-xor2,Z,S,Sum),<br>
+  andg(N-and1,X,Y,C1),<br>
+  andg(N-and2,Z,S,C2),<br>
+  org(N-or1,C1,C2,Carry).
+</p>
+ <p class="pi">
+  xorg(N,X,Y,Z):-xor(X,Y,Z).
+ </p>
+ <p class="pi">
+  xorg(N,0,0,1):-fault(N=s1).
+ </p>
+ <p class="pi">
+  xorg(N,0,1,0):-fault(N=s0).
+ </p>
+ <p class="pi">
+  xorg(N,1,0,0):-fault(N=s0).
+ </p>
+ <p class="pi-laatst">
+  xorg(N,1,1,1):-fault(N=s1).
+ </p>
+ <p class="pi">
+  andg(N,X,Y,Z):-and(X,Y,Z).
+ </p>
+ <p class="pi">
+  andg(N,0,0,1):-fault(N=s1).
+ </p>
+ <p class="pi">
+  andg(N,0,1,1):-fault(N=s1).
+ </p>
+ <p class="pi">
+  andg(N,1,0,1):-fault(N=s1).
+ </p>
+ <p class="pi-laatst">
+  andg(N,1,1,0):-fault(N=s0).
+ </p>
+ <p class="pi">
+  org(N,X,Y,Z):-or(X,Y,Z).
+ </p>
+ <p class="pi">
+  org(N,0,0,1):-fault(N=s1).
+ </p>
+ <p class="pi">
+  org(N,0,1,0):-fault(N=s0).
+ </p>
+ <p class="pi">
+  org(N,1,0,0):-fault(N=s0).
+ </p>
+ <p class="pi-laatst">
+  org(N,1,1,0):-fault(N=s0).
+ </p>
+ <p class="tekst">
+  Such a fault model, which includes all possible faulty behaviours, is called a <i>strong</i> fault model.
+ </p>
+ <p class="sektie">
+  In order to diagnose the system, we declare <tt>fault/1</tt> as the (only) abducible predicate, and we make a call to <tt>abduce/2</tt>:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.2" query-text="?- diagnosis(adder(a,0,0,1,0,1),D)." source-text-end="
+
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+
+adder(N,X,Y,Z,Sum,Carry):-
+xorg(N-xor1,X,Y,S),
+xorg(N-xor2,Z,S,Sum),
+andg(N-and1,X,Y,C1),
+andg(N-and2,Z,S,C2),
+org(N-or1,C1,C2,Carry).
+
+xorg(_N,X,Y,Z):-xor(X,Y,Z).
+xorg(N,0,0,1):-fault(N=s1).
+xorg(N,0,1,0):-fault(N=s0).
+xorg(N,1,0,0):-fault(N=s0).
+xorg(N,1,1,1):-fault(N=s1).
+
+andg(_N,X,Y,Z):-and(X,Y,Z).
+andg(N,0,0,1):-fault(N=s1).
+andg(N,0,1,1):-fault(N=s1).
+andg(N,1,0,1):-fault(N=s1).
+andg(N,1,1,0):-fault(N=s0).
+
+org(_N,X,Y,Z):-or(X,Y,Z).
+org(N,0,0,1):-fault(N=s1).
+org(N,0,1,0):-fault(N=s0).
+org(N,1,0,0):-fault(N=s0).
+org(N,1,1,0):-fault(N=s0).
+
+xor(0,0,0).
+xor(0,1,1).
+xor(1,0,1).
+xor(1,1,0).
+or(0,0,0).
+or(0,1,1).
+or(1,0,1).
+or(1,1,1).
+and(0,0,0).
+and(0,1,0).
+and(1,0,0).
+and(1,1,1).
+" source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	clause(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,clause(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
+
+">
+diagnosis(Observation,Diagnosis):-
+	abduce(Observation,Diagnosis).
+
+abducible(fault(_X)).
+</pre>
+ <p class="tekst">
+  For instance, suppose the inputs <tt>X=0</tt>, <tt>Y=0</tt> and <tt>Z=1</tt> result in the outputs <tt>Sum=0</tt> and <tt>Carry=1</tt> (a double fault). In order to diagnose this behaviour, we formulate the following query:
+ </p>
+ <p class="p-el">
+  ?-diagnosis(adder(a,0,0,1,0,1),D).<br>
+  D = [fault(a-or1=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-and2=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-and1=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-and2=s1),fault(a-and1=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-xor1=s1)];<br>
+  D = [fault(a-or1=s1),fault(a-and2=s0),fault(a-xor1=s1)];<br>
+  D = [fault(a-and1=s1),fault(a-xor1=s1)];<br>
+  D = [fault(a-and2=s0),fault(a-and1=s1),fault(a-xor1=s1)];<br>
+  No more solutions
+</p>
+ <p class="tekst">
+  The first diagnosis is very obvious: it states that <tt>or1</tt> (which calculates <tt>Carry</tt>) is stuck at 1, and <tt>xor2</tt> (which calculates <tt>Sum</tt>) is stuck at 0. But the fault in the output of <tt>or1</tt> might also be caused by <tt>and2</tt> or <tt>and1</tt>, and even by both! The fifth diagnosis is an interesting one: if <tt>xor1</tt> is stuck at 1, this accounts for <b>both</b> faults in the outputs of the adder. The remaining three diagnoses are considerably less interesting, since each of them makes unnecessary assumptions about additional faulty components.
+ </p>
+ <p class="sektie">
+  The predicate <tt>diagnosis/2</tt> generates every possible diagnosis; it does not make any assumptions about the relative plausibility of each of them. Several such assumptions can be made. For instance, we might be interested in the diagnoses with the least number of faulty components (there is only one smallest diagnosis in the example, but there may be several in general). Alternatively, we might want to consider only non-redundant or <i>minimal</i> diagnoses: those of which no proper subset is also a diagnosis. This is readily expressed in Prolog:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.3.2" query-text="?- min_diagnosis(adder(a,0,0,1,0,1),D)." source-text-end="
+
+% remove_one(X,Ys,Zs) <- Zs is list Ys minus one occurrence of X
+remove_one(X,[X|Ys],Ys).
+remove_one(X,[Y|Ys],[Y|Zs]):-remove_one(X,Ys,Zs).
+
+% proper_subset(Xs,Ys) <- Xs is a subset of Ys, and Ys contains 
+%                         at least one element more
+proper_subset([],Ys):-Ys \= [].
+proper_subset([X|Xs],Ys):-remove_one(X,Ys,Ys1),proper_subset(Xs,Ys1).
+
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+
+adder(N,X,Y,Z,Sum,Carry):-
+xorg(N-xor1,X,Y,S),
+xorg(N-xor2,Z,S,Sum),
+andg(N-and1,X,Y,C1),
+andg(N-and2,Z,S,C2),
+org(N-or1,C1,C2,Carry).
+
+xorg(_N,X,Y,Z):-xor(X,Y,Z).
+xorg(N,0,0,1):-fault(N=s1).
+xorg(N,0,1,0):-fault(N=s0).
+xorg(N,1,0,0):-fault(N=s0).
+xorg(N,1,1,1):-fault(N=s1).
+
+andg(_N,X,Y,Z):-and(X,Y,Z).
+andg(N,0,0,1):-fault(N=s1).
+andg(N,0,1,1):-fault(N=s1).
+andg(N,1,0,1):-fault(N=s1).
+andg(N,1,1,0):-fault(N=s0).
+
+org(_N,X,Y,Z):-or(X,Y,Z).
+org(N,0,0,1):-fault(N=s1).
+org(N,0,1,0):-fault(N=s0).
+org(N,1,0,0):-fault(N=s0).
+org(N,1,1,0):-fault(N=s0).
+
+xor(0,0,0).
+xor(0,1,1).
+xor(1,0,1).
+xor(1,1,0).
+or(0,0,0).
+or(0,1,1).
+or(1,0,1).
+or(1,1,1).
+and(0,0,0).
+and(0,1,0).
+and(1,0,0).
+and(1,1,1).
+" source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	clause(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,clause(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
+
+diagnosis(Observation,Diagnosis):-
+	abduce(Observation,Diagnosis).
+
+abducible(fault(_X)).
+
+">
+min_diagnosis(O,D):-
+	diagnosis(O,D),
+	not((diagnosis(O,D1),proper_subset(D1,D))).
+</pre>
+ <p class="p-laatst">
+  ?-min_diagnosis(adder(a,0,0,1,0,1),D).<br>
+  D = [fault(a-or1=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-and2=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-and1=s1),fault(a-xor2=s0)];<br>
+  D = [fault(a-xor1=s1)];<br>
+  No more solutions
+</p>
+ <p class="tekst">
+  It should be noted that the predicate <tt>min_diagnosis/2</tt> is quite inefficient, since it needs time quadratic in the number of diagnoses (for each possible diagnosis, it generates in the worst case each possible diagnosis to see if the second is a proper subset of the first). In turn, the number of diagnoses is exponential in the number of components. More efficient ways of generating minimal diagnoses can be found in the literature; they fall outside the scope of this book.
+ </p>
+ <h3 id="the_complete_picture">
+  8.4&nbsp;&nbsp;&nbsp;The complete picture
+ </h3>
+ <p class="sektie1">
+  In this chapter we studied several ways of dealing with imcomplete information. Incompleteness occurs whenever there is a ground fact in the Herbrand base&nbsp;of which we do not know the truth value. In order to extend our knowledge, we need to make assumptions about the truth value of such ground facts. The simplest approach is to assume that everything that is not known to be true must be false. The procedural equivalent of this is <i>negation as failure</i>: everything that is not <b>provable</b> is assumed to be false. Thus, a negated literal <tt>not L</tt> in the body of a general clause is assumed to be proved if a proof of <tt>L</tt> fails. The resulting proof procedure is called <i>SLDNF-resolution</i>
+  <span class="CustomFootnote">
+   <a href="#_ftn2" name="_ftnref2" title="">
+    <span class="MsoFootnoteReference">
+     <span class="AutoStyle13">
+      <span class="AutoStyle14">
+       [19]
+      </span>
+     </span>
+    </span>
+   </a>
+  </span>
+  .
+ </p>
+ <p class="sektie">
+  If we strengthen our proof procedure, we must strengthen the semantics accordingly. Since the original program is incomplete it has several models, one of which we need to choose. One way to do this is to transform the original program into a new, complete program, which we declare to be the <i>intended</i> program. The only model of this complete program is taken as the intended model&nbsp;of the original program. The <i>Closed World Assumption</i>&nbsp;is a rather naive way to achieve this, while <i>Predicate Completion</i>&nbsp;can also handle a restricted subclass of the class of general programs (so-called <i>stratified</i>&nbsp;programs).
+ </p>
+ <p class="sektie">
+  The relation between SLDNF-resolution and Predicate Completion is as follows. Let <i>P</i> be a general program, let <i>Comp</i> (<i>P</i>) denote the completion of <i>P</i>, and let &#8866
+  <span class="AutoStyle71">
+   SLDNF
+  </span>
+  &nbsp;denote provability by SLDNF-resolution, treating negated literals in the body of clauses by negation as failure; then the following relation holds:
+ </p>
+ <p class="formule">
+  <i>P</i> &#8866
+  <span class="AutoStyle71">
+   SLDNF
+  </span>
+  &nbsp;<i>q</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="AutoStyle09">
+   &#8658;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+  <i>Comp</i> (<i>P</i>)
+  &#8872; <i>q</i>
+ </p>
+ <p class="tekst">
+  This is a <i>soundness</i> result for SLDNF-resolution. The corresponding completeness result is not so easily proved, and holds only for specific sub-classes of programs.
+ </p>
+ <p class="sektie">
+  <i>Default reasoning</i>&nbsp;is reasoning with typical cases and exceptions. A practical approach to default reasoning is by explicitly listing the exceptions to a rule by means of <i>abnormality predicates</i>. The rule describing the typical case is represented by a general clause, containing the negation of the abnormality predicate. An alternative approach is to distinguish between rules which always hold, and rules which typically hold (so-called <i>defaults</i>). A default&nbsp;is <i>applicable</i> whenever it does not lead to inconsistencies. In order to prevent the applicability of defaults in certain cases, they are assigned <i>names</i>. These names can then be used in other rules to refer to a specific default.
+ </p>
+ <p class="sektie">
+  There is a close relation between abnormality predicates and names of defaults, demonstrated by the following translation of default rules to general clauses. The default rule
+ </p>
+ <p class="p-el">
+  default(bats_fly(X),(flies(X):-bat(X)))
+ </p>
+ <p class="tekst">
+  is first translated to a clause
+ </p>
+ <p class="p-el">
+  flies(X):-bat(X),bats_fly(X)
+ </p>
+ <p class="tekst">
+  after which the predicate <tt>bats_fly/1</tt>, indicating the normal case, is converted to a negated abnormality predicate:
+ </p>
+ <p class="p-el">
+  flies(X):-bat(X),not nonflying_bat(X)
+ </p>
+ <p class="tekst">
+  Furthermore, for each negated conclusion in a rule like
+ </p>
+ <p class="p-el">
+  default(dead_things_dont_fly(X),(not flies(X):-dead(X)))
+ </p>
+ <p class="tekst">
+  a new predicate is introduced:
+ </p>
+ <p class="p-el">
+  notflies(X):-dead(X),not flying_deadthing(X)
+ </p>
+ <p class="tekst">
+  Thus, the complete set of rules and defaults about Dracula is translated to the following general program:
+ </p>
+ <p class="p-el">
+  notflies(X):-mammal(X),not flying_mammal(X).<br>
+  flies(X):-bat(X),not nonflying_bat(X).<br>
+  notflies(X):-dead(X),not flying_deadthing(X)<br>
+  mammal(X):-bat(X).<br>
+  bat(dracula).<br>
+  dead(dracula).<br>
+  flying_mammal(X):-bat(X).<br>
+  nonflying_bat(X):-dead(X).
+</p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 8.5</i>. Draw the SLD-trees for the queries <tt>?-flies(X)</tt> and <tt>?‑notflies(X)</tt>.
+  </p>
+ </div>
+ <p class="tekst">
+  What this shows is the close relationship between assuming that something is false unless the opposite can be proved (negation as failure), and assuming that a default rule is applicable unless this leads to inconsistencies.
+ </p>
+ <p class="sektie">
+  <i>Abduction</i>&nbsp;generalises negation as failure by formulating assumptions about either truth or falsity of specific literals (<i>abducibles</i>). For instance, the Dracula example can be handled by the abductive meta-interpreter&nbsp;of section 8.3 without any problem, if we declare the abnormality predicates as abducibles:
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.8.4.1" query-text="?- abduce(flies(X),E). ?- abduce(notflies(X),E)." source-text-end="
+	
+cl(notflies(X),(mammal(X),not flying_mammal(X))).
+cl(notflies(X),(dead(X),not flying_deadthing(X))).
+cl(flies(X),(bat(X),not nonflying_bat(X))).
+
+cl(mammal(X),bat(X)).
+cl(bat(dracula),true).
+cl(dead(dracula),true).
+cl(flying_mammal(X),bat(X)).
+cl(nonflying_bat(X),dead(X)).
+
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+" source-text-start="
+:-op(900,fy,not).
+
+abduce(O,E) :-abduce(O,[],E).
+
+% abduce(O,E0,E) <- E is abductive explanation of O, given 
+%                   E0 (works also for general programs)
+abduce(true,E,E):-!.
+abduce((A,B),E0,E):-!,
+	abduce(A,E0,E1),
+	abduce(B,E1,E).
+abduce(A,E0,E):-
+	cl(A,B),
+	abduce(B,E0,E).
+abduce(A,E,E):-
+	element(A,E).           % already assumed
+abduce(A,E,[A|E]):-
+	not element(A,E),
+	abducible(A),
+	not abduce_not(A,E,E).  % and E doesn't explain not(A)
+abduce(not(A),E0,E):-
+	not element(A,E0),
+	abduce_not(A,E0,E).
+
+% abduce_not(O,E0,E) <- E is abductive expl. of not(O)
+abduce_not((A,B),E0,E):-!,
+	abduce_not(A,E0,E);       % disjunction
+	abduce_not(B,E0,E).
+abduce_not(A,E0,E):-
+	setof(B,cl(A,B),L),
+	abduce_not_l(L,E0,E).
+abduce_not(A,E,E):-
+	element(not(A),E).        % not(A) already assumed
+abduce_not(A,E,[not(A)|E]):-
+	not element(not(A),E),
+	abducible(A),
+	not abduce(A,E,E).        % and E doesn't explain A
+abduce_not(not(A),E0,E):-
+	not element(not(A),E0),
+	abduce(A,E0,E).
+
+abduce_not_l([],E,E).
+abduce_not_l([B|Bs],E0,E):-
+	abduce_not(B,E0,E1),
+	abduce_not_l(Bs,E1,E).
+
+">
+abducible(flying_mammal(_X)).
+abducible(nonflying_bat(_X)).
+abducible(flying_deadthing(_X)).
+</pre>
+ <p class="p-laatst">
+  ?-abduce(flies(X),E)<br>
+  No.
+</p>
+ <p class="p-laatst">
+  ?-abduce(notflies(X),E)<br>
+  X = dracula<br>
+  E = [not flying_deadthing(dracula)];<br>
+  No more solutions.
+</p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 8.6</i>. Remove the last two clauses from the program, and again determine the answers to the queries <tt>?-abduce(flies(X),E)</tt> and <tt>?‑abduce(notflies(X),E)</tt>.
+  </p>
+ </div>
+ <p class="tekst">
+  This shows that negation as failure&nbsp;is a special case of abduction. Moreover, it shows that making assumptions about the applicability of a default rule is a form of abduction.&nbsp;We can therefore conclude that abduction is the most general form of reasoning with incomplete information among the ones discussed in this chapter. However, inductive reasoning extends abduction by hypothesising complete predicate definitions rather than sets of ground literals. This will be the subject of the next chapter.
+ </p>
+ <h3 id="further_reading_8">
+  Further reading
+ </h3>
+ <p class="sektie1">
+  Negation as failure and Predicate Completion are discussed by Clark (1978). In the same volume, the Closed World Assumption was formally introduced by Reiter (1978). The approach to default reasoning by means of defaults and rules is due to Poole (1988). In (Poole, 1991), a more elaborate Prolog implementation of this approach is presented. (Somb&eacute;, 1990) gives a detailed comparison of formalisms for reasoning with incomplete information, using a single example.
+ </p>
+ <p class="sektie">
+  An extensive overview of different approaches to abduction and their relation to other forms of reasoning with incomplete information can be found in (Kakas <i>et al.</i>, 1992). The abductive meta-interpreter in section 8.3 is based on ideas from the same paper, as well as parts of the analysis in section 8.4. (Mozeti&Euml;, 1992) presents an efficient algorithm for the computation of minimal diagnoses.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   K.L. Clark (
+  </span>
+  1978)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Negation as failure&rsquo;. In <i>Logic and Databases</i>, H. Gallaire &amp; J. Minker (eds), pp. 293-322, Plenum Press.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   A.C. Kakas, R.A. Kowalski &amp; F. Toni (
+  </span>
+  1992)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Abductive Logic Programming&rsquo;, <i>Journal of Logic and Computation</i> <b>2</b> (6): 719-770.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   I. Mozeti
+  </span>
+  <span class="AutoStyle41">
+   (
+  </span>
+  1992)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;A polynomial-time algorithm for model-based diagnosis&rsquo;. In <i>Proc. Tenth European Conference on Artificial Intelligence, ECAI&rsquo;92</i>, B. Neumann (ed.), pp. 729-733, John Wiley.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   D. Poole (
+  </span>
+  1988)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;A logical framework for default reasoning&rsquo;, <i>Artificial Intelligence</i> <b>36</b>: 27-47.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   D. Poole (
+  </span>
+  1991)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Compiling a default reasoning system into Prolog&rsquo;, <i>New Generation Computing</i> <b>9</b>: 3-38.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   R. Reiter (
+  </span>
+  1978)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;On closed world databases&rsquo;. In <i>Logic and Databases</i>, H. Gallaire &amp; J. Minker (eds), pp. 55-76, Plenum Press.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   L&eacute;a Somb&eacute;
+  </span>
+  (1990), <i>Reasoning under Incomplete Information in Artificial Intelligence</i>, John Wiley. Also <i>International Journal of Intelligent Systems</i> <b>5</b> (4).
+ </p>
+</div>
+<b>
+ <span class="AutoStyle02">
+  <br clear="all"/>
+ </span>
+</b>
+<div class="WordSection4">
+ <p class="cijfer" id="inductive_reasoning">
+  9
+ </p>
+ <h2 id="h_inductive_reasoning">
+  Inductive reasoning
+ </h2>
+ <p class="sektie1">
+  <i>Induction</i>&nbsp;is a form of reasoning which infers general rules from specific observations. For instance, given the following <i>Theory</i>
+ </p>
+ <p class="p-el">
+  bird(tweety).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bird(polly).<br>
+  has_feathers(tweety).&nbsp;&nbsp;&nbsp;&nbsp;has_beak(polly).
+</p>
+ <p class="tekst">
+  we might want to infer a <i>Hypothesis</i> explaining why both Tweety and Polly fly:
+ </p>
+ <p class="p-el">
+  flies(X):-bird(X)
+ </p>
+ <p class="tekst">
+  There is a strong similarity between induction and abduction: if the <i>Examples</i>, which induction seeks to explain, are the ground facts <tt>flies(tweety)</tt> and <tt>flies(polly)</tt> then the following relation holds:
+ </p>
+ <p class="formule">
+  <i>Theory</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  <i>Hypothesis</i> &#8872; <i>Examples</i>
+ </p>
+ <p class="tekst">
+  The main difference with abduction is that <i>Hypothesis</i> is allowed to be a set of clauses, rather than a set of ground facts as in abduction.
+ </p>
+ <p class="sektie">
+  Given this similarity, we will try to adopt the abductive meta-interpreter&nbsp;developed in section 8.3 to perform induction. We assume that the set of possible hypotheses is given by means of the predicate <tt>inducible/1</tt>.
+ </p>
+ <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.9.0.1" query-text="?- induce(flies(tweety),H). ?- induce(flies(polly),H)." source-text-end="
+ 
+bird(tweety).            bird(polly).
+has_feathers(tweety).    has_beak(polly).
+
+inducible((flies(X):-bird(X),has_feathers(X),has_beak(X))).
+inducible((flies(X):-has_feathers(X),has_beak(X))).
+inducible((flies(X):-bird(X),has_beak(X))).
+inducible((flies(X):-bird(X),has_feathers(X))).
+inducible((flies(X):-bird(X))).
+inducible((flies(X):-has_feathers(X))).
+inducible((flies(X):-has_beak(X))).
+inducible((flies(_X):-true)).
+
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).
+" source-text-start="
+:-op(900,fy,not).
+">
+% induce(E,H) <- H is inductive explanation of E
+induce(E,H):-induce(E,[],H).
+
+induce(true,H,H):-!.
+induce((A,B),H0,H):-!,
+	induce(A,H0,H1),
+	induce(B,H1,H).
+induce(A,H0,H):-
+	/* not A=true, not A=(_,_) */
+	clause(A,B),
+	induce(B,H0,H).
+induce(A,H0,H):-
+	element((A:-B),H0),     % already assumed
+	induce(B,H0,H).         % proceed with body of rule
+induce(A,H0,[(A:-B)|H]):-       % A:-B can be added to H
+	inducible((A:-B)),      % if it's inducible, and
+	not element((A:-B),H0), % if it's not already there
+	induce(B,H0,H).         % proceed with body of rule
+</pre>
+ <p class="tekst">
+  Whenever a clause is added to the inductive hypothesis, we proceed by constructing an inductive explanation of its body.
+ </p>
+ <p class="sektie">
+  Suppose <tt>inducible/1</tt>&nbsp;is defined as follows:
+ </p>
+ <p class="p-el">
+  inducible((flies(X):-bird(X),has_feathers(X),has_beak(X))).<br>
+  inducible((flies(X):-has_feathers(X),has_beak(X))).<br>
+  inducible((flies(X):-bird(X),has_beak(X))).<br>
+  inducible((flies(X):-bird(X),has_feathers(X))).<br>
+  inducible((flies(X):-bird(X))).<br>
+  inducible((flies(X):-has_feathers(X))).<br>
+  inducible((flies(X):-has_beak(X))).<br>
+  inducible((flies(X):-true)).
+</p>
+ <p class="tekst">
+  These facts state that every clause with <tt>flies/1</tt> in its head and some of the predicates in <i>Theory</i> in its body is a possible inductive hypothesis. We can use <tt>induce/2</tt> to find out which of these clauses account for the fact that Tweety and Polly fly:
+ </p>
+ <p class="p-el">
+  ?-induce(flies(tweety),H).<br>
+  H = [(flies(tweety):-bird(tweety),has_feathers(tweety))];<br>
+  H = [(flies(tweety):-bird(tweety))];<br>
+  H = [(flies(tweety):-has_feathers(tweety))];<br>
+  H = [(flies(tweety):-true)];<br>
+  No more solutions
+</p>
+ <p class="p-laatst">
+  ?-induce(flies(polly),H).<br>
+  H = [(flies(polly):-bird(polly),has_beak(polly))];<br>
+  H = [(flies(polly):-bird(polly))];<br>
+  H = [(flies(polly):-has_beak(polly))];<br>
+  H = [(flies(polly):-true)];<br>
+  No more solutions
+</p>
+ <p class="tekst">
+  We can combine the answers to these queries in order to find a single clause which explains <b>both</b> <tt>flies(tweety)</tt> and <tt>flies(polly)</tt>. One way to do this is by <i>generalisation</i>, as will be explained later. Another way is to process all the examples at once.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 9.1</i>. Change <tt>induce/3</tt> so that it handles a list of examples rather than a single example. Moreover, the inductive hypothesis should contain uninstantiated clauses, so that the same clause can be used to explain several examples.
+  </p>
+ </div>
+ <p class="sektie">
+  However, a serious problem with this approach is the impracticality of listing every possible hypothesis by means of the predicate <tt>inducible/1</tt>. In general, the inductive hypothesis can consist of several clauses, and might be recursive. The <i>hypothesis space</i>&nbsp;of possible sets of clauses is typically very large, and even infinite when functors are involved. This space needs to be searched in a systematic manner. Another complication is the possibility of <i>overgeneralisations</i> like the clause <tt>flies(X):-true</tt>. In order to prevent overgeneralisation, <i>negative examples</i> need to be included in the induction process (here: non-flying objects). For these reasons, induction requires a more sophisticated search strategy than abduction. We will take a closer look at the structure of the search space in the next section. Then, we will develop two programs that can induce definitions for predicates like <tt>append/3</tt> from examples.
+ </p>
+ <h3 id="generalisation_and_specialisation">
+  9.1&nbsp;&nbsp;&nbsp;Generalisation and specialisation
+ </h3>
+ <p class="sektie1">
+  An <i>example</i> is a ground fact for the predicate of which a definition is to be induced. A <i>positive</i> example&nbsp;is true in the intended interpretation, while a <i>negative</i> example&nbsp;is false. Consequently, the inductive <i>Hypothesis</i>&nbsp;should be such that for every positive example <i>p</i>
+ </p>
+ <p class="formule">
+  <i>Theory</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  <i>Hypothesis</i> = <i>p</i>
+ </p>
+ <p class="tekst">
+  while for every negative example <i>n</i>
+ </p>
+ <p class="formule">
+  <i>Theory</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  <i>Hypothesisn</i>
+ </p>
+ <p class="tekst">
+  We say that <i>p</i> is <i>covered</i> by <i>Hypothesis</i>, given <i>Theory</i>. For instance, if <i>Hypothesis</i> is the standard recursive definition of <tt>element/2</tt>:
+ </p>
+ <p class="p-el">
+  element(X,[X|Z]).<br>
+  element(X,[Y|Z]):-element(X,Z).
+</p>
+ <p class="tekst">
+  then the example <tt>element(b,[a,b])</tt> is covered (with empty <i>Theory</i>).&nbsp;This can be demonstrated by a simple meta-interpreter for definite clauses. Note that this proof requires <b>both</b> of the above clauses. Alternatively, if <tt>element(b,[b])</tt> is also known to be a positive example, we can say that <tt>element(b,[a,b])</tt> is covered by the second, recursive clause alone. The first definition of coverage, which refers to the complete hypothesis, is called <i>intensional</i> coverage, while the second, referring to single clauses plus the rest of the examples, is called <i>extensional</i> coverage. In the induction programs to be developed, we will employ both notions of coverage; for the moment, however, the distinction is immaterial.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 9.2</i>. Write a predicate <tt>covers_ex/3</tt> which, given a clause, an example, and a list of positive examples, tests whether the clause extensionally covers the example.
+  </p>
+ </div>
+ <p class="sektie">
+  If <i>Hypothesis1</i> covers at least all the examples covered by <i>Hypothesis2</i>, we say that <i>Hypothesis1</i> is at least as <i>general</i>&nbsp;as <i>Hypothesis2</i>, or that <i>Hypothesis2</i> is at least as <i>specific</i>&nbsp;as <i>Hypothesis1</i>. From the definition of coverage, one can see that <i>Hypothesis2</i> must be a logical consequence&nbsp;of <i>Hypothesis1</i>, given <i>Theory</i>:
+ </p>
+ <p class="formule">
+  <i>Theory</i>
+  <span class="AutoStyle09">
+   &cup;
+  </span>
+  <i>Hypothesis1</i> = <i>Hypothesis2</i>
+ </p>
+ <p class="tekst">
+  Suppose <i>p</i> is a positive example covered by <i>Hypothesis1</i> but not by <i>Hypothesis2</i>. This means that <i>Hypothesis2</i> is too specific; if it is our current hypothesis, it needs to be <i>generalised</i>, for instance to <i>Hypothesis1</i>. Similarly, if a hypothesis covers a negative example, it needs to be <i>specialised</i>. Generalisation&nbsp;and specialisation&nbsp;are the basic operations of induction.
+ </p>
+ <p class="sektie">
+  Although we defined generality between hypotheses being <b>sets</b> of clauses, practical approaches to induction usually generalise or specialise single clauses. For instance, the following are clauses of increasing generality:
+ </p>
+ <p class="p-el">
+  element(X,[Y|Z]):-element(X,Z).<br>
+  element(X,V):-element(X,Z).<br>
+  element(X,V).
+</p>
+ <p class="tekst">
+  This shows that a more specific clause can be constructed by adding a literal, by applying a substitution, or both. This relation of generality between clauses is called &theta;-subsumption. Formally, <tt>Clause1</tt> <i> &theta;-subsumes</i> <tt>Clause2</tt> if there is a substitution&nbsp; &theta; that can be applied to <tt>Clause1</tt>, such that every literal in the resulting clause occurs in <tt>Clause2</tt>.
+ </p>
+ <p class="sektie">
+  Notice that &theta; only replaces variables in <tt>Clause1</tt>, not in <tt>Clause2</tt>. One way to test if such a &theta; exists is to ground all variables in <tt>Clause2</tt>, and then unify the ground version of <tt>Clause2</tt> with <tt>Clause1</tt>. Grounding the variables in a term can be done by means of the built-in predicate <tt>numbervars/3</tt>, which unifies different variables with terms of the form <tt>'$VAR(N)'</tt>.
+ </p>
+ <p class="pi-el">
+  theta_subsumes1((H:-B1),(H:-B2)):-<br>
+  ground(B2),<br>
+  subset(B1,B2).
+</p>
+ <p class="pi-laatst">
+  ground(Term):-<br>
+  numbervars(Term,0,N).
+</p>
+ <p class="pi-laatst">
+  %%% subset/2: see Appendix A.2
+ </p>
+ <p class="tekst">
+  This approach has the disadvantage that one or both clauses are changed after a call to <tt>theta_subsumes1/2</tt>. To avoid this, we apply the following little programming trick:
+ </p>
+ <p class="pi-el">
+  theta_subsumes((H1:-B1),(H2:-B2)):-<br>
+  not((H1=H2,ground(B2),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;not subset(B1,B2))).
+</p>
+ <p class="tekst">
+  <tt>theta_subsumes/2</tt> succeeds exactly when <tt>theta_subsumes1/2</tt> does, but by means of the double negation unifications are &lsquo;undone&rsquo; after the call succeeds.
+ </p>
+ <p class="sektie">
+  Next, we turn to the issue of how to construct generalisations of clauses. First we consider the simpler case of generalising two atoms. Consider the following two ground facts:
+ </p>
+ <p class="p-el">
+  element(1,[1])<br>
+  element(z,[z,y,x])
+</p>
+ <p class="tekst">
+  The following atom &theta;-subsumes both of them:
+ </p>
+ <p class="p-el">
+  element(X,[X|Y])
+ </p>
+ <p class="tekst">
+  Note that this atom is &theta;-subsumed by every other possible generalisation (such as <tt>element(X,[Y|Z])</tt> or <tt>element(X,Y)</tt>). For this reason, it is called a <i>least general generalisation under &theta;-subsumption</i>&nbsp;or &theta;-LGG. &theta;-LGG&rsquo;s of atoms can be computed by means of <i>anti-unification</i>. This operation is the dual of unification. It operates by comparing the terms occurring at the same position in the two atoms, and replacing them by a new variable if they are different. The terms which have already been replaced by a variable are collected in two lists, because if the same pair of terms is encountered again, it should be replaced by the same variable (see <tt>1</tt> and <tt>z</tt> in the example above). For obvious reasons, such lists are called <i>inverse substitutions</i>.
+ </p>
+ <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.9.1.1" query-text="?- anti_unify(2*2=2+2,2*3=3+3,T). ?-anti_unify(2*2=2+2,2*3=3+3,T,[],S1,[],S2). ?-anti_unify(2*(1/3)=2/3,3*(1/2)=3/2,T,[],S1,[],S2)." source-text-end="
+" source-text-start="
+">
+:-op(600,xfx,'->'). % operator for inverse substitution
+
+% anti_unify(T1,T2,T) <-  T is the anti-unification 
+%                         of T1 and T2
+anti_unify(Term1,Term2,Term):-
+	anti_unify(Term1,Term2,Term,[],_S1,[],_S2).
+
+% anti-unification with inverse subst.s and accumulators
+anti_unify(Term1,Term2,Term1,S1,S1,S2,S2):-
+	Term1 == Term2,!.                        % same terms
+anti_unify(Term1,Term2,V,S1,S1,S2,S2):-
+	subs_lookup(S1,S2,Term1,Term2,V),!.      % already substituted
+anti_unify(Term1,Term2,Term,S10,S1,S20,S2):-
+	nonvar(Term1),nonvar(Term2),
+	functor(Term1,F,N),functor(Term2,F,N),!, % same 
+	functor(Term,F,N),                       % functor
+	anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2).
+anti_unify(T1,T2,V,S10,[T1->V|S10],S20,[T2->V|S20]).
+
+anti_unify_args(0,_Term1,_Term2,_Term,S1,S1,S2,S2).
+anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2):-
+	N>0,N1 is N-1,
+	arg(N,Term1,Arg1),
+	arg(N,Term2,Arg2),
+	arg(N,Term,Arg),
+	anti_unify(Arg1,Arg2,Arg,S10,S11,S20,S21),
+	anti_unify_args(N1,Term1,Term2,Term,S11,S1,S21,S2).
+
+subs_lookup([T1->V|_Subs1],[T2->V|_Subs2],Term1,Term2,V):-
+	T1 == Term1,
+	T2 == Term2,!.  % no alternative solutions needed
+subs_lookup([_S1|Subs1],[_S2|Subs2],Term1,Term2,V):-
+	subs_lookup(Subs1,Subs2,Term1,Term2,V).
+</pre>
+ <p class="tekst">
+  The following query illustrates the operation of the program, including the use of inverse substitutions:
+ </p>
+ <p class="query AutoStyle45">
+  ?-anti_unify(2*2=2+2,2*3=3+3,T,[],S1,[],S2)<br>
+  T = 2*X=X+X<br>
+  S1 = [2->X]<br>
+  S2 = [3->X]
+</p>
+ <p class="tekst">
+  Note that the inverse substitution <tt>[2->X]</tt> does not indicate which occurrences of <tt>2</tt> should be replaced by <tt>X</tt>. This means that <tt>S1</tt> applied to the first term does not yield <tt>T</tt> (the inverse of <tt>S1</tt> applied to <tt>T</tt> yields the first term, however). Therefore, a proper definition of inverse substitution should include the positions of terms which are to be replaced by variables. We will not elaborate this any further here.
+ </p>
+ <p class="sektie">
+  The construction of the &theta;-LGG of two clauses makes use of, but is more complicated than anti-unification. The basic difference with anti-unification is that the body of a clause is logically speaking unordered, whereas subterms within a term have fixed positions. Therefore, we cannot just compare the literals occurring at the same position in the respective bodies, but should consider all pairs of literals, one from each body. For instance, the &theta;-LGG of the following two clauses
+ </p>
+ <p class="pi-eerst">
+  element(c,[b,c]):-element(c,[c])
+ </p>
+ <p class="pi-laatst">
+  element(d,[b,c,d]):-element(d,[c,d]),element(d,[d])
+ </p>
+ <p class="tekst">
+  is the clause
+ </p>
+ <p class="pi-el">
+  element(X,[b,c|Y]):-element(X,[c|Y]),element(X,[X])
+ </p>
+ <p class="tekst">
+  The head of this clause is simply obtained by anti-unifying the heads of the original clauses, and the body is obtained by anti-unification of <tt>element(c,[c])</tt> and <tt>element(d,[c,d])</tt>, giving <tt>element(X,[c|Y])</tt>, and anti-unification of <tt>element(c,[c])</tt> and <tt>element(d,[d])</tt>, giving <tt>element(X,[X])</tt>.
+ </p>
+ <p class="sektie">
+  The program for constructing &theta;-LGG&rsquo;s is given below. Note that the inverse substitutions found in each step are passed on to the next, so that the literals share variables.
+ </p>
+ <pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.9.1.2" inherit-id="swish.9.1.1" query-text="?-theta_lgg((element(c,[b,c]):-[element(c,[c])]), (element(d,[b,c,d]):-[element(d,[c,d]),element(d,[d])]), C), portray_clause(C). ?-theta_lgg((reverse([2,1],[3],[1,2,3]):-[reverse([1],[2,3],[1,2,3])]), (reverse([a],[],[a]):-[reverse([],[a],[a])]), C), portray_clause(C)." source-text-end="
+" source-text-start="
+">
+:-op(900,fy,not).
+
+% theta_lgg(C1,C2,C) <- C is the &theta;-LGG of clause C1 and C2
+theta_lgg((H1:-B1),(H2:-B2),(H:-B)):-
+	anti_unify(H1,H2,H,[],S10,[],S20),            % heads
+	theta_lgg_bodies(B1,B2,[],B,S10,_S1,S20,_S2). % bodies
+
+% select literal from first body...
+theta_lgg_bodies([],_B2,B,B,S1,S1,S2,S2).
+theta_lgg_bodies([L|B1],B2,B0,B,S10,S1,S20,S2):-
+	theta_lgg_literal(L,B2,B0,B00,S10,S11,S20,S21),
+	theta_lgg_bodies(B1,B2,B00,B,S11,S1,S21,S2).
+
+% and one from second body
+theta_lgg_literal(_L1,[],B,B,S1,S1,S2,S2).
+theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-
+	same_predicate(L1,L2),anti_unify(L1,L2,L,S10,S11,S20,S21),
+	theta_lgg_literal(L1,B2,[L|B0],B,S11,S1,S21,S2).
+theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-
+	not same_predicate(L1,L2),
+	theta_lgg_literal(L1,B2,B0,B,S10,S1,S20,S2).
+
+% same_predicate(L1,L2) <- literals L1 and L2 have 
+%                          the same predicate and arity
+same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
+</pre>
+ <p class="tekst">
+  To check the above example, we pose the following query:
+ </p>
+ <p class="query AutoStyle72">
+  ?-theta_lgg((element(c,[b,c]):-[element(c,[c])]),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(element(d,[b,c,d]):-<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[element(d,[c,d]),element(d,[d])]),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C)<br>
+  C = element(X,[b,c|Y]):-[element(X,[X]),element(X,[c|Y])]
+</p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle31">
+      <p class="inter-title AutoStyle32">
+       The relation between &theta;-subsumption and logical consequence
+      </p>
+      <p class="intermezzo AutoStyle38">
+       If <tt>Clause1</tt> &theta;-subsumes <tt>Clause2</tt>, then   also <tt>Clause1</tt> |= <tt>Clause2</tt>. The reverse, however, is not always true. Consider the following   two clauses:
+      </p>
+      <p class="intermezzo AutoStyle38">
+       <tt>list([V|W]):-list(W)<br>
+        list([X,Y|Z]):-list(Z)</tt>
+      </p>
+      <p class="intermezzo AutoStyle38">
+       Given <tt>list([])</tt>, the first   clause covers lists of arbitrary length, while the second covers only lists   of even length. All lists covered by the second clause are also covered by   the first, which is therefore more general. However, there is no substitution   that can be applied to the first clause to yield the second (such a   substitution should map <tt>W</tt> both to <tt>[Y|Z]</tt> and to <tt>Z</tt>, which is impossible).
+      </p>
+      <p class="intermezzo AutoStyle38">
+       It may seem that |= provides a better notion   of generality than &theta;-subsumption. However, such a semantic definition of generality   introduces two problems. One is that it does not suggest a simple procedure   to generalise clauses, as &theta;-subsumption does. The second problem is that LGG&rsquo;s under logical   consequence&nbsp;are not always unique.   Consider the two clauses
+      </p>
+      <p class="intermezzo AutoStyle38">
+       <tt>list([A,B|C]):-list(C)<br>
+        list([P,Q,R|S]):-list(S)</tt>
+      </p>
+      <p class="intermezzo AutoStyle33">
+       Under logical consequence, these clauses have   two LGG&rsquo;s: one is<br>
+       <tt>list([X|Y]):-list(Y)</tt>, and the other is <tt>list([X,Y|Z]):-list(V)</tt>.<br>
+       Under &theta;-subsumption, only the latter is an LGG.<br>
+       Note that the first LGG looks in fact more plausible!
+</p>
+     </div>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 9.3.</i> Determine the &theta;-LGG of the following two clauses:<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>reverse([2,1],[3],[1,2,3]):-reverse([1],[2,3],[1,2,3])<br>
+    &nbsp;&nbsp;&nbsp;reverse([a],[],[a]):-reverse([],[a],[a])</tt>
+  </p>
+ </div>
+ <p class="sektie">
+  In the following section we develop a program which generalises the examples by constructing &theta;-LGG&rsquo;s. This corresponds to a <i>specific-to-general</i> search of the space of possible predicate definitions; it is also called <i>bottom-up&nbsp;</i> induction. Alternatively, one could start with the most general definition, which is specialised as long as it covers some negative example. A program for <i>top-down</i> induction is given in section 9.3.
+ </p>
+ <h3 id="bottom_up_induction">
+  9.2&nbsp;&nbsp;&nbsp;Bottom-up induction
+ </h3>
+ <p class="sektie1">
+  The induction program we will develop in this section constructs &theta;-LGG&rsquo;s of two examples, relative to a partial model <i>M</i> which consists of all positive examples plus ground facts for the background predicates, of which the definitions are given beforehand. Such &theta;-LGG&rsquo;s are called <i>relative least general generalisations</i> or RLGG&rsquo;s. Typically, RLGG&rsquo;s are quite big clauses, that contain many redundant or otherwise useless literals, but also one or two useful literals. For instance, suppose <i>M</i> consists of the following positive examples for the predicate <tt>append/3</tt>:
+ </p>
+ <p class="p-el">
+  append([1,2],[3,4],[1,2,3,4])&nbsp;&nbsp;&nbsp;append([a],[],[a])<br>
+  append([],[],[])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;append([2],[3,4],[2,3,4])
+</p>
+ <p class="tekst">
+  The RLGG of two examples <i>E</i>
+  <span class="AutoStyle10">
+   1
+  </span>
+  &nbsp;and <i>E</i>
+  <span class="AutoStyle10">
+   2
+  </span>
+  &nbsp;relative to a model <i>M</i> is defined as the &theta;-LGG of the clauses <i>E</i>
+  <span class="AutoStyle10">
+   1
+  </span>
+  <tt>:-</tt> <i>Conj</i> (<i>M</i>) and <i>E</i>
+  <span class="AutoStyle10">
+   2
+  </span>
+  <tt>:-</tt> <i>Conj</i> (<i>M</i>), where <i>Conj</i> (<i>M</i>) denotes the conjunction&nbsp;of the ground facts in <i>M</i>. So, the RLGG of the first two examples above is the &theta;-LGG of the following two clauses:
+ </p>
+ <p class="pi-el">
+  append([1,2],[3,4],[1,2,3,4]):-<br>
+  append([1,2],[3,4],[1,2,3,4]),append([a],[],[a]),<br>
+  append([],[],[]),append([2],[3,4],[2,3,4])
+</p>
+ <p class="pi-laatst">
+  append([a],[],[a]):-<br>
+  append([1,2],[3,4],[1,2,3,4]),append([a],[],[a]),<br>
+  append([],[],[]),append([2],[3,4],[2,3,4])
+</p>
+ <p class="tekst">
+  The body of the resulting clause consists of 16 literals, constructed by pairwise anti-unification of facts in <i>M</i>:
+ </p>
+ <p class="pi-el">
+  append([A|B],C,[A|D]):-<br>
+  append([1,2],[3,4],[1,2,3,4]),append([A|B],C,[A|D]),<br>
+  append(W,C,X),append([S|B],[3,4],[S,T,U|V]),<br>
+  append([R|G],K,[R|L]),append([a],[],[a]),<br>
+  append(Q,[],Q),append([P],K,[P|K]),append(N,K,O),<br>
+  append(M,[],M),append([],[],[]),append(G,K,L),<br>
+  append([F|G],[3,4],[F,H,I|J]),append([E],C,[E|C]),<br>
+  append(B,C,D),append([2],[3,4],[2,3,4])
+</p>
+ <p class="sektie">
+  Clearly, this clause contains many redundant literals. First of all, removing the ground facts from <i>M</i> does not change the logical meaning of the clause, since they are known to be true. Furthermore, note that most literals introduce new variables, that do not appear in the head of the clause
+  <span class="CustomFootnote">
+   <a href="#_ftn3" name="_ftnref3" title="">
+    <span class="MsoFootnoteReference">
+     <span class="AutoStyle13">
+      <span class="AutoStyle14">
+       [20]
+      </span>
+     </span>
+    </span>
+   </a>
+  </span>
+  .&nbsp;For simplicity, we will assume that this does not occur in the intended program, i.e. <i>all variables in the body of a hypothesis clause also occur in the head</i>. Such clauses are also called <i>constrained</i>. Under this assumption, the clause can be considerably reduced:
+ </p>
+ <p class="pi-el">
+  append([A|B],C,[A|D]):-<br>
+  append([A|B],C,[A|D]),append(B,C,D),
+</p>
+ <p class="tekst">
+  Note that the first body literal turns the clause into a <i>tautology</i>: a clause that is true by definition. We will exclude this literal as well by assuming that hypothesis clauses are <b>strictly</b> constrained, i.e. the set of body variables is a <b>proper</b> subset of the set of head variables (see Exercise 9.4 for a discussion of the kind of program excluded by this restriction). Under this assumption, we arrive at the recursive clause for <tt>append/3</tt>:
+ </p>
+ <p class="pi-el">
+  append([A|B],C,[A|D]):-<br>
+  append(B,C,D)
+</p>
+ <p class="tekst">
+  It is interesting to trace the literal <tt>append(B,C,D)</tt> back to its origin: it is the anti-unification&nbsp;of the facts <tt>append([],[],[])</tt> and <tt>append([2],[3,4],[2,3,4])</tt>. These are exactly the ground bodies of the last clause, if we unify its head with the two original examples!
+ </p>
+ <p class="sektie">
+  The program for computing the RLGG&nbsp;of two examples is given below. It is a slight modification of the program for computing &theta;-LGG&rsquo;s, given in the previous section. After the head of the clause is constructed, the variables in the head are passed on to the predicate <tt>rlgg_bodies/9</tt>, which will only construct literals of which all the variables occur in the head.
+ </p>
+ <p class="oms-eerst">
+  % rlgg(E1,E2,M,C) <- C is RLGG of E1 and E2 relative to M
+ </p>
+ <p class="pi-laatst">
+  rlgg(E1,E2,M,(H:-B)):-<br>
+  anti_unify(E1,E2,H,[],S10,[],S20),<br>
+  varsin(H,V),&nbsp;% determine variables in head of clause<br>
+  rlgg_bodies(M,M,[],B,S10,S1,S20,S2,V).
+</p>
+ <p class="p-laatst">
+  % varsin(T,V) <- V is list of variables occuring in term T<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(standard predicate in many Prologs)
+</p>
+ <p class="pi">
+  rlgg_bodies([],B2,B,B,S1,S1,S2,S2,V).
+ </p>
+ <p class="pi-laatst">
+  rlgg_bodies([L|B1],B2,B0,B,S10,S1,S20,S2,V):-<br>
+  rlgg_literal(L,B2,B0,B00,S10,S11,S20,S21,V),<br>
+  rlgg_bodies(B1,B2,B00,B,S11,S1,S21,S2,V).
+</p>
+ <p class="pi">
+  rlgg_literal(L1,[],B,B,S1,S1,S2,S2,V).
+ </p>
+ <p class="pi">
+  rlgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2,V):-<br>
+  same_predicate(L1,L2),<br>
+  anti_unify(L1,L2,L,S10,S11,S20,S21),<br>
+  varsin(L,Vars),<br>
+  var_proper_subset(Vars,V),&nbsp;&nbsp;&nbsp;% no new variables<br>
+  !,rlgg_literal(L1,B2,[L|B0],B,S11,S1,S21,S2,V).
+</p>
+ <p class="pi-laatst">
+  rlgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2,V):-<br>
+  rlgg_literal(L1,B2,B0,B,S10,S1,S20,S2,V).
+</p>
+ <p class="pi-laatst">
+  %%% var_&hellip; uses == rather than unification (Appendix A.2)
+ </p>
+ <p class="tekst">
+  For simplicity, the body of the RLGG thus constructed is a <b>list</b> of literals rather than a conjunction.
+ </p>
+ <p class="sektie">
+  The main algorithm of the RLGG-program is relatively simple: construct the RLGG of two positive examples, and remove all positive examples that are extensionally covered by this clause. Such an algorithm, which induces each clause separately, is also called a <i>covering algorithm</i>. Positive&nbsp;and negative examples, identified by a sign, are first separated by means of the predicate <tt>pos_neg/3</tt>, and the positive examples are combined with a (possibly empty)background model for the background predicates, to yield the model to be used for construction of RLGG&rsquo;s .
+ </p>
+ <p class="pi-el">
+  induce_rlgg(Exs,Clauses):-<br>
+  pos_neg(Exs,Poss,Negs),&nbsp;% split pos. &amp; neg. examples<br>
+  bg_model(BG),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% ground background model<br>
+  append(Poss,BG,Model),&nbsp;&nbsp;% Model includes pos.exs.<br>
+  induce_rlgg(Poss,Negs,Model,Clauses).
+</p>
+ <p class="pi-laatst">
+  induce_rlgg(Poss,Negs,Model,Clauses):-<br>
+  covering(Poss,Negs,Model,[],Clauses).
+</p>
+ <p class="oms">
+  % split positive and negative examples
+ </p>
+ <p class="pi">
+  pos_neg([],[],[]).
+ </p>
+ <p class="pi">
+  pos_neg([+E|Exs],[E|Poss],Negs):-<br>
+  pos_neg(Exs,Poss,Negs).
+</p>
+ <p class="pi-laatst">
+  pos_neg([-E|Exs],Poss,[E|Negs]):-<br>
+  pos_neg(Exs,Poss,Negs).
+</p>
+ <p class="oms">
+  % covering algorithm
+ </p>
+ <p class="pi">
+  covering(Poss,Negs,Model,H0,H):-<br>
+  construct_hypothesis(Poss,Negs,Model,Hyp),!,<br>
+  remove_pos(Poss,Model,Hyp,NewPoss),<br>
+  covering(NewPoss,Negs,Model,[Hyp|H0],H).
+</p>
+ <p class="pi-laatst">
+  covering(P,N,M,H0,H):-<br>
+  append(H0,P,H).% add uncovered examples to hypothesis
+</p>
+ <p class="oms">
+  % remove covered positive examples
+ </p>
+ <p class="pi">
+  remove_pos([],M,H,[]).
+ </p>
+ <p class="pi">
+  remove_pos([P|Ps],Model,Hyp,NewP):-<br>
+  covers_ex(Hyp,P,Model),!,<br>
+  write('Covered example: '),write(P),nl,<br>
+  remove_pos(Ps,Model,Hyp,NewP).
+</p>
+ <p class="pi-laatst">
+  remove_pos([P|Ps],Model,Hyp,[P|NewP]):-<br>
+  remove_pos(Ps,Model,Hyp,NewP).
+</p>
+ <p class="tekst">
+  The two predicates called by the covering algorithm are <tt>construct_hypothesis/4</tt> to construct a new clause, and <tt>covers_ex/3</tt> to check extensional coverage.
+ </p>
+ <p class="oms-eerst">
+  % extensional coverage, relative to a ground model
+ </p>
+ <p class="pi-laatst">
+  covers_ex((Head:-Body),Example,Model):-<br>
+  try((Head=Example,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;forall(element(L,Body),element(L,Model)))).
+</p>
+ <p class="oms">
+  % construct a clause by means of RLGG
+ </p>
+ <p class="pi">
+  construct_hypothesis([E1,E2|Es],Negs,Model,Clause):-<br>
+  write('RLGG of '),write(E1),<br>
+  write(' and '),write(E2),write(' is'),<br>
+  rlgg(E1,E2,Model,Cl),<br>
+  reduce(Cl,Negs,Model,Clause),!,&nbsp;&nbsp;&nbsp;% no backtracking<br>
+  nl,tab(5),write(Clause),nl.
+</p>
+ <p class="pi-laatst">
+  construct_hypothesis([E1,E2|Es],Negs,Model,Clause):-<br>
+  write(' too general'),nl,<br>
+  construct_hypothesis([E2|Es],Negs,Model,Clause).
+</p>
+ <p class="tekst">
+  <tt>try(Goal)</tt> succeeds if and only if <tt>Goal</tt> succeeds, but without instantiating variables in <tt>Goal</tt> (see Appendix A.2).
+ </p>
+ <p class="sektie">
+  The remaining predicate is <tt>reduce/4</tt>. This predicate first removes all the ground facts in the background model from the body&nbsp;of the clause. In a second step, the clause is further generalised by removing as many literals as possible, as long as the resulting clause does not cover any negative example (this is the only point where negative examples are used). This is needed because an RLGG might still contain redundant literals. For instance, given the following model
+ </p>
+ <p class="p-el">
+  append([1,2],[3,4],[1,2,3,4])&nbsp;&nbsp;&nbsp;append([a],[],[a])<br>
+  append([],[],[])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;append([],[1,2,3],[1,2,3])<br>
+  append([2],[3,4],[2,3,4])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;append([],[3,4],[3,4])
+</p>
+ <p class="tekst">
+  the RLGG of the first two facts is
+ </p>
+ <p class="pi-el">
+  append([A|B],C,[A|E]):-<br>
+  append(B,C,D),append([],C,C)
+</p>
+ <p class="tekst">
+  This clause contains the redundant literal&nbsp;<tt>append([],C,C)</tt>, which is true in the intended interpretation. Therefore, removing it will not change the meaning of the clause in the intended interpretation.
+ </p>
+ <p class="oms-eerst">
+  % remove redundant literals
+ </p>
+ <p class="pi-laatst">
+  reduce((H:-B0),Negs,M,(H:-B)):-<br>
+  setof0(L,(element(L,B0),not var_element(L,M)),B1),<br>
+  reduce_negs(H,B1,[],B,Negs,M).
+</p>
+ <p class="oms">
+  % reduce_negs(H,B1,B0,B,N,M) <- B is a subsequence of B1<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;such that H:-B does not<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cover elements of N
+</p>
+ <p class="pi">
+  reduce_negs(H,[L|B0],In,B,Negs,M):-<br>
+  append(In,B0,Body),<br>
+  not covers_neg((H:-Body),Negs,M,N),!,% remove L<br>
+  reduce_negs(H,B0,In,B,Negs,M).
+</p>
+ <p class="pi">
+  reduce_negs(H,[L|B0],In,B,Negs,M):-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% keep L<br>
+  reduce_negs(H,B0,[L|In],B,Negs,M).
+</p>
+ <p class="pi-laatst">
+  reduce_negs(H,[],Body,Body,Negs,M):-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% fail if clause<br>
+  not covers_neg((H:-Body),Negs,M,N).&nbsp;&nbsp;% covers neg.ex.
+</p>
+ <p class="pi-laatst">
+  covers_neg(Clause,Negs,Model,N):-<br>
+  element(N,Negs),<br>
+  covers_ex(Clause,N,Model).
+</p>
+ <p class="pi-laatst">
+  %%% var_element/2: see Appendix A.2
+ </p>
+ <p class="sektie">
+  We illustrate the program by applying it to two induction problems, one without and one with additional background predicates. The first example is the familiar <tt>append/3</tt>&nbsp;predicate.
+ </p>
+ <p class="p-el">
+  bg_model([]).
+ </p>
+ <p class="programma AutoStyle73">
+  ?-induce_rlgg([&nbsp;+append([1,2],[3,4],[1,2,3,4]),<br>
+  +append([a],[],[a]),<br>
+  +append([],[],[]),<br>
+  +append([],[1,2,3],[1,2,3]),<br>
+  +append([2],[3,4],[2,3,4]),<br>
+  +append([],[3,4],[3,4]),<br>
+  -append([a],[b],[b]),<br>
+  -append([c],[b],[c,a]),<br>
+  -append([1,2],[],[1,3])&nbsp;&nbsp;&nbsp;],Clauses).
+</p>
+ <p class="p-eerst">
+  RLGG of append([1,2],[3,4],[1,2,3,4]) and append([a],[],[a]) is<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;append([X|Xs],Ys,[X|Zs]):-[append(Xs,Ys,Zs)]<br>
+  Covered example: append([1,2],[3,4],[1,2,3,4])<br>
+  Covered example: append([a],[],[a])<br>
+  Covered example: append([2],[3,4],[2,3,4])
+</p>
+ <p class="programma">
+  RLGG of append([],[],[]) and append([],[1,2,3],[1,2,3]) is<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;append([],Y,Y):-[]<br>
+  Covered example: append([],[],[])<br>
+  Covered example: append([],[1,2,3],[1,2,3])<br>
+  Covered example: append([],[3,4],[3,4])
+</p>
+ <p class="p-el">
+  Clauses = [(append([],Y,Y):-[]),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(append([X|Xs],Ys,[X|Zs]):-[append(Xs,Ys,Zs)])]
+</p>
+ <p class="tekst">
+  Note that, because of the use of extensional coverage, we have to provide complete &lsquo;recursive chains&rsquo; like
+ </p>
+ <p class="p-el">
+  append([1,2],[3,4],[1,2,3,4])<br>
+  append([2],[3,4],[2,3,4])<br>
+  append([],[3,4],[3,4])
+</p>
+ <p class="tekst">
+  Note also that the recursive clause is induced before the non-recursive one. This is due to the order in which the examples are presented; of course, it is only possible if we apply extensional coverage&nbsp;rather than intensional coverage.
+ </p>
+ <p class="sektie">
+  The second example concerns the use of a non-empty background model. The background predicate <tt>num/2</tt> converts the numbers 1&hellip;5 to the numerals one&hellip;five and vice versa; the predicate <tt>listnum/2</tt>, which does the same for lists of numbers and numerals, is to be induced.
+ </p>
+ <p class="p-el AutoStyle74">
+  bg_model([&nbsp;num(1,one),<br>
+  num(2,two),<br>
+  num(3,three),<br>
+  num(4,four),<br>
+  num(5,five)&nbsp;]).
+</p>
+ <p class="programma AutoStyle73">
+  ?-induce_rlgg([&nbsp;+listnum([],[]),<br>
+  +listnum([2,three,4],[two,3,four]),<br>
+  +listnum([4],[four]),<br>
+  +listnum([three,4],[3,four]),<br>
+  +listnum([two],[2]),<br>
+  -listnum([1,4],[1,four]),<br>
+  -listnum([2,three,4],[two]),<br>
+  -listnum([five],[5,5])],Clauses).
+</p>
+ <p class="p-eerst">
+  RLGG of listnum([],[]) and listnum([2,three,4],[two,3,four]) is<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;too general
+</p>
+ <p class="programma">
+  RLGG of listnum([2,three,4],[two,3,four]) and listnum([4],[four]) is<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;listnum([X|Xs],[Y|Ys]):-[num(X,Y),listnum(Xs,Ys)]<br>
+  Covered example: listnum([2,three,4],[two,3,four])<br>
+  Covered example: listnum([4],[four])
+</p>
+ <p class="programma">
+  RLGG of listnum([],[]) and listnum([three,4],[3,four]) is<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;too general
+</p>
+ <p class="programma">
+  RLGG of listnum([three,4],[3,four]) and listnum([two],[2]) is<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;listnum([V|Vs],[W|Ws]):-[num(W,V),listnum(Vs,Ws)]<br>
+  Covered example: listnum([three,4],[3,four])<br>
+  Covered example: listnum([two],[2])
+</p>
+ <p class="p-el">
+  Clauses =<br>
+  &nbsp;&nbsp;&nbsp;[ (listnum([V|Vs],[W|Ws]):-[num(W,V),listnum(Vs,Ws)]),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(listnum([X|Xs],[Y|Ys]):-[num(X,Y),listnum(Xs,Ys)]),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listnum([],[]) ]
+</p>
+ <p class="tekst">
+  The RLGG of the first two examples is <tt>listnum(X,Y):-[]</tt>, which is too general since it covers the negative examples. Therefore, the first example is temporarily discarded. After construction of the first clause, it is tried again, without success. Finally, since all examples except the first are covered by the two clauses found, the first example is simply added to the hypothesis as a ground fact.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 9.4</i>. The restriction that the head of a hypothesis clause contains at least one variable that does not occur in the body excludes many useful programs with accumulators, like <tt>reverse/3</tt> (section 3.6). Choose another method to exclude tautological clauses, and demonstrate that your program can learn <tt>reverse/3</tt>.
+  </p>
+ </div>
+ <h3 id="top_down_induction">
+  9.3&nbsp;&nbsp;&nbsp;Top-down induction
+ </h3>
+ <p class="sektie1">
+  We introduce the second induction method by means of an example. Suppose we want to construct a definition of the predicate <tt>element/2</tt>&nbsp;by means of induction. After receiving the first example <tt>+element(a,[a,b])</tt>, we formulate the simplest hypothesis possible:
+ </p>
+ <p class="p-el">
+  element(X,Y)
+ </p>
+ <p class="tekst">
+  This hypothesis states that everything is an element of everything. Suppose our next example is a negative one: <tt>-element(x,[a,b])</tt>. Since this negative example is covered by our current hypothesis, we conclude that it is too general and has to be specialised. Under &theta;-subsumption, there are two ways to specialise a clause:
+ </p>
+ <p class="opsomming">
+  (<i>i</i>)&nbsp;&nbsp;&nbsp;apply a substitution to variables in the clause;
+ </p>
+ <p class="opsomming">
+  (<i>ii</i>)&nbsp;&nbsp;add a literal to the body of the clause.
+ </p>
+ <p class="tekst">
+  We can thus specialise our hypothesis in several ways: we can apply substitutions like { <tt>X</tt>
+  <span class="AutoStyle09">
+   &rarr;
+  </span>
+  <tt>[]</tt> }, { <tt>Y</tt>
+  <span class="AutoStyle09">
+   &rarr;
+  </span>
+  <tt>X</tt> } or { <tt>Y</tt>
+  <span class="AutoStyle09">
+   &rarr;
+  </span>
+  <tt>[V|W]</tt> }, or we can add a literal like <tt>element(Y,X)</tt> to the body of the clause. So, the set of specialisations of the above clause includes, among others, the following clauses:
+ </p>
+ <p class="p-el">
+  element([],Y)<br>
+  element(X,X)<br>
+  element(X,[V|W])<br>
+  element(X,Y):-element(Y,X)
+</p>
+ <p class="tekst">
+  Note that each of these clauses is a <i>minimal</i> specialisation, in the following sense: each of them is &theta;-subsumed by the original clause, and there exist no more-general clauses which are also &theta;-subsumed by the original clause.
+ </p>
+ <p class="sektie">
+  Suppose for the moment that we choose the third clause as our next hypothesis:
+ </p>
+ <p class="p-el">
+  element(X,[V|W])
+ </p>
+ <p class="tekst">
+  This hypothesis expresses that anything is an element of a non-empty list. Obviously, this clause is again too general, since it still covers the negative example. Possible minimal specialisations include
+ </p>
+ <p class="p-el">
+  element(X,[V])<br>
+  element(X,[X|W])<br>
+  element(X,[V|X])<br>
+  element(X,[V|W]):-element(X,W)
+</p>
+ <p class="tekst">
+  The second of these clauses is true in the intended interpretation, and will therefore never cover any negative example. Since it also covers the only positive example seen up till now, we decide to adopt it as our next hypothesis. Notice that the recursive clause is also among the above specialisations; it will be found if we supply a positive example like <tt>+element(b,[a,b])</tt>.
+ </p>
+ <p class="sektie">
+  Thus, we see that the operation of specialisation generates a search space&nbsp;in which the correct clauses defining <tt>element/2</tt> are to be found. Part of this search space, which we will call the <i>specialisation graph</i>, is depicted in fig. 9.1. Notice that, in order to generate the specialisation graph, we need to specify the <i>hypothesis language</i>: the set of predicates, functors and constants that can occur in the hypothesis. We can further restrict the search space by assigning <i>types</i> to the arguments of predicates and functors.&nbsp;For instance, by assigning <tt>X</tt> and <tt>Y</tt> in <tt>element(X,Y)</tt> and <tt>[X|Y]</tt> the types &lsquo;item&rsquo; and &lsquo;list of items&rsquo;, respectively, it becomes clear that <tt>X</tt> and <tt>Y</tt> should not be unified in a specialisation step, and neither should <tt>X</tt> be substituted by <tt>[]</tt> or <tt>[V|W]</tt>. Such typing would rule out three clauses in fig. 9.1.
+ </p>
+ <div>
+  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
+   <tr>
+    <td align="left" class="AutoStyle04" valign="top">
+     <div class="AutoStyle05">
+      <p class="figure">
+       <img src="img/part_iii/image014.svg" v:shapes="Picture_x0020_7" width="100%">
+       </img>
+      </p>
+     </div>
+     <p class="Caption1">
+      <b>Figure   9.1.</b> Part of the specialisation graph for <tt>element/2</tt>.
+     </p>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <p class="sektie">
+  Even with such typing restrictions, the branching factor&nbsp;in the specialisation graph is typically quite large, increasing with the number of variables in a clause. Therefore, an agenda-based search procedure will require large amounts of memory. Instead, we will employ an iterative deepening&nbsp;search strategy with backtracking. Each time a clause in the hypothesis is found to be too general, we search the specialisation graph for an alternative, starting from the root and increasing the depth bound until a suitable clause is found. Identifying and removing the too-general clause is a specialisation&nbsp;operation; searching for an alternative and adding it to the hypothesis is a generalisation&nbsp;step.
+ </p>
+ <p class="sektie">
+  The program below implements this top-down&nbsp;induction procedure. Its main loop is given by the predicate <tt>process_examples/4</tt>. This predicate processes the examples one by one. Whenever the hypothesis is changed by generalisation or specialisation, the new hypothesis should be checked against all previous examples, which are therefore passed in the list <tt>Done</tt>.
+ </p>
+ <p class="pi-el">
+  induce_spec(Examples,Clauses):-<br>
+  process_examples([],[],Examples,Clauses).
+</p>
+ <p class="oms">
+  % process the examples
+ </p>
+ <p class="pi">
+  process_examples(Clauses,Done,[],Clauses).
+ </p>
+ <p class="pi-laatst">
+  process_examples(Cls1,Done,[Ex|Exs],Clauses):-<br>
+  process_example(Cls1,Done,Ex,Cls2),<br>
+  process_examples(Cls2,[Ex|Done],Exs,Clauses).
+</p>
+ <p class="oms">
+  % process one example
+ </p>
+ <p class="pi">
+  process_example(Clauses,Done,+Example,Clauses):-<br>
+  covers_d(Clauses,Example).
+</p>
+ <p class="pi">
+  process_example(Cls,Done,+Example,Clauses):-<br>
+  not covers_d(Cls,Example),<br>
+  generalise(Cls,Done,Example,Clauses).
+</p>
+ <p class="pi">
+  process_example(Cls,Done,-Example,Clauses):-<br>
+  covers_d(Cls,Example),<br>
+  specialise(Cls,Done,Example,Clauses).
+</p>
+ <p class="pi-laatst">
+  process_example(Clauses,Done,-Example,Clauses):-<br>
+  not covers_d(Clauses,Example).
+</p>
+ <p class="sektie">
+  Intensional coverage of an example by a set of clauses is checked by a simple meta-interpreter. Since the current hypothesis might include circular&nbsp;clauses like <tt>element(X,Y):-element(Y,X)</tt>, the meta-interpreter employs a depth bound&nbsp;to cut off the search for a proof after a fixed number of steps. Additionally, abackground theory might be defined by means of the meta-predicate&nbsp;<tt>bg/1</tt>; we will assume that this background theory is non-circular, and does not contain the predicate to be induced.
+ </p>
+ <p class="oms-eerst">
+  % covers_d(Clauses,Ex) <- Ex can be proved from Clauses and<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background theory (max. 10 steps)
+</p>
+ <p class="pi-laatst">
+  covers_d(Clauses,Example):-<br>
+  prove_d(10,Clauses,Example).
+</p>
+ <p class="pi">
+  prove_d(D,Cls,true):-!.
+ </p>
+ <p class="pi">
+  prove_d(D,Cls,(A,B)):-!,<br>
+  prove_d(D,Cls,A),<br>
+  prove_d(D,Cls,B).
+</p>
+ <p class="pi">
+  prove_d(D,Cls,A):-<br>
+  D>0,D1 is D-1,<br>
+  copy_element((A:-B),Cls),&nbsp;&nbsp;&nbsp;&nbsp;% make copy of clause<br>
+  prove_d(D1,Cls,B).
+</p>
+ <p class="pi-laatst">
+  prove_d(D,Cls,A):-<br>
+  prove_bg(A).
+</p>
+ <p class="pi">
+  prove_bg(true):-!.
+ </p>
+ <p class="pi">
+  prove_bg((A,B)):-!,<br>
+  prove_bg(A),<br>
+  prove_bg(B).
+</p>
+ <p class="pi-laatst">
+  prove_bg(A):-<br>
+  bg((A:-B)),<br>
+  prove_bg(B).
+</p>
+ <p class="pi-laatst">
+  %%% copy_element/2: see Appendix A.2
+ </p>
+ <p class="sektie">
+  If the current hypothesis covers a negative example, it follows that it contains at least one clause which is false in the intended interpretation. The predicate <tt>specialise/4</tt> identifies such a false clause by examining the proof of the negative example. Once such a clause is found, it is simply thrown out of the hypothesis. Since this is quite a coarse specialisation&nbsp;step, some of the previous positive examples will now become uncovered, and the predicate <tt>process_examples/4</tt> is called again.
+ </p>
+ <p class="pi-el">
+  specialise(Cls,Done,Example,Clauses):-<br>
+  false_clause(Cls,Done,Example,C),<br>
+  remove_one(C,Cls,Cls1),<br>
+  write('.....refuted: '),write(C),nl,<br>
+  process_examples(Cls1,[],[-Example|Done],Clauses).
+</p>
+ <p class="oms">
+  % false_clause(Cs,Exs,E,C) <- C is a false clause<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the proof of E
+</p>
+ <p class="pi">
+  false_clause(Cls,Exs,true,ok):-!.&nbsp;% empty proof
+ </p>
+ <p class="pi">
+  false_clause(Cls,Exs,(A,B),X):-!,<br>
+  false_clause(Cls,Exs,A,Xa),&nbsp;&nbsp;% try first conjunct<br>
+  ( Xa = ok&nbsp;&nbsp;&nbsp;-> false_clause(Cls,Exs,B,X)&nbsp;&nbsp;% 2nd one<br>
+  ; otherwise&nbsp;-> X = Xa<br>
+  ).
+</p>
+ <p class="pi">
+  false_clause(Cls,Exs,E,ok):-&nbsp;&nbsp;&nbsp;&nbsp;% no false clause for<br>
+  element(+E,Exs),!.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% positive examples
+</p>
+ <p class="pi">
+  false_clause(Cls,Exs,A,ok):-&nbsp;&nbsp;&nbsp;&nbsp;% no false clause for<br>
+  bg((A:-B)),!.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% background literals
+</p>
+ <p class="pi-laatst">
+  false_clause(Cls,Exs,A,X):-<br>
+  copy_element((A:-B),Cls),<br>
+  false_clause(Cls,Exs,B,Xb),% false clause in proof B?<br>
+  ( Xb \= ok&nbsp;&nbsp;-> X = Xb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% yes<br>
+  ; otherwise&nbsp;-> X = (A:-B)&nbsp;% no; return this clause<br>
+  ).
+</p>
+ <p class="sektie">
+  As explained above, the predicate <tt>generalise/4</tt> searches the specialisation graph for a clause covering an uncovered positive example. Since there might be several uncovered positive examples, the generalised hypothesis is again tested against all previous examples.
+ </p>
+ <p class="pi-el">
+  generalise(Cls,Done,Example,Clauses):-<br>
+  search_clause(Done,Example,Cl),<br>
+  write('Found clause: '),write(Cl),nl,<br>
+  process_examples([Cl|Cls],[],[+Example|Done],Clauses).
+</p>
+ <p class="tekst">
+  The current node in the search process is represented by a term <tt>a(Clause,Vars)</tt>, where <tt>Vars</tt> is the list of variables occurring in <tt>Clause</tt>, together with their types (see below).
+ </p>
+ <p class="oms-eerst">
+  % search_clause(Exs,E,C) <- C is a clause covering E and<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not covering negative examples<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(iterative deepening search)
+</p>
+ <p class="pi-laatst">
+  search_clause(Exs,Example,Clause):-<br>
+  literal(Head,Vars),&nbsp;&nbsp;&nbsp;% root of specialisation graph<br>
+  try((Head=Example)),<br>
+  search_clause(3,a((Head:-true),Vars),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exs,Example,Clause).
+</p>
+ <p class="pi">
+  search_clause(D,Current,Exs,Example,Clause):-<br>
+  write(D),write('..'),<br>
+  search_clause_d(D,Current,Exs,Example,Clause),!.
+</p>
+ <p class="pi-laatst">
+  search_clause(D,Current,Exs,Example,Clause):-<br>
+  D1 is D+1,<br>
+  !,search_clause(D1,Current,Exs,Example,Clause).
+</p>
+ <p class="tekst">
+  The search ends when a clause is found that covers the uncovered example, while not covering any of the negative examples.
+ </p>
+ <p class="pi-eerst">
+  search_clause_d(D,a(Clause,Vars),Exs,Example,Clause):-<br>
+  covers_ex(Clause,Example,Exs),&nbsp;&nbsp;&nbsp;% goal<br>
+  not((element(-N,Exs),covers_ex(Clause,N,Exs))),!.
+</p>
+ <p class="pi-laatst">
+  search_clause_d(D,Current,Exs,Example,Clause):-<br>
+  D>0,D1 is D-1,<br>
+  specialise_clause(Current,Spec),&nbsp;% specialise<br>
+  search_clause_d(D1,Spec,Exs,Example,Clause).
+</p>
+ <p class="tekst">
+  Here, extensional coverage&nbsp;is tested against the examples and the background theory:
+ </p>
+ <p class="pi-el">
+  covers_ex((Head:-Body),Example,Exs):-<br>
+  try((Head=Example,covers_ex(Body,Exs))).
+</p>
+ <p class="pi">
+  covers_ex(true,Exs):-!.
+ </p>
+ <p class="pi">
+  covers_ex((A,B),Exs):-!,<br>
+  covers_ex(A,Exs),<br>
+  covers_ex(B,Exs).
+</p>
+ <p class="pi">
+  covers_ex(A,Exs):-<br>
+  element(+A,Exs).
+</p>
+ <p class="pi-laatst">
+  covers_ex(A,Exs):-<br>
+  prove_bg(A).
+</p>
+ <p class="sektie">
+  The following predicates generate the specialisation graph. The literals that can be added to the body of a clause are given by the predicate <tt>literal/2</tt>. The first argument of <tt>literal/2</tt> is a literal; the second argument specifies the types of variables in the literal. Thus, for the predicate <tt>element/2</tt> the following fact should be added:
+ </p>
+ <p class="p-el">
+  literal(element(X,Y),[item(X),list(Y)]).
+ </p>
+ <p class="tekst">
+  Likewise, the possible terms to be used in a substitution are specified with their types by the predicate <tt>term/2</tt>:
+ </p>
+ <p class="p-el">
+  term(list([]),[]).<br>
+  term(list([X|Y]),[item(X),list(Y)]).
+</p>
+ <p class="tekst">
+  For instance, the clause <tt>element(X,[V|W]):-true</tt> is represented during the search process as
+ </p>
+ <p class="p-el">
+  a((element(X,[V|W]):-true),[item(X),item(V),list(W)])
+ </p>
+ <p class="tekst">
+  Consequently, <tt>X</tt> and <tt>V</tt> can be unified with each other but not with <tt>W</tt>, and <tt>W</tt> can be substituted by <tt>[]</tt> or <tt>[Y|Z]</tt>, but <tt>X</tt> and <tt>V</tt> cannot. To restrict the search further, we will again make the assumption that hypothesis clauses are strictly constrained; i.e. the set of variables in a newly added literal is a proper subset of the set of variables in the head of the clause.
+ </p>
+ <p class="oms-eerst">
+  % specialise_clause(C,S) <- S is minimal specialisation<br>
+  %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of C under theta-subsumption
+</p>
+ <p class="pi">
+  specialise_clause(Current,Spec):-<br>
+  add_literal(Current,Spec).
+</p>
+ <p class="pi-laatst">
+  specialise_clause(Current,Spec):-<br>
+  apply_subs(Current,Spec).
+</p>
+ <p class="pi">
+  add_literal(a((H:-true),Vars),a((H:-L),Vars)):-!,<br>
+  literal(L,LVars),<br>
+  proper_subset(LVars,Vars).&nbsp;% no new variables in L
+</p>
+ <p class="pi-laatst">
+  add_literal(a((H:-B),Vars),a((H:-L,B),Vars)):-<br>
+  literal(L,LVars),<br>
+  proper_subset(LVars,Vars).&nbsp;% no new variables in L
+</p>
+ <p class="pi-laatst">
+  apply_subs(a(Clause,Vars),a(Spec,SVars)):-<br>
+  copy_term(a(Clause,Vars),a(Spec,Vs)),&nbsp;&nbsp;% don&rsquo;t change<br>
+  apply_subs1(Vs,SVars).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% Clause
+</p>
+ <p class="pi">
+  apply_subs1(Vars,SVars):-<br>
+  unify_two(Vars,SVars).&nbsp;% unify two variables
+</p>
+ <p class="pi-laatst">
+  apply_subs1(Vars,SVars):-<br>
+  subs_term(Vars,SVars).&nbsp;% subs. term for variable
+</p>
+ <p class="pi">
+  unify_two([X|Vars],Vars):-&nbsp;&nbsp;% not both X and Y in Vars<br>
+  element(Y,Vars),<br>
+  X=Y.
+</p>
+ <p class="pi-laatst">
+  unify_two([X|Vars],[X|SVars]):-<br>
+  unify_two(Vars,SVars).
+</p>
+ <p class="pi-laatst">
+  subs_term(Vars,SVars):-<br>
+  remove_one(X,Vars,Vs),<br>
+  term(Term,TVars),<br>
+  X=Term,<br>
+  append(Vs,TVars,SVars).% TVars instead of X in Vars
+</p>
+ <p class="sektie">
+  We illustrate the program by applying it to the induction problems of the previous section. The first problem is to induce a definition of the predicate <tt>append/3</tt>. The hypothesis language&nbsp;is specified by the literals and terms to be used, together with the types of their arguments:
+ </p>
+ <p class="p-el">
+  literal(append(X,Y,Z),[list(X),list(Y),list(Z)]).<br>
+  term(list([]),[]).<br>
+  term(list([X|Y]),[item(X),list(Y)]).
+</p>
+ <p class="tekst">
+  The following query demonstrates that <tt>append/3</tt> can be induced from two positive and four negative examples:
+ </p>
+ <p class="programma AutoStyle75">
+  ?-induce_spec([&nbsp;+append([],[b,c],[b,c]),<br>
+  -append([],[a,b],[c,d]),<br>
+  -append([a,b],[c,d],[c,d]),<br>
+  -append([a],[b,c],[d,b,c]),<br>
+  -append([a],[b,c],[a,d,e]),<br>
+  +append([a],[b,c],[a,b,c])&nbsp;&nbsp;&nbsp;],Clauses)
+</p>
+ <p class="p-eerst">
+  3..Found clause: append(X,Y,Z):-true<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;...refuted: append([],[a,b],[c,d]):-true
+</p>
+ <p class="programma">
+  3..Found clause: append(X,Y,Y):-true<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;...refuted: append([a,b],[c,d],[c,d]):-true
+</p>
+ <p class="programma">
+  3..Found clause: append([],Y,Y):-true
+ </p>
+ <p class="programma AutoStyle76">
+  3..4..Found clause: append([X|Xs],Ys,[X|Zs]):-append(Xs,Ys,Zs)
+ </p>
+ <p class="p-el">
+  Clauses = [ (append([X|Xs],Ys,[X|Zs]):-append(Xs,Ys,Zs)),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(append([],Y,Y):-true) ]
+</p>
+ <p class="tekst">
+  The numbers indicate the level of iterative deepening&nbsp;at which the clauses are found. The first two negative examples are needed for the construction of the non-recursive clause, and the remaining two are needed for the construction of the recursive clause.
+ </p>
+ <p class="sektie">
+  The second induction problem concerns the predicate <tt>listnum/2</tt>. The hypothesis language&nbsp;is declared as follows:
+ </p>
+ <p class="p-eerst">
+  literal(listnum(X,Y),[list(X),list(Y)]).<br>
+  literal(num(X,Y),[item(X),item(Y)]).
+</p>
+ <p class="p-laatst">
+  term(list([]),[]).<br>
+  term(list([X|Y]),[item(X),list(Y)]).
+</p>
+ <p class="tekst">
+  We supply the following background theory:
+ </p>
+ <p class="p-el">
+  bg((num(1,one):-true)).<br>
+  bg((num(2,two):-true)).<br>
+  bg((num(3,three):-true)).<br>
+  bg((num(4,four):-true)).<br>
+  bg((num(5,five):-true)).
+</p>
+ <p class="tekst">
+  The predicate <tt>listnum/2</tt> can be learned from six well-chosen examples:
+ </p>
+ <p class="programma AutoStyle75">
+  ?-induce_spec([&nbsp;+listnum([],[]),<br>
+  -listnum([one],[one]),<br>
+  -listnum([1,two],[one,two]),<br>
+  +listnum([1],[one]),<br>
+  -listnum([five,two],[5,two]),<br>
+  +listnum([five],[5])],Clauses)
+</p>
+ <p class="p-eerst">
+  3..Found clause: listnum(X,Y):-true<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;...refuted: listnum([one],[one]):-true
+</p>
+ <p class="programma">
+  3..Found clause: listnum([],[]):-true
+ </p>
+ <p class="programma AutoStyle77">
+  3..4..Found clause: listnum([V|Vs],[W|Ws]):-num(V,W),listnum(Vs,Ws)
+ </p>
+ <p class="programma AutoStyle77">
+  3..4..Found clause: listnum([X|Xs],[Y|Ys]):-num(Y,X),listnum(Xs,Ys)
+ </p>
+ <p class="p-el">
+  Clauses =<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ (listnum([X|Xs],[Y|Ys]):-num(Y,X),listnum(Xs,Ys)),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(listnum([V|Vs],[W|Ws]):-num(V,W),listnum(Vs,Ws)),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(listnum([],[]):-true) ]
+</p>
+ <p class="tekst">
+  It should again be noted that the examples need to be well-chosen and well-ordered. This is particularly true for the recursive clause. Because of the use of extensional coverage, all positive examples occurring in a proof should be given; moreover, it is good practice to supply negative examples for a particular recursive clause before the positive ones. For this induction program, which induces by specialising overly general clauses, negative examples are particularly crucial.
+ </p>
+ <div class="AutoStyle06">
+  <p class="exercise AutoStyle07">
+   <i>Exercise 9.5</i>. Replace the iterative deepening search strategy with beam search&nbsp;(see the article by Quinlan, referred to below, for a possible heuristic).
+  </p>
+ </div>
+ <h3 id="further_reading_9">
+  Further reading
+ </h3>
+ <p class="sektie1">
+  The program <tt>induce_rlgg/2</tt> is based on the GOLEM&nbsp;system described in (Muggleton &amp; Feng, 1990). The program <tt>induce_spec/2</tt> is based on the MIS&nbsp;system described in (Shapiro, 1983). (Quinlan, 1990) discusses a hill-climbing heuristic for top-down induction. The notion of generalisation in logic programs is discussed in (Niblett, 1988). (Gottlob, 1987) precisely characterises the difference between &theta;-subsumption and logical consequence.
+ </p>
+ <p class="sektie">
+  The subject of inductively inferring logic programs has been recently named <i>Inductive Logic Programming</i>. (Muggleton, 1992) is the first collection of papers on this subject. Recent books are (De Raedt, 1992) and (Lavra&Euml;&amp; D&aelig;eroski, 1994).
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   G. Gottlob (
+  </span>
+  1987)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Subsumption and implication&rsquo;, <i>Information Processing Letters</i> <b>24</b>: 109&ndash;111.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   N. Lavra
+  </span>
+  <span class="AutoStyle41">
+   &amp; S. D
+  </span>
+  <span class="AutoStyle41">
+   &aelig;
+  </span>
+  <span class="AutoStyle41">
+   eroski (
+  </span>
+  1994)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  <i>Inductive Logic Programming: Techniques and Applications</i>, Ellis Horwood.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   S.H. Muggleton &amp; C. Feng (
+  </span>
+  1990)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Efficient induction of logic programs&rsquo;. In <i>Proc. First Conference on Algorithmic Learning Theory</i>, Ohmsha, Tokyo. Also in (Muggleton, 1992), pp. 261-280.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   S.H. Muggleton
+  </span>
+  (ed.)
+  <span class="AutoStyle41">
+   (
+  </span>
+  1992)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  <i>Inductive Logic Programming</i>, Academic Press.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   T. Niblett (
+  </span>
+  1988)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;A study of generalisation in logic programs&rsquo;. In <i>Proc. European Working Sessions on Learning</i>, D. Sleeman (ed.), pp. 131-138, Pitman.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   J.R. Quinlan (
+  </span>
+  1990)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  &lsquo;Learning logical definitions from relations&rsquo;, <i>Machine Learning</i> <b>5</b> (3): 239-266.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   L. de Raedt (
+  </span>
+  1992)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  <i>Interactive Theory Revision: an Inductive Logic Programming Approach</i>, Academic Press.
+ </p>
+ <p class="referenties">
+  <span class="AutoStyle41">
+   E.Y. Shapiro (
+  </span>
+  1983)
+  <span class="AutoStyle41">
+   ,
+  </span>
+  <i>Algorithmic Program Debugging</i>, MIT Press.
+ </p>
+</div>
+<div>
+ <br clear="all">
+  <hr align="left" size="1" width="33%">
+   <div id="ftn1">
+    <p class="MsoFootnoteText">
+     <a href="#_ftnref1" name="_ftn1" title="">
+      <span class="MsoFootnoteReference">
+       <span class="AutoStyle13">
+        <span class="AutoStyle14">
+         [18]
+        </span>
+       </span>
+      </span>
+     </a>
+     Ground literals of the form <i>t</i>
+     <span class="AutoStyle71">
+      1
+     </span>
+     <tt>=</tt> <i>t</i>
+     <span class="AutoStyle71">
+      2
+     </span>
+     &nbsp;are <b>true</b> in an interpretation if and only if <i>t</i>
+     <span class="AutoStyle71">
+      1
+     </span>
+     &nbsp;and <i>t</i>
+     <span class="AutoStyle71">
+      2
+     </span>
+     &nbsp;are the same ground term. Thus, the predicate <tt>=</tt> (which represents, as usual, syntactical identity) is not explicitly represented in a model.
+    </p>
+   </div>
+   <div id="ftn2">
+    <p class="MsoFootnoteText">
+     <a href="#_ftnref2" name="_ftn2" title="">
+      <span class="MsoFootnoteReference">
+       <span class="AutoStyle13">
+        <span class="AutoStyle14">
+         [19]
+        </span>
+       </span>
+      </span>
+     </a>
+     In SLDNF resolution, <tt>not</tt> is treated as belonging to the language of general clauses, rather than as a meta-predicate.
+    </p>
+   </div>
+   <div id="ftn3">
+    <p class="MsoFootnoteText">
+     <a href="#_ftnref3" name="_ftn3" title="">
+      <span class="MsoFootnoteReference">
+       <span class="AutoStyle13">
+        <span class="AutoStyle14">
+         [20]
+        </span>
+       </span>
+      </span>
+     </a>
+     If <tt>X</tt> is a variable occurring in <tt>Body</tt> but not in <tt>Head</tt>, the formula
+     <span class="AutoStyle09">
+      &forall;
+     </span>
+     <tt>X: Head</tt>
+     <span class="AutoStyle09">
+      &not;
+     </span>
+     <tt>Body</tt> is logically equivalent with <tt>Head</tt>
+     <span class="AutoStyle09">
+      &not;&exist;
+     </span>
+     <tt>X:Body</tt>. Such variables are called <i>existential variables</i>.
+    </p>
+   </div>
+  </hr>
+</div>
+<script>
+ $(function() { $(".swish").LPN({swish:"http://swish.swi-prolog.org/"}); });
+</script>

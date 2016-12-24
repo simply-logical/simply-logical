@@ -3,8 +3,10 @@
 
   <head>
     {% include headB.html %}
-    {% include {{ page.part }}_head.htm %}
-    <link href="{{ site.baseurl }}/bootstrap/css/{{ page.part }}.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/bootstrap/css/mso.css" rel="stylesheet">
+    <meta name=Title content="{{ page.part }}">
+    <meta name=Keywords content="">
+    <title>{{ page.part }}</title>
   </head>
 
   <body data-spy="scroll" data-target=".navbar">

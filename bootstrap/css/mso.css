@@ -1,0 +1,894 @@
+@font-face{
+  font-family:Times;
+  panose-1:2 0 5 0 0 0 0 0 0 0;
+}
+@page WordSection2{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+@page WordSection3{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+@page WordSection1{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+@page WordSection4{
+  size:595.0pt 842.0pt;
+  margin:-5.0cm 112.0pt -138.9pt 112.0pt;
+}
+p.romeinscijfer,li.romeinscijfer,div.romeinscijfer{
+  margin-top:60.0pt;
+  margin-right:0cm;
+  margin-bottom:40.0pt;
+  margin-left:0cm;
+  text-align:right;
+  page-break-before:always;
+  page-break-after:avoid;
+  font-size:100.0pt;
+  font-family:Times;
+}
+p.intermezzo,li.intermezzo,div.intermezzo{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  background:#E5E5E5;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.citaat,li.citaat,div.citaat{
+  margin-top:3.0pt;
+  margin-right:17.2pt;
+  margin-bottom:3.0pt;
+  margin-left:18.0pt;
+  text-indent:.35pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+h2{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  page-break-after:avoid;
+  font-size:18.0pt;
+  font-family:Times;
+}
+h3{
+  margin-top:24.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  line-height:15.0pt;
+  page-break-after:avoid;
+  font-size:12.0pt;
+  font-family:"Avant Garde";
+}
+p.tekst,li.tekst,div.tekst{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.pi,li.pi,div.pi{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:45.35pt;
+  margin-bottom:.0001pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.sektie1,li.sektie1,div.sektie1{
+  margin-top:12.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+div.WordSection2{
+  page:WordSection2;
+}
+p.answer,li.answer,div.answer{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  text-indent:18.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+div.WordSection4{
+  page:WordSection4;
+}
+p.small-caption,li.small-caption,div.small-caption{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+div.WordSection3{
+  page:WordSection3;
+}
+div.WordSection1{
+  page:WordSection1;
+}
+p.referenties,li.referenties,div.referenties{
+  margin-top:12.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:39.65pt;
+  margin-bottom:.0001pt;
+  text-indent:-41.1pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.med-caption,li.med-caption,div.med-caption{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.cijfer,li.cijfer,div.cijfer{
+  margin-top:96.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  page-break-before:always;
+  page-break-after:avoid;
+  font-size:48.0pt;
+  font-family:Times;
+  font-weight:bold;
+}
+p.programma,li.programma,div.programma{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.pi-el,li.pi-el,div.pi-el{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:45.35pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.MsoFootnoteText,li.MsoFootnoteText,div.MsoFootnoteText{
+  margin-top:0cm;
+  margin-right:30.0pt;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+  line-height:10.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.pi-laatst,li.pi-laatst,div.pi-laatst{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:45.35pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.MsoNormal,li.MsoNormal,div.MsoNormal{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.oms-eerst,li.oms-eerst,div.oms-eerst{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.Caption1,li.Caption1,div.Caption1{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+h1{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:48.0pt;
+  margin-left:1.0cm;
+  text-align:right;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:24.0pt;
+  font-family:Times;
+}
+p.figure,li.figure,div.figure{
+  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.exercise,li.exercise,div.exercise{
+  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  line-height:11.0pt;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:12.0pt;
+  margin-left:1.0cm;
+  line-height:11.0pt;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.p-el,li.p-el,div.p-el{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:17.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.sektie,li.sektie,div.sektie{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:justify;
+  text-indent:18.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.p-laatst,li.p-laatst,div.p-laatst{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:17.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.inter-title,li.inter-title,div.inter-title{
+  margin-top:0cm;
+  margin-right:1.0cm;
+  margin-bottom:6.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  line-height:11.0pt;
+  page-break-after:avoid;
+  background:#E5E5E5;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+  font-weight:bold;
+}
+p.query,li.query,div.query{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:28.9pt;
+  margin-bottom:.0001pt;
+  text-indent:-12.0pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.small-figure,li.small-figure,div.small-figure{
+  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.p-eerst,li.p-eerst,div.p-eerst{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.oms,li.oms,div.oms{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:17.0pt;
+  margin-bottom:.0001pt;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.formule,li.formule,div.formule{
+  margin-top:6.0pt;
+  margin-right:-.05pt;
+  margin-bottom:6.0pt;
+  margin-left:2.0cm;
+  line-height:18.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+/*  margin-top:6.0pt;
+  margin-right:-.05pt;
+  margin-bottom:6.0pt;
+  margin-left:2.0cm;
+  font-size:10.0pt;
+  font-family:Times;
+*//*  margin-top:6.0pt;
+  margin-right:-.05pt;
+  margin-bottom:6.0pt;
+  margin-left:2.0cm;
+  line-height:18.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+*/}
+p.caption,li.caption,div.caption{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  text-align:center;
+  line-height:11.0pt;
+  font-size:9.0pt;
+  font-family:Times;
+}
+p.opsomming,li.opsomming,div.opsomming{
+  margin-top:0cm;
+  margin-right:28.3pt;
+  margin-bottom:0cm;
+  margin-left:39.0pt;
+  margin-bottom:.0001pt;
+  text-indent:-21.15pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Times;
+}
+p.grammar,li.grammar,div.grammar{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:17.0pt;
+  line-height:12.0pt;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.pi-eerst,li.pi-eerst,div.pi-eerst{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:45.35pt;
+  margin-bottom:.0001pt;
+  text-indent:-1.0cm;
+  line-height:12.0pt;
+  page-break-after:avoid;
+  font-size:10.0pt;
+  font-family:Courier;
+}
+span.MsoFootnoteReference{
+  position:relative;
+  top:-0.0pt;
+}
+p.med-figure,li.med-figure,div.med-figure{
+  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  page-break-after:avoid;
+  border:none;
+  padding:0cm;
+  font-size:9.0pt;
+  font-family:Times;
+/*  margin-top:18.0pt;
+  margin-right:1.0cm;
+  margin-bottom:18.0pt;
+  margin-left:1.0cm;
+  text-align:center;
+  font-size:9.0pt;
+  font-family:Times;
+*/}
+p.programma.AutoStyle76{
+  margin-left:255.0pt;
+  text-indent:-238.0pt;
+}
+p.intermezzo.AutoStyle59{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:114.65pt;
+  text-align:left;
+  text-indent:-114.65pt;
+  background:#E5E5E5;
+}
+span.AutoStyle41{
+  font-variant:small-caps;
+}
+td.AutoStyle04{
+  padding-top:9.0pt;
+  padding-right:9.0pt;
+  padding-bottom:9.0pt;
+  padding-left:9.0pt;
+}
+p.p-el.AutoStyle36{
+  margin-left:21.0pt;
+  text-indent:-4.0pt;
+}
+td.AutoStyle42{
+  padding-top:9.05pt;
+  padding-right:9.05pt;
+  padding-bottom:9.05pt;
+  padding-left:9.05pt;
+}
+span.AutoStyle80{
+  font-size:12.0pt;
+}
+p.query.AutoStyle47{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:28.9pt;
+}
+p.p-eerst.AutoStyle16{
+  margin-left:167.0pt;
+  text-indent:-150.0pt;
+}
+p.programma.AutoStyle49{
+  margin-left:143.0pt;
+  text-indent:-126.0pt;
+}
+p.tekst.AutoStyle57{
+  margin-top:3.0pt;
+  margin-right:0cm;
+  margin-bottom:3.0pt;
+  margin-left:0cm;
+  text-align:center;
+}
+span.AutoStyle09{
+  font-family:Symbol;
+}
+span.AutoStyle02{
+  font-size:18.0pt;
+  font-family:Times;
+}
+span.AutoStyle78{
+  font-size:48.0pt;
+  font-family:Times;
+}
+p.opsomming.AutoStyle62{
+  margin-left:85.0pt;
+}
+span.AutoStyle14{
+  font-size:8.0pt;
+  font-family:Times;
+}
+p.p-eerst.AutoStyle70,p.p-el.AutoStyle70{
+  margin-right:-1.0pt;
+}
+span.AutoStyle71{
+  font-size:7.0pt;
+  position:relative;
+  top:2.0pt;
+}
+p.opsomming.AutoStyle27{
+  margin-left:25.0pt;
+  text-indent:-7.15pt;
+}
+p.exercise.AutoStyle82{
+  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:12.0pt;
+  margin-left:0cm;
+}
+p.programma.AutoStyle75{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:116.0pt;
+  margin-bottom:.0001pt;
+  text-indent:-99.0pt;
+}
+p.p-el.AutoStyle34{
+  margin-left:24.0pt;
+  text-indent:-7.0pt;
+}
+pre.source.AutoStyle03,pre.swish.AutoStyle03,pre.temp.AutoStyle03,pre.inherit.AutoStyle03{
+  display: block;
+}
+p.pi-laatst.AutoStyle65{
+  margin-left:52.0pt;
+  text-indent:-35.0pt;
+}
+h1.AutoStyle01,p.p-el.AutoStyle01{
+  margin-left:0cm;
+}
+p.p-eerst.AutoStyle24{
+  margin-left:26.0pt;
+  text-indent:-9.0pt;
+}
+div.AutoStyle00{
+  border:none;
+  border-bottom:solid windowtext 1.5pt;
+  padding:0cm 0cm 0cm 0cm;
+  margin-left:1.0cm;
+  margin-right:0cm;
+}
+p.inter-title.AutoStyle32,p.intermezzo.AutoStyle32{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:0cm;
+  background:#E5E5E5;
+}
+span.AutoStyle25{
+  font-family:Times;
+}
+p.exercise.AutoStyle84{
+  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:0cm;
+  margin-bottom:.0001pt;
+}
+p.opsomming.AutoStyle64{
+  margin-right:17.0pt;
+}
+p.p-laatst.AutoStyle26{
+  margin-left:26.1pt;
+  text-indent:-9.05pt;
+}
+span.AutoStyle39{
+  position:relative;
+  top:-3.0pt;
+}
+div.AutoStyle20{
+  border-top:solid windowtext 1.0pt;
+  border-left:none;
+  border-bottom:solid windowtext 1.0pt;
+  border-right:none;
+  padding:12.0pt 0cm 12.0pt 0cm;
+  margin-left:1.0cm;
+  margin-right:1.0cm;
+}
+p.intermezzo.AutoStyle44{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:0cm;
+  text-align:left;
+  background:#E5E5E5;
+}
+p.query.AutoStyle45,p.oms-eerst.AutoStyle45,p.opsomming.AutoStyle45{
+  margin-bottom:6.0pt;
+}
+p.p-el.AutoStyle22{
+  margin-left:0cm;
+  text-align:right;
+}
+p.formule.AutoStyle68{
+  line-height:normal;
+}
+div.AutoStyle31{
+  border:solid windowtext 1.0pt;
+  padding:14.0pt 14.0pt 14.0pt 14.0pt;
+  background:#E5E5E5;
+  margin-left:1.0cm;
+  margin-right:1.0cm;
+}
+pre.source.AutoStyle08,pre.swish.AutoStyle08,pre.inherit.AutoStyle08{
+  display: none;
+}
+div.AutoStyle06{
+  border-top:solid windowtext 1.0pt;
+  border-left:none;
+  border-bottom:solid windowtext 1.0pt;
+  border-right:none;
+  padding:6.0pt 0cm 6.0pt 0cm;
+  margin-left:1.0cm;
+  margin-right:1.0cm;
+}
+p.intermezzo.AutoStyle55{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:43.65pt;
+  text-align:left;
+  text-indent:-43.65pt;
+  background:#E5E5E5;
+}
+span.AutoStyle13{
+  font-size:8.0pt;
+}
+p.opsomming.AutoStyle79{
+  margin-top:0cm;
+  margin-right:.9pt;
+  margin-bottom:0cm;
+  margin-left:113.0pt;
+  margin-bottom:.0001pt;
+  text-indent:-112.35pt;
+}
+span.AutoStyle12{
+  font-family:Helvetica;
+}
+p.pi.AutoStyle67{
+  margin-left:48.0pt;
+  text-indent:-31.0pt;
+}
+p.p-el.AutoStyle83{
+  margin-left:56.0pt;
+}
+p.intermezzo.AutoStyle54{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:57.65pt;
+  text-align:left;
+  text-indent:-57.65pt;
+  background:#E5E5E5;
+}
+p.intermezzo.AutoStyle38{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:3.0pt;
+  margin-left:0cm;
+  background:#E5E5E5;
+}
+p.sektie.AutoStyle43{
+  text-indent:0cm;
+}
+div.AutoStyle05{
+  border-top:solid windowtext 1.0pt;
+  border-left:none;
+  border-bottom:solid windowtext 1.0pt;
+  border-right:none;
+  padding:12.0pt 0cm 12.0pt 0cm;
+}
+p.exercise.AutoStyle07,p.med-figure.AutoStyle07,p.small-figure.AutoStyle07{
+  margin-top:18.0pt;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+}
+p.MsoFootnoteText.AutoStyle51{
+  margin-right:20.0pt;
+}
+td.AutoStyle35{
+  padding-top:0cm;
+  padding-right:0cm;
+  padding-bottom:0cm;
+  padding-left:0cm;
+}
+p.p-el.AutoStyle40{
+  text-align:center;
+}
+p.sektie.AutoStyle37{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:0cm;
+}
+p.sektie.AutoStyle23{
+  margin-top:3.0pt;
+  margin-right:0cm;
+  margin-bottom:3.0pt;
+  margin-left:0cm;
+}
+p.intermezzo.AutoStyle53{
+  margin:0cm;
+  margin-bottom:.0001pt;
+  text-align:left;
+  background:#E5E5E5;
+}
+p.opsomming.AutoStyle63{
+  margin-top:0cm;
+  margin-right:28.3pt;
+  margin-bottom:6.0pt;
+  margin-left:85.0pt;
+}
+p.opsomming.AutoStyle61{
+  margin-left:28.0pt;
+  text-indent:-10.15pt;
+}
+p.pi-laatst.AutoStyle85{
+  margin-left:41.0pt;
+  text-indent:-24.0pt;
+}
+p.programma.AutoStyle77{
+  margin-left:214.0pt;
+  text-indent:-197.0pt;
+}
+p.p-el.AutoStyle30{
+  margin-left:28.0pt;
+  text-indent:-11.0pt;
+}
+p.programma.AutoStyle17{
+  margin-left:136.0pt;
+  text-indent:-119.0pt;
+}
+p.opsomming.AutoStyle29{
+  margin-bottom:3.0pt;
+}
+div.AutoStyle52{
+  border:none;
+  border-bottom:solid windowtext 1.5pt;
+  padding:0cm 0cm 0cm 0cm;
+  margin-left:28.0pt;
+  margin-right:0cm;
+}
+span.AutoStyle11{
+  font-size: 250%;
+   position: relative;
+   top: 6px;
+   line-height: 0%;
+}
+p.intermezzo.AutoStyle33{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+  background:#E5E5E5;
+}
+p.p-eerst.AutoStyle21,p.p-laatst.AutoStyle21{
+  margin-left:76.0pt;
+  text-indent:-59.0pt;
+}
+span.AutoStyle46{
+  font-size:7.0pt;
+  position:relative;
+  top:-3.0pt;
+}
+p.query.AutoStyle72{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:26.0pt;
+}
+p.p-el.AutoStyle74{
+  margin-left:89.0pt;
+  text-indent:-72.0pt;
+}
+p.p-laatst.AutoStyle18{
+  margin-left:160.0pt;
+  text-indent:-143.0pt;
+}
+p.exercise.AutoStyle60{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:18.0pt;
+  margin-left:0cm;
+}
+p.p-el.AutoStyle69{
+  margin-left:86.0pt;
+  text-indent:-69.0pt;
+}
+p.opsomming.AutoStyle50{
+  margin-top:6.0pt;
+}
+p.opsomming.AutoStyle28{
+  margin-top:3.0pt;
+}
+span.AutoStyle56{
+  font-size:9.0pt;
+  position:relative;
+  top:-3.0pt;
+}
+p.referenties.AutoStyle66{
+  margin-right:-2.0pt;
+}
+p.intermezzo.AutoStyle58{
+  margin-top:0cm;
+  margin-right:0cm;
+  margin-bottom:0cm;
+  margin-left:114.65pt;
+  margin-bottom:.0001pt;
+  text-align:left;
+  text-indent:-114.65pt;
+  background:#E5E5E5;
+}
+p.tekst.AutoStyle19{
+  margin-top:6.0pt;
+  margin-right:0cm;
+  margin-bottom:6.0pt;
+  margin-left:18.0pt;
+}
+p.programma.AutoStyle73{
+  margin-left:117.0pt;
+  text-indent:-100.0pt;
+}
+span.AutoStyle10{
+  font-size:9.0pt;
+  position:relative;
+  top:2.0pt;
+}
+span.AutoStyle81{
+  font-size:10.0pt;
+  font-family:Courier;
+}
+p.p-eerst.AutoStyle15,p.programma.AutoStyle15,p.p-laatst.AutoStyle15{
+  margin-left:119.0pt;
+  text-indent:-102.0pt;
+}
+p.query.AutoStyle48{
+  margin-bottom:6.0pt;
+  text-indent:-.9pt;
+}

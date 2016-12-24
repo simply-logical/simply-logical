@@ -20,7 +20,7 @@ div.answer {
 /* End of edition */
 
 pre.query, pre.source, pre.verbatim {
-  margin: 10px 2ex;
+  margin: 0px;
 }
 
 .guessed {
