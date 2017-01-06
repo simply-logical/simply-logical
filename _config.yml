@@ -8,8 +8,8 @@ description: > # this means to ignore newlines until "baseurl:"
   The book is written from the shared viewpoints of Computational Logic, which aims at automating 
   various kinds of reasoning, and Artificial Intelligence, which seeks to 
   implement aspects of intelligent behaviour on a computer. 
-baseurl: "/simply-logical" # the subpath of your site, e.g. /blog/
-url: "http://flach.github.io" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://book.simply-logical.space" # the base hostname & protocol for your site
 repo: "https://github.com/flach"
 author: Peter Flach
 # twitter_username: jekyllrb
