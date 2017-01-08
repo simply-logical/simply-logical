@@ -13,7 +13,7 @@
   var database = new Array();
   var keepingSource = [];
 
-  var SWISH = "http://swish.swi-prolog.org/";
+  var SWISH = "{{ site.swish }}";
 
   /** @lends $.fn.LPN */
   var methods = {
