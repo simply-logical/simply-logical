@@ -14,8 +14,8 @@ The `PDF` version of my book is available as a GitHub release [here](https://git
 The release page with some notes is available [here](https://github.com/flach/simply-logical/releases/tag/v1.0).
 
 ## Online version ##
-The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH Prolog](http://swish.swi-prolog.org/).  
-You can view it [here](http://flach.github.io/simply-logical).
+The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH](http://swish.swi-prolog.org/), the online version of [SWI-Prolog](http://swi-prolog.org/).  
+You can view it [here](http://book.simply-logical.space).
 
 ### Prolog code blocks not working ###
 If Prolog blocks are not working for you in the online version of the book please make sure that 3rd party cookies are enabled in your web browser.

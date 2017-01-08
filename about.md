@@ -21,8 +21,8 @@ The `PDF` version of my book is available as a GitHub release [here]({{ site.bas
 The release page with some notes is available [here]({{ site.baseurl | prepend:site.repo }}/releases/tag/v1.0).
 
 ## Online version ##
-The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH Prolog](http://swish.swi-prolog.org/).  
+The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH](http://swish.swi-prolog.org/), the online version of [SWI-Prolog](http://swi-prolog.org/).  
 You can view it [here]({{ site.baseurl | prepend:site.url }}).
 
 ### Error in the book ###
-If you found an error in the online version of the book please file an **issue** in [this]({{ site.baseurl | prepend:site.repo }}) GitHub repository.
+If you found an error in the online version of the book please file an **issue** in [this]({{ site.repo }}/issues) GitHub repository.
