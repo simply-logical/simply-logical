@@ -43,7 +43,9 @@ part: Part I
  <p class="sektie">
   Our Universe of Discourse&nbsp;in this chapter will be the London Underground, of which a small part is shown in fig. 1.1. Note that this picture contains a wealth of information, about lines, stations, transit between lines, relative distance, etc. We will try to capture this information in logical statements. Basically, fig. 1.1 specifies which stations are directly connected by which lines. If we follow the lines from left to right (Northern downwards), we come up with the following 11 formulas:
  </p>
- <pre class="source swish temp AutoStyle03" data-variant-id="group-1" id="swish.1.0.1" query-text="?-connected(bond_street,Y,L). ?-connected(X,piccadilly_circus,L). ?-connected(X,Y,piccadilly). ?-connected(X,Y,L),connected(Y,Z,L).">
+
+<div class="extract swish" id="1.0.1">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-1" id="swish.1.0.1" query-text="?-connected(bond_street,Y,L). ?-connected(X,piccadilly_circus,L). ?-connected(X,Y,piccadilly). ?-connected(X,Y,L),connected(Y,Z,L).">
 connected(bond_street,oxford_circus,central).
 connected(oxford_circus,tottenham_court_road,central).
 connected(bond_street,green_park,jubilee).
@@ -56,10 +58,14 @@ connected(piccadilly_circus,charing_cross,bakerloo).
 connected(tottenham_court_road,leicester_square,northern).
 connected(leicester_square,charing_cross,northern).
 </pre>
+</div>
+
  <p class="tekst">
   Let&rsquo;s define two stations to be <i>nearby</i> if they are on the same line, with at most one station in between. This relation can also be represented by a set of logical formulas:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.1.0.2" query-text="?-nearby(bond_street,Y). ?-nearby(X,piccadilly_circus). ?-nearby(X,Y). ?-nearby(X,Y),nearby(Y,Z).">
+
+<div class="extract swish" id="1.0.2">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.1.0.2" query-text="?-nearby(bond_street,Y). ?-nearby(X,piccadilly_circus). ?-nearby(X,Y). ?-nearby(X,Y),nearby(Y,Z).">
 nearby(bond_street,oxford_circus).
 nearby(oxford_circus,tottenham_court_road).
 nearby(bond_street,tottenham_court_road).
@@ -77,7 +83,9 @@ nearby(tottenham_court_road,leicester_square).
 nearby(leicester_square,charing_cross).
 nearby(tottenham_court_road,charing_cross).
 </pre>
- <div>
+</div>
+
+ <div class="extract figure" id="1.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -98,10 +106,14 @@ nearby(tottenham_court_road,charing_cross).
  <p class="tekst">
   These 16 formulas have been derived from the previous 11 formulas in a systematic way. If <i>X</i> and <i>Y</i> are directly connected via some line <i>L</i>, then <i>X</i> and <i>Y</i> are nearby. Alternatively, if there is some <i>Z</i> in between, such that <i>X</i> and <i>Z</i> are directly connected via <i>L</i>, and <i>Z</i> and <i>Y</i> are also directly connected via <i>L</i>, then <i>X</i> and <i>Y</i> are also nearby. We can formulate this in logic as follows:
  </p>
- <pre class="source swish inherit temp AutoStyle03" data-variant-id="group-1" id="swish.1.0.3" inherit-id="swish.1.0.1" query-text="?-nearby(tottenham_court_road,leicester_square). ?-nearby(tottenham_court_road,W). ?-nearby(X,leicester_square).">
+
+<div class="extract swish" id="1.0.3">
+<pre class="source swish inherit temp AutoStyle03" data-variant-id="group-1" id="swish.1.0.3" inherit-id="swish.1.0.1" query-text="?-nearby(tottenham_court_road,leicester_square). ?-nearby(tottenham_court_road,W). ?-nearby(X,leicester_square).">
 nearby(X,Y):-connected(X,Y,L).
 nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).
 </pre>
+</div>
+
  <p class="tekst">
   In these formulas, the symbol &lsquo; <tt>:-</tt> &rsquo; should be read as &lsquo;if&rsquo;, and the comma between <tt>connected(X,Z,L)</tt> and <tt>connected(Z,Y,L)</tt> should be read as &lsquo;and&rsquo;. The uppercase letters stand for universally quantified variables, such that, for instance, the second formula means:
  </p>
@@ -123,16 +135,21 @@ nearby(X,Y):-connected(X,Z,L),connected(Z,Y,L).
  <p class="tekst">
   will be called <i>rules</i>. Facts express unconditional truths, while rules denote conditional truths, i.e. conclusions which can only be drawn when the premises are known to be true. Obviously, we want these two definitions to be <i>equivalent</i>: for each possible query, both definitions should give exactly the same answer. We will make this more precise in the next section.
  </p>
+<div class="extract exercise" id="1.1">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 1.1.</i> Two stations are &lsquo;not too far&rsquo; if they are on the same or a different line, with at most one station in between. Define rules for the predicate <tt>not_too_far</tt>.
   </p>
-  <pre class="source swish inherit AutoStyle08" data-variant-id="group-1" id="swish.1.0.4" inherit-id="swish.1.0.1" query-text="?-not_too_far(X,Y).">
+
+<div class="extract swish" id="1.0.4">
+<pre class="source swish inherit AutoStyle08" data-variant-id="group-1" id="swish.1.0.4" inherit-id="swish.1.0.1" query-text="?-not_too_far(X,Y).">
 not_too_far(X,Y):-true. % replace 'true' with your definition
 not_too_far(X,Y):-true. % add more clauses as needed
-
 </pre>
+</div>
+
  </div>
+</div>
  <h3 id="answering_queries">
   1.1&nbsp;&nbsp;&nbsp;Answering queries
  </h3>
@@ -191,7 +208,7 @@ not_too_far(X,Y):-true. % add more clauses as needed
  </span>
  <tt>leicester_square</tt> } as above. In fig. 1.2, we give a graphical representation of this process. Since we are essentially <i>proving</i> that a statement follows logically from some other statements, this graphical representation is called a <i>proof tree</i>.
 </p>
-<div>
+<div class="extract figure" id="1.2">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -266,11 +283,13 @@ not_too_far(X,Y):-true. % add more clauses as needed
 <p class="sektie">
  At the beginning of this section, we posed the question: can we show that our two definitions of the nearby-relation are equivalent? As indicated before, the idea is that to be equivalent means to provide exactly the same answers to the same queries. To formalise this, we need some additional definitions. A <i>ground</i> fact&nbsp;is a fact without variables. Obviously, if <tt>G</tt> is a ground fact, the query <tt>?-G</tt> never returns a substitution as answer: either it <i>succeeds</i> (<tt>G</tt> does follow from the initial assumptions), or it <i>fails</i> (<tt>G</tt> does not). The set of ground facts <tt>G</tt> for which the query <tt>?-G</tt> succeeds is called the <i>success set</i>.&nbsp;Thus, the success set for our first definition of the nearby-relation consists simply of those 16 formulas, since they are ground facts already, and nothing else is derivable from them. The success set for the second definition of the nearby-relation is constructed by applying the two rules to the ground facts for connectedness. Thus we can say: two definitions of a relation are (procedurally) <i>equivalent</i> if they have the same success set (restricted to that relation).
 </p>
+<div class="extract exercise" id="1.2">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 1.2.</i> Construct the proof trees for the query<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>?-nearby(W,charing_cross)</tt>.
 </p>
+</div>
 </div>
 <h3 id="recursion">
  1.2&nbsp;&nbsp;&nbsp;Recursion
@@ -303,6 +322,8 @@ not_too_far(X,Y):-true. % add more clauses as needed
  </span>
  . (This does not necessarily mean that Prolog is always less efficient than a procedural language, because there are ways to write recursive loops that are just as efficient as iterative loops, as we will see in section 3.6.) Perhaps the easiest way to think about recursion is the following: an arbitrarily large chain is described by describing how one link in the chain is connected to the next. For instance, let us define the relation of <i>reachability</i> in our underground example, where a station is reachable from another station if they are connected by one or more lines. We could define it by the following 20 ground facts:
 </p>
+
+<div class="extract swish" id="1.1.1">
 <pre class="source swish temp AutoStyle03" data-variant-id="group-1" id="swish.1.1.1" query-text="?-reachable(bond_street,Y). ?-reachable(X,green_park). ?-reachable(X,Y).">
 reachable(bond_street,charing_cross).
 reachable(bond_street,green_park).
@@ -325,6 +346,8 @@ reachable(piccadilly_circus,leicester_square).
 reachable(tottenham_court_road,charing_cross).
 reachable(tottenham_court_road,leicester_square).
 </pre>
+</div>
+
 <p class="tekst">
  Since any station is reachable from any other station by a route with at most two intermediate stations, we could instead use the following (non-recursive) definition:
 </p>
@@ -341,14 +364,18 @@ reachable(tottenham_court_road,leicester_square).
 <p class="tekst">
  Of course, if we were to define the reachability relation for the entire London underground, we would need a lot more, longer and longer rules. Recursion is a much more convenient and natural way to define such chains of arbitrary length:
 </p>
+
+<div class="extract swish" id="1.1.2">
 <pre class="source swish inherit AutoStyle03" data-variant-id="group-1" id="swish.1.1.2" inherit-id="swish.1.0.1" query-text="?-reachable(bond_street,Y). ?-reachable(X,green_park). ?-reachable(X,Y).">
 reachable(X,Y):-connected(X,Y,L).
 reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
 </pre>
+</div>
+
 <p class="tekst">
  The reading of the second rule is as follows: &lsquo; <i>Y</i> is reachable from <i>X</i> if <i>Z</i> is directly connected to <i>X</i> via line <i>L</i>, and <i>Y</i> is reachable from <i>Z</i> &rsquo;.
 </p>
-<div>
+<div class="extract figure" id="1.3">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -381,6 +408,7 @@ reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
 <p class="tekst">
  There is no reason to prefer one over the other, but since Prolog searches the given formulas top-down, it will find the first proof before the second. Thus, the order of the clauses determines the order in which answers are found. As we will see in Chapter 3, it sometimes even determines whether any answers are found at all.
 </p>
+<div class="extract exercise" id="1.3">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 1.3.</i> Give a third proof tree for the answer { <tt>W</tt>
@@ -390,7 +418,8 @@ reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
   <tt>leicester_square</tt> }, and change the order of the facts for connectedness, such that this proof tree is constructed first.
  </p>
 </div>
-<div>
+</div>
+<div class="extract figure" id="1.4">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -432,7 +461,7 @@ reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
 <p class="tekst">
  The suffix of reachable indicates the number of intermediate stations; it is added to stress that relations with different number of arguments are really different relations, even if their names are the same. The problem now is that we have to know the number of intermediate stations in advance, before we can ask the right query. This is, of course, unacceptable.
 </p>
-<div>
+<div class="extract figure" id="1.5">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -459,6 +488,8 @@ reachable(X,Y):-connected(X,Z,L),reachable(Z,Y).
 <p class="tekst">
  Note that this is not a ground fact, but rather an argument for a logical formula. The reachability relation can now be defined as follows:
 </p>
+
+<div class="extract swish" id="1.2.1">
 <pre class="source swish inherit AutoStyle03" data-variant-id="group-1" id="swish.1.2.1" inherit-id="swish.1.0.1" query-text="?-reachable(oxford_circus,charing_cross,R).">
 reachable(X,Y,noroute):-connected(X,Y,L).
 reachable(X,Y,route(Z)):-connected(X,Z,L1),
@@ -467,11 +498,16 @@ reachable(X,Y,route(Z1,Z2)):-connected(X,Z1,L1),
                              connected(Z1,Z2,L2),
                              connected(Z2,Y,L3).
 </pre>
+</div>
+
+<div class="extract swish" id="1.2.2">
 <pre class="source swish inherit AutoStyle03" data-variant-id="group-1" id="swish.1.2.2" inherit-id="swish.1.0.1" query-text="?-reachable(oxford_circus,charing_cross,R).">
 reachable(X,Y,noroute):-connected(X,Y,L).
 reachable(X,Y,route(Z,R)):-connected(X,Z,L),
                          connected(Z,Y,R).
 </pre>
+</div>
+
 <p class="tekst">
  The query <tt>?-reachable(oxford_circus,charing_cross,R)</tt> now has three possible answers:
 </p>
@@ -492,7 +528,7 @@ reachable(X,Y,route(Z,R)):-connected(X,Z,L),
    </span>
    <tt>route(piccadilly_circus,leicester_square)</tt> }
 </p>
-<div>
+<div class="extract figure" id="1.6">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -513,11 +549,15 @@ reachable(X,Y,route(Z,R)):-connected(X,Z,L),
 <p class="sektie">
  As argued in the previous section, we prefer the recursive definition of the reachability relation, in which case we use functors in a somewhat different way.
 </p>
+
+<div class="extract swish" id="1.2.2_2">
 <pre class="source swish inherit AutoStyle03" data-variant-id="group-1" id="swish.1.2.2" inherit-id="swish.1.0.1" query-text="?-reachable(oxford_circus,charing_cross,R).">
 reachable(X,Y,noroute):-connected(X,Y,L).
 reachable(X,Y,route(Z,R)):-connected(X,Z,L),
                            reachable(Z,Y,R).
 </pre>
+</div>
+
 <p class="tekst">
  At first sight, there does not seem to be a big difference between this and the use of functors in the non-recursive program. However, the query
 </p>
@@ -562,7 +602,7 @@ reachable(X,Y,route(Z,R)):-connected(X,Z,L),
 <p class="p-el">
  [tottenham_court_road,leicester_square].
 </p>
-<div>
+<div class="extract figure" id="1.7">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -613,19 +653,25 @@ reachable(X,Y,route(Z,R)):-connected(X,Z,L),
 <p class="tekst">
  denotes a list with three or more elements.
 </p>
+<div class="extract exercise" id="1.4">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 1.4.</i> A list is either the empty list <tt>[]</tt>, or a non-empty list <tt>[First|Rest]</tt> where <tt>Rest</tt> is a list. Define a relation <tt>list(L)</tt>, which checks whether <tt>L</tt> is a list. Adapt it such that it succeeds only for lists of (<i>i</i>) even length and (<i>ii</i>) odd length.
  </p>
 </div>
+</div>
 <p class="sektie">
  The recursive nature of such datastructures makes it possible to ignore the size of the objects, which is extremely useful in many situations. For instance, the definition of a route between two underground stations does not depend on the length of the route; all that matters is whether there is an intermediate station or not. For both cases, there is a clause. Expressing the route as a list, we can state the final definition of the reachability relation:
 </p>
+
+<div class="extract swish" id="1.2.3">
 <pre class="source swish inherit AutoStyle03" data-variant-id="group-1" id="swish.1.2.3" inherit-id="swish.1.0.1" query-text="?-reachable(oxford_circus,charing_cross,R). ?-reachable(X,charing_cross,[A,B,C,D]). ?-reachable(bond_street,piccadilly_circus,[A,B|L]).">
 reachable(X,Y,[]):-connected(X,Y,L).
 reachable(X,Y,[Z|R]):-connected(X,Z,L),
                       reachable(Z,Y,R).
 </pre>
+</div>
+
 <p class="tekst">
  The query <tt>?-reachable(oxford_circus,charing_cross,R)</tt> now results in the following answers:
 </p>
@@ -748,10 +794,12 @@ reachable(X,Y,[Z|R]):-connected(X,Z,L),
   }.
  </span>
 </p>
+<div class="extract exercise" id="1.5">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 1.5.</i> Construct a query asking for a route from Bond Street to Piccadilly Circus with at least two intermediate stations.
  </p>
+</div>
 </div>
 <h3 id="what_else_is_there_to_know_about_clausal_logic">
  1.4&nbsp;&nbsp;&nbsp;What else is there to know about clausal logic?
@@ -826,6 +874,7 @@ reachable(X,Y,[Z|R]):-connected(X,Z,L),
   </span>
   . The part to the left of the if-symbol &lsquo; <tt>:-</tt> &rsquo; is called the <i>head</i>&nbsp;of the clause, and the right part is called the <i>body</i>&nbsp;of the clause. The head of a clause is always a disjunction&nbsp;(<b>or</b>) of atoms, and the body of a clause is always a conjunction&nbsp;(<b>and</b>).
  </p>
+<div class="extract exercise" id="2.1">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.1.</i> Translate the following statements into clauses, using the atoms <tt>person</tt>, <tt>sad</tt> and <tt>happy</tt>:<br>
@@ -835,6 +884,7 @@ reachable(X,Y,[Z|R]):-connected(X,Z,L),
       (<i>d</i>)&nbsp;&nbsp;&nbsp;&nbsp;non-happy persons are sad.
 </p>
  </div>
+</div>
  <p class="sektie">
   A <i>program</i>&nbsp;is a set of clauses, each of them terminated by a period. The clauses are to be read conjunctively; for example, the program
  </p>
@@ -892,6 +942,7 @@ reachable(X,Y,[Z|R]):-connected(X,Z,L),
  <p class="sektie">
   Adding more clauses to the program means restricting its set of models. For instance, if we add the clause <tt>woman</tt> (a clause with an empty body) to the program, we rule out the first and third model, which leaves us with the models { <tt>woman</tt>, <tt>human</tt> }, and { <tt>woman</tt>, <tt>man</tt>, <tt>human</tt> }. Note that in both of these models, <tt>human</tt> is <b>true</b>. We say that <tt>human</tt> is a logical consequence of the set of clauses. In general, a clause <i>C</i> is a <i>logical consequence</i>&nbsp;of a program <i>P</i> if every model of the program is also a model of the clause; we write <i>P</i> =&nbsp;<i>C</i>.
  </p>
+<div class="extract exercise" id="2.2">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.2.</i> Given the program<br>
@@ -905,6 +956,7 @@ determine which of the following clauses are logical consequences of this progra
         (<i>d</i>)&nbsp;&nbsp;&nbsp;&nbsp;<tt>bachelor:-bachelor</tt>.
 </p>
  </div>
+</div>
  <p class="sektie">
   Of the two remaining models, obviously { <tt>woman</tt>, <tt>human</tt> } is the intended one; but the program does not yet contain enough information to distinguish it from the non-intended model { <tt>woman</tt>, <tt>man</tt>, <tt>human</tt> }. We can add yet another clause, to make sure that the atom <tt>man</tt> is mapped to <b>false</b>. For instance, we could add
  </p>
@@ -956,11 +1008,13 @@ determine which of the following clauses are logical consequences of this progra
  <p class="tekst">
   This simple program has no less than 26 models, each of which needs to be considered if we want to check whether a clause is a logical consequence of it.
  </p>
+<div class="extract exercise" id="2.3">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.3.</i> Write down the six Herbrand interpretations that are not models of the program.
   </p>
  </div>
+</div>
  <p class="sektie">
   The following clause is a logical consequence of this program:
  </p>
@@ -970,7 +1024,7 @@ determine which of the following clauses are logical consequences of this progra
  <p class="tekst">
   By means of resolution, it can be produced in a single step. This step represents the following line of reasoning: &lsquo;if someone is a man and an adult, then he is a bachelor or married; but if he is married, he has a wife; therefore, if someone is a man and an adult, then he is a bachelor or he has a wife&rsquo;. In this argument, the two clauses in the program are related to each other by means of the atom <tt>married</tt>, which occurs in the head of the first clause (a positive literal) and in the body of the second (a negative literal). The derived clause, which is called the <i>resolvent</i>, consists of all the literals of the two input clauses, except <tt>married</tt> (the literal <i>resolved upon</i>). The negative literal <tt>man</tt>, which occurs in both input clauses, appears only once in the derived clause. This process is depicted in fig. 2.1.
  </p>
- <div>
+ <div class="extract figure" id="2.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -1001,7 +1055,7 @@ determine which of the following clauses are logical consequences of this progra
  <p class="p-el">
   square:-parallelogram,right_angles,equal_sides
  </p>
- <div>
+ <div class="extract figure" id="2.2">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -1025,6 +1079,7 @@ determine which of the following clauses are logical consequences of this progra
  <p class="sektie">
   A resolvent resulting from one resolution step can be used as input for the next. A <i>proof</i>&nbsp;or <i>derivation</i>&nbsp;of a clause <i>C</i> from a program <i>P</i> is a sequence of clauses such that each clause is either in the program, or the resolvent of two previous clauses, and the last clause is <i>C</i>. If there is a proof of <i>C</i> from <i>P</i>, we write <i>P</i> |&nbsp;<i>C</i>.
  </p>
+<div class="extract exercise" id="2.4">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.4.</i> Give a derivation of <tt>friendly</tt> from the following program:<br>
@@ -1034,6 +1089,7 @@ determine which of the following clauses are logical consequences of this progra
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teacher:-wise.</tt>
 </p>
  </div>
+</div>
  <p class="sektie1">
   <i>Meta-theory.&nbsp;&nbsp;</i> It is easy to show that propositional resolution is <b>sound</b>: you have to establish that every model for the two input clauses is a model for the resolvent. In our earlier example, every model of <tt>married;bachelor:-man,adult</tt> and <tt>has_wife:-man,married</tt> must be a model of <tt>has_wife;bachelor:-man,adult</tt>. Now, the literal resolved upon (in this case <tt>married</tt>) is either assigned the truth value <b>true</b> or <b>false</b>. In the first case, every model of <tt>has_wife:-man,married</tt> is also a model of <tt>has_wife:-man</tt>; in the second case, every model of <tt>married;bachelor:-man,adult</tt> is also a model of <tt>bachelor:-man,adult</tt>.
   In both cases, these models are models of a subclause of the resolvent, which means that they are also models of the resolvent itself.
@@ -1085,6 +1141,7 @@ is a logical consequence of a set of clauses, we know it must be inconsistent. N
  <p class="sektie">
   This proof method can be generalised to the case where <i>B</i> is not a single atom. For instance, let us check by resolution that <tt>a:-a</tt> is a tautology, i.e. a logical consequence of any set of clauses. Logically speaking, this clause is equivalent to &lsquo; <tt>a</tt> <b>or not</b> <tt>a</tt> &rsquo;, the negation of which is &lsquo; <b>not</b> <tt>a</tt> <b>and</b> <tt>a</tt> &rsquo;, which is represented by two separate clauses <tt>:-a</tt> and <tt>a</tt>. Since we can derive the empty clause from these two clauses in a single resolution step without using any other clauses, we have in fact proved that <tt>a:-a</tt> is a logical consequence of an empty set of clauses, hence a tautology.
  </p>
+<div class="extract exercise" id="2.5">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.5.</i> Prove by refutation that <tt>friendly:-has_friends</tt> is a logical consequence of the following clauses:<br>
@@ -1092,6 +1149,7 @@ is a logical consequence of a set of clauses, we know it must be inconsistent. N
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;friendly:-happy.</tt>
 </p>
  </div>
+</div>
  <p class="sektie">
   Finally, we mention that although resolution can always be used to prove inconsistency of a set of clauses it is not always fit to prove the opposite, i.e. consistency of a set of clauses. For instance, <tt>a</tt> is not a logical consequence of <tt>a:-a</tt>; yet, if we try to prove the inconsistency of <tt>:-a</tt> and <tt>a:-a</tt> (which should fail) we can go on applying resolution forever! The reason, of course, is that there is a loop in the system: applying resolution to <tt>:-a</tt> and <tt>a:-a</tt> again yields <tt>:-a</tt>. In this simple case it is easy to check for loops: just maintain a list of previously derived clauses, and do not proceed with clauses that have been derived previously.
  </p>
@@ -1137,10 +1195,14 @@ is a logical consequence of a set of clauses, we know it must be inconsistent. N
  <p class="sektie">
   All the remaining definitions pertaining to the syntax of propositional clausal logic, in particular those of literal, clause and program, stay the same. So, the following clauses are meant to represent the above statements:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.2.1" query-text="?-likes(peter,S). ?-likes(T,maria). ?-likes(T,S).">
+
+<div class="extract swish" id="2.2.1">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.2.1" query-text="?-likes(peter,S). ?-likes(T,maria). ?-likes(T,S).">
 likes(peter,S):-student_of(S,peter).
 student_of(maria,peter).
 </pre>
+</div>
+
  <p class="tekst">
   The intended meaning of these clauses are, respectively, &lsquo; <b>if</b> <i>S</i> is a student of Peter <b>then</b> Peter likes <i>S</i> &rsquo;, &lsquo;Maria is a student of Peter&rsquo;, and &lsquo;Peter likes Maria&rsquo;. Clearly, we want our logic to be such that the third clause follows logically from the first two, and we want to be able to prove this by resolution. Therefore, we must extend the semantics and proof theory in order to deal with variables.
  </p>
@@ -1206,7 +1268,7 @@ student_of(maria,peter).
  <p class="tekst">
   is an interpretation of the above program.
  </p>
- <div>
+ <div class="extract infobox" id="logical_variables">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -1292,12 +1354,14 @@ student_of(maria,peter).
  <p class="tekst">
   and show that <i>M</i> is a model of every element of this set.
  </p>
+<div class="extract exercise" id="2.6">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.6.</i> How many models does <i>C</i> have over the Herbrand universe<br>
    { <tt>peter</tt>, <tt>maria</tt> }?
 </p>
  </div>
+</div>
  <p class="sektie1">
   <i>Proof theory.&nbsp;&nbsp;</i> Because reasoning with ground clauses is just like reasoning with propositional clauses, a naive proof method in relational clausal logic would apply grounding substitutions to every clause in the program before applying resolution. Such a method is naive, because a program has many different grounding substitutions, most of which do not lead to a resolution proof. For instance, if the Herbrand universe contains four constants, then a clause with two distinct variables has 16 different grounding substitutions, and a program consisting of three such clauses has 4096 different grounding substitutions.
  </p>
@@ -1333,20 +1397,12 @@ student_of(maria,peter).
  <p class="p-el">
   likes(peter,maria):-follows(maria,C),teaches(peter,C).
  </p>
- <div>
-  <table cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tbody>
-    <tr>
-     <td align="left" class="AutoStyle35" valign="top">
+<div class="extract exercise" id="2.7">
       <div class="AutoStyle06">
        <p class="exercise AutoStyle07">
         <i>Exercise 2.7</i>.   Write a clause expressing that Peter teaches all the first-year courses, and   apply resolution to this clause and the above resolvent.
        </p>
       </div>
-     </td>
-    </tr>
-   </tbody>
-  </table>
  </div>
  <p class="sektie">
   Consider the following two-clause program <i>P</i>
@@ -1435,12 +1491,16 @@ student_of(maria,peter).
  <p class="sektie">
   As we have seen before, the actual proof method in clausal logic is proof by refutation. If we succeed in deriving the empty clause, then we have demonstrated that the set of clauses is inconsistent <i>under the substitutions that are needed for unification of literals</i>. For instance, consider the program
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.2.7" query-text="?-likes(peter,N). ?-student_of(N,peter). ?-follows(N,C),teaches(peter,C). ?-teaches(peter,ai_techniques).">
+
+<div class="extract swish" id="2.2.7">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.2.7" query-text="?-likes(peter,N). ?-student_of(N,peter). ?-follows(N,C),teaches(peter,C). ?-teaches(peter,ai_techniques).">
 likes(peter,S):-student_of(S,peter).
 student_of(S,T):-follows(S,C),teaches(T,C).
 teaches(peter,ai_techniques).
 follows(maria,ai_techniques).
 </pre>
+</div>
+
  <p class="tekst">
   If we want to find out if there is anyone whom Peter likes, we add to the program the negation of this statement, i.e. &lsquo;Peter likes nobody&rsquo; or <tt>:-likes(peter,N)</tt>; this clause is called a <i>query</i>&nbsp;or a <i>goal</i>. We then try to refute this query by finding an inconsistency by means of resolution. A refutation proof is given in fig. 2.3. In this figure, which is called a <i>proof tree</i>, two clauses on a row are input clauses for a resolution step, and they are connected by lines to their resolvent, which is then again an input clause for a resolution step, together with another program clause. The mgu&rsquo;s are also shown. Since the empty clause is derived, the query is indeed refuted, but only under the substitution { <tt>N</tt>
   <span class="AutoStyle09">
@@ -1448,7 +1508,7 @@ follows(maria,ai_techniques).
   </span>
   <tt>maria</tt> }, which constitutes the <i>answer</i>&nbsp;to the query.
  </p>
- <div>
+ <div class="extract figure" id="2.3">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -1469,7 +1529,9 @@ follows(maria,ai_techniques).
  <p class="sektie">
   In general, a query can have several answers. For instance, suppose that Peter does not only like his students, but also the people his students like (and the people those people like, and &hellip;):
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.2.8">
+
+<div class="extract swish" id="2.2.8">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.2.8">
 likes(peter,S):-student_of(S,peter).
 likes(peter,Y):-likes(peter,X),likes(X,Y).
 likes(maria,paul).
@@ -1477,13 +1539,20 @@ student_of(S,T):-follows(S,C),teaches(T,C).
 teaches(peter,ai_techniques).
 follows(maria,ai_techniques).
 </pre>
+</div>
+
  <p class="tekst">
   The query
  </p>
- <pre class="swish query" source-id="swish.2.2.8">?-likes(peter,N).</pre>
+
+<div class="extract swish" id="1.2.8_2">
+<pre class="swish query" source-id="swish.2.2.8">?-likes(peter,N).</pre>
+</div>
+
  <p class="tekst">
   will now have two answers.
  </p>
+<div class="extract exercise" id="2.8">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.8</i>. Draw the proof tree for the answer { <tt>N</tt>
@@ -1493,6 +1562,7 @@ follows(maria,ai_techniques).
    <tt>paul</tt> }.
   </p>
  </div>
+</div>
  <p class="sektie1">
   <i>Meta-theory.&nbsp;&nbsp;</i> As with propositional resolution, relational resolution is sound&nbsp;(i.e. it always produces logical consequences of the input clauses), refutation complete (i.e. it always detects an inconsistency in a set of clauses), but not complete&nbsp;(i.e. it does not always generate every logical consequence of the input clauses). An important characteristic of relational clausal logic is that the Herbrand universe (the set of individuals we can reason about) is always finite. Consequently, models are finite as well, and there are a finite number of different models for any program. This means that, in principle, we could answer the question &lsquo;is <i>C</i> a logical consequence of <i>P</i>?&rsquo; by enumerating all the models of <i>P</i>, and checking whether they are also models of <i>C</i>. The finiteness of the Herbrand universe will ensure that this procedure always terminates. This demonstrates that relational clausal logic is decidable, and therefore it is (in principle) possible to prevent resolution from looping if no more answers can be found. As we will see in the next section, this does not hold for full clausal logic.
  </p>
@@ -1528,6 +1598,7 @@ follows(maria,ai_techniques).
  <p class="tekst">
   without explicitly stating whom it is that Peter loves. As we will see, this way of composing complex names from simple names also gives us the possibility to reflect the structure of the domain in our logical formulas.
  </p>
+<div class="extract exercise" id="2.9">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.9</i>. Translate to clausal logic:<br>
@@ -1536,31 +1607,42 @@ follows(maria,ai_techniques).
      (<i>c</i>)&nbsp;&nbsp;&nbsp;&nbsp;every two numbers have a maximum.
 </p>
  </div>
+</div>
  <p class="sektie1">
   <i>Syntax.&nbsp;&nbsp;</i> A <i>term</i>&nbsp;is either simple or complex. Constants and variables are <i>simple terms</i>. A <i>complex term</i>&nbsp;is a functor (which follows the same notational conventions as constants and predicates) followed by a number of terms, enclosed in brackets and separated by commas, e.g. <tt>eldest_child_of(anna,paul)</tt>. The terms between brackets are called the <i>arguments</i> of the functor, and the number of arguments is the functor&rsquo;s <i>arity</i>. Again, a <i>ground</i> term&nbsp;is a term without variables. All the other definitions (atom, clause, literal, program) are the same as for relational clausal logic.
  </p>
  <p class="sektie1">
   <i>Semantics.&nbsp;&nbsp;</i> Although there is no <b>syntactic</b> difference in full clausal logic between terms and atoms, their <b>meaning</b> and use is totally different, a fact which should be adequately reflected in the semantics. A term always denotes an individual from the domain, while an atom denotes a proposition about individuals, which can get a truth value. Consequently, we must change the definition of the Herbrand universe in order to accomodate for complex terms: given a program <i>P</i>, the <i>Herbrand universe</i>&nbsp;is the set of ground terms that can be constructed from the constants and functors in <i>P</i> (if <i>P</i> contains no constants, choose an arbitrary one). For instance, let <i>P</i> be the program
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.1" query-text="?-plus(s(0),s(s(0)),Z). ?-plus(s(0),Y,s(s(s(0)))). ?-plus(X,s(s(0)),s(s(s(0)))). ?-plus(X,Y,Z).">
+
+<div class="extract swish" id="2.3.1">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.1" query-text="?-plus(s(0),s(s(0)),Z). ?-plus(s(0),Y,s(s(s(0)))). ?-plus(X,s(s(0)),s(s(s(0)))). ?-plus(X,Y,Z).">
 plus(0,X,X).
 plus(s(X),Y,s(Z)):-plus(X,Y,Z).
 </pre>
+</div>
+
  <p class="tekst">
   then the Herbrand universe of <i>P</i> is { <tt>0</tt>, <tt>s(0)</tt>, <tt>s(s(0))</tt>, <tt>s(s(s(0)))</tt>, &hellip;}. Thus, as soon as a program contains a functor, the Herbrand universe (the set of individuals we can reason about) is an infinite set.
  </p>
+<div class="extract exercise" id="2.10">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.10</i>. Determine the Herbrand universe of the following program:
   </p>
-  <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.2" query-text="?-listlength([0,0,0],N). ?-listlength(L,s(s(0))). ?-listlength(L,N).">
+
+<div class="extract swish" id="2.3.2">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.2" query-text="?-listlength([0,0,0],N). ?-listlength(L,s(s(0))). ?-listlength(L,N).">
 listlength([],0).
 listlength([_X|Y],s(L)):-listlength(Y,L).
 </pre>
+</div>
+
   <p class="exercise AutoStyle07">
    (Hint: recall that <tt>[]</tt> is a constant, and that <tt>[X|Y]</tt> is an alternative notation for the complex term <tt>.(X,Y)</tt> with binary functor &lsquo; <tt>.</tt> &rsquo;!)
   </p>
  </div>
+</div>
  <p class="sektie">
   The <i>Herbrand base</i>&nbsp;of <i>P</i> remains the set of ground atoms that can be constructed using the predicates in <i>P</i> and the ground terms in the Herbrand universe. For the above program, the Herbrand base is
  </p>
@@ -1615,7 +1697,7 @@ listlength([_X|Y],s(L)):-listlength(Y,L).
  <p class="tekst">
   is an interpretation of the above program.
  </p>
- <div>
+ <div class="extract infobox" id="unification_vs_evaluation">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -1694,6 +1776,8 @@ listlength([_X|Y],s(L)):-listlength(Y,L).
  <p class="sektie">
   Although the introduction of only a single functor already results in an infinite Herbrand universe, models are not necessarily infinite. Consider the following program:
  </p>
+
+<div class="extract swish" id="2.3.2_2">
  <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.2" query-text="?-reachable(X,Y,R). ?-connected(X,Y,L).">
 reachable(oxford,charing_cross,piccadilly).
 reachable(X,Y,route(Z,R)):-
@@ -1701,6 +1785,8 @@ reachable(X,Y,route(Z,R)):-
 	reachable(Z,Y,R).
 connected(bond_street,oxford,central).
 </pre>
+</div>
+
  <p class="tekst">
   with intended meaning &lsquo;Charing Cross is reachable from Oxford Circus via Piccadilly Circus&rsquo;, &lsquo; <b>if</b> <i>X</i> is connected to <i>Z</i> by line <i>L</i> <b>and</b> <i>Y</i> is reachable from <i>Z</i> via <i>R</i> <b>then</b> <i>Y</i> is reachable from <i>X</i> via a route consisting of <i>Z</i> and <i>R</i> &rsquo; and &lsquo;Bond Street is connected to Oxford Circus by the Central line&rsquo;. The minimal model of this program is the finite set
  </p>
@@ -1799,6 +1885,7 @@ connected(bond_street,oxford,central).
  <p class="sektie">
   Now we have two problems. The first is that we did not define any semantics for infinite terms, because there are no infinite terms in the Herbrand base. But even worse, the fact that there exists someone who loves herself is not a logical consequence of the above clause! That is, this clause has models in which nobody loves herself. So, <i>unification without occur check would make resolution unsound</i>.
  </p>
+<div class="extract exercise" id="2.11">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.11</i>. If possible, unify the following pairs of terms:<br>
@@ -1807,6 +1894,7 @@ connected(bond_street,oxford,central).
      (<i>c</i>)&nbsp;&nbsp;&nbsp;&nbsp;<tt>larger(s(s(X)),X)</tt> and <tt>larger(V,s(V))</tt>.
 </p>
  </div>
+</div>
  <p class="sektie">
   The disadvantage of the occur check&nbsp;is that it can be computationally very costly. Suppose that you need to unify <tt>X</tt> with a list of thousand elements, then the complete list has to be searched in order to check whether <tt>X</tt> occurs somewhere in it. Moreover, cases in which the occur check is needed often look somewhat exotic. Since the developers of Prolog were also taking the efficiency of the Prolog interpreter into consideration, they decided to omit the occur check from Prolog&rsquo;s unification algorithm. On the whole, this makes Prolog unsound; but this unsoundness only occurs in very specific cases, and it is the duty of the programmer to avoid such cases.&nbsp;In case you really need sound unification, most available Prolog implementations provide it as a library routine, but you must build your own Prolog interpreter in order to incorporate it. In Chapter 3, we will see that this is in fact amazingly simple: it can even be done in Prolog!
  </p>
@@ -1839,11 +1927,13 @@ connected(bond_street,oxford,central).
   :-man(maria),adult(maria)<br>
   married(paul):-adult(paul)
 </p>
+<div class="extract exercise" id="2.12">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.12</i>. Draw the proof tree for each of these derivations.
   </p>
  </div>
+</div>
  <p class="sektie">
   In each of these derivations, the first clause in the program is used in a different way. In the first one, only literals in the body are resolved away; one could say that the clause is used from right to left. In the second derivation&nbsp;the clause is used from left to right, and in the third one literals from both the head and the body are resolved away. The way in which a clause is used in a resolution proof cannot be fixed in advance, because it depends on the thing we want to prove (the query in refutation proofs).
  </p>
@@ -1963,11 +2053,13 @@ connected(bond_street,oxford,central).
  <p class="p-el">
   bachelor(X):-man(X),adult(X),not married(X)
  </p>
+<div class="extract exercise" id="2.13">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.13.</i> Write a clause for the statement &lsquo;somebody is innocent unless proven guilty&rsquo;, and give its intended model (supposing that <tt>john</tt> is the only individual in the Herbrand universe).
   </p>
  </div>
+</div>
  <p class="sektie">
   An alternative approach to general clauses is to treat <tt>not</tt> as a special Prolog predicate, as will be discussed in the next chapter. This has the advantage that we need not extend the proof theory and semantics to incorporate general clauses. However, a disadvantage is that in this way <tt>not</tt> can only be understood procedurally.
  </p>
@@ -2297,7 +2389,7 @@ connected(bond_street,oxford,central).
  <p class="tekst">
   Using a normal form has the advantage that the language contains no redundancy: formulas are only equivalent if they are <b>identical</b> (up to the order of the subformulas). A slight disadvantage is that normal forms are often longer and less understandable (the same objection can be made against resolution proofs).
  </p>
- <div>
+ <div class="extract infobox" id="the_order_of_logics">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -2593,6 +2685,7 @@ connected(bond_street,oxford,central).
 </span>
    mother_of(childless_woman,W).
 </p>
+<div class="extract exercise" id="2.14">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 2.14</i>. Translate to clausal logic:<br>
@@ -2649,6 +2742,7 @@ connected(bond_street,oxford,central).
       <tt>maximum(X,Y,Z)</tt>.
 </p>
  </div>
+</div>
  <h3 id="further_reading_2">
   Further reading
  </h3>
@@ -2779,7 +2873,9 @@ connected(bond_street,oxford,central).
  <p class="sektie1">
   Prolog&rsquo;s proof procedure is based on resolution refutation in definite clause logic. Resolution refutation has been explained in the previous chapter. In order to turn it into an executable proof procedure, we have to specify how a literal to resolve upon is selected, and how the second input clause is found. Jointly, this is called a <i>resolution strategy</i>. Consider the following program:
  </p>
- <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.1.1">
+
+<div class="extract swish" id="3.1.1">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.1.1">
 student_of(X,T):-follows(X,C),teaches(T,C).
 follows(paul,computer_science).
 follows(paul,expert_systems).
@@ -2788,10 +2884,16 @@ teaches(adrian,expert_systems).
 teaches(peter,ai_techniques).
 teaches(peter,computer_science).
 </pre>
+</div>
+
  <p class="tekst">
   The query
  </p>
- <pre class="swish query" id="query3.1.1"> ?-student_of(S,peter).</pre>
+
+<div class="extract swish" id="3.1.1_2">
+<pre class="swish query" id="query3.1.1"> ?-student_of(S,peter).</pre>
+</div>
+
  <p class="tekst">
   has two possible answers: { <tt>S</tt>
   <span class="AutoStyle09">
@@ -2803,9 +2905,13 @@ teaches(peter,computer_science).
   </span>
   <tt>maria</tt> }. In order to find these answers, we first resolve the query with the first clause, yielding
  </p>
- <pre class="swish query" id="query3.1.2">
+
+<div class="extract swish" id="3.1.2">
+<pre class="swish query" id="query3.1.2">
 ?-follows(S,C),teaches(peter,C).
 </pre>
+</div>
+
  <p class="tekst">
   Now we have to decide whether we will search for a clause which resolves on <tt>follows(S,C)</tt>, or for a clause which resolves on <tt>teaches(peter,C)</tt>. This decision is governed by a <i>selection rule</i>. Prolog&rsquo;s selection rule is left to right, thus Prolog will search for a clause with a positive literal unifying with <tt>follows(S,C)</tt>. There are three of these, so now we must decide which one to try first. Prolog searches the clauses in the program top-down, so Prolog finds the answer { <tt>S</tt>
   <span class="AutoStyle09">
@@ -2813,9 +2919,13 @@ teaches(peter,computer_science).
   </span>
   <tt>paul</tt> } first. Note that the second choice leads to a dead end: the resolvent is
  </p>
- <pre class="swish query" id="query3.1.3">
+
+<div class="extract swish" id="3.1.3">
+<pre class="swish query" id="query3.1.3">
 ?-teaches(peter,expert_systems).
 </pre>
+</div>
+
  <p class="tekst">
   which doesn&rsquo;t resolve with any clause in the program.
  </p>
@@ -2830,19 +2940,25 @@ teaches(peter,computer_science).
   </span>
   represents a <i>failure branch</i>.
  </p>
+<div class="extract exercise" id="3.1">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 3.1.</i> Draw the proof trees for the two success branches in fig. 3.1.
   </p>
  </div>
+</div>
  <p class="sektie">
   As remarked already, Prolog searches the clauses in the program top-down, which is the same as traversing the SLD-tree from left to right. This not only determines the order in which answers (i.e. success branches) are found: it also determines whether any answers are found at all, because an SLD-tree may contain infinite branches, if some predicates in the program are recursive. As an example, consider the following program:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.1.3">
+
+<div class="extract swish" id="3.1.3_2">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.1.3">
 brother_of(X,Y):-brother_of(Y,X).
 brother_of(paul,peter).
 </pre>
- <div>
+</div>
+
+ <div class="extract figure" id="3.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -2860,7 +2976,7 @@ brother_of(paul,peter).
    </tbody>
   </table>
  </div>
- <div>
+ <div class="extract figure" id="3.2">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tbody>
     <tr>
@@ -2882,19 +2998,27 @@ brother_of(paul,peter).
   <p class="tekst">
    An SLD-tree for the query
   </p>
-  <pre class="swish query" id="query3.1.3a">
+
+<div class="extract swish" id="3.1.3a">
+<pre class="swish query" id="query3.1.3a">
 ?-brother_of(peter,B).</pre>
+</div>
+
   <p class="tekst">
    is depicted in fig. 3.2. If we descend this tree taking the left branch at every node, we will never reach a leaf. On the other hand, if we take the right branch at every node, we almost immediately reach a success branch. Taking right branches instead of left branches in an SLD-tree corresponds to searching the clauses from bottom to top. The same effect would be obtained by reversing the order of the clauses in the program, and the SLD-tree clearly shows that this is enough to prevent Prolog from looping on this query. This is a rule of thumb that applies to most cases: <i>put non-recursive clauses before recursive ones</i>.
   </p>
   <p class="sektie">
    However, note that, even after this modification, the program still has some problems. For one thing, the query <tt>?-brother_of(peter,B)</tt> will be answered an infinite number of times, because there are infinitely many refutations of it. But, even worse, consider a query that does <b>not</b> have an answer, like
   </p>
-  <pre class="swish query" id="query3.1.4">?-brother_of(peter,maria).</pre>
+
+<div class="extract swish" id="3.1.4">
+<pre class="swish query" id="query3.1.4">?-brother_of(peter,maria).</pre>
+</div>
+
   <p class="sektie">
    No matter the order in which the SLD-tree is descended, Prolog will never discover that the query has in fact no answer, <i>simply because the SLD-tree is infinite</i>. So, one should be careful with programs like the above, which define a predicate to be <i>symmetric</i>.
   </p>
-  <div>
+  <div class="extract figure" id="3.3">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -2915,15 +3039,23 @@ brother_of(paul,peter).
   <p class="sektie">
    Another property of predicates which can cause similar problems is <i>transitivity</i>.Consider the following program:
   </p>
-  <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.1.4">
+
+<div class="extract swish" id="3.1.4_2">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.1.4">
 brother_of(paul,peter).
 brother_of(peter,adrian).
 brother_of(X,Y):-brother_of(X,Z),brother_of(Z,Y).
 </pre>
+</div>
+
   <p class="tekst">
    The third clause ensures that <tt>?-brother_of(paul,adrian)</tt> is a logical consequence of the program. The SLD-tree for the query
   </p>
-  <pre class="swish query" id="query3.1.6">?-brother_of(paul,B).</pre>
+
+<div class="extract swish" id="3.1.6">
+<pre class="swish query" id="query3.1.6">?-brother_of(paul,B).</pre>
+</div>
+
   <p class="tekst">
    is depicted in fig. 3.3. Not only is this SLD-tree infinite, but the resolvents get longer and longer on deeper levels in the tree.
   </p>
@@ -2948,19 +3080,29 @@ brother_of(X,Y):-brother_of(X,Z),brother_of(Z,Y).
   <p class="sektie">
    As for the second problem, we already saw that this is due to the semi-decidability of full clausal logic, which means that there is no general solution to it.
   </p>
+<div class="extract exercise" id="3.2">
   <div class="AutoStyle06">
    <p class="exercise AutoStyle07">
     <i>Exercise 3.2.</i> Draw the SLD-tree for the following program:
    </p>
-   <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.2">
+
+<div class="extract swish" id="2.3.2_3">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.2.3.2">
 list([]).
 list([_H|T]):-list(T).
 </pre>
+</div>
+
    <p class="exercise AutoStyle07">
     and the query
    </p>
-   <pre class="swish query" id="query3.1.6a">?-list(L).</pre>
+
+<div class="extract swish" id="3.1.6a">
+<pre class="swish query" id="query3.1.6a">?-list(L).</pre>
+</div>
+
   </div>
+</div>
   <h3 id="pruning_the_search_by_means_of_cut">
    3.2&nbsp;&nbsp;&nbsp;Pruning the search by means of cut
   </h3>
@@ -2986,7 +3128,7 @@ list([_H|T]):-list(T).
   <p class="sektie">
    A node in the SLD-tree which is not a leaf is called a <i>choice point</i>, because the subtree rooted at that node may contain several success branches, each of which may be reached by a different choice for a program clause to resolve with. Now, suppose a subtree contains only one success branch, yielding an answer to our query. If we want to know whether there are any alternative answers, we can force Prolog to backtrack. However, since the rest of the subtree does not contain any success branches, we might as well skip it altogether, thus speeding up backtracking. But how do we tell Prolog that a subtree contains only one success branch? For this, Prolog provides a control device which is called <i>cut</i>&nbsp;(written <tt>!</tt>), because it cuts away (or prunes) part of the SLD-tree.
   </p>
-  <div>
+  <div class="extract figure" id="3.4">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -3008,16 +3150,24 @@ list([_H|T]):-list(T).
   <p class="sektie">
    To illustrate the effect of cut, consider the following program.
   </p>
-  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.2.2">
+
+<div class="extract swish" id="3.2.2">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.2.2">
 parent(X,Y):-father(X,Y).
 parent(X,Y):-mother(X,Y).
 father(john,paul).
 mother(mary,paul).
 </pre>
+</div>
+
   <p class="tekst">
    The SLD-tree for the query
   </p>
-  <pre class="swish query" id="query3.2.3">?-parent(john,C).</pre>
+
+<div class="extract swish" id="3.2.3_2">
+<pre class="swish query" id="query3.2.3">?-parent(john,C).</pre>
+</div>
+
   <p class="tekst">
    is given in fig. 3.4. The answer given by Prolog is { <tt>C</tt>
    <span class="AutoStyle09">
@@ -3028,13 +3178,17 @@ mother(mary,paul).
   <p class="sektie">
    Of course, <b>we</b> know that this backtracking step did not make sense: if John is a father of anyone, he can&rsquo;t be a mother. We can express this by adding a cut to the first <tt>parent</tt> clause:
   </p>
-  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.2.3" query-id="query3.2.3">
+
+<div class="extract swish" id="3.2.3">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.2.3" query-id="query3.2.3">
 parent(X,Y):-father(X,Y),!.
 parent(X,Y):-mother(X,Y).
 father(john,paul).
 mother(mary,paul).
 </pre>
-  <div>
+</div>
+
+  <div class="extract figure" id="3.5">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -3061,7 +3215,11 @@ mother(mary,paul).
   <p class="sektie">
    This seems to be true for the above program: John is the father of only one child, and no-one is both a father and a mother. However, note that we only analysed the situation with regard to a particular query. We can show that the cut is in fact red by asking the query
   </p>
-  <pre class="swish query" id="query3.2.3a" source-id="swish.3.2.2 swish.3.2.3">?-parent(P,paul).</pre>
+
+<div class="extract swish" id="3.2.3a">
+<pre class="swish query" id="query3.2.3a" source-id="swish.3.2.2 swish.3.2.3">?-parent(P,paul).</pre>
+</div>
+
   <p class="tekst">
    The answer { <tt>P</tt>
    <span class="AutoStyle09">
@@ -3069,7 +3227,7 @@ mother(mary,paul).
    </span>
    <tt>mary</tt> } is pruned by the cut (fig. 3.7). That is, the literal <tt>father(X,Y)</tt> left to the cut is only deterministic if <tt>X</tt> is <i>instantiated</i>&nbsp;(is substituted by a non-variable value).
   </p>
-  <div>
+  <div class="extract figure" id="3.6">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -3090,7 +3248,9 @@ mother(mary,paul).
   <p class="sektie">
    Note that success branches are also pruned for the first query if John has several children:
   </p>
-  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.2.4" query-id="query3.2.3a">
+
+<div class="extract swish" id="3.2.4">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.2.4" query-id="query3.2.3a">
 parent(X,Y):-father(X,Y),!.
 parent(X,Y):-mother(X,Y).
 father(john,paul).
@@ -3098,10 +3258,16 @@ father(john,peter).
 mother(mary,paul).
 mother(mary,peter).
 </pre>
+</div>
+
   <p class="tekst">
    The SLD-tree for the query
   </p>
-  <pre class="swish query" id="query3.2.4">?-parent(john,C).</pre>
+
+<div class="extract swish" id="3.2.4_2">
+<pre class="swish query" id="query3.2.4">?-parent(john,C).</pre>
+</div>
+
   <p class="tekst">
    is given in fig. 3.8. Indeed, the second answer { <tt>C</tt>
    <span class="AutoStyle09">
@@ -3109,7 +3275,7 @@ mother(mary,peter).
    </span>
    <tt>peter</tt> } is pruned by the cut. This clearly shows that the effect of a cut is not only determined by the clause in which it occurs but also by other clauses. Therefore, the effect of a cut is often hard to understand.
   </p>
-  <div>
+  <div class="extract figure" id="3.7">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -3127,7 +3293,7 @@ mother(mary,peter).
     </tbody>
    </table>
   </div>
-  <div>
+  <div class="extract figure" id="3.8">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -3152,21 +3318,30 @@ mother(mary,peter).
   <p class="sektie AutoStyle43">
    &nbsp;incompatibility between declarative and procedural interpretation makes it a very problematic concept.&nbsp;Much research in Logic Programming aims at replacing it by higher-level constructs which have cleaner declarative meanings and which are easier to understand. The most important of these will be considered in the next two sections.
   </p>
+<div class="extract exercise" id="3.3">
   <div class="AutoStyle06">
    <p class="exercise AutoStyle07">
     <i>Exercise 3.3.</i> Draw the SLD-tree for the query
    </p>
-   <pre class="swish query" id="query3.2.ex3.3">?-likes(A,B).</pre>
+
+<div class="extract swish" id="3.2.ex3.3">
+<pre class="swish query" id="query3.2.ex3.3">?-likes(A,B).</pre>
+</div>
+
    <p class="exercise AutoStyle07">
     given the following program:
    </p>
-   <pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.3.2.ex3.3" query-id="query3.2.ex3.3">
+
+<div class="extract swish" id="3.2.ex3.3_2">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="swish.3.2.ex3.3" query-id="query3.2.ex3.3">
 likes(peter,Y):-friendly(Y).
 likes(T,S):-student_of(S,T).
 student_of(maria,peter).
 student_of(paul,peter).
 friendly(maria).
 </pre>
+</div>
+
    <p class="exercise AutoStyle07">
     Add a cut in order to prune away one of the answers { <tt>A</tt>
     <span class="AutoStyle09">
@@ -3179,16 +3354,21 @@ friendly(maria).
     <tt>maria</tt> }, and indicate the result in the SLD-tree. Can this be done without pruning away the third answer?
    </p>
   </div>
+</div>
   <h3 id="negation_as_failure">
    3.3&nbsp;&nbsp;&nbsp;Negation as failure
   </h3>
   <p class="sektie1">
    The following program computes the maximum of two integers:
   </p>
+
+<div class="extract swish" id="3.3.1">
   <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.1">
 max(M,N,M):- M &gt;= N.
 max(M,N,N):- M =&lt; N.
 </pre>
+</div>
+
   <p class="tekst">
    <tt>&gt;=</tt>&nbsp;and <tt>=&lt;</tt>&nbsp;are built-in predicates with meaning &lsquo;greater than or equal&rsquo; and &lsquo;less than or equal&rsquo;, respectively
    <span class="CustomFootnote">
@@ -3204,34 +3384,34 @@ max(M,N,N):- M =&lt; N.
    </span>
    . Declaratively, the program captures the intended meaning, but procedurally there are two different ways to solve queries of the form <tt>?-max(N,N,M)</tt>. The reason for this is that the bodies of the two clauses are not exclusive: they both succeed if the first two values of the <tt>max</tt> predicate are equal. We could of course remove one of the equality symbols, but suppose that we use a cut instead:
   </p>
-  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.2">
+
+<div class="extract swish" id="3.3.2">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.2">
 max(M,N,M):- M &gt;= N,!.
 max(_M,N,N).
 </pre>
+</div>
+
   <p class="tekst">
    With a red cut, this program can only be understood procedurally. The question is: does the procedural meaning correspond to the intended meaning? Perhaps surprisingly, the answer is no! For instance, the query
   </p>
-  <pre class="swish query" id="query3.3.1" source-id="swish.3.3.1 swish.3.3.2">
+
+<div class="extract swish" id="3.3.1">
+<pre class="swish query" id="query3.3.1" source-id="swish.3.3.1 swish.3.3.2">
 ?-max(5,3,3).
 </pre>
+</div>
+
   <p class="tekst">
    succeeds: the cut is never reached, because the literal in the query does not unify with the head of the first clause. The second program is in fact a very bad program: the declarative and procedural meanings differ, and <b>neither</b> of them captures the intended meaning.
   </p>
-  <div>
-   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-    <tbody>
-     <tr>
-      <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="3.4">
        <div class="AutoStyle06">
         <p class="exercise AutoStyle07">
          <i>Exercise 3.4.</i> Show that this cut is red, by drawing an SLD-tree   in which a success branch is pruned.
         </p>
        </div>
-      </td>
-     </tr>
-    </tbody>
-   </table>
-  </div>
+</div>
   <p class="sektie">
    The procedural meaning of the program would be correct if its use is restricted to queries with uninstantiated third argument. It illustrates a very common use of cut: to ensure that the bodies of the clauses are mutually exclusive. In general, if we have a program of the form
   </p>
@@ -3284,14 +3464,18 @@ max(_M,N,N).
    </span>
    is merely a shorthand for this: instead of writing <tt>call(Goal)</tt>, one may simply write <tt>Goal</tt>, as in
   </p>
-  <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.2" query-text="?-not(true). ?-not(false).">
+
+<div class="extract swish" id="3.3.2_2">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.2" query-text="?-not(true). ?-not(false).">
 not(Goal):- Goal,!,fail.
 not(_Goal).
 </pre>
+</div>
+
   <p class="tekst">
    This is a slight abuse of the syntax rules, because a variable (a term) occurs in a position where only atoms are allowed.&nbsp;As long as the variable is instantiated to a goal before it is reached, this will, however, cause no problem (if it is not correctly instantiated, Prolog will generate an error-message). Predicates like <tt>not</tt> and <tt>call</tt> are called <i>meta-predicates</i>, that take formulas from the same logical language in which they are written as arguments. As we will see in later chapters, meta-predicates play an important role in this book.
   </p>
-  <div>
+  <div class="extract figure" id="3.9">
    <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
     <tbody>
      <tr>
@@ -3310,7 +3494,7 @@ not(_Goal).
    </table>
   </div>
   <br clear="ALL">
-   <div>
+   <div class="extract figure" id="3.10">
     <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
      <tbody>
       <tr>
@@ -3351,7 +3535,7 @@ not(_Goal).
     <p class="tekst">
      which leads to the SLD-tree shown in fig. 3.10. Here, <tt>q</tt> is tried only once. However, in general we prefer the use of <tt>not</tt>, because it leads to programs of which the declarative meaning corresponds more closely to the procedural meaning.
     </p>
-    <div>
+    <div class="extract figure" id="3.11">
      <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
       <tbody>
        <tr>
@@ -3384,19 +3568,25 @@ not(_Goal).
     <p class="sektie">
      The implementation of <tt>not</tt>&nbsp;illustrated above can lead to problems if variables are involved. Take a look at the following program:
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.3" query-text="?-bachelor(fred). ?-bachelor(peter).">
+
+<div class="extract swish" id="3.3.3">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.3" query-text="?-bachelor(fred). ?-bachelor(peter).">
 bachelor(X):-not(married(X)),man(X).
 man(fred).
 man(peter).
 married(fred).
 </pre>
+</div>
+
+<div class="extract exercise" id="3.5">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.5.</i> Draw the SLD-trees for the queries <tt>?-bachelor(fred)</tt> and<br>
       <tt>?-bachelor(peter)</tt>.
 </p>
     </div>
-    <div>
+</div>
+    <div class="extract figure" id="3.12">
      <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
       <tbody>
        <tr>
@@ -3417,7 +3607,11 @@ married(fred).
     <p class="sektie">
      Consider the query
     </p>
-    <pre class="query" id="query3.3.2"><span class="swish query">?-bachelor(X).</span></pre>
+
+<div class="extract swish" id="3.3.2_3">
+<pre class="query" id="query3.3.2"><span class="swish query">?-bachelor(X).</span></pre>
+</div>
+
     <p class="tekst">
      for which the SLD-tree is depicted in fig. 3.12. According to negation as failure, Prolog tries to prove <tt>not(married(X))</tt> by trying <tt>married(X)</tt> first. Since this succeeds for <tt>X</tt> = <tt>fred</tt>, the cut is reached and the success branch to the right (representing the correct answer { <tt>X</tt>
      <span class="AutoStyle09">
@@ -3431,7 +3625,7 @@ married(fred).
     <p class="tekst">
      is interpreted as &lsquo; <i>X</i> is a bachelor if nobody is married and <i>X</i> is a man&rsquo;, which is of course not as intended.
     </p>
-    <div>
+    <div class="extract infobox" id="negation_as_failure_vs_logical_negation">
      <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
       <tbody>
        <tr>
@@ -3461,17 +3655,23 @@ married(fred).
     <p class="sektie">
      Thus, if <tt>G</tt> is instantiated&nbsp;to a goal containing variables at the time <tt>not(G)</tt> is called, the result may be not in accordance with negation as failure. <i>It is the programmer&rsquo;s responsibility to avoid this.</i> A simple remedy that will often work is to ensure the grounding of <tt>G</tt> by literals preceding <tt>not(G)</tt> in the body of the clause, i.e.
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.3a" query-text="?-bachelor(X).">
+
+<div class="extract swish" id="3.3.3a">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.3.3a" query-text="?-bachelor(X).">
 bachelor(X):-man(X),not(married(X)).
 man(fred).
 man(peter).
 married(fred).
 </pre>
+</div>
+
+<div class="extract exercise" id="3.6">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.6.</i> Show that the modified program produces the right answer, by drawing the SLD-tree for the query <tt>?-bachelor(X)</tt>.
      </p>
     </div>
+</div>
     <p class="sektie">
      Thus, we see that changing the order of the literals in the body of a clause does not only affect the order in which answers to a query are found, but it may also change the set of answers! Of course, this is very much against the spirit of declarative programming, because the declarative interpretation&nbsp;of a clause does not depend on the order of the literals. Therefore, some Prolog interpreters provide a mechanism which defers the evaluation of <tt>not(G)</tt> until <tt>G</tt> is ground. However, with standard Prolog it is the programmer&rsquo;s duty to ensure that <tt>not</tt> is never called with a non-ground argument.
     </p>
@@ -3503,11 +3703,13 @@ married(fred).
      r.<br>
      u.
 </p>
+<div class="extract exercise" id="3.7">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.7.</i> Show that the query <tt>?-p</tt> succeeds, but that <tt>q</tt> and <tt>r</tt> are tried twice.
      </p>
     </div>
+</div>
     <p class="tekst">
      This inefficiency can be avoided by putting <tt>s,!</tt> at the beginning of the body of the first clause. However, in full clausal logic the goals preceding <tt>s</tt> might supply necessary variable bindings, which requires them to be called first. A possible solution would be the introduction of an extra proposition symbol:
     </p>
@@ -3516,11 +3718,13 @@ married(fred).
      if_s_then_t_else_u:-s,!,t.<br>
      if_s_then_t_else_u:-u.
 </p>
+<div class="extract exercise" id="3.8">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.8.</i> Show that <tt>q</tt> and <tt>r</tt> are now tried only once.
      </p>
     </div>
+</div>
     <p class="sektie">
      Just as we did with <tt>not</tt>, we can rewrite this new proposition symbol to a generally applicable meta-predicate:
     </p>
@@ -3583,42 +3787,61 @@ married(fred).
     <p class="sektie1">
      In Logic Programming, recursion&nbsp;is the only looping control structure.&nbsp;Consequently, recursive datatypes&nbsp;such as lists can be expressed very naturally. Natural numbers also have a recursive nature: &lsquo;0 is a natural number, and if <i>X</i> is a natural number, then the successor of <i>X</i> is also a natural number&rsquo;. In Prolog, this is expressed as
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.5.0" query-text="?-nat(s(s(0))).">
+
+<div class="extract swish" id="3.5.0">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.5.0" query-text="?-nat(s(s(0))).">
 nat(0).
 nat(s(X)):-nat(X).
 </pre>
+</div>
+
     <p class="tekst">
      Addition of natural numbers is defined in terms of successors:
     </p>
-    <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.5.1" query-text="?-add(s(s(0)),Y,s(s(s(0)))).">
+
+<div class="extract swish" id="3.5.1">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.5.1" query-text="?-add(s(s(0)),Y,s(s(s(0)))).">
 add(0,X,X).
 add(s(X),Y,s(Z)):-add(X,Y,Z).
 </pre>
+</div>
+
     <p class="tekst">
      The following query asks for the sum of two and three:
     </p>
-    <pre class="swish query" id="query3.5.1">
+
+<div class="extract swish" id="3.5.1_2">
+<pre class="swish query" id="query3.5.1">
 ?-add(s(s(0)),s(s(s(0))),Z).
 </pre>
+
     <p class="p-el">
      Z = s(s(s(s(s(0)))))
     </p>
     <p class="tekst">
      We can also find an <i>X</i> such that the sum of <i>X</i> and <i>Y</i> is <i>Z</i> (i.e., subtract <i>Y</i> from <i>Z</i>):
     </p>
-    <pre class="swish query" id="query3.5.1">
+
+<div class="extract swish" id="3.5.1_3">
+<pre class="swish query" id="query3.5.1">
 ?-add(X,s(s(s(0))),s(s(s(s(s(0)))))).
 </pre>
+</div>
+
     <p class="p-el">
      X = s(s(0))
     </p>
     <p class="tekst">
      We can even find all <i>X</i> and <i>Y</i> which add up to a given sum. Thus, this program is fully declarative. Similarly, multiplication is repeated addition:
     </p>
-    <pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.3.5.2" inherit-id="swish.3.5.1" query-text="?-mul(0,X,0). ?-mul(s(s(0)),s(s(s(0))),Z).">
+
+<div class="extract swish" id="3.5.2">
+<pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.3.5.2" inherit-id="swish.3.5.1" query-text="?-mul(0,X,0). ?-mul(s(s(0)),s(s(s(0))),Z).">
 mul(0,_X,0).
 mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
 </pre>
+</div>
+
     <p class="sektie">
      There are two problems with this approach to representing and manipulating natural numbers. First, naming natural numbers by means of the constant symbol <tt>0</tt> and the functor <tt>s</tt> is very clumsy, especially for large numbers. Of course, it would be possible to write a translator from decimal notation to successor notation, and back. However, the second problem is more fundamental: multiplication as repeated addition is extremely inefficient compared to the algorithm for multiplicating numbers in decimal notation. Therefore, Prolog has built-in arithmetic facilities, which we will discuss now.
     </p>
@@ -3642,7 +3865,7 @@ mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
     <p class="tekst">
      Here, <tt>fast_add</tt> and <tt>fast_sub</tt> represent the fast, built-in procedures for addition and subtraction, which are not directly available to the user. These procedures are <b>not</b> reversible: its first two arguments must be instantiated. Therefore, the predicate <tt>is</tt> will include a test for groundness of its second argument (the arithmetic expression), and will quit with an error-message if this test fails.
     </p>
-    <div>
+    <div class="extract infobox" id="operators">
      <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
       <tbody>
        <tr>
@@ -3681,9 +3904,13 @@ mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
      ?-X is 5*3+7/2<br>
      X = 18.5
 </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.5.4" query-text="?-X is 5+7-3. ?-9 is 5+7-3. ?-9 is X+7-3. ?-X is 5*3+7/2.">
+
+<div class="extract swish" id="3.5.4">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.5.4" query-text="?-X is 5+7-3. ?-9 is 5+7-3. ?-9 is X+7-3. ?-X is 5*3+7/2.">
 % Try these queries here.
 </pre>
+</div>
+
     <p class="tekst">
      The last example shows, that arithmetic expressions obey the usual precedence rules (which can be overruled using parentheses). Also, note that the <tt>is</tt> predicate can handle real numbers.
     </p>
@@ -3713,9 +3940,13 @@ mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
      (f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(<br>
      Error: term being written is too deep
 </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.5.5" query-text="?-X = 5+7-3. ?-9 = 5+7-3. ?-9 = X+7-3. ?-X = Y+7-3. ?-X = f(X).">
+
+<div class="extract swish" id="3.5.5">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.5.5" query-text="?-X = 5+7-3. ?-9 = 5+7-3. ?-9 = X+7-3. ?-X = Y+7-3. ?-X = f(X).">
 % Try these queries here. Is the answer to the last query really as described here?
 </pre>
+</div>
+
     <p class="tekst">
      The first query just unifies <tt>X</tt> with the term <tt>5+7-3</tt> (i.e. <tt>+(5,-(7,3))</tt>), which of course succeeds. In the second and third query, we try to unify a constant with a complex term, which fails. The fourth query succeeds, leaving <tt>Y</tt> unbound (<tt>_947</tt> is an internal variable name, generated by Prolog).
     </p>
@@ -3732,6 +3963,7 @@ mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
     <p class="tekst">
      The query <tt>?-strange</tt> succeeds, and since there is no answer substitution, it is not apparent that there is a circular binding involved.
     </p>
+<div class="extract exercise" id="3.9">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.9.</i> Write a predicate <tt>zero(A,B,C,X)</tt> which, given the coefficients <i>a</i>, <i>b</i> and <i>c</i>, calculates both values of <i>x</i> for which <i>ax</i>
@@ -3741,6 +3973,7 @@ mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
       + <i>bx</i> + <i>c</i> =0.
      </p>
     </div>
+</div>
     <p class="sektie">
      Finally, we mention that Prolog provides a number of other useful arithmetic predicates, including the inequality tests <tt>&lt;</tt> and <tt>&gt;</tt>, and their reflexive counterparts <tt>=&lt;</tt> and <tt>&gt;=</tt>. For these tests, both arguments should be instantiated to numbers.
     </p>
@@ -3750,59 +3983,81 @@ mul(s(X),Y,Z):-mul(X,Y,Z1),add(Y,Z1,Z).
     <p class="sektie1">
      The condition that the righthand-side of <tt>is</tt> should not contain variables sometimes determines the ordering of literals in the body of the clause. For instance, in the program below, which computes the length of a list, the <tt>is</tt> literal should be placed after the recursive <tt>length</tt> call, which instantiates <tt>M</tt>. This means that the resolvent first collects as many <tt>is</tt> literals as there are elements in the list, before doing the actual calculation. Each of these literals contains some &lsquo;local&rsquo; variables that require some space in memory. The total memory requirements are thus proportional to the depth of the recursion.
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.0" query-text="?-naive_length([a,b,c],N).">
+
+<div class="extract swish" id="3.6.0">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.0" query-text="?-naive_length([a,b,c],N).">
 naive_length([],0).
 naive_length([_H|T],N):-naive_length(T,M),N is M+1.
 </pre>
+</div>
+
+<div class="extract exercise" id="3.10">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.10.</i> Draw the proof tree for the query <tt>?-naive_length([a,b,c],N)</tt>.
      </p>
     </div>
+</div>
     <p class="sektie">
      Programs with tail recursion&nbsp;need less memory because they do all the work on one recursive level before proceeding to the next. There is a common trick to transform even the <tt>length</tt> predicate above into a tail recursive program, using an auxiliary argument called an <i>accumulator</i>.
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.1" query-text="?-length_acc([a,b,c],N). ?-length_acc([a,b,c],0,N). ?-length_acc([a,b,c],3,N).">
+
+<div class="extract swish" id="3.6.1">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.1" query-text="?-length_acc([a,b,c],N). ?-length_acc([a,b,c],0,N). ?-length_acc([a,b,c],3,N).">
 length_acc(L,N):-length_acc(L,0,N).
 
 length_acc([],N,N).
 length_acc([_H|T],N0,N):-N1 is N0+1,length_acc(T,N1,N).
 </pre>
+</div>
+
     <p class="tekst">
      <tt>length_acc(L,N0,N)</tt> is true if <tt>N</tt> is the number of elements in <tt>L</tt> plus <tt>N0</tt>. Initialising <tt>N0</tt> to <tt>0</tt> results in <tt>N</tt> returning the length of <tt>L</tt>. Note that the actual counting is done by the second argument: only when the list is empty is the third argument unified with the second argument. The main point is that, since the accumulator is given an initial value of <tt>0</tt>, it is always instantiated, such that the <tt>is</tt> literal can be placed before the recursive call.
     </p>
+<div class="extract exercise" id="3.11">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.11.</i> Draw the proof tree for the query <tt>?-length_acc([a,b,c],N)</tt>.
      </p>
     </div>
+</div>
     <p class="sektie">
      Accumulators can be used in very many programs. Suppose we want to reverse the order of elements in a list. We could do this by recursively reversing the tail of the list, and putting the head at the end of the result:
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.2" query-text="?-naive_reverse([a,b,c],R).">
+
+<div class="extract swish" id="3.6.2">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.2" query-text="?-naive_reverse([a,b,c],R).">
 naive_reverse([],[]).
 naive_reverse([H|T],R):-naive_reverse(T,R1),append(R1,[H],R).
 
 append([],Y,Y).
 append([H|T],Y,[H|Z]):-append(T,Y,Z).
 </pre>
+</div>
+
     <p class="tekst">
      This predicate is called &lsquo;naive&rsquo; because a lot of unnecessary work is done by the <tt>append</tt> calls in the recursive clause.
     </p>
+<div class="extract exercise" id="3.12">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.12.</i> Draw the proof tree for the query <tt>?-naive_reverse([a,b,c],R)</tt>.
      </p>
     </div>
+</div>
     <p class="tekst">
      By using an accumulator, we can get rid of the <tt>append</tt> predicate, as follows:
     </p>
+
+<div class="extract swish" id="3.6.3">
     <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.3" query-text="?-reverse([a,b,c],R). ?-reverse([a,b,c],[],R). ?-reverse([b,c],[a],R). ?-reverse([c],[b,a],R).">
 reverse(X,Y):- reverse(X,[],Y).
 
 reverse([],Y,Y).
 reverse([H|T],Y0,Y):- reverse(T,[H|Y0],Y).
 </pre>
+</div>
+
     <p class="tekst">
      <tt>reverse(X,Y0,Y)</tt> is true if <tt>Y</tt> consists of the reversal of <tt>X</tt> followed by <tt>Y0</tt>. Initialising <tt>Y0</tt> to <tt>[]</tt> results in <tt>Y</tt> returning the reversal of <tt>X</tt>.
     </p>
@@ -3812,12 +4067,16 @@ reverse([H|T],Y0,Y):- reverse(T,[H|Y0],Y).
     <p class="sektie">
      As was remarked above, <tt>reverse(X,Y0,Y)</tt> is true if <tt>Y</tt> consists of the reversal of <tt>X</tt> followed by <tt>Y0</tt>. Another way to say the same thing is that the reversal of <tt>X</tt> is the difference between <tt>Y</tt> and <tt>Y0</tt>. That is, the reversal of <tt>X</tt> is represented by the difference list <tt>Y-Y0</tt>! We can make this explicit by a small syntactic change to <tt>reverse</tt>, resulting in the following program:
     </p>
+
+<div class="extract swish" id="3.6.4">
     <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.4" query-text="?-reverse_dl([a,b,c],R). ?-reverse([a,b,c],R-[]). ?-reverse([b,c],R-[a]). ?-reverse([c],R-[b,a]).">
 reverse_dl(X,Y):- reverse(X,Y-[]).
 
 reverse([],Y-Y).
 reverse([H|T],Y-Y0):- reverse(T,Y-[H|Y0]).
 </pre>
+</div>
+
     <p class="tekst">
      For instance, the third clause in this program says: if the reversal of <tt>T</tt> is represented by the difference list <tt>Y-[H|Y0]</tt>, then adding <tt>H</tt> to the head of <tt>T</tt> is the same as removing <tt>H</tt> from the minus list in the difference list.
     </p>
@@ -3842,7 +4101,7 @@ reverse([H|T],Y-Y0):- reverse(T,Y-[H|Y0]).
     <p class="tekst">
      Combining the plus list of this difference list with <tt>YMinus</tt>, we get exactly what we want.
     </p>
-    <div>
+    <div class="extract figure" id="3.13">
      <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
       <tbody>
        <tr>
@@ -3870,17 +4129,23 @@ reverse([H|T],Y-Y0):- reverse(T,Y-[H|Y0]).
     <p class="tekst">
      or even shorter
     </p>
-    <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.5" query-text="?-append_dl([a,b,c|X]-X,[d,e|Y]-Y,Z-Z0). ?-append_dl([a,b,c|X]-X,[d,e|Y]-Y,Z-[]).">
+
+<div class="extract swish" id="3.6.5">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.6.5" query-text="?-append_dl([a,b,c|X]-X,[d,e|Y]-Y,Z-Z0). ?-append_dl([a,b,c|X]-X,[d,e|Y]-Y,Z-[]).">
 append_dl(XPlus-YPlus,YPlus-YMinus,XPlus-YMinus).
 </pre>
+</div>
+
     <p class="tekst">
      Appending a simple list to another simple list of <i>n</i> elements requires <i>n</i> resolution steps; appending two difference lists requires no resolution at all, just one unification. Using difference lists is almost always a good idea if you have to do a lot of list processing.
     </p>
+<div class="extract exercise" id="3.13">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.13.</i> In the <tt>naive_reverse</tt> predicate, represent the reversed list by a difference list, use <tt>append_dl</tt> instead of <tt>append</tt>, and show that this results in the predicate <tt>reverse_dl</tt> by unfolding the definition of <tt>append_dl</tt>.
      </p>
     </div>
+</div>
     <h3 id="second_order_predicates">
      3.7&nbsp;&nbsp;&nbsp;Second-order predicates
     </h3>
@@ -3923,12 +4188,14 @@ append_dl(XPlus-YPlus,YPlus-YMinus,XPlus-YMinus).
     <p class="tekst">
      &lsquo; <tt>=..</tt> &rsquo; is declared as an infix operator in Prolog.
     </p>
+<div class="extract exercise" id="3.14">
     <div class="AutoStyle06">
      <p class="exercise AutoStyle07">
       <i>Exercise 3.14.</i> Rewrite the program for <tt>rel</tt>, using <tt>=..</tt>
      </p>
     </div>
-    <div>
+</div>
+    <div class="extract infobox" id="global_datastructure_in_prolog">
      <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
       <tbody>
        <tr>
@@ -3967,7 +4234,9 @@ append_dl(XPlus-YPlus,YPlus-YMinus,XPlus-YMinus).
     <p class="tekst">
      Suppose now you have the following facts in your program, and you want to collect all the children of a particular parent in a list:
     </p>
-    <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.7.1">
+
+<div class="extract swish" id="3.7.1">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.7.1">
 parent(john,peter).
 parent(john,paul).
 parent(john,mary).
@@ -3975,15 +4244,24 @@ parent(mick,davy).
 parent(mick,dee).
 parent(mick,dozy).
 </pre>
+</div>
+
     <p class="tekst">
      Of course, it is easy to generate all the children upon backtracking; the problem is to collect them in a global list. To this end, Prolog provides the second-order predicates <tt>findall</tt>, <tt>bagof</tt>, and <tt>setof</tt>. For instance, we could use the following program and query:
     </p>
-    <pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.3.7.2" inherit-id="swish.3.7.1">
+
+<div class="extract swish" id="3.7.2">
+<pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.3.7.2" inherit-id="swish.3.7.1">
 children(Parent,Children):- findall(C,parent(Parent,C),Children).
 </pre>
-    <pre class="swish query" id="query3.7.1">
+</div>
+
+<div class="extract swish" id="3.7.1_2">
+<pre class="swish query" id="query3.7.1">
 ?-children(john,Children).
 </pre>
+</div>
+
     <p class="query AutoStyle47">
      Children = [peter,paul,mary]
     </p>
@@ -4005,25 +4283,33 @@ children(Parent,Children):- findall(C,parent(Parent,C),Children).
     <p class="tekst">
      in which the variable <tt>P</tt> is unbound. This query has two possible interpretations: &lsquo;find a parent and a list of his children&rsquo;, and &lsquo;find the list of children <i>that have a parent</i> &rsquo;. In the first case, we get a possible value for <tt>P</tt> and a list of <tt>P</tt> &rsquo;s children, which means that there are two solutions:
     </p>
-    <pre class="swish query" id="query3.7.2" source-id="swish.3.7.1">
+
+<div class="extract swish" id="3.7.2_2">
+<pre class="swish query" id="query3.7.2" source-id="swish.3.7.1">
 ?-bagof(C,parent(P,C),L).
 </pre>
-    <p class="query">
+</div>
+
+<p class="query">
      C = _951<br>
      P = john<br>
      L = [peter,paul,mary];
 </p>
-    <p class="query AutoStyle48">
+<p class="query AutoStyle48">
      C = _951<br>
      P = mick<br>
      L = [davy,dee,dozy]
 </p>
-    <p class="tekst">
+<p class="tekst">
      In the second case, the goal to prove is &lsquo;there exists a <tt>P</tt> such that <tt>parent(P,C)</tt> is true&rsquo;, which means that the variable <tt>P</tt> is existentially quantified. This is signalled by prefixing the goal with <tt>P^</tt>:
-    </p>
-    <pre class="swish query" id="query3.7.3" source-id="swish.3.7.1">
+</p>
+
+<div class="extract swish" id="3.7.3">
+<pre class="swish query" id="query3.7.3" source-id="swish.3.7.1">
 ?-bagof(C,P^parent(P,C),L).
 </pre>
+</div>
+
     <p class="query AutoStyle45">
      C = _957<br>
      P = _958<br>
@@ -4032,19 +4318,25 @@ children(Parent,Children):- findall(C,parent(Parent,C),Children).
     <p class="tekst">
      The query
     </p>
-    <pre class="swish query" id="query3.7.4" source-id="swish.3.7.1">
+
+<div class="extract swish" id="3.7.4">
+<pre class="swish query" id="query3.7.4" source-id="swish.3.7.1">
 ?-findall(C,parent(P,C),L).</pre>
 </div>
+</div>
+
 <p class="tekst">
  (without existential quantification) can only generate this second solution.
 </p>
 <p class="sektie">
  Finally, Prolog provides the predicate <tt>setof</tt>, which acts just like <tt>bagof</tt>, except that the resulting list is sorted and does not contain duplicates. Thus, <tt>setof</tt> is slightly less efficient than <tt>bagof</tt>, and the latter is preferred in cases where the list of solutions is known not to contain duplicates.
 </p>
+<div class="extract exercise" id="3.15">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 3.15.</i> Write a program which sorts and removes duplicates from a list, using <tt>setof</tt>.
  </p>
+</div>
 </div>
 <h3 id="meta_programs">
  3.8&nbsp;&nbsp;&nbsp;Meta-programs
@@ -4055,6 +4347,8 @@ children(Parent,Children):- findall(C,parent(Parent,C),Children).
 <p class="sektie">
  For instance, suppose we have the following biological knowledge, expressed as propositional if-then rules:
 </p>
+
+<div class="extract swish" id="3.8.1">
 <pre class="source swish temp AutoStyle03" data-variant-id="group-2" id="swish.3.8.1" query-text="?-if tweety then C. ?-if A and lays_eggs then is_bird.">
 % if A and B then C means if(then(and(A,B),C))
 :-op(900,fx,if).
@@ -4066,6 +4360,8 @@ if has_gills and lays_eggs then is_fish.
 if tweety then has_feathers.
 if tweety then lays_eggs.
 </pre>
+</div>
+
 <p class="tekst">
  Suppose we want to prove that Tweety is a bird. That is, we want to show that the rule
 </p>
@@ -4075,6 +4371,8 @@ if tweety then lays_eggs.
 <p class="tekst">
  follows logically from the given rules This can be done by a meta-program, which manipulates the rules on the object-level:
 </p>
+
+<div class="extract swish" id="3.8.2">
 <pre class="source swish inherit AutoStyle03" data-variant-id="group-2" id="swish.3.8.2" inherit-id="swish.3.8.1" query-text="?-derive(if tweety then is_bird). ?-derive(if tweety then C). ?-derive(if A then is_bird).">
 % meta-program
 derive(if Assumptions then Goal):-
@@ -4090,6 +4388,8 @@ assumed(A,A).
 assumed(A,A and _As).
 assumed(A,_B and As):- assumed(A,As).
 </pre>
+</div>
+
 <p class="tekst">
  The three clauses for the <tt>derive</tt> predicate represent the three possible cases:
 </p>
@@ -4107,11 +4407,13 @@ assumed(A,_B and As):- assumed(A,As).
 <p class="tekst">
  As explained above, <tt>if</tt> is a predicate on the object-level, and a functor on the meta-level.
 </p>
+<div class="extract exercise" id="3.16">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 3.16.</i> Draw the SLD-tree for the query<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>?-derive(if tweety then is_bird)</tt>.
 </p>
+</div>
 </div>
 <p class="sektie">
  Since propositional definite clauses are similar to the above if-then rules, one could view this program as a propositional Prolog simulator. In fact, it is possible to push the resemblance closer, by adopting the Prolog-representation of clauses at the object-level. One minor complication is that the clause constructor &lsquo; <tt>:-</tt> &rsquo; is not directly available as an object-level predicate. Instead, Prolog provides the built-in predicate <tt>clause</tt>: a query <tt>?‑clause(H,B)</tt> succeeds if <tt>H:-B</tt> unifies with a clause in the internal Prolog database (if <tt>H</tt> unifies with a fact, <tt>B</tt> is unified with <tt>true</tt>). A further modification with respect to the above program is that Prolog queries do not have the form <tt>if Assumptions then Goal</tt>; instead, the <tt>Assumptions</tt> are added to the object-level program, from which a proof of <tt>Goal</tt> is attempted.
@@ -4191,7 +4493,7 @@ assumed(A,_B and As):- assumed(A,As).
  A=Head,<br>
  prove_var(Body)
 </p>
-<div>
+<div class="extract figure" id="3.14">
  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
   <tbody>
    <tr>
@@ -4212,6 +4514,7 @@ assumed(A,_B and As):- assumed(A,As).
 <p class="tekst">
  If we now change the explicit unification in the body of this clause to an implicit unification in the head, we actually obtain the propositional meta-interpreter again! That is, while this program is read <b>declaratively</b> as a meta-interpreter for propositional programs, it nevertheless operates <b>procedurally</b> as an interpreter of first-order clauses (fig. 3.14).
 </p>
+<div class="extract exercise" id="3.17">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 3.17.</i> Draw the SLD-tree for the query <tt>?-prove(is_bird(X))</tt>, given the following clauses:<br>
@@ -4220,6 +4523,7 @@ assumed(A,_B and As):- assumed(A,As).
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_feathers(tweety).<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lays_eggs(tweety).</tt>
 </p>
+</div>
 </div>
 <p class="tekst">
  Note that this meta-interpreter is able to handle only &lsquo;pure&rsquo; Prolog programs, without system predicates like cut or <tt>is</tt>, since there are no explicit clauses for such predicates.
@@ -4275,6 +4579,8 @@ assumed(A,_B and As):- assumed(A,As).
 <p class="tekst">
  We now extend <tt>prove_r/1</tt> with a second argument, which returns the proof tree as a list of pairs <tt>p(Resolvent,Clause)</tt>:
 </p>
+
+<div class="extract swish" id="3.8.2_2">
 <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.8.2" query-text="?-prove_p(student_of(S,T)). ?-prove_p(is_bird(X))." source-text-end="
 conj_append(true,Ys,Ys).
 conj_append(X,Ys,(X,Ys)):-X\=true,X\=(_One,_TheOther).
@@ -4312,6 +4618,8 @@ write_proof([p(A,B)|Proof]):-
 	write('.....|'),write('..................../'),nl,
 	write_proof(Proof).
 </pre>
+</div>
+
 <p class="tekst">
  For instance, given the following clauses:
 </p>
@@ -4460,6 +4768,8 @@ write_proof([p(A,B)|Proof]):-
 <p class="tekst">
  A second recursive clause is needed to cover the case that <tt>Head</tt> is larger than or equal to <tt>N</tt>, in which case it must be added to <tt>Bigs</tt>. The final program looks as follows:
 </p>
+
+<div class="extract swish" id="3.9.1">
 <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.9.1" query-text="?-partition([1,9,6,3,5],5,Littles,Bigs). ?-partition([11,7,5],5,Littles,Bigs).">
 % partition(L,N,Littles,Bigs) &lt;- Littles contains numbers 
 %                                in L smaller than N, 
@@ -4472,6 +4782,8 @@ partition([Head|Tail],N,Littles,[Head|Bigs]):-
 	Head &gt;= N,
 	partition(Tail,N,Littles,Bigs).
 </pre>
+</div>
+
 <p class="sektie">
  The approach taken here can be formulated as a general strategy for writing Prolog predicates. The steps to be performed according to this strategy are summarised below:
 </p>
@@ -4493,10 +4805,12 @@ partition([Head|Tail],N,Littles,[Head|Bigs]):-
 <p class="tekst">
  Notice that step (<i>iv</i>) comprises most of the work, while the other steps are meant to make this work as easy as possible.
 </p>
+<div class="extract exercise" id="3.18">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 3.18.</i> Implement a predicate <tt>permutation/2</tt>, such that <tt>permutation(L,P)</tt> is true if <tt>P</tt> contains the same elements as the list <tt>L</tt> but (possibly) in a different order, following these steps. (One auxiliary predicate is needed.)
  </p>
+</div>
 </div>
 <p class="sektie">
  As a second example, consider the problem of sorting a list&nbsp;of numbers. The declarative specification is as follows:
@@ -4529,6 +4843,8 @@ partition([Head|Tail],N,Littles,[Head|Bigs]):-
 <p class="tekst">
  It remains to decide what the relation is between <tt>?Sorted</tt>, <tt>Head</tt> and <tt>Sorted</tt>. Obviously, <tt>Head</tt> cannot be simply added to the front of <tt>Sorted</tt>, but has to be inserted in the proper place. We thus need an auxiliary predicate <tt>insert/3</tt>, to add <tt>Head</tt> at the proper position in <tt>Sorted</tt>. Note that tail  recursion&nbsp;is not applicable in this case, since we have to insert <tt>Head</tt> in an already sorted list. We thus arrive at the following definition:
 </p>
+
+<div class="extract swish" id="3.9.2">
 <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.9.2" query-text="?-mySort([3,6,2,8,1],Sorted). ?-mySort([6,5,4,3,2,1],Sorted)." source-text-end="
 insert(X,[],[X]).
 insert(X,[Head|Tail],[Head|Inserted]):-
@@ -4541,6 +4857,8 @@ mySort([Head|Tail],WholeSorted):-
 	mySort(Tail,Sorted),
 	insert(Head,Sorted,WholeSorted).
 </pre>
+</div>
+
 <p class="sektie">
  In order to implement <tt>insert/3</tt>, we follow the same steps. The second argument is the recursion argument, and the third is the output argument. This gives the following skeleton:
 </p>
@@ -4582,6 +4900,8 @@ mySort([Head|Tail],WholeSorted):-
 <p class="tekst">
  The complete program is given below:
 </p>
+
+<div class="extract swish" id="3.9.3">
 <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.3.9.3" query-text="?-insert(4,[2,3,5,7],Inserted). ?-insert(1,[2,3,5,7],Inserted). ?-insert(8,[2,3,5,7],Inserted).">
 insert(X,[],[X]).
 insert(X,[Head|Tail],[Head|Inserted]):-
@@ -4590,10 +4910,14 @@ insert(X,[Head|Tail],[Head|Inserted]):-
 insert(X,[Head|Tail],[X,Head|Tail]):-
 	X =&lt; Head.
 </pre>
+</div>
+
+<div class="extract exercise" id="3.19">
 <div class="AutoStyle06">
  <p class="exercise AutoStyle07">
   <i>Exercise 3.19.</i> Implement an alternative to this sorting method by using the <tt>partition/4</tt> predicate.
  </p>
+</div>
 </div>
 <h3 id="further_reading_3">
  Further reading
@@ -4866,6 +5190,8 @@ insert(X,[Head|Tail],[X,Head|Tail]):-
 <h3>
  Section 3.1
 </h3>
+
+<div class="extract swish" id="plist">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="plist" query-text="?-plist(L).">
 plist([]).
 plist([H|T]):-p(H),plist(T).
@@ -4873,9 +5199,13 @@ plist([H|T]):-p(H),plist(T).
 p(1).
 p(2).
 </pre>
+</div>
+
 <h3>
  Section 3.6
 </h3>
+
+<div class="extract swish" id="fib">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="fib" query-text="?-fib(10,F). ?-fib(20,F). ?-fib(30,F). ?-fibn(30,F). ?-fibn(50,F). ?-fibn(100,F).">
 % fib(N,F) &lt;- F is the N-th Fibonacci number
 % inefficient doubly-recursive version
@@ -4901,9 +5231,13 @@ fibn(N,Na,Nb,F):-
 fibn(N,F):-
 	fibn(N,1,1,F).
 </pre>
+</div>
+
 <h3>
  Section 3.7
 </h3>
+
+<div class="extract swish" id="biglist">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="biglist" query-text="?-biglist(1,15,L).">
 biglist(Low,High,L):-
     bagof(X,between(Low,High,X),L).
@@ -4914,9 +5248,13 @@ between(Low,High,Number):-
 	NewLow is Low+1,
 	between(NewLow,High,Number).
 </pre>
+</div>
+
 <h3>
  Section 3.9
 </h3>
+
+<div class="extract swish" id="powerset">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="powerset" query-text="?-powerset([a,b,c,d,e],PS). ?-powerset1([a,b,c,d,e],PS). ?-powerset2([a,b,c,d,e],PS). ?-biglist(1,20,S),powerset(S,PS). ?-biglist(1,20,S),powerset1(S,PS). ?-biglist(1,20,S),powerset2(S,PS). " source-text-end="
 %%% For testing
 biglist(Low,High,L):-bagof(X,between(Low,High,X),L).">
@@ -4944,6 +5282,8 @@ powerset2([H|T],Acc,PowerSet):-
 
 powerset2(Set,PowerSet):-powerset2(Set,[[]],PowerSet).
 </pre>
+</div>
+
 <script>
  $(function() { $(".swish").LPN({swish:"{{ site.swish }}"}); });
 </script>

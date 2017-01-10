@@ -1026,20 +1026,14 @@ part: Appendix
  <h3 id="a_brief_introduction_to_clausal_logic_c">
   C.1&nbsp;&nbsp;A brief introduction to clausal logic
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_1.2">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 1.2.</i> Construct the proof   trees for the query<br>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>?-nearby(W,charing_cross)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   There are six answers to this query:
  </p>
@@ -1114,23 +1108,19 @@ part: Appendix
  <p class="tekst">
   The proof trees for the first three answers are analogous to fig. 1.2. The proof tree for the fourth answer is given below (the two remaining proof trees are similar):
  </p>
+<div class="extract figure" id="a.1">
  <p class="figure">
   <img src="img/part_a/image002.svg" v:shapes="Picture_x0020_1" width="70%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+ </div>
+<div class="extract exercise" id="a_1.4">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 1.4.</i> A list is either the   empty list <tt>[]</tt>, or a non-empty list <tt>[First|Rest]</tt> where <tt>Rest</tt> is a list. Define a   relation <tt>list(L)</tt>, which checks whether <tt>L</tt> is a list. Adapt it such that it succeeds   only for lists of (<i>i</i>) even length   and (<i>ii</i>) odd length.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The first specification can immediately be translated to Prolog:
  </p>
@@ -1164,29 +1154,20 @@ part: Appendix
  <p class="p-el">
   oddlist([First|Rest]):-evenlist(Rest).
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_1.5">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 1.5.</i> Construct a query asking   for a route from Bond Street to Piccadilly Circus with at least two   intermediate stations.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="p-el">
   ?-reachable(bond_street,piccadilly_circus,[S1,S2|Rest]).
  </p>
  <h3 id="clausal_logic_and_resolution_theoretical_backgrounds_c">
   C.2&nbsp;&nbsp;Clausal logic and resolution: theoretical backgrounds
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.1">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.1.</i> Translate the following   statements into clauses, using the atoms <tt>person</tt>, <tt>sad</tt> and <tt>happy</tt>:<br>
@@ -1196,10 +1177,7 @@ part: Appendix
           (<i>d</i>)&nbsp;&nbsp;&nbsp;&nbsp;non-happy   persons are sad.
 </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The statements should be read as &lsquo; <b>if</b> &hellip; <b>then</b> &hellip;&rsquo; statements. Thus, the first statement reads &lsquo; <b>if</b> somebody is a person, <b>then</b> she is happy or sad&rsquo;:
  </p>
@@ -1227,10 +1205,7 @@ part: Appendix
  <p class="opsomming">
   (<i>d</i>)&nbsp;&nbsp;&nbsp;<tt>sad;happy:-person</tt>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.2">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.2.</i> Given the program<br>
@@ -1244,10 +1219,7 @@ determine which of the following clauses are logical consequences of this   prog
        (<i>d</i>)&nbsp;&nbsp;&nbsp;&nbsp;<tt>bachelor:-bachelor</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   (<i>a</i>) Any model of the first clause, which additionally makes <tt>man</tt> <b>true</b>, is also a model of the clause <tt>married;bachelor:-adult</tt>. Likewise, any model of this clause which additionally makes <tt>bachelor</tt> <b>false</b> is also a model of the clause <tt>married:-adult</tt>, which is therefore a logical consequence of the program.
  </p>
@@ -1260,10 +1232,7 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="sektie">
   (<i>d</i>) This clause is a <i>tautology</i>: it is <b>true</b> in any interpretation, and therefore a logical consequence of any program.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.3">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.3.</i> Write down the six   Herbrand interpretations that are not models of the program<br>
@@ -1271,10 +1240,7 @@ determine which of the following clauses are logical consequences of this   prog
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_wife:-man,married.</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The six interpretations are:
  </p>
@@ -1369,10 +1335,7 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="tekst">
   The first two interpretations satisfy the body of the first clause but violate its head; the remaining four interpretations satisfy the body of the second clause but violate its head.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.4">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.4.</i> Give a derivation of <tt>friendly</tt> from   the following program:<br>
@@ -1382,24 +1345,20 @@ determine which of the following clauses are logical consequences of this   prog
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teacher:-wise.</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This requires derivations of the clauses <tt>friendly:-teacher</tt> and <tt>teacher</tt>:
  </p>
+<div class="extract figure" id="a.2">
  <p class="figure">
   <img src="img/part_a/image004.svg" v:shapes="Picture_x0020_2" width="70%">
   </img>
  </p>
+</div>
  <p class="tekst">
   Notice that this derivation&nbsp;can not be recast in the form of a linear tree, where each resolvent is obtained from the previous resolvent and a given clause, as in Chapter 1. This is due to the fact that some clauses are indefinite&nbsp;(have more than one positive literal).
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.5">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.5.</i> Prove by refutation that <tt>friendly:-has_friends</tt> is a logical consequence of the following clauses:<br>
@@ -1407,31 +1366,24 @@ determine which of the following clauses are logical consequences of this   prog
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;friendly:-happy.</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The negation of <tt>friendly:-has_friends</tt> consists of two clauses, <tt>:‑friendly</tt> and <tt>has_friends</tt>. Together, these four clauses are inconsistent:
  </p>
+<div class="extract figure" id="a.3">
  <p class="figure">
   <img src="img/part_a/image006.svg" v:shapes="Picture_x0020_3" width="35%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+</div>
+<div class="extract exercise" id="a_2.6">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.6.</i> How many models does the   following clause have over the Herbrand universe { <tt>peter</tt>, <tt>maria</tt> }:<br>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>likes(peter,S):-student_of(S,peter)</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The set of ground instances of this clause is
  </p>
@@ -1495,20 +1447,14 @@ determine which of the following clauses are logical consequences of this   prog
   </span>
   =144 models. Notice that this is a rather large number of models for such a modest Herbrand universe, and such a simple clause! This illustrates that <i>less knowledge leads to more models</i>.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.7">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.7</i>. Write a clause   expressing that Peter teaches all the first-year courses, and apply   resolution to this clause and the clause<br>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>likes(peter,maria):-follows(maria,C),teaches(peter,C)</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This is expressed by the clause
  </p>
@@ -1524,10 +1470,7 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="tekst">
   In words: &lsquo;Peter likes Maria <b>if</b> Maria follows a first-year course&rsquo;.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.9">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.9</i>. Translate to clausal   logic:<br>
@@ -1536,10 +1479,7 @@ determine which of the following clauses are logical consequences of this   prog
          (<i>c</i>)&nbsp;&nbsp;&nbsp;&nbsp;every   two numbers have a maximum.
 </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   (<i>a</i>) This statement should be read as &lsquo; <b>if</b> <i>X</i> is a mouse, <b>then</b> there exists something which is <i>X</i> &rsquo;s tail&rsquo;. Giving <i>X</i> &rsquo;s tail the abstract name <tt>tail(X)</tt>, we obtain the following clause:
  </p>
@@ -1564,10 +1504,7 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="p-el">
   maximum(X,Y,max(X,Y)):-number(X),number(Y)
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.10">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.10</i>. Determine the Herbrand   universe of the following program:<br>
@@ -1575,10 +1512,7 @@ determine which of the following clauses are logical consequences of this   prog
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length([X|Y],s(L)):-length(Y,L).<br></tt> (Hint: recall that <tt>[]</tt> is a constant, and   that <tt>[X|Y]</tt> is an alternative notation for the complex term <tt>.(X,Y)</tt> with   binary functor &lsquo; <tt>.</tt> &rsquo;!)
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   In the intended interpretation, <tt>s</tt> is restricted to numbers and &lsquo; <tt>.</tt> &rsquo; is restricted to lists; however, variables are untyped in clausal logic, and the two sets of terms may be mixed.&nbsp;Thus, the Herbrand universe&nbsp;will contain terms denoting numbers, such as
  </p>
@@ -1640,10 +1574,7 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="tekst">
   and so on.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.11">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.11</i>. If possible, unify the   following pairs of terms:<br>
@@ -1652,10 +1583,7 @@ determine which of the following clauses are logical consequences of this   prog
        (<i>c</i>)&nbsp;&nbsp;&nbsp;&nbsp;<tt>larger(s(s(X)),X)</tt> and <tt>larger(V,s(V))</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   (<i>a</i>) <tt>plus(s(V),s(V),s(s(V)))</tt>.
  </p>
@@ -1665,19 +1593,13 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="answer">
   (<i>c</i>) Not unifiable.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.13">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.13.</i> Write a clause for the   statement &lsquo;somebody is innocent unless proven guilty&rsquo;, and give its intended   model (supposing that <tt>john</tt> is the only individual in the Herbrand universe).
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The clause is
  </p>
@@ -1687,10 +1609,7 @@ determine which of the following clauses are logical consequences of this   prog
  <p class="tekst">
   with intended model { <tt>innocent(john)</tt> }.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_2.14">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 2.14</i>. Translate to clausal   logic:<br>
@@ -1747,10 +1666,7 @@ determine which of the following clauses are logical consequences of this   prog
        <tt>maximum(X,Y,Z)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   (<i>a</i>) This statement translates almost immediately into a clause, replacing the existential quantifier by a Skolem functor&nbsp;<tt>tail</tt>:
  </p>
@@ -1779,10 +1695,7 @@ determine which of the following clauses are logical consequences of this   prog
  <h3 id="logic_programming_and_prolog_c">
   C.3&nbsp;&nbsp;Logic Programming and Prolog
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.2">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.2.</i> Draw the SLD-tree for   the following program:<br>
@@ -1791,17 +1704,16 @@ determine which of the following clauses are logical consequences of this   prog
 and the query <tt>?-list(L)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This is one of the simplest infinite SLD-trees:
  </p>
+<div class="extract figure" id="a.4">
  <p class="figure">
   <img src="img/part_a/image008.svg" v:shapes="Picture_x0020_4" width="35%">
   </img>
  </p>
+</div>
  <p class="tekst">
   The query succeeds infinitely often, producing the answers:
  </p>
@@ -1814,10 +1726,7 @@ and the query <tt>?-list(L)</tt>.
  <p class="tekst">
   and so on. Note that reversing the order of the clauses means that Prolog gives no answer at all.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.3">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.3.</i> Draw the SLD-tree for   the query <tt>?-likes(A,B)</tt>, given the following program:<br>
@@ -1836,20 +1745,19 @@ and the query <tt>?-list(L)</tt>.
        <tt>maria</tt> }, and indicate the   result in the SLD-tree. Can this be done without pruning away the third   answer?
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This program produces three answers:
  </p>
  <p class="answer">
   &nbsp;
  </p>
+<div class="extract figure" id="a.5">
  <p class="figure">
   <img src="img/part_a/image010.svg" v:shapes="Picture_x0020_5" width="35%">
   </img>
  </p>
+</div>
  <p class="tekst">
   &nbsp;
  </p>
@@ -1870,12 +1778,14 @@ and the query <tt>?-list(L)</tt>.
  <p class="sektie">
   &nbsp;
  </p>
+<div class="extract figure" id="a.6">
  <p class="figure">
   <img src="img/part_a/image012.svg" v:shapes="Picture_x0020_6" width="35%">
   </img>
   <img src="img/part_a/image014.svg" v:shapes="Picture_x0020_7" width="35%">
   </img>
  </p>
+</div>
  <p class="tekst">
   &nbsp;
  </p>
@@ -1890,10 +1800,7 @@ and the query <tt>?-list(L)</tt>.
   </span>
   <tt>maria</tt> } is pruned.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.5">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.5.</i> Given the program<br>
@@ -1903,36 +1810,28 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;married(fred).<br></tt> draw the SLD-trees for the queries <tt>?-bachelor(fred)</tt> and <tt>?‑bachelor(peter)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
+<div class="extract figure" id="a.7">
  <p class="figure">
   <img src="img/part_a/image016.svg" v:shapes="Picture_x0020_8" width="70%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+</div>
+<div class="extract exercise" id="a_3.6">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.6.</i> Change the first clause   to<br>
        <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bachelor(X):-not(married(X)),man(X)<br></tt> and show that the modified program produces the right   answer, by drawing the SLD-tree for the query <tt>?-bachelor(X)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
+<div class="extract figure" id="a.8">
  <p class="figure">
   <img src="img/part_a/image018.svg" v:shapes="Picture_x0020_9" width="70%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+</div>
+<div class="extract exercise" id="a_3.7">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle84">
        <i>Exercise 3.7.</i> Given the   program<br>
@@ -1943,18 +1842,14 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u.<br></tt> show that the query <tt>?-p</tt> succeeds, but that <tt>q</tt> and <tt>r</tt> are tried   twice.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
+<div class="extract figure" id="a.9">
  <p class="figure">
   <img src="img/part_a/image020.svg" v:shapes="Picture_x0020_10" width="35%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+</div>
+<div class="extract exercise" id="a_3.8">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.8.</i> Given the equivalent   program with if-then-else<br>
@@ -1964,18 +1859,14 @@ and the query <tt>?-list(L)</tt>.
         show</tt> that <tt>q</tt> and <tt>r</tt> are now tried only   once.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
+<div class="extract figure" id="a.10">
  <p class="figure">
   <img src="img/part_a/image022.svg" v:shapes="Picture_x0020_11" width="35%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+</div>
+<div class="extract exercise" id="a_3.9">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.9.</i> Write a predicate <tt>zero(A,B,C,X)</tt> which, given the coefficients <i>a</i>, <i>b</i> and <i>c</i>, calculates both values of <i>x</i> for which <i>ax</i>
@@ -1985,10 +1876,7 @@ and the query <tt>?-list(L)</tt>.
        + <i>bx</i> + <i>c</i> =0.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="pi-eerst">
   zero(A,B,C,X):-<br>
   X is (-B + sqrt(B*B - 4*A*C)) / 2*A.
@@ -1997,10 +1885,7 @@ and the query <tt>?-list(L)</tt>.
   zero(A,B,C,X):-<br>
   X is (-B - sqrt(B*B - 4*A*C)) / 2*A.
 </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.10">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.10.</i> Given the program<br>
@@ -2008,21 +1893,17 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length([H|T],N):-length(T,M),N   is M+1.<br></tt> draw the proof tree for the query <tt>?-length([a,b,c],N)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
+<div class="extract figure" id="a.11">
  <p class="figure">
   <img src="img/part_a/image024.svg" v:shapes="Picture_x0020_12" width="70%">
   </img>
  </p>
+</div>
  <p class="tekst">
   Notice that the maximum number of literals in the resolvent is proportional to the depth of the recursion, which is typical for non-tail recursive predicates. When proofs are long, such programs will be quite inefficient.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.11">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.11.</i> Given the   program<br>
@@ -2031,33 +1912,26 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length_acc([H|T],N0,N):-N1   is N0+1,length_acc(T,N1,N).<br></tt> draw the proof tree for the query <tt>?-length_acc([a,b,c],N)</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   In this program, the <tt>is</tt> literals are solved immediately after they are added to the resolvent:
  </p>
+<div class="extract figure" id="a.12">
  <p class="figure">
   <img src="img/part_a/image026.svg" v:shapes="Picture_x0020_13" width="70%">
   </img>
  </p>
+</div>
  <p class="tekst">
   Here, the length of the resolvent is independent of the level of recursion, which makes tail-recursive loops very similar to iterative loops with regard to memory requirements.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.13">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.13.</i> In the <tt>naive_reverse</tt> predicate, represent the reversed list by a difference list, use <tt>append_dl</tt> instead of <tt>append</tt>, and show that this results in the predicate <tt>reverse_dl</tt> by   unfolding the definition of <tt>append_dl</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The reversed lists are represented by difference lists as follows:
  </p>
@@ -2091,19 +1965,13 @@ and the query <tt>?-list(L)</tt>.
  <p class="sektie">
   This illustrates that the translation from simple lists to difference lists can (to a large extent) be automated.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.14">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.14.</i> Rewrite the program for <tt>rel</tt>, using <tt>=..</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="pi-eerst">
   rel(R,[],[]).
  </p>
@@ -2116,19 +1984,13 @@ and the query <tt>?-list(L)</tt>.
  <p class="tekst">
   Note that, in contrast with the original program, this program conforms to the syntax of clausal logic: there are no variables in functor or literal positions.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.15">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.15.</i> Write a program which   sorts and removes duplicates from a list, using <tt>setof</tt>.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The basic idea is to use <tt>element/2</tt> to generate the elements of the list on backtracking, and to collect and sort them by means of <tt>setof/2</tt>.
  </p>
@@ -2143,19 +2005,13 @@ and the query <tt>?-list(L)</tt>.
   element(X,[Y|Ys]):-<br>
   element(X,Ys).
 </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.18">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.18.</i> Implement a predicate <tt>permutation/2</tt>,   such that <tt>permutation(L,P)</tt> is true if <tt>P</tt> contains the same elements as the list <tt>L</tt> but (possibly) in a   different order, following these steps. (One auxiliary predicate is needed.)
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   As usual, we start with the declarative specification:
  </p>
@@ -2208,19 +2064,13 @@ and the query <tt>?-list(L)</tt>.
   insert_somewhere(X,[Head|Tail],[Head|Inserted]):-<br>
   insert_somewhere(X,Tail,Inserted).
 </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_3.19">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 3.19.</i> Implement an   alternative sorting method by using the <tt>partition/4</tt> predicate.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This predicate implements the famous <i>quicksort</i>&nbsp;algorithm, which is one of the most efficient sorting algorithms:
  </p>
@@ -2246,10 +2096,7 @@ and the query <tt>?-list(L)</tt>.
  <h3 id="searching_graphs_c">
   C.5&nbsp;&nbsp;Searching graphs
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_5.3">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 5.3.</i> Consider   the following program:<br>
@@ -2259,17 +2106,11 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brother(X,Y):-brother(X,Z),brother(Z,Y).<br></tt> Compare and explain the behaviour of <tt>prove_bf/1</tt> and   Prolog on the query <tt>?‑brother(peter,adrian)</tt>. Can you re-order the clauses, such that Prolog succeeds?
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   Prolog will be trapped in an infinite loop, regardless of the order of the clauses. This is so because a refutation of <tt>?‑brother(peter,adrian)</tt> requires both recursive clauses, but whichever is found first will also be tried before the second one in all the other refutation steps. In contrast, <tt>prove_bf/1</tt> will be able to construct a refutation.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_5.5">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 5.5</i>. Give the models of the   program<br>
@@ -2279,10 +2120,7 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adult(paul).</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This program has four models (bachelors may have a wife, and married man may be bachelors):
  </p>
@@ -2362,38 +2200,26 @@ and the query <tt>?-list(L)</tt>.
  <p class="tekst">
   The second and fourth models are non-minimal.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_5.6">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 5.6</i>. Are all minimal models   always constructed by <tt>model/1</tt>?
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="sektie">
   Yes. The set of all Herbrand interpretations can be seen as a search space, in which the models are to be found. This search space is ordered by the subset relation. <tt>model/1</tt> starts from the empty interpretation, and repeatedly adds ground atoms until a model is constructed. Since one atom is added at a time, the procedure will never jump over a model. Since, on backtracking, all possible ways to satisfy a violated clause are considered, <tt>model/1</tt> performs a breadth-first search (which is complete).
  </p>
  <h3 id="informed_search_c">
   C.6&nbsp;&nbsp;Informed search
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_6.1">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 6.1.</i> Suppose the call <tt>children(Current,Children)</tt> results in an ordered list of children. Write a predicate <tt>merge/3</tt> which   directly merges this list with the current agenda.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   This predicate is a little bit special because it requires <b>two</b> recursion arguments. Therefore, there are two recursive clauses and two base cases. Note that in the second clause the first argument is required to be a non-empty list. This is done to prevent the query <tt>?‑merge([],[],L)</tt> from succeeding twice.
  </p>
@@ -2417,29 +2243,20 @@ and the query <tt>?-list(L)</tt>.
   ChildValue &gt;= NodeValue,% Child not better than Node<br>
   merge([Child|Children],Agenda,NewAgenda).
 </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_6.4">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 6.4.</i> Find a position for   which the third heuristic is too pessimistic.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   It is too pessimistic for the starting position (minimal cost 15, estimate 18).
  </p>
  <h3 id="reasoning_with_natural_language_c">
   C.7&nbsp;&nbsp;Reasoning with natural language
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_7.1">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 7.1</i>. Redraw the parse tree of   fig. 7.1 in the manner of an SLD proof tree, where &lsquo;resolvents&rsquo; are partially   parsed sentences such as<br>
@@ -2447,41 +2264,33 @@ and the query <tt>?-list(L)</tt>.
        and &lsquo;clauses&rsquo; are grammar rules.
 </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
+<div class="extract figure" id="a.13">
  <p class="figure">
   <img src="img/part_a/image028.svg" v:shapes="Picture_x0020_14" width="70%">
   </img>
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+</div>
+<div class="extract exercise" id="a_7.2">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 7.2</i>. Draw the search space   generated by the grammar in section 7.1 for a top-down parse, if grammar rules   are applied to sentences from left to right. Discuss the similarities and   differences with SLD-trees.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The search space is partly drawn below; the lower part, which contains all possible verb phrases, re-appears at three other nodes as indicated.
  </p>
+<div class="extract figure" id="a.14">
  <p class="figure">
   <img src="img/part_a/image030.svg" v:shapes="Picture_x0020_15" width="70%">
   </img>
  </p>
+</div>
  <p class="tekst">
   This search space is basically a propositional SLD-tree, with fully parsed sentences corresponding to success branches (failure branches occur only when for some syntactic category no grammar rules are specified).
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_7.4">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 7.4</i>. Extend the following grammar rules with arguments expressing   their interpretation:<br>
@@ -2489,10 +2298,7 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transitive_verb&nbsp;--&gt; [likes].</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The transitive verb defines a binary mapping <tt>Y=&gt;X=&gt;L</tt>, which is applied to the meaning of the proper noun:
  </p>
@@ -2503,10 +2309,7 @@ and the query <tt>?-list(L)</tt>.
  <h3 id="reasoning_with_incomplete_information_c">
   C.8&nbsp;&nbsp;Reasoning with incomplete information
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_8.1">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 8.1</i>. Give the models of the   program<br>
@@ -2516,10 +2319,7 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abnormal(X):-ostrich(X).<br></tt> (interpreting the general clause as the corresponding   indefinite clause). Which one is the intended model (see section 2.4)?
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The models are
  </p>
@@ -2563,10 +2363,7 @@ and the query <tt>?-list(L)</tt>.
  <p class="tekst">
   i.e. Tweety, being an ostrich, is an abnormal bird which may or may not fly. The intended model is the first one, since we have no reason to assume that ostriches fly.
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_8.2">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 8.2</i>. Give the models of the   program<br>
@@ -2574,10 +2371,7 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;student_of(paul,peter).</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The Herbrand base of this program is
  </p>
@@ -2681,10 +2475,7 @@ and the query <tt>?-list(L)</tt>.
   </span>
   =48 models. (See also Exercise 2.6.)
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_8.3">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 8.3</i>. Apply Predicate   Completion to the program<br>
@@ -2692,10 +2483,7 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teacher(peter):-wise(peter).</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="answer">
   The completion of this program is
  </p>
@@ -2729,10 +2517,7 @@ and the query <tt>?-list(L)</tt>.
  <h3 id="inductive_reasoning_c">
   C.9&nbsp;&nbsp;Inductive reasoning
  </h3>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="a_9.3">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle82">
        <i>Exercise 9.3.</i> Determine the
@@ -2744,10 +2529,7 @@ and the query <tt>?-list(L)</tt>.
         &nbsp;&nbsp;&nbsp;reverse([a],[],[a]):-reverse([],[a],[a])</tt>
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
- </div>
+</div>
  <p class="p-el">
   reverse([H|T],A,[RH|RT]):-reverse(T,[H|A],[RH|RT])
  </p>

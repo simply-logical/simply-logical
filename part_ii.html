@@ -21,7 +21,7 @@ part: Part II
  <p class="sektie">
   Other examples of structured knowledge, encountered in Part I, include Prolog terms, proof trees, and SLD-trees. Among these, SLD-trees constitute a special case, since they are not given <i>a priori</i> as part of the knowledge describing a certain Universe of Discourse, but are instead <i>derived</i> from problem specifications of the form &lsquo;given program <i>P</i>, find all answers to query <i>Q</i> &rsquo;. By means of SLD-trees, such problems are translated to problems of the form &lsquo;given SLD-tree <i>T</i>, find all paths from the root of the tree to the empty clause&rsquo;. Problems of the latter kind are called <i>search problems</i>, and the graph being searched is called a <i>search space.</i> Most problems in intelligent reasoning are search problems of one kind or the other.
  </p>
- <div>
+ <div class="extract figure" id="ii.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -70,7 +70,7 @@ part: Part II
  <p class="tekst">
   For instance, when searching for an answer to a query by means of SLD-resolution, the nodes in the search space are resolvents, the arcs are resolution steps by means of a program clause, the starting node is the query, and the goal node is the empty clause. As another example, we consider the puzzle known as <i>The Towers of Hanoi</i>. This puzzle consists of three pegs and <i>n</i> disks of decreasing size. Initially, all the disks are on the left peg, such that no disk is placed on a smaller one. This rule is to be obeyed throughout the game. The goal is to move all the disks to the right peg by moving one disk at a time. This problem is easily reformulated as a search problem, where nodes are allowed positions, and arcs are moves of the upper disk on one peg to another. Starting node and goal node are as in fig. II.1.
  </p>
- <div>
+ <div class="extract infobox" id="an_analytic_solution_to_the_towers_of_hanoi">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -225,7 +225,7 @@ part: Part II
  <p class="sektie">
   A <i>tree</i>&nbsp;is a special kind of graph which contains a <i>root</i>&nbsp;such that there is a <b>unique</b> path from the root to any other node. From this it follows that for any two nodes in a tree, either there is no path between them, or there is exactly one. Thus, trees are necessarily non-cyclic or <i>acyclic</i>. A <i>leaf</i>&nbsp;is a node without children. Often, leaves are goal nodes in search spaces like SLD-trees. Strictly speaking, an SLD-tree&nbsp;is not a tree, because there might be several ways to construct the same resolvent. By convention, however, resolvents constructed in a different way are considered to be distinct nodes in the SLD-tree. Usually, trees are drawn upside down, with the root node at the top; arcs are implicitly understood to be directed from top to bottom. Note that, if <i>n</i> is the root of a tree, each of its children is the root of a <i>subtree</i>&nbsp;(fig. 4.1).
  </p>
- <div>
+ <div class="extract figure" id="4.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -254,15 +254,18 @@ part: Part II
  <p class="tekst">
   can be viewed as a tree, with the functor <tt>route</tt> acting as the root of (sub)trees, and <tt>tottenham_court_road</tt>, <tt>leicester_square</tt>, and <tt>noroute</tt> as leaves (fig. 1.6). Conversely, trees can be represented by Prolog terms.
  </p>
+<div class="extract exercise" id="4.1">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 4.1</i>. Draw the tree represented by the term <tt>1(2(4),3(5,6))</tt>.
   </p>
  </div>
+</div>
  <p class="sektie">
   A tree is traversed by first visiting its root, and then recursively traversing all of its subtrees. A list of subtrees is obtained by decomposing the complex term&nbsp;by means of the <tt>=..</tt>&nbsp;predicate (see section 3.7):
  </p>
- <pre class="source swish temp AutoStyle03" data-variant-id="group-4" id="swish.4.1.1" query-text="?- term_tree(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Root,Subtree). ?- term_tree(T,n1,[n2(n3),n4]).">
+<div class="extract swish" id="4.1.1">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-4" id="swish.4.1.1" query-text="?- term_tree(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Root,Subtree). ?- term_tree(T,n1,[n2(n3),n4]).">
 % term_tree(T,R,S) &lt;- term T represents a tree with root R and list of subtrees S
 term_tree(Tree,Root,Subtrees):-
   Tree=..[Root|Subtrees].
@@ -276,7 +279,8 @@ term_subtree(Tree,Subtree):-
   term_tree(Tree,_R,S),
   member(Subtree,S).
 </pre>
- <div>
+</div>
+ <div class="extract infobox" id="data_abstraction">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -312,7 +316,8 @@ term_subtree(Tree,Subtree):-
  <p class="tekst">
   By means of these simple predicates, we can write a program for finding arcs and paths in a tree. Paths are represented as lists of nodes, and an arc&nbsp;is simply a path&nbsp;consisting of two nodes:
  </p>
- <pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.1.2" inherit-id="swish.4.1.1">
+<div class="extract swish" id="4.1.2">
+<pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.1.2" inherit-id="swish.4.1.1">
 % term_arc(T,A) &lt;- T is a tree, and A is an arc in T
 term_arc(Tree,[Root,SR]):- % Arc from Root to Subtree
   term_root(Tree,Root),
@@ -331,13 +336,16 @@ term_path(Tree,[Node1,Node2|Nodes]):- % several arcs
   term_arc(Tree,[Node1,Node2]),
   term_path(Tree,[Node2|Nodes]).
 </pre>
+</div>
+<div class="extract exercise" id="4.2">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 4.2</i>. Give a term <tt>Tree</tt>, such that it contains the tree of exercise 4.1, and such that <tt>Path=[1,2,7,8]</tt> is an answer to the query<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>?-term_path(Tree,Path)</tt>.
   </p>
  </div>
- <div>
+</div>
+ <div class="extract figure" id="4.2">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -358,7 +366,9 @@ term_path(Tree,[Node1,Node2|Nodes]):- % several arcs
  <p class="sektie">
   Consider the tree in fig. 4.2. The following query lists all the paths in this tree:
  </p>
- <pre class="query" id="query.4.1.1"><span class="swish query">?-term_path(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Path).</span></pre>
+<div class="extract swish" id="4.1.1_2">
+<pre class="query" id="query.4.1.1"><span class="swish query">?-term_path(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10))),Path).</span></pre>
+</div>
  <p class="query AutoStyle45">
   Path = [1,2];<br>
   Path = [1,3];<br>
@@ -383,18 +393,12 @@ term_path(Tree,[Node1,Node2|Nodes]):- % several arcs
  <p class="MsoNormal">
   &nbsp;
  </p>
- <div>
-  <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
-   <tr>
-    <td align="left" class="AutoStyle04" valign="top">
+<div class="extract exercise" id="4.3">
      <div class="AutoStyle06">
       <p class="exercise AutoStyle60">
        <i>Exercise 4.3</i>. Explain   the order in which these paths are found.
       </p>
      </div>
-    </td>
-   </tr>
-  </table>
  </div>
  <p class="sektie">
   It would be convenient to have a program for printing Prolog terms which represent trees in a tree-like way. The nicest way to do this is to print from the root down; however, this requires a rather elaborate program
@@ -411,7 +415,8 @@ term_path(Tree,[Node1,Node2|Nodes]):- % several arcs
   </span>
   . A reasonable alternative is to print the tree rotated at 90 degrees, from the root to the right. A program to do this is given below.
  </p>
- <pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.1.3" inherit-id="swish.4.1.1" query-text="?- term_write(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10)))).">
+<div class="extract swish" id="4.1.3">
+<pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.1.3" inherit-id="swish.4.1.1" query-text="?- term_write(n1(n2(n4,n5(n7),n6),n3(n8,n9(n10)))).">
 term_write(Tree):-
   term_write(0,Tree),nl.
 
@@ -445,6 +450,7 @@ write_line(N):-
   write('-'),
   write_line(N1).
 </pre>
+</div>
  <p class="tekst">
   <tt>name/2</tt>
   <span class="CustomFootnote">
@@ -490,7 +496,8 @@ write_line(N):-
  <p class="tekst">
   The predicate for finding a path in a graph now needs a few minor adjustments: the graph is not passed on as an argument, and <tt>arc/2</tt> is used rather than <tt>term_arc/2</tt>:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.2.1" query-text="?- path([n1,Node2])." source-text-start="arc(n1,n2).
+<div class="extract swish" id="4.2.1">
+<pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.2.1" query-text="?- path([n1,Node2])." source-text-start="arc(n1,n2).
 arc(n1,n3).
 arc(n2,n4).
 arc(n2,n5).
@@ -507,15 +514,19 @@ path([Node1,Node2|Nodes]):-
   arc(Node1,Node2),
   path([Node2|Nodes]).
 </pre>
+</div>
+<div class="extract exercise" id="4.4">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 4.4</i>. Draw the SLD-tree for the query <tt>?-path([1|Path])</tt>.
   </p>
  </div>
+</div>
  <p class="sektie">
   <tt>path/2</tt> will generate paths between any two connected nodes. When searching a graph such as an SLD-tree, we are normally only interested in paths which start at a given node (for instance, the root of a tree), and end in a leaf. The following program will do the job. Note that this program differs from the previous one in that it allows for paths consisting of one node only.
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(n1,Path). ?- path_leaf(Node,[N1,N2,N3])." source-text-start="arc(n1,n2).
+<div class="extract swish" id="4.2.2">
+<pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.2.2" query-text="?- path_leaf(n1,Path). ?- path_leaf(Node,[N1,N2,N3])." source-text-start="arc(n1,n2).
 arc(n1,n3).
 arc(n2,n4).
 arc(n2,n5).
@@ -537,6 +548,7 @@ path_leaf(Node1,[Node1|Nodes]):-
 leaf(Leaf):-
   not(arc(Leaf,_SomeNode)).
 </pre>
+</div>
  <p class="tekst">
   The query <tt>?-path_leaf(1,Path)</tt> will lead to the following answers:
  </p>
@@ -548,11 +560,13 @@ leaf(Leaf):-
   Path = [1,3,9,10];<br>
   No more solutions
 </p>
+<div class="extract exercise" id="4.5">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 4.5</i>. Draw the SLD-tree for this query.
   </p>
  </div>
+</div>
  <p class="sektie">
   Notice the order in which the paths to the leafs are found &mdash; the longer path <tt>[1,2,5,7]</tt> is found before the shorter path <tt>[1,2,6]</tt>. This kind of search is called <i>depth-first search</i>, because the deepest unvisited nodes are preferred. In contrast, <i>breadth-first search</i>&nbsp;tries all nodes on a given level before going one level deeper; consequently, shortest paths are found first. Of course, the order in which nodes are visited can only be understood procedurally &mdash; logically speaking, there is nothing in the program which prescribes such an order. It is only because Prolog itself searches the SLD-tree in a depth-first fashion, that programs like the above perform depth-first search.
  </p>
@@ -563,11 +577,13 @@ leaf(Leaf):-
   br(X,Y):-br(X,Z),br(Z,Y).<br>
   br(paul,peter).
 </p>
+<div class="extract exercise" id="4.6">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 4.6</i>. Sketch the SLD-tree for the query <tt>?-br(paul,B)</tt>.
   </p>
  </div>
+</div>
  <p class="tekst">
   SLD-trees are graphs, with resolvents as nodes. Representing a resolvent by the list of its literals, we would need an infinite number of facts to represent SLD-trees, for instance:
  </p>
@@ -589,7 +605,8 @@ leaf(Leaf):-
  <p class="sektie">
   Now, <tt>arc(A,B)</tt> is true if <tt>A</tt> and <tt>B</tt> are lists of negative literals interpreted as resolvents, and one resolution step applied to <tt>A</tt> and a clause for <tt>br/2</tt> yields <tt>B</tt>. We can write this down by means of the predicate <tt>resolve/3</tt>, which performs one resolution step, and the two clauses for <tt>br/2</tt> in the appropriate representation. This gives the following program:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.2.3" query-text="?- arc([br(paul,B)],N).">
+<div class="extract swish" id="4.2.3">
+<pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.2.3" query-text="?- arc([br(paul,B)],N).">
 arc(A,B):- resolve(A,(br(X,Y):-[br(X,Z),br(Z,Y)]),B).
 arc(A,B):- resolve(A,(br(paul,peter):-[]),B).
 
@@ -602,6 +619,7 @@ resolve([H1|T],(H2:-Body),B):-
 resolve([H|T],Clause,[H|B]):-
   resolve(T,Clause,B).  % try next literal
 </pre>
+</div>
  <p class="MsoNormal">
   The query <tt>?-arc([br(paul,B)],N)</tt> results in the answers
  </p>
@@ -625,7 +643,7 @@ resolve([H|T],Clause,[H|B]):-
  <p class="sektie1">
   In the foregoing sections, we studied two kinds of graphs: trees represented by Prolog terms, and graphs generated by predicate definitions. In both cases, the main inference step is to search for a path satisfying certain conditions. In this section, we study a type of structured knowledge called an <i>inheritance hierarchy</i>, which differs from the previous cases in that it requires a more elaborate kind of reasoning. Basically, this is because a node in such a hierarchy is a more complex entity with various kinds of properties. Lower nodes in the hierarchy <i>inherit</i> properties from ancestor nodes, unless they are assigned a property of their own. Thus, reasoning about inheritance hierarchies not only requires searching for a path, but also collecting properties found along a path.
  </p>
- <div>
+ <div class="extract figure" id="4.3">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -648,7 +666,8 @@ resolve([H|T],Clause,[H|B]):-
  <p class="sektie">
   If we want to represent such hierarchies in Prolog, we have to choose a representation for instances and classes. By far the most natural choice is to represent an instance by a constant, and a class by a unary predicate. A class&ndash;superclass relation is then expressed by a clause, and an instance&ndash;class relation is expressed by a ground fact:
  </p>
- <pre class="source swish temp AutoStyle03" data-variant-id="group-4" id="swish.4.3.1" query-text="?- instrument(X). ?- plucked(keyboard).">
+<div class="extract swish" id="4.3.1">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-4" id="swish.4.3.1" query-text="?- instrument(X). ?- plucked(keyboard).">
 % Classes
 instrument(X):-wind(X).
 instrument(X):-string(X).
@@ -681,6 +700,7 @@ tuned(kettledrum).
 untuned(cymbal).
 untuned(snaredrum).
 </pre>
+</div>
  <p class="tekst">
   With these clauses, it is possible to ask questions about instances and (super)classes. For example, we can find out what instruments there are by means of the query
  </p>
@@ -705,7 +725,8 @@ untuned(snaredrum).
  <p class="sektie">
   In our musical Universe of Discourse, we consider three attributes: the <tt>function</tt> of an instrument (all instruments have a musical function), the <tt>material</tt> of an instrument (wood or metal), and the way the instrument produces sound, expressed by the attribute <tt>action</tt>:
  </p>
- <pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.3.2" inherit-id="swish.4.3.1" query-text="?- material(flute,M).">
+<div class="extract swish" id="4.3.2">
+<pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.3.2" inherit-id="swish.4.3.1" query-text="?- material(flute,M).">
 function(X,musical):-instrument(X).
 
 % Materials
@@ -726,6 +747,7 @@ action(X,plucked):-plucked(X).
 action(X,bowed):-bowed(X).
 action(X,hammered):-percussion(X).
 </pre>
+</div>
  <p class="tekst">
   For instance, all brass instruments have lip-reeds, while some woodwinds have a double reed (oboes, for example) or a single reed (saxophones).
  </p>
@@ -754,7 +776,8 @@ action(X,hammered):-percussion(X).
  <p class="tekst">
   which is not allowed in Prolog if <tt>Attr</tt> is not instantiated. We can get around this by maintaining a list of all attributes, and constructing the appropriate goal for each attribute by means of the predicate <tt>get_value/3</tt>:
  </p>
- <pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.3.3" inherit-id="swish.4.3.1 swish.4.3.2" query-text="?- properties(saxophone,P).">
+<div class="extract swish" id="4.3.3">
+<pre class="source swish inherit AutoStyle03" data-variant-id="group-4" id="swish.4.3.3" inherit-id="swish.4.3.1 swish.4.3.2" query-text="?- properties(saxophone,P).">
 properties(Inst,Props):-
   attributes(Attrs),
   properties(Attrs,Inst,Props).
@@ -769,6 +792,7 @@ get_value(A,B,C):-
   Goal =.. [A,B,C],
   call(Goal).
 </pre>
+</div>
  <p class="tekst">
   For instance, the query <tt>?-properties(saxophone,P)</tt> yields the answer
  </p>
@@ -802,7 +826,7 @@ get_value(A,B,C):-
  <p class="p-laatst">
   isa(tuned,percussion).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isa(untuned,percussion).
  </p>
- <div>
+ <div class="extract infobox" id="instance-class_vs_class-superclass">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -945,7 +969,8 @@ get_value(A,B,C):-
  <p class="sektie">
   The predicate <tt>override/3</tt> checks for every general property whether a more specific property has already been found. If so, we say that the specific property <i>overrides</i> the general property:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.3.4" query-text="?- properties_sn(saxophone,P)." source-text-start="% Classes
+<div class="extract swish" id="4.3.4">
+<pre class="source swish AutoStyle03" data-variant-id="group-4" id="swish.4.3.4" query-text="?- properties_sn(saxophone,P)." source-text-start="% Classes
 isa(instrument,top).
 isa(wind,instrument).
 isa(string,instrument).
@@ -1022,6 +1047,7 @@ override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
   not(member(Attr=_V,Specific)),   % no overriding
   override(Specific,General,Props).
 </pre>
+</div>
  <p class="tekst">
   Again, the query <tt>?-properties_sn(saxophone,P)</tt> yields the answer
  </p>
@@ -1031,11 +1057,13 @@ override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
  <p class="tekst">
   What we gained with this representation, however, is a declarative specification of the inheritance strategy, which is therefore also amenable to change. For instance, if the inheritance hierarchy is not a tree, a class could be a subclass of two or more other classes. In this case, different values for the same attribute could be inherited along different paths; this is called <i>multiple inheritance</i>. Such conflicts need to be resolved (or at least signalled) by the inheritance strategy.
  </p>
+<div class="extract exercise" id="4.7">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 4.7</i>. Implement a multiple inheritance strategy.
   </p>
  </div>
+</div>
  <p class="sektie1">
   A slightly different but related representation is obtained if we group all information about one class or instance together in a socalled <i>frame</i>. A frame representation is obtained from the semantic network representation by adding a list of properties to each arc in the network. Below, class frames are defined by the predicate <tt>class/3</tt>, and instance frames are defined by the predicate <tt>instance/3</tt>:
  </p>
@@ -1104,7 +1132,8 @@ override(Specific,[Attr=Val|General],[Attr=Val|Props]):-
  <p class="tekst">
   Inheritance is as easily implemented as in the semantic network representation:
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P). ?- properties_fr(I,[function=musical,material=metal,A])." source-text-end="
+<div class="extract swish" id="4.3.5">
+<pre class="source swish AutoStyle03" data-variant-id="group-2" id="swish.4.3.5" query-text="?- properties_fr(saxophone,P). ?- properties_fr(I,[function=musical,material=metal,A])." source-text-end="
 override(Props,[],Props).
 override(Specific,[Attr=_Val|General],Props):-
   member(Attr=_V,Specific),       % overriding
@@ -1156,6 +1185,7 @@ inherit_fr(Class,SpecificProps,AllProps):-
   override(SpecificProps,GeneralProps,Props),
   inherit_fr(SuperClass,Props,AllProps).        % inherit rest
 </pre>
+</div>
  <p class="tekst">
   Historically, semantic network and frame-based representations were proposed in quite different contexts. We see that their representation in Prolog is very similar.
  </p>
@@ -1273,7 +1303,7 @@ inherit_fr(Class,SpecificProps,AllProps):-
  <p class="sektie">
   First of all, to make sure that you don&rsquo;t miss any room, you have to visit them in some systematic way. You don&rsquo;t have a global map of the building, so you decide to never leave a room through the door through which you entered. Thinking about it, you recognise that this procedure won&rsquo;t fully work, because a room might have just one door: the one through which you entered. Assuming that there are still rooms not yet visited, you <b>have</b> to leave such a room through the same door through which you entered, and find a room you&rsquo;ve visited before, with a door not yet taken. Such a procedure, however, requires that, for each room you visit, you remember the door through which you entered the room (in order to go back to a room you&rsquo;ve been in before), and the doors you tried already (in order to try a remaining door).
  </p>
- <div>
+ <div class="extract figure" id="5.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -1332,7 +1362,7 @@ inherit_fr(Class,SpecificProps,AllProps):-
  <p class="opsomming AutoStyle45">
   5.&nbsp;&nbsp;&nbsp;otherwise, take the door marked &lsquo;entrance&rsquo;, and go to step 4.
  </p>
- <div>
+ <div class="extract figure" id="5.2">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -1593,6 +1623,7 @@ inherit_fr(Class,SpecificProps,AllProps):-
  </p>
 
 
+<div class="extract swish" id="search_df">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="search_df" query-text="?-search_df([[a,d,a,m]],Goal).">
 % an example of depth-first search
 search_df([Goal|Rest],Goal):-
@@ -1614,6 +1645,7 @@ arc(T,[H|T]):-
 goal(L):-
     reverse(L,L).
 </pre>
+</div>
 
 
  <p class="sektie">
@@ -1667,11 +1699,13 @@ goal(L):-
  <p class="sektie">
   Note that the combination of loop detection and path construction allows the following optimisation: instead of maintaining complete paths to a node on the agenda and the list of visited nodes, we only store a node together with its parent. Once we encounter a goal, all its parents are on the list of visited nodes, which allows us to reconstruct the path.
  </p>
+<div class="extract exercise" id="5.1">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.1.</i> Modify the predicate <tt>search_df_loop/3</tt> such that it reconstructs the path to a goal in this way.
   </p>
  </div>
+</div>
  <p class="sektie">
   We now analyse depth-first search with respect to completeness, optimality and efficiency. A search strategy is <i>complete</i>&nbsp;if it is guaranteed to find every goal. Obviously, any exhaustive strategy is complete for finite search spaces. However, in an infinite search space depth-first search might get trapped in an infinite branch before having found all the solutions. For instance, reconsider the infinite SLD-tree&nbsp;in fig. 3.2. A left-to-right depth-first search strategy would dive deeper and deeper into the tree, taking the left branch at every node, and never find the goals in the branches to the right. So, <i>depth-first search&nbsp;is, in general, incomplete</i>. Since Prolog itself employs depth-first search, Prolog&nbsp;is also incomplete. Often, however, the incompleteness of Prolog can be avoided by reordering the clauses such that goals are found before infinite branches (for instance, by putting the recursive clause last), and to cut away the infinite parts of the search space.
  </p>
@@ -1741,6 +1775,7 @@ goal(L):-
 </p>
 
 
+<div class="extract swish" id="search_id">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="search_id" query-text="?-search_id([a,d,a,m],Goal).">
 % an example of iterative deepening
 search_id(First,Goal):-
@@ -1772,6 +1807,7 @@ arc(T,[H|T]):-
 goal(L):-
     reverse(L,L).
 </pre>
+</div>
 
 
  <p class="tekst">
@@ -1797,6 +1833,7 @@ goal(L):-
   search_bf(NewAgenda,Goal).
 </p>
 
+<div class="extract swish" id="search_bf">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="search_bf" query-text="?-search_bf([[a,d,a,m]],Goal).">
 % an example of breadth-first search
 search_bf([Goal|_Rest],Goal):-
@@ -1818,12 +1855,15 @@ arc(T,[H|T]):-
 goal(L):-
     reverse(L,L).
 </pre>
+</div>
 
+<div class="extract exercise" id="5.2">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.2.</i> Implement the predicate <tt>term_write_bf/1</tt>, which writes the tree represented by a term from the root downward (as opposed to the predicate <tt>term_write/1</tt> of section 4.1, which writes from left to right). Employ breadth-first search with two agendas, one for nodes at depth <i>n</i> and the other for nodes at depth <i>n</i> +1.
   </p>
  </div>
+</div>
  <p class="sektie">
   In breadth-first search, the agenda is implemented as a queue. This means that the nodes on the agenda are ordered according to increasing depth: all the nodes on depth <i>n</i> occur before the nodes on depth <i>n</i> +1. This has profound consequences with regard to the properties of breadth-first search. First of all, <i>breadth-first search&nbsp;is complete</i>, even for infinite search spaces. This is so because every goal on depth <i>n</i> will be found before descending to depth <i>n</i> +1. Secondly, <i>breadth-first search&nbsp;always finds a shortest solution path</i>. It may seem that breadth-first search is much better than depth-first search. However, like every coin this one has a reverse side also: the number of nodes at depth <i>n</i> is <i>B<span class="AutoStyle56">
     n
@@ -1950,6 +1990,7 @@ goal(L):-
  <p class="tekst">
   Notice that this program is able to find alternative solutions, since it will backtrack from the first clause into the third and, being unable to find a clause for the predicate <tt>true/0</tt>, <tt>findall/3</tt>&nbsp;will generate an empty list of children and search will proceed with the rest of the agenda.
  </p>
+<div class="extract exercise" id="5.3">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.3.</i> Consider the following program:<br>
@@ -1959,6 +2000,7 @@ goal(L):-
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brother(X,Y):-brother(X,Z),brother(Z,Y).<br></tt> Compare and explain the behaviour of <tt>prove_bf/1</tt> and Prolog on the query <tt>?‑brother(peter,adrian)</tt>. Can you re-order the clauses, such that Prolog succeeds?
   </p>
  </div>
+</div>
  <p class="sektie">
   As a second, related example of a breadth-first search program, we give a program for finding refutation proofs in full clausal logic. Object-level&nbsp;clauses are given by the predicate <tt>cl/1</tt>. Note that <tt>true</tt> denotes the empty body, while <tt>false</tt> denotes the empty head; thus, <tt>false:-true</tt> denotes the empty clause.
  </p>
@@ -2023,11 +2065,13 @@ goal(L):-
  <p class="tekst">
   and the query <tt>?-refute_bf((false:-bachelor(X)))</tt> (refute that no-one is a bachelor), the program answers <tt>X=paul</tt>. Note that there are many proofs for this answer!
  </p>
+<div class="extract exercise" id="5.4">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.4</i>. Extend the meta-interpreter, such that it returns a proof tree (see section 3.8). In order to ensure correct variable substitutions, each item on the agenda must be extended with a partial proof tree.
   </p>
  </div>
+</div>
  <p class="sektie">
   As a search program, the above program is complete. As a theorem prover, however, the program is incomplete.&nbsp;This is due to the resolution strategy&nbsp;used, in which every resolvent&nbsp;has at least one given clause as its parent. This strategy is called <i>input</i> resolution; it is refutation complete for definite clauses, but not for indefinite clauses.
  </p>
@@ -2065,6 +2109,7 @@ goal(L):-
   The program for model generation&nbsp;by forward chaining is given below. It is a fairly simple forward chainer, in the sense that it simply chooses the first clause which fires. More sophisticated forward chainers use <i>conflict resolution</i>&nbsp;strategies in order to choose among the rules which fire at a certain stage.
  </p>
  
+<div class="extract swish" id="model">
 <pre class="source swish AutoStyle03" data-variant-id="group-1" id="model" query-text="?-model(M).">
 % model(M) <- M is a model of the clauses defined by cl/1
 model(M):-
@@ -2109,6 +2154,7 @@ cl((has_wife(X):-married(X),man(X))).
 cl((man(paul):-true)).
 cl((adult(paul):-true)).
 </pre>
+</div>
 
  <p class="tekst">
   Given the following clauses:
@@ -2131,11 +2177,13 @@ cl((adult(paul):-true)).
  <p class="tekst">
   Notice that these are the two minimal models of the program.
  </p>
+<div class="extract exercise" id="5.5">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.5</i>. Give the remaining models of the program.
   </p>
  </div>
+</div>
  <p class="sektie">
   Not every model generated by <tt>model/1</tt> is minimal. Consider the following set of clauses:
  </p>
@@ -2161,11 +2209,13 @@ cl((adult(paul):-true)).
  <p class="tekst">
   which will be returned as the second answer.
  </p>
+<div class="extract exercise" id="5.6">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 5.6</i>. Are all minimal models always constructed by <tt>model/1</tt>?
   </p>
  </div>
+</div>
  <p class="sektie">
   It should be noted that the program only works properly for a restricted class of clauses, namely those clauses for which grounding the body also grounds the head. Otherwise, a head literal from a violated clause might still contain variables. Adding a non-ground literal to the model could result in incorrect behaviour. Consider the following set of clauses:
  </p>
@@ -2408,12 +2458,14 @@ cl((adult(paul):-true)).
  <p class="tekst">
   <tt>add_bstf/3</tt> operates by inserting the new children one by one in the current agenda. Note that if the list of children were already sorted, it could more efficiently be <b>merged</b> with the current agenda.
  </p>
+<div class="extract exercise" id="6.1">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 6.1.</i> Suppose the call <tt>children(Current,Children)</tt> results in an ordered list of children. Write a predicate <tt>merge/3</tt> which directly merges this list with the current agenda.
   </p>
  </div>
- <div>
+</div>
+ <div class="extract figure" id="6.1">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -2436,7 +2488,9 @@ cl((adult(paul):-true)).
  <p class="sektie">
   This puzzle defines a search space, in which nodes are board positions and arcs are single moves. We choose a simple list representation for board positions: e.g. <tt>[b,b,b,e,w,w,w]</tt> represents the starting position of fig. 6.1. The following predicates examine and manipulate board positions:
  </p>
- <pre class="source swish temp AutoStyle03" data-variant-id="group-1" id="get_tile" query-text="?-get_tile([b,b,b,e,w,w,w],N,T). ?-replace([b,b,b,e,w,w,w],3,e,Pos).">
+
+<div class="extract swish" id="get_tile">
+<pre class="source swish temp AutoStyle03" data-variant-id="group-1" id="get_tile" query-text="?-get_tile([b,b,b,e,w,w,w],N,T). ?-replace([b,b,b,e,w,w,w],3,e,Pos).">
 % get_tile(P,N,T) <- pos. P contains tile T at square N
 get_tile(Pos,N,T):-
 	get_tile(Pos,1,N,T).
@@ -2452,7 +2506,9 @@ replace([X|Xs],N,Y,[X|Zs]):-
 	N>1, N1 is N-1,
 	replace(Xs,N1,Y,Zs).
 </pre>
- <div>
+</div>
+
+ <div class="extract infobox" id="when_not_to_use_lists">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -2583,15 +2639,19 @@ replace([X|Xs],N,Y,[X|Zs]):-
  <p class="tekst">
   by determining the length of the list that is returned by the second-order predicate <tt>findall/3</tt>.
  </p>
+<div class="extract exercise" id="6.2">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 6.2.</i> Rewrite <tt>bLeftOfw/2</tt> such that it uses only first-order predicates.
   </p>
  </div>
+</div>
  <p class="sektie">
   The program writes every move it considers on the screen, together with its heuristic evaluation. For instance, the query
  </p>
- <pre class="source swish AutoStyle03" data-variant-id="group-1" id="tiles" query-text="?-tiles(M,C)." source-text-end="
+
+<div class="extract swish" id="tiles">
+<pre class="source swish AutoStyle03" data-variant-id="group-1" id="tiles" query-text="?-tiles(M,C)." source-text-end="
 % tiles(M,C) <- moves M lead to a goal position at cost C 
 %               (best-first search strategy)
 tiles(Moves,Cost):-
@@ -2686,6 +2746,8 @@ setof0(_X,_Q,[]).
 ">
 %%% all above code taken together %%%
 </pre>
+</div>
+
  <p class="p-el">
   ?-tiles(M,C).
  </p>
@@ -2766,7 +2828,7 @@ setof0(_X,_Q,[]).
  <p class="tekst">
   We observe a couple of differences with the previous heuristic. First of all, there is backtracking: the first, second and fourth moves are not pursued any further. Furthermore, the solution found requires two moves less, and is also cheaper.
  </p>
- <div>
+ <div class="extract figure" id="6.2">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -2829,11 +2891,13 @@ setof0(_X,_Q,[]).
  <p class="sektie">
   A best-first search algorithm which uses such an evaluation function <i>f</i> to estimate the total cost of a path is called an <i>A algorithm</i>. An A algorithm&nbsp;is complete, since the depth count <i>g</i> (<i>n</i>) will prevent search from getting trapped in an infinite path. In effect, the depth count will give the search strategy more of a breadth-first flavour. Indeed, breadth-first search is a special case of an A algorithm, with <i>h</i> (<i>n</i>)=0 for every node <i>n</i>. A disadvantage of A algorithms is the decreased efficiency&nbsp;associated with this breadth-first flavour.
  </p>
+<div class="extract exercise" id="6.3">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 6.3.</i> Change the <tt>tiles</tt> program into an A algorithm, by associating with each move the <i>g</i> -value of the position reached by that move (i.e. the cost of the path leading to that position, instead of the cost of the last move). Demonstrate the decreased efficiency of the search.
   </p>
  </div>
+</div>
  <p class="sektie">
   Breadth-first search is not only complete, it is also optimal: it always returns a shortest solution path
   <span class="CustomFootnote">
@@ -2860,11 +2924,13 @@ setof0(_X,_Q,[]).
  <p class="sektie">
   For instance, consider the first heuristic for the puzzle in the previous section, which counts for each white tile the number of black tiles to the left of it. Suppose one black tile has <i>w</i> white tiles to its right, which adds <i>w</i> to the heuristic value for that position. In order to reach a goal position, the black tile has to jump over some of the white tiles, while the remaining white tiles have to jump over the black tile; this has a cost of at least <i>w</i>. Therefore, this heuristic is optimistic. The second heuristic, calculating a weighted sum of tiles out of place, is also optimistic. For instance, suppose that a black tile is at the first square, then there are three white tiles to its right, over which it must jump. Analogously, if it is on the second square, then there are at least two white tiles to jump over. In contrast, the weights used in the third heuristic are too high.
  </p>
+<div class="extract exercise" id="6.4">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 6.4.</i> Find a position for which the third heuristic is too pessimistic.
   </p>
  </div>
+</div>
  <p class="sektie">
   It is possible to prove the following important result: <i>an A algorithm with an optimistic heuristic h always results in an optimal solution</i>. The resulting algorithm is called <i>A*</i>&nbsp;(A star); both A* search and optimistic heuristics are said to be <i>admissible</i>.&nbsp;This should not be mistaken to suggest that better heuristics are more optimistic! On the contrary, a good heuristic is as pessimistic as possible, without becoming non-admissible. In general, if <i>h</i>
   <span class="AutoStyle10">
@@ -2890,7 +2956,7 @@ setof0(_X,_Q,[]).
  <p class="sektie">
   Thus, although admissible search leads to optimal solutions, it is not necessarily the case that every node on an optimal path is immediately reached along that optimal path. In fig. 6.3, this is caused by &lsquo;local pessimism&rsquo; of the heuristic, which estimates the cost of moving from <i>start</i> to <i>p</i> as 3&ndash;1=2, while the actual cost is 1. Indeed, if <i>p</i> would have an <i>h</i> -value of 2, <i>s</i> would have been reached the first time along the shortest path. This is true in general: if the heuristic estimates the cost of moving from one node to another optimistically, then any node is reached along the cheapest path first. This property is called <i>monotonicity</i>, since one can show that the <i>f</i> -values are monotonically non-decreasing along a path.
  </p>
- <div>
+ <div class="extract figure" id="6.3">
   <table align="center" cellpadding="0" cellspacing="0" hspace="0" vspace="0">
    <tr>
     <td align="left" class="AutoStyle04" valign="top">
@@ -2917,11 +2983,13 @@ setof0(_X,_Q,[]).
  <p class="tekst">
   The heuristic estimates the cost of this move as 9&ndash;7=2, while the actual cost is 1. Since monotonicity implies admissibility, the third heuristic is not monotonic either.
  </p>
+<div class="extract exercise" id="6.5">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 6.5.</i> Implement a Prolog meta-interpreter which employs an A search algorithm. Use <i>h</i> (<i>R</i>)= | <i>R</i> | (the number of literals in resolvent <i>R</i>) as heuristic. Is this heuristic admissible and monotonic?
   </p>
  </div>
+</div>
  <h3 id="non_exhaustive_informed_search">
   6.3&nbsp;&nbsp;&nbsp;Non-exhaustive informed search
  </h3>
@@ -2953,11 +3021,13 @@ setof0(_X,_Q,[]).
  <p class="tekst">
   In this program, two agendas are maintained, one for the current level, and one for the children of the nodes on the current level. Once the current level is exhausted, the agenda&rsquo;s are swapped and the depth count is increased. The depth count is passed on to the predicate <tt>add_beam/4</tt>, in order to decide how many children to add to the agenda for the next level.
  </p>
+<div class="extract exercise" id="6.6">
  <div class="AutoStyle06">
   <p class="exercise AutoStyle07">
    <i>Exercise 6.6.</i> Extend the program of exercise 6.3 with beam search with fixed agenda size. Demonstrate the non-optimality of the search strategy.
   </p>
  </div>
+</div>
  <p class="sektie">
   If we limit the size of the agenda to 1, we arrive at a search strategy called <i>hill-climbing</i>. It is also callled <i>greedy</i> search, since there is no backtrackinginvolved. Hill-climbing is the type of search employed by a wanderer who wants to reach the top of a hill by always moving in the steepest direction. Clearly, she will reach the top of a hill (and never get off it), but it is not necessarily the highest one.
  </p>
