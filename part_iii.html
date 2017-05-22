@@ -1223,9 +1223,9 @@ explain(A,E0,[default(Name)|E]):-
   </span>
   { <tt>:-A</tt> | <tt>A</tt>
   <span class="AutoStyle09">
-   &cup;
+   &isin;
   </span>
-  <i>B</i> and <i>P</i> !&#8872; <tt>A</tt> }
+  <i>B</i> and <i>P</i> &#x22AD; <tt>A</tt> }
  </p>
  <p class="tekst">
   We refer to <i>CWA</i> (<i>P</i>)
@@ -1400,7 +1400,7 @@ explain(A,E0,[default(Name)|E]):-
   </span>
   Y:likes(X,Y)
   <span class="AutoStyle09">
-   &not;
+   &larr;
   </span>
   ((X=peter
   <span class="AutoStyle09">
@@ -1451,7 +1451,7 @@ explain(A,E0,[default(Name)|E]):-
   </span>
   Z:ancestor(X,Y)
   <span class="AutoStyle09">
-   &not;
+   &larr;
   </span>
   (parent(X,Z)
   <span class="AutoStyle09">
@@ -1472,7 +1472,7 @@ explain(A,E0,[default(Name)|E]):-
   </span>
   Y:ancestor(X,Y)
   <span class="AutoStyle09">
-   &not;
+   &larr;
   </span>
   (
   <span class="AutoStyle09">
@@ -1497,7 +1497,7 @@ explain(A,E0,[default(Name)|E]):-
   </span>
   Y:ancestor(X,Y)
   <span class="AutoStyle09">
-   &not;
+   &larr;
   </span>
   (parent(X,Y)
   <span class="AutoStyle09">
@@ -2803,7 +2803,7 @@ induce(A,H0,[(A:-B)|H]):-       % A:-B can be added to H
   <span class="AutoStyle09">
    &cup;
   </span>
-  <i>Hypothesis1</i> = <i>Hypothesis2</i>
+  <i>Hypothesis1</i> &#x22A8; <i>Hypothesis2</i>
  </p>
  <p class="tekst">
   Suppose <i>p</i> is a positive example covered by <i>Hypothesis1</i> but not by <i>Hypothesis2</i>. This means that <i>Hypothesis2</i> is too specific; if it is our current hypothesis, it needs to be <i>generalised</i>, for instance to <i>Hypothesis1</i>. Similarly, if a hypothesis covers a negative example, it needs to be <i>specialised</i>. Generalisation&nbsp;and specialisation&nbsp;are the basic operations of induction.
@@ -2983,7 +2983,7 @@ same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
        The relation between &theta;-subsumption and logical consequence
       </p>
       <p class="intermezzo AutoStyle38">
-       If <tt>Clause1</tt> &theta;-subsumes <tt>Clause2</tt>, then   also <tt>Clause1</tt> |= <tt>Clause2</tt>. The reverse, however, is not always true. Consider the following   two clauses:
+       If <tt>Clause1</tt> &theta;-subsumes <tt>Clause2</tt>, then   also <tt>Clause1</tt> &#x22A8; <tt>Clause2</tt>. The reverse, however, is not always true. Consider the following   two clauses:
       </p>
       <p class="intermezzo AutoStyle38">
        <tt>list([V|W]):-list(W)<br>
