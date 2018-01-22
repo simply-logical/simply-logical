@@ -1,5 +1,6 @@
 # Simply Logical: Intelligent Reasoning by Example #
-
+[![DOI](https://zenodo.org/badge/43899045.svg)](https://zenodo.org/badge/latestdoi/43899045)
+[![Join the chat at https://gitter.im/simply-logical/simply-logical](https://badges.gitter.im/Simply-Logical/Simply_Logcal.svg)](https://gitter.im/simply-logical/simply-logical?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![](img/SLfront.gif "Simply Logical cover")
 
