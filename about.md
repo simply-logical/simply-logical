@@ -11,6 +11,8 @@ title: About
 [John Wiley](http://www.wiley.co.uk/) 1994, xvi + 240 pages, ISBN 0471 94152 2  
 Reprinted: December 1994, July 1998.
 
+**The online edition of this book can be cited with [![DOI](https://zenodo.org/badge/43899045.svg)](https://zenodo.org/badge/latestdoi/43899045)**
+
 ## History ##
 "Simply Logical" by Peter Flach was published by John Wiley in 1994. It could be purchased as book-only or with a 3.5 inch diskette containing the Prolog programs printed in the book (for various operating systems). In 2007 the copyright reverted back to the author and book and programs have been freely available [online](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html).
 
