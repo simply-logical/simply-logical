@@ -24,11 +24,11 @@ This book is no longer available through John Wiley publishers. You can download
 This is a book about intelligent reasoning. *Reasoning* is the process of drawing conclusions; *intelligent* reasoning is the kind of reasoning performed by humans. This is not to say that this book is about the psychological aspects of human reasoning: rather, it discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. The combination of these two viewpoints is a distinguishing feature of this book, which I think gives it a unique place among the many related books available.
 
 ## PDF version ##
-The `PDF` version of my book is available as a GitHub release [here]({{ site.baseurl | prepend:site.repo }}/releases/download/v1.0/SL.pdf).  
+The `PDF` version of the book is available as a GitHub release [here]({{ site.baseurl | prepend:site.repo }}/releases/download/v1.0/SL.pdf).  
 The release page with some notes is available [here]({{ site.baseurl | prepend:site.repo }}/releases/tag/v1.0).
 
 ## Online version ##
-The online version of my book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH](http://swish.swi-prolog.org/), the online version of [SWI-Prolog](http://swi-prolog.org/).  
+The online version of the book is hosted at *GitHub Pages* and was built with use of [Bootstrap](http://getbootstrap.com/) and [SWISH](http://swish.swi-prolog.org/), the online version of [SWI-Prolog](http://swi-prolog.org/).  
 You can view it [here]({{ site.baseurl | prepend:site.url }}).
 
 ### Error in the book ###
