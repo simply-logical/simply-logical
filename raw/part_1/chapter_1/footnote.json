@@ -1,0 +1,8 @@
+[
+  {
+    "id": "1",
+    "number": "1",
+    "name": "Footnote 1.",
+    "content": "If we take Prolog&rsquo;s procedural behaviour into account, there are alternatives to recursive loops such as the so-called *failure-driven loop* (see Exercise 7.5)."
+  }
+]
