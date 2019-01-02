@@ -1,51 +1,44 @@
 [
   {
-    "id": "11",
-    "img": "img/part_i/image002.svg",
-    "number": "1.1",
+    "id": "1.1",
     "name": "Figure 1.1.",
+    "img": "image002.svg",
     "caption": "Part of the London Underground. Reproduced by permission of London Regional Transport (LRT Registered User No. 94/1954)."
   },
   {
-    "id": "12",
-    "img": "img/part_i/image004.svg",
-    "number": "1.2",
+    "id": "1.2",
     "name": "Figure 1.2.",
+    "img": "image004.svg",
     "caption": "A proof tree for the query `?-nearby(tottenham_court_road,W)`."
   },
   {
-    "id": "13",
-    "img": "img/part_i/image006.svg",
-    "number": "1.3",
+    "id": "1.3",
     "name": "Figure 1.3.",
+    "img": "image006.svg",
     "caption": "A proof tree for the query `?-reachable(bond_street,W)`."
   },
   {
-    "id": "14",
-    "img": "img/part_i/image008.svg",
-    "number": "1.4",
+    "id": "1.4",
     "name": "Figure 1.4.",
+    "img": "image008.svg",
     "caption": "Alternative proof tree for the query `?-reachable(bond_street,W)`."
   },
   {
-    "id": "15",
-    "img": "img/part_i/image010.svg",
-    "number": "1.5",
+    "id": "1.5",
     "name": "Figure 1.5.",
+    "img": "image010.svg",
     "caption": "A failing proof tree."
   },
   {
-    "id": "16",
-    "img": "img/part_i/image012.svg",
-    "number": "1.6",
+    "id": "1.6",
     "name": "Figure 1.6.",
+    "img": "image012.svg",
     "caption": "A complex object as a tree."
   },
   {
-    "id": "17",
-    "img": "img/part_i/image014.svg",
-    "number": "1.7",
+    "id": "1.7",
     "name": "Figure 1.7.",
+    "img": "image014.svg",
     "caption": "The list `[a,b,c]` as a tree."
   }
 ]
