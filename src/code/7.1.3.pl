@@ -1,0 +1,9 @@
+noun_phrase                --> article,noun.
+plurality                  --> singular.
+plurality                  --> plural.
+verb_phrase                --> intransitive_verb.
+article                    --> [the].
+noun,singular              --> [turtle],singular.
+noun,plural                --> [turtles],plural.
+singular,intransitive_verb --> [sleeps].
+plural,intransitive_verb   --> [sleep].
