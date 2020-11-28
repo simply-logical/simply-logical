@@ -1,23 +1,49 @@
-# Site settings
-title: Simply Logical
-subtitle: Intelligent Reasoning by Example
-email: Peter.Flach@bristol.ac.uk
-website: http://www.cs.bris.ac.uk/~flach/SimplyLogical.html
-description: > # this means to ignore newlines until "baseurl:"
-  This book discusses methods to implement intelligent reasoning by means of Prolog programs. 
-  The book is written from the shared viewpoints of Computational Logic, which aims at automating 
-  various kinds of reasoning, and Artificial Intelligence, which seeks to 
-  implement aspects of intelligent behaviour on a computer. 
-url: "https://book.simply-logical.space" # the base hostname & protocol for your site
-baseurl: "" # the subpath of your site, e.g. /blog/
-repo: "https://github.com/simply-logical/simply-logical"
-swish: "https://swish.simply-logical.space/"
-author: Peter Flach
-# twitter_username: jekyllrb
-# github_username:  jekyll
+title: 'Simply Logical:<br>Intelligent Reasoning by Example'
+author: >
+  <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and
+  <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>,
+  University of Bristol, United Kingdom
+copyright: '2015–2020'
+logo: src/img/SL.svg
 
-orgurl: "https://simply-logical.space"
-google_analytics: "UA-112595762-2"
+# TODO
+exclude_patterns: [
+  README.md, .DS_Store,
+  src/text/part_i/1.3.md,
+  src/text/part_i/1.4.md,
+  "src/text/part_i/2*",
+  "src/text/part_i/3*",
+  "src/text/part_ii/*",
+  "src/text/part_iii/*",
+  "src/text/appendices/*"]
 
-# Build settings
-markdown: kramdown
+execute:
+  execute_notebooks: off
+
+html:
+  favicon: src/img/favicon.ico
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  extra_navbar: >
+    <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a>
+  extra_footer: >
+    This book discusses methods to implement intelligent reasoning by means of
+    Prolog programs.
+    The book is written from the shared viewpoints of Computational Logic,
+    which aims at automating various kinds of reasoning, and Artificial
+    Intelligence, which seeks to implement aspects of intelligent behaviour on
+    a computer.
+  google_analytics_id: UA-112595762-2
+  home_page_in_navbar: true
+
+latex:
+  latex_engine: pdflatex
+
+repository:
+  url: https://github.com/simply-logical/simply-logical
+
+# TODO
+sphinx:
+  local_extensions:
+    sl: extl

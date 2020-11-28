@@ -1,13 +1,64 @@
-# {{ site.title }}:<br>{{ site.subtitle }} #
+<!--# Simply Logical:<br>Intelligent Reasoning by Example #-->
+# Simply Logical #
 
-**Peter Flach**  
-*University of Bristol, United Kingdom*
+![Simply Logical cover](/src/img/SLfront.gif "Simply Logical cover")
 
-![Simply Logical cover](img/SLfront.gif)
+*by [Peter Flach](https://www.cs.bris.ac.uk/~flach/index.html), then at [Tilburg University](https://www.tilburguniversity.nl/), the Netherlands*  
+[John Wiley](https://www.wiley.com/) 1994, xvi + 240 pages, ISBN 0471 94152 2  
+Reprinted: December 1994, July 1998.
 
 <!--acknowledgements-->
 
-**The online edition of this book can be cited with [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg)](https://doi.org/10.5281/zenodo.1156977).**
+## About the Book ##
+
+### History ###
+"Simply Logical" by Peter Flach was published by John Wiley in 1994. It could be purchased as book-only or with a 3.5 inch diskette containing the Prolog programs printed in the book (for various operating systems). In 2007 the copyright reverted back to the author and book and programs have been freely available [online](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html).
+
+In 2015, as a pilot, we have ported most of the original book into an online, interactive website using SWI-Prolog's [SWISH platform](https://swish.swi-prolog.org/). Since then, we have created *Simply Logical* open source organisation committed to maintaining a suite of freely available interactive online educational resources about Artificial Intelligence and Logic Programming with Prolog. Visit our organisation's [website](https://simply-logical.space/) and [GitHub profile](https://github.com/simply-logical) for more details.
+
+This book is no longer available through John Wiley publishers. You can download a free PDF copy or view an online version.
+
+### PDF version ###
+[![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)  
+The PDF version of the book is available as a [*GitHub release*](https://github.com/simply-logical/simply-logical/releases/tag/v1.0).
+
+#### Citation ####
+```BibTeX
+@book{flach1994simply,
+  author       = {Flach, Peter},
+  title        = {{S}imply {L}ogical: {I}ntelligent {R}easoning by {E}xample},
+  publisher    = {John Wiley},
+  year         = {1994},
+  url          = {https://www.cs.bris.ac.uk/~flach/SimplyLogical.html}
+}
+```
+
+### Online version ###
+[![Licence](https://img.shields.io/github/license/simply-logical/simply-logical.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg)](https://doi.org/10.5281/zenodo.1156977)
+[![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
+The online version of the book is hosted on [*GitHub Pages*](https://book.simply-logical.space).
+It is built with [Jupyter Book](https://jupyterbook.org/) and [SWISH](https://swish.swi-prolog.org/), the online version of [SWI-Prolog](https://swi-prolog.org/).
+
+#### Citation ####
+```BibTeX
+@book{flach2018simply,
+  author       = {Flach, Peter and Sokol, Kacper},
+  title        = {{S}imply {L}ogical: {I}ntelligent {R}easoning by {E}xample
+                  -- {O}nline {E}dition},
+  publisher    = {Zenodo},
+  year         = {2018},
+  month        = {jan},
+  doi          = {10.5281/zenodo.1156977},
+  url          = {https://doi.org/10.5281/zenodo.1156977}
+}
+```
+
+#### Prolog code blocks not working ####
+If the interactive Prolog code blocks are not working for you in the online version of the book, please ensure that 3rd party cookies are enabled in your web browser.
+
+#### Error in the book ####
+If you find an error in the online version of the book, please open a [*GitHub issue*](https://github.com/simply-logical/simply-logical/issues).
 
 ## Author's Preface ##
 This is a book about intelligent reasoning. *Reasoning* is the process of drawing conclusions; *intelligent* reasoning is the kind of reasoning performed by humans. This is not to say that this book is about the psychological aspects of human reasoning: rather, it discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. The combination of these two viewpoints is a distinguishing feature of this book, which I think gives it a unique place among the many related books available.
