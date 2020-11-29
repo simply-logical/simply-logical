@@ -13,7 +13,7 @@
   var database = new Array();
   var keepingSource = [];
 
-  var SWISH = "{{ site.swish }}";
+  var SWISH = "https://swish.simply-logical.space/";
 
   /** @lends $.fn.LPN */
   var methods = {

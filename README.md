@@ -31,6 +31,7 @@ If you find an error in the online version of the book, please open a [*GitHub i
 # TODO #
 - [ ] `_config.yaml` TODOs
 - [ ] move  `static` to `_static`
+- [ ] create CSS for `admonition exercise` and `admonition infobox`
 
 - [ ] TODO (Peter): typographical consistency
 - [ ] TODO (Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)

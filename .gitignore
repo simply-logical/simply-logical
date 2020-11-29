@@ -1,5 +1,6 @@
 # Jupyter Book
-_build/*
+_build
+__pycache__
 
 # Mac OS
-*.DS_Store
+.DS_Store

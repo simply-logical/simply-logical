@@ -8,10 +8,14 @@ logo: src/img/SL.svg
 
 # TODO
 exclude_patterns: [
-  README.md, .DS_Store,
+  README.md, .DS_Store, __pycache__, _ext,
   src/text/part_i/1.3.md,
   src/text/part_i/1.4.md,
-  "src/text/part_i/2*",
+  "src/text/part_i/2.1.md",
+  "src/text/part_i/2.3.md",
+  "src/text/part_i/2.4.md",
+  "src/text/part_i/2.5.md",
+  "src/text/part_i/2.6.md",
   "src/text/part_i/3*",
   "src/text/part_ii/*",
   "src/text/part_iii/*",
@@ -43,7 +47,6 @@ latex:
 repository:
   url: https://github.com/simply-logical/simply-logical
 
-# TODO
 sphinx:
   local_extensions:
-    sl: extl
+    sl: _ext
