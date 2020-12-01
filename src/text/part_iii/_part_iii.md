@@ -1,4 +1,5 @@
-# III Advanced reasoning techniques #
+<!--H1: Part III-->
+# Advanced reasoning techniques #
 
 In Part I, we introduced the formalism of clausal logic and showed how it can be used in practice to perform logical inferences. In Part II, we discussed the basic issues one encounters when writing a program to solve some reasoning task: how to represent the knowledge needed to solve the task, and how to search the space of possible solutions. In Part III, we will go beyond the power of clausal logic in a number of ways.
 

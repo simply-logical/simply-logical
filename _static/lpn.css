@@ -67,7 +67,7 @@ div.load {
   right: 5px;
   width: 32px;
   height: 32px;
-  background-image: url("../../img/Actions-system-run-icon.png");
+  background-image: url("lpn/Actions-system-run-icon.png");
   background-repeat: none;
   background-size: 100%;
 }
@@ -80,7 +80,7 @@ div.source.swish div.load,
 div.query.swish div.load,
 div.answer.swish div.load,
 div.open-prolog.swish div.load {
-  background-image: url("../../img/close.png");
+  background-image: url("lpn/close.png");
 }
 
 div.ui-resizable-s {
@@ -150,11 +150,16 @@ div.content {
 
 #close {
 	position:absolute;
-	background:url(../../img/close.png) 0 0 no-repeat;
+	background:url(lpn/close.png) 0 0 no-repeat;
 	width:24px;
 	height:27px;
 	display:block;
 	text-indent:-9999px;
 	top:-7px;
 	right:-7px;
+}
+
+pre.source,pre.swish {
+  /*display: none;*/
+  /*display: block;*/
 }

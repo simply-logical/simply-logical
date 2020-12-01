@@ -1,3 +1,4 @@
+<!--H1: Chapter/Appendices-->
 # Appendices #
 
   Appendix A describes a number of built-in Prolog predicates, and lists a library of utility programs. These predicates are used in various programs throughout the book.

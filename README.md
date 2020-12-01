@@ -28,12 +28,36 @@ If the interactive Prolog code blocks are not working for you in the online vers
 ### Error in the book ###
 If you find an error in the online version of the book, please open a [*GitHub issue*](https://github.com/simply-logical/simply-logical/issues).
 
+### Building the book ###
+1. Install *Jupyter Book*; either a stable version
+   ```bash
+   pip install jupyter-book
+   ```
+   or the latest development version
+   ```bash
+   pip install git+https://github.com/executablebooks/jupyter-book.git
+   ```
+2. Build the book
+   ```bash
+   jb build .
+   ```
+3. Open the html build
+   ```bash
+   open _build/html/index.html
+   ```
+   or run it as a server
+   ```bash
+   python3 -m http.server --directory _build/html
+   open http://localhost:8000
+   ```
+
 # TODO #
 - [ ] `_config.yaml` TODOs
 - [ ] move  `static` to `_static`
 - [ ] create CSS for `admonition exercise` and `admonition infobox`
 
 - [ ] TODO (Peter): typographical consistency
+- [ ] TODO (Peter): consider changing figures to images when they lack caption, e.g., appendix
 - [ ] TODO (Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
 
 - [ ] TODO (Kacper): fix FIXME tags

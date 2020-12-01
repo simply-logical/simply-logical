@@ -1,0 +1,11 @@
+/*Exercise directive*/
+.admonition.exercise {
+  border-color:#28a745;
+}
+.admonition.exercise .admonition-title {
+  background-color: #f2fdf3;
+}
+.admonition.exercise .admonition-title:before {
+  color:#28a745;
+  content:"";
+}
