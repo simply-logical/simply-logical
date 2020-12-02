@@ -28,6 +28,9 @@ html:
   google_analytics_id: UA-112595762-2
   home_page_in_navbar: true
 
+parse:
+  myst_extended_syntax: true
+
 latex:
   latex_engine: pdflatex
 
@@ -38,5 +41,6 @@ sphinx:
   local_extensions:
     sl: _ext
   config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     sl_code_directory: /src/code/
     sl_swish_url: https://swish.simply-logical.space/

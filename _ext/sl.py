@@ -846,12 +846,13 @@ def setup(app):
     )
 
     # ensure the required auxiliary files are included in the Sphinx build
-    # Jupyter Books takes care of it
-    # app.add_css_file('sl.css')
-    # app.add_css_file('lpn.css')
-    # app.add_js_file('lpn.js')
-    # app.add_css_file('jquery-ui.min.css')
-    # app.add_js_file('jquery-ui.min.js')
+    if 'jupyter_book' not in app.config.extensions:
+        # Jupyter Books takes care of it
+        app.add_css_file('sl.css')
+        app.add_css_file('lpn.css')
+        app.add_js_file('lpn.js')
+        app.add_css_file('jquery-ui.min.css')
+        app.add_js_file('jquery-ui.min.js')
 
     # register the custom directives with Sphinx
     app.add_directive('infobox', Infobox)
