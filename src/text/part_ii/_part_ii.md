@@ -44,10 +44,11 @@ The Towers of Hanoi: Goal position.
 
 In principle, any given problem can be defined as a search problem. To this end, we must identify:
 
-a. the nodes in the search space;
-b. the arcs between nodes;
-c. the starting node;
-d. the goal node.
+<!--roman list-->
+1. the nodes in the search space;
+1. the arcs between nodes;
+1. the starting node;
+1. the goal node.
 
 For instance, when searching for an answer to a query by means of SLD-resolution, the nodes in the search space are resolvents, the arcs are resolution steps by means of a program clause, the starting node is the query, and the goal node is the empty clause. As another example, we consider the puzzle known as *The Towers of Hanoi*. This puzzle consists of three pegs and *n* disks of decreasing size. Initially, all the disks are on the left peg, such that no disk is placed on a smaller one. This rule is to be obeyed throughout the game. The goal is to move all the disks to the right peg by moving one disk at a time. This problem is easily reformulated as a search problem, where nodes are allowed positions, and arcs are moves of the upper disk on one peg to another. Starting node and goal node are as in fig. II.1.
 
