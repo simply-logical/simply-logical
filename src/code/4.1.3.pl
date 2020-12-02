@@ -27,7 +27,7 @@ term_write_node(Begin,End,Node):-
 % write a line of given length
 write_line(0).
 write_line(N):-
-    N&gt;0,N1 is N-1,
+    N>0,N1 is N-1,
     write('-'),
     write_line(N1).
 
