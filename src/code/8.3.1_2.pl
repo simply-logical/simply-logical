@@ -1,4 +1,6 @@
-abducible(A):-A \= not(B),not cl(A,B).
+abducible(A):-
+    A \= not(B),
+    not cl(A,B).
 
 /** <examples>
 ?- abduce(flies(tweety),Explanation).

@@ -229,6 +229,11 @@ def depart_exercise_title_node_(self, node):
 
 class Exercise(Directive):
     """
+    In appendix there are repeated exercises
+    ag -A 3 "{exercise}" src/text/appendices/c_*
+    how to enusre that they refer to the original on -- i.e. have the same
+    exercise number
+
     TODO
     `exercise` directive is of the form::
        .. exercise:: 2.9
@@ -330,13 +335,36 @@ class swish_code(nodes.literal_block, nodes.Element):
 
 def visit_swish_code_node(self, node):
     """Builds an opening HTML tag for Simply Logical swish **code** boxes."""
+    env = self.document.settings.env
+
     attributes = {}
+    class_list = ['literal-block', 'source', 'swish']
+
+    # get node id
+    node_ids = node.get('ids', [])
+    assert len(node_ids) == 1
+    assert node_ids[0].startswith('swish.')
+    swish_id = node_ids[0][6:]
 
     # composes the `inherit-id` HTML attribute if present
     inherit_id = node.attributes.get('inherit_id', None)
     if inherit_id is not None:
-        iid = ['swish.{}'.format(i) for i in inherit_id.split(' ')]
+        iid = []
+        for i in inherit_id.split(' '):
+            iid.append('swish.{}'.format(i))
+            # ensure that all of the inherited code blocks are also in this
+            # document as otherwise the inheritance JavaScript will not work
+            if env.sl_swish_code[i]['main_doc'] not in self.docnames:
+                raise RuntimeError(
+                    ('The code block *{}* placed in *{}* document inherits '
+                     '*{}*, which is in a different document (*{}*). '
+                     'Inheritance only works in a scope of a single '
+                     'document.'.format(swish_id, self.docnames, i,
+                                        env.sl_swish_code[i]['main_doc']))
+                )
         attributes['inherit-id'] = ' '.join(iid)
+        # if the code block inherits from another, it needs a special class
+        class_list.append('inherit')
 
     # composes the `source-text-start` HTML attribute if present
     source_text_start = node.attributes.get('source_text_start', None)
@@ -348,6 +376,10 @@ def visit_swish_code_node(self, node):
     if source_text_end is not None:
         attributes['source-text-end'] = source_text_end
 
+    # if the block is being inherited from, it needs a special class
+    if swish_id in env.sl_swish_inherited:
+        class_list.append('temp')
+
     # If either of the `source-text-start` or `source-text-end` attributes are
     # present, call a modified version of the `starttag` method/function that
     # does not prune whitespaces (such as newline characters) from the content
@@ -358,11 +390,11 @@ def visit_swish_code_node(self, node):
     if 'source-text-start' in attributes or 'source-text-end' in attributes:
         # escape html such as <, >, ", etc. but **preserve new lines**
         tag = starttag(self, node, 'pre',
-                       CLASS=('literal-block source swish'),
+                       CLASS=' '.join(class_list),
                        **attributes)
     else:
         tag = self.starttag(node, 'pre',
-                            CLASS=('literal-block source swish'),
+                            CLASS=' '.join(class_list),
                             **attributes)
     self.body.append(tag)
     #self.visit_literal_block(node)
@@ -491,6 +523,30 @@ def file_exists(file_path):
                            'exist.'.format(file_path))
 
 
+def strip_exercise_block(text):
+    """
+    Strips the *examples* block of text from the input text::
+       file content
+       file content
+       ...
+       /** <examples>
+       content that will be stripped
+       content that will be stripped
+       ...
+       content that will be stripped
+       */
+    resulting in::
+       file content
+       file content
+       ...
+    """
+    rgx = '\s*^/\*\*\s*<examples>\s*$.*?(?!^\*/\s*$).*?^\*/\s*$\s*'
+    pattern = re.compile(rgx, flags=(re.M | re.I | re.S))
+
+    no_examples = pattern.sub('\n', text).strip()
+    return no_examples
+
+
 class SWISH(Directive):
     """
     Defines the `swish` directive for building Simply Logical swish boxes with
@@ -510,7 +566,7 @@ class SWISH(Directive):
     the default URL hardcoded in the swish JavaScript library will be used
     (i.e., `https://swish.simply-logical.space/`).
 
-    This directive operates on two Sphinx environmental variables:
+    This directive operates on three Sphinx environmental variables:
 
     sl_swish_code
       A dictionary encoding the association between code files and documents.
@@ -518,6 +574,11 @@ class SWISH(Directive):
 
     sl_has_swish
       A set of names of documents that include swish boxes.
+
+    sl_swish_inherited
+      A dictionary of code ids that are being inherited by swish boxes.
+      The value for each code id is a set of documents that included the
+      inheritance.
 
     This Sphinx extension monitors the code files for changes and
     regenerates the content pages that use them if a change is detected.
@@ -574,9 +635,8 @@ class SWISH(Directive):
         # memorise the association between the document (a content source
         # file) and the code box -- this is used for watching for code file
         # updates
-        if not hasattr(env, 'sl_swish_code'):
-            env.sl_swish_code = {}
-        self.memorise_code(code_filename_id, path_localised)
+        self.memorise_code(code_filename_id, path_localised,
+                           is_main_codeblock=True)
 
         # process the options -- they are used as HTML attributes
         attributes = {}
@@ -584,6 +644,7 @@ class SWISH(Directive):
         inherit_id = options.get('inherit-id', None)
         if inherit_id is not None:
             for iid in inherit_id.split(' '):
+                iid = iid.strip()
                 if iid.endswith('.pl'):
                     raise RuntimeError('The *inherit-id* parameter of a swish '
                                        'box should not use .pl extension.')
@@ -592,7 +653,16 @@ class SWISH(Directive):
                                                inherit_id_filename)
                 file_exists(inherit_id_path)
                 # memorise the association between the document and code box
+                # NOTE: this may note necasarily be needed as the inherit code
+                # is not read directly into the document from the code file
                 self.memorise_code(iid, inherit_id_path)
+                # memorise that this code id will be inherited
+                if not hasattr(env, 'sl_swish_inherited'):
+                    env.sl_swish_inherited = dict()
+                if iid in env.sl_swish_inherited:
+                    env.sl_swish_inherited[iid].add(env.docname)
+                else:
+                    env.sl_swish_inherited[iid] = {env.docname}
             attributes['inherit_id'] = inherit_id
         # extract `source-text-start` and memorise it
         source_start = options.get('source-text-start', None)
@@ -605,7 +675,9 @@ class SWISH(Directive):
             self.memorise_code(source_start, source_start_path)
             with open(source_start_path, 'r') as f:
                 contents = f.read()
-            attributes['source_text_start'] = contents
+            # clean out the examples section
+            raw_content = strip_exercise_block(contents)
+            attributes['source_text_start'] = '{}\n\n'.format(raw_content)
         # extract `source-text-end` and memorise it
         source_end = options.get('source-text-end', None)
         if source_end is not None:
@@ -617,7 +689,9 @@ class SWISH(Directive):
             self.memorise_code(source_end, source_end_path)
             with open(source_end_path, 'r') as f:
                 contents = f.read()
-            attributes['source_text_end'] = contents
+            # clean out the examples section
+            raw_content = strip_exercise_block(contents)
+            attributes['source_text_end'] = '\n{}'.format(raw_content)
 
         # read in the code file and create a swish **code** node
         with open(path_localised, 'r') as f:
@@ -634,7 +708,8 @@ class SWISH(Directive):
 
         return [box]
 
-    def memorise_code(self, code_filename_id, path_localised):
+    def memorise_code(self, code_filename_id, path_localised,
+                      is_main_codeblock=False):
         """
         Memorises the association between the current document (a content
         source file containing the instantiation of the `swish` directive
@@ -645,6 +720,7 @@ class SWISH(Directive):
         All of this information is stored in the `sl_swish_code` Sphinx
         environmental variable, which has the following structure::
             {'code_id': {'docs': set(docnames),
+                         'main_doc': the_main_document_using_this_code_block,
                          'path': file_path_to_code_id,
                          'signature': creation_time_of_file_path_to_code_id},
              ...
@@ -654,6 +730,9 @@ class SWISH(Directive):
         depend upon them.
         """
         env = self.state.document.settings.env
+
+        if not hasattr(env, 'sl_swish_code'):
+            env.sl_swish_code = {}
 
         # if code id has already been seen, verify that the code file has not
         # changed and add the document name to the watchlist for this code file
@@ -665,10 +744,26 @@ class SWISH(Directive):
                                    'the runtime.')
             # add the document name to the set of dependent files
             env.sl_swish_code[code_filename_id]['docs'].add(env.docname)
+
+            # check if this docname is the main one using this codeblock
+            if is_main_codeblock:
+                if env.sl_swish_code[code_filename_id]['main_doc'] is None:
+                    env.sl_swish_code[code_filename_id]['main_doc'] = (
+                        env.docname)
+                else:
+                    raise RuntimeError(
+                        ('Only one code block can be created from each source '
+                         'file. The code id {} is used by {} and cannot be '
+                         'used by {}.').format(
+                             code_filename_id,
+                             env.sl_swish_code[code_filename_id]['main_doc'],
+                             env.docname)
+                    )
         # if code id has not been seen, create a new item storing its details
         else:
             env.sl_swish_code[code_filename_id] = {
                 'docs': {env.docname},
+                'main_doc': env.docname if is_main_codeblock else None,
                 'path': path_localised,
                 'signature': os.path.getmtime(path_localised)
             }
@@ -677,8 +772,8 @@ class SWISH(Directive):
 def purge_swish_detect(app, env, docname):
     """
     Cleans the information stored in the Sphinx environment about documents
-    with swish blocks (`sl_has_swish`) and the links between documents and
-    swish code sources (`sl_swish_code`).
+    with swish blocks (`sl_has_swish`), inherited ids (`sl_swish_inherited`)
+    and the links between documents and swish code sources (`sl_swish_code`).
     If a document gets regenerated, the information whether this document
     has a swish directive is removed before the document is processed again.
     Similarly, links from code files to this document are purged.
@@ -690,6 +785,21 @@ def purge_swish_detect(app, env, docname):
         # rebuilt, remove it from the store
         if docname in env.sl_has_swish:
             env.sl_has_swish.remove(docname)
+
+    if hasattr(env, 'sl_swish_inherited'):
+        nodes_to_remove = set()
+        for inherit_id, docname_set in env.sl_swish_inherited.items():
+            if docname in docname_set:
+                docs_no = len(docname_set)
+                if docs_no > 1:
+                    docname_set.remove(docname)
+                elif docs_no == 1:
+                    docname_set.remove(docname)
+                    nodes_to_remove.add(inherit_id)
+                else:
+                    assert inherit_id in nodes_to_remove
+        for i in nodes_to_remove:
+            del env.sl_swish_inherited[i]
 
     if hasattr(env, 'sl_swish_code'):
         nodes_to_remove = set()
@@ -705,6 +815,8 @@ def purge_swish_detect(app, env, docname):
                     nodes_to_remove.add(code_id)
                 else:
                     assert code_id in nodes_to_remove
+            if docname == code_node['main_doc']:
+                code_node['main_doc'] = None
         for i in nodes_to_remove:
             del env.sl_swish_code[i]
 
@@ -712,8 +824,8 @@ def purge_swish_detect(app, env, docname):
 def merge_swish_detect(app, env, docnames, other):
     """
     In case documents are processed in parallel, the data stored in
-    `sl_has_swish` and `sl_swish_code` Sphinx environment variables from
-    different threads need to merged.
+    `sl_has_swish`, `sl_swish_inherited` and `sl_swish_code` Sphinx environment
+    variables from different threads need to merged.
 
     This function is hooked up to the `env-merge-info` Sphinx event.
     """
@@ -722,6 +834,16 @@ def merge_swish_detect(app, env, docnames, other):
     if hasattr(other, 'sl_has_swish'):
         # join two sets by taking their union
         env.sl_has_swish |= other.sl_has_swish
+
+    if not hasattr(env, 'sl_swish_inherited'):
+        env.sl_swish_inherited = dict()
+    if hasattr(other, 'sl_swish_inherited'):
+        # join two sets by taking their union
+        for key, val in other.sl_swish_inherited.items():
+            if key in env.sl_swish_inherited:
+                env.sl_swish_inherited[key] |= val
+            else:
+                env.sl_swish_inherited[key] = val
 
     if not hasattr(env, 'sl_swish_code'):
         env.sl_swish_code = {}
@@ -736,7 +858,21 @@ def merge_swish_detect(app, env, docnames, other):
                     raise RuntimeError('A code file signature has changed '
                                        'during the runtime.')
                 # join two sets by taking their union
-                env.sl_swish_code['docs'] |= val['docs']
+                env.sl_swish_code[key]['docs'] |= val['docs']
+                # choose the main document name
+                if val['main_doc'] is not None:
+                    if env.sl_swish_code[key]['main_doc'] is None:
+                        env.sl_swish_code[key]['main_doc'] = val['main_doc']
+                    else:
+                        raise RuntimeError(
+                            ('Two documents ({} and {}) are using the same '
+                             'code file as a main source ().'
+                             'file. The code id {} is used by {} and cannot be '
+                             'used by {}.').format(
+                                 val['main_doc'],
+                                 env.sl_swish_code[key]['main_doc'],
+                                 key)
+                        )
             # if this code file has not yet been referred to
             else:
                 # transfer the whole content
@@ -787,9 +923,14 @@ def analyse_swish_code(app, env, added, changed, removed):
     # check whether any code file has changed
     changed_code_files = set()
     for code_dict in env.sl_swish_code.values():
-        file_signature = os.path.getmtime(code_dict['path'])
-        if file_signature != code_dict['signature']:
-            # check which files use this code file and add them to the list
+        # if the file still exists, check whether it has been updated
+        if os.path.exists(code_dict['path']):
+            file_signature = os.path.getmtime(code_dict['path'])
+            if file_signature != code_dict['signature']:
+                # check which files use this code file and add them to the list
+                changed_code_files = changed_code_files.union(code_dict['docs'])
+        # if the file has been removed, force a refresh of the affected docs
+        else:
             changed_code_files = changed_code_files.union(code_dict['docs'])
 
     # disregard documents that are already marked to be updated or were

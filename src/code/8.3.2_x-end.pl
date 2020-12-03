@@ -1,15 +1,3 @@
-% remove_one(X,Ys,Zs) <- Zs is list Ys minus one occurrence of X
-remove_one(X,[X|Ys],Ys).
-remove_one(X,[Y|Ys],[Y|Zs]):-remove_one(X,Ys,Zs).
-
-% proper_subset(Xs,Ys) <- Xs is a subset of Ys, and Ys contains
-%                         at least one element more
-proper_subset([],Ys):-Ys \= [].
-proper_subset([X|Xs],Ys):-remove_one(X,Ys,Ys1),proper_subset(Xs,Ys1).
-
-element(X,[X|_Ys]).
-element(X,[_Y|Ys]):-element(X,Ys).
-
 adder(N,X,Y,Z,Sum,Carry):-
     xorg(N-xor1,X,Y,S),
     xorg(N-xor2,Z,S,Sum),

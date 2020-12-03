@@ -43,6 +43,6 @@ abduce_not_l([B|Bs],E0,E):-
     abduce_not(B,E0,E1),
     abduce_not_l(Bs,E1,E).
 
-abducible(A):-
-    A \= not(B),
-    not cl(A,B).
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-element(X,Ys).

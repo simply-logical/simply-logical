@@ -50,7 +50,6 @@ prop(saxophone,action,reed(single)).
 prop(harpsichord,action,plucked).
 prop(piano,action,hammered).
 
-
 properties_sn(Inst,Props):-
     props(Inst,InstProps),              % properties of instance
     inst(Inst,Class),

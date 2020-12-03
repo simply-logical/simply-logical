@@ -41,6 +41,9 @@ sphinx:
   local_extensions:
     sl: _ext
   config:
+    numfig_format:
+      figure: "Figure %s"
+    numfig_secnum_depth: 2
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     sl_code_directory: /src/code/
     sl_swish_url: https://swish.simply-logical.space/

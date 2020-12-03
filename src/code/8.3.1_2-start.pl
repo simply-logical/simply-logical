@@ -21,3 +21,6 @@ abduce(A,E,[A|E]):-
     abducible(A).
 abduce(not(A),E,E):-    % E explains not(A)
     not abduce(A,E,E).  % if E doesn't explain A
+
+:- discontiguous cl/2.
+cl(flies1(X),(not(abnormal(X),bird(X)))).
