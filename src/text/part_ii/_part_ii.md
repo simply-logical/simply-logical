@@ -1,4 +1,5 @@
 <!--H1: Part II-->
+(part:ii)=
 # Reasoning with structured knowledge #
 
 A physical object is *structured* if it consists of several components having certain spatial relationships to each other. Likewise, knowledge is structured if its components have certain logical relationships. For instance, a description of the London underground system consists of a list of stations (the components) plus a list of connections between stations (the relationships). As can be seen in {numref}`fig:1.1` in Chapter 1, such structured knowledge has a convenient graphical representation, in which components are represented by points or *nodes*, and relationships are represented by lines or *arcs* between nodes. In mathematics, such graphical structures are called *graphs*.
@@ -9,7 +10,8 @@ A characteristic property of structured knowledge is the distinction that is mad
 
 +++
 
-Other examples of structured knowledge, encountered in Part I, include Prolog terms, proof trees, and SLD-trees. Among these, SLD-trees constitute a special case, since they are not given *a priori* as part of the knowledge describing a certain Universe of Discourse, but are instead *derived* from problem specifications of the form 'given program *P*, find all answers to query *Q*'. By means of SLD-trees, such problems are translated to problems of the form 'given SLD-tree *T*, find all paths from the root of the tree to the empty clause'. Problems of the latter kind are called *search problems*, and the graph being searched is called a *search space*. Most problems in intelligent reasoning are search problems of one kind or the other.
+Other examples of structured knowledge, encountered in {numref}`Part %s<part:i>`, include Prolog terms, proof trees, and SLD-trees. Among these, SLD-trees constitute a special case, since they are not given *a priori* as part of the knowledge describing a certain Universe of Discourse, but are instead *derived* from problem specifications of the form 'given program *P*, find all answers to query *Q*'. By means of SLD-trees, such problems are translated to problems of the form 'given SLD-tree *T*, find all paths from the root of the tree to the empty clause'. Problems of the latter kind are called *search problems*, and the graph being searched is called a *search space*. Most problems in intelligent reasoning are search problems of one kind or the other.
+<!--Part I-->
 
 <!--TODO: Subfigures-->
 <!--parent: II.1-->
