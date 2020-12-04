@@ -52,17 +52,18 @@ If you find an error in the online version of the book, please open a [*GitHub i
    ```
 
 # TODO #
-- [ ] `_config.yaml` TODOs
-- [ ] move  `static` to `_static`
-- [ ] create CSS for `admonition exercise` and `admonition infobox`
+- [ ] TODO(Peter): fix TODO tags
+- [ ] TODO(Peter): hacked named paragraphs (search for `&nbsp;`) into markdown sections (e.g., 1.2.1) -- will show up on the right in the content
+    - [ ] TODO (Kacper) prevent sphinx from numbering these entries (toc `:maxdepth:`)
+- [ ] TODO(Peter): adjust figure width
+- [ ] TODO(Peter): typographical consistency
+- [ ] TODO(Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
 
-- [ ] TODO (Peter): typographical consistency
-- [ ] TODO (Peter): consider changing figures to images when they lack caption, e.g., appendix
-- [ ] TODO (Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
+- [ ] TODO(Kacper): automated numbering:
+    * sections, chapters, parts, appendix A/B/C a.1, etc.;
+- [ ] TODO(Kacper): fix the mismatch of references to items in itemize -- they are lower case roman numbers in the book and Jupyter Book has its own style
+    * step (..+) maybe iwth italics somehow
+    * thee can be letters or numbers or roman
 
-- [ ] TODO (Kacper): fix FIXME tags
-- [ ] TODO (Kacper): fix the mismatch of references to items in itemize -- they are lower case roman numbers in the book and Jupyter Book has its own style
-- [ ] TODO (Kacper): fix figure naming, location and references
-- [ ] TODO (Kacper): automated figure, section, exercise references
-- [ ] TODO (Kacper): swish query elements that automatically populate query (`class="swish query"` and `query-id="query3.2.3"`)
-- [ ] TODO (Kacper): fix duplicates of code excerpts and adding `-start` and `-end` fragments
+- [ ] TODO(Kacper): automated numbering and referencing of **exercises**
+- [ ] TODO(Kacper): some of the footnotes have messed up numbering (check github issues)

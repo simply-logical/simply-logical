@@ -1,7 +1,7 @@
 <!--H1: Part II-->
 # Reasoning with structured knowledge #
 
-A physical object is *structured* if it consists of several components having certain spatial relationships to each other. Likewise, knowledge is structured if its components have certain logical relationships. For instance, a description of the London underground system consists of a list of stations (the components) plus a list of connections between stations (the relationships). As can be seen in fig. 1.1 in Chapter 1, such structured knowledge has a convenient graphical representation, in which components are represented by points or *nodes*, and relationships are represented by lines or *arcs* between nodes. In mathematics, such graphical structures are called *graphs*.
+A physical object is *structured* if it consists of several components having certain spatial relationships to each other. Likewise, knowledge is structured if its components have certain logical relationships. For instance, a description of the London underground system consists of a list of stations (the components) plus a list of connections between stations (the relationships). As can be seen in {numref}`fig:1.1` in Chapter 1, such structured knowledge has a convenient graphical representation, in which components are represented by points or *nodes*, and relationships are represented by lines or *arcs* between nodes. In mathematics, such graphical structures are called *graphs*.
 
 +++
 
@@ -18,7 +18,7 @@ Other examples of structured knowledge, encountered in Part I, include Prolog te
 <!--name: 'a'-->
 ```{figure} /src/fig/part_ii/image002.svg
 ---
-name: 'II.1.a'
+name: 'fig:II.1.a'
 width: 100%
 ---
 The Towers of Hanoi: Starting position.
@@ -29,7 +29,7 @@ The Towers of Hanoi: Starting position.
 <!--name: 'b'-->
 ```{figure} /src/fig/part_ii/image004.svg
 ---
-name: 'II.1.b'
+name: 'fig:II.1.b'
 width: 100%
 ---
 The Towers of Hanoi: Intermediate position.
@@ -40,7 +40,7 @@ The Towers of Hanoi: Intermediate position.
 <!--name: 'c'-->
 ```{figure} /src/fig/part_ii/image006.svg
 ---
-name: 'II.1.c'
+name: 'fig:II.1.c'
 width: 100%
 ---
 The Towers of Hanoi: Goal position.
@@ -56,7 +56,8 @@ In principle, any given problem can be defined as a search problem. To this end,
 1. the starting node;
 1. the goal node.
 
-For instance, when searching for an answer to a query by means of SLD-resolution, the nodes in the search space are resolvents, the arcs are resolution steps by means of a program clause, the starting node is the query, and the goal node is the empty clause. As another example, we consider the puzzle known as *The Towers of Hanoi*. This puzzle consists of three pegs and *n* disks of decreasing size. Initially, all the disks are on the left peg, such that no disk is placed on a smaller one. This rule is to be obeyed throughout the game. The goal is to move all the disks to the right peg by moving one disk at a time. This problem is easily reformulated as a search problem, where nodes are allowed positions, and arcs are moves of the upper disk on one peg to another. Starting node and goal node are as in fig. II.1.
+For instance, when searching for an answer to a query by means of SLD-resolution, the nodes in the search space are resolvents, the arcs are resolution steps by means of a program clause, the starting node is the query, and the goal node is the empty clause. As another example, we consider the puzzle known as *The Towers of Hanoi*. This puzzle consists of three pegs and *n* disks of decreasing size. Initially, all the disks are on the left peg, such that no disk is placed on a smaller one. This rule is to be obeyed throughout the game. The goal is to move all the disks to the right peg by moving one disk at a time. This problem is easily reformulated as a search problem, where nodes are allowed positions, and arcs are moves of the upper disk on one peg to another. Starting node and goal node are as in {numref}`fig:II.1.a`, {numref}`fig:II.1.b` and {numref}`fig:II.1.c`.
+<!--TODO: Since the figures have to be separated, "fig. II.1" got replaced with "{numref}`fig:II.1.a`, {numref}`fig:II.1.b` and {numref}`fig:II.1.c`".-->
 
 ````{infobox}
 ---
