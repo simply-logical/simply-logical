@@ -3,7 +3,11 @@
 
 A physical object is *structured* if it consists of several components having certain spatial relationships to each other. Likewise, knowledge is structured if its components have certain logical relationships. For instance, a description of the London underground system consists of a list of stations (the components) plus a list of connections between stations (the relationships). As can be seen in fig. 1.1 in Chapter 1, such structured knowledge has a convenient graphical representation, in which components are represented by points or *nodes*, and relationships are represented by lines or *arcs* between nodes. In mathematics, such graphical structures are called *graphs*.
 
++++
+
 A characteristic property of structured knowledge is the distinction that is made between *explicit* and *implicit* relationships. For instance, in the underground example the direct connections which exist between two stations are the explicit relationships. All other relationships (i.e. connections between stations that are further apart) are only implicitly represented, and must be reconstructed from the explicit relationships. Therefore, *reasoning* forms an integral part of any form of structured knowledge.
+
++++
 
 Other examples of structured knowledge, encountered in Part I, include Prolog terms, proof trees, and SLD-trees. Among these, SLD-trees constitute a special case, since they are not given *a priori* as part of the knowledge describing a certain Universe of Discourse, but are instead *derived* from problem specifications of the form 'given program *P*, find all answers to query *Q*'. By means of SLD-trees, such problems are translated to problems of the form 'given SLD-tree *T*, find all paths from the root of the tree to the empty clause'. Problems of the latter kind are called *search problems*, and the graph being searched is called a *search space*. Most problems in intelligent reasoning are search problems of one kind or the other.
 
@@ -42,6 +46,8 @@ width: 100%
 The Towers of Hanoi: Goal position.
 ```
 
++++
+
 In principle, any given problem can be defined as a search problem. To this end, we must identify:
 
 <!--roman list-->
@@ -79,7 +85,11 @@ M = [ left to right, left to middle, right to middle,
 The first three moves move the upper two disks from the left to the middle peg, then the largest disk is moved to the right peg, and again three moves are needed to move the two disks on the middle peg to the right peg.
 ````
 
++++
+
 Since the number of allowed positions is $3^n$, the search space for the Towers of Hanoi grows exponentially with the number of disks. In practice, this means that the problem will be unsolvable for large *n*, no matter how efficient the search program, or how powerful the computer. *This is a common characteristic of search problems*. Search is a problem solving method which, although applicable to almost any problem, has considerable practical limitations. Therefore, search is only applied to problems for which no analytic solutions are known.
+
++++
 
   For many problems in intelligent reasoning such analytic solutions simply do not exist, and search is the best we can do. In Chapters 5 and 6, we will present and analyse various methods for searching graphs. Since graphs are not only important for search problems, but for all forms of structured knowledge, Chapter 4 is devoted to a discussion of various ways to represent structured knowledge in clausal logic.
 
