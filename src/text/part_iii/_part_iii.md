@@ -7,7 +7,8 @@ In {numref}`Part %s<part:i>`, we introduced the formalism of clausal logic and s
 
 +++
 
-Why would one want to have a formalism more powerful than first-order clausal logic? One reason could be that we want to perform inferences that are simply not expressible in first-order clausal logic. We might want to express knowledge such as 'he inherited all his father's bad characteristics', which is a second-order statement (section 2.5). We might want to express statements like 'Peter believes his boss knows he is writing a book', where 'Peter's boss knows' is a *modality* of the formula 'Peter is writing a book', and 'Peter believes' is a modality of the formula 'Peter's boss knows Peter is writing a book'. We might want to reason about sequences of events happening over time. Each of these examples requires a specialised logic extending the syntax of first-order logic. Needless to say, this increased expressiveness also requires more powerful semantics and proof theory.
+<!--section 2.5-->
+Why would one want to have a formalism more powerful than first-order clausal logic? One reason could be that we want to perform inferences that are simply not expressible in first-order clausal logic. We might want to express knowledge such as 'he inherited all his father's bad characteristics', which is a second-order statement ({numref}`sec:2.5`). We might want to express statements like 'Peter believes his boss knows he is writing a book', where 'Peter's boss knows' is a *modality* of the formula 'Peter is writing a book', and 'Peter believes' is a modality of the formula 'Peter's boss knows Peter is writing a book'. We might want to reason about sequences of events happening over time. Each of these examples requires a specialised logic extending the syntax of first-order logic. Needless to say, this increased expressiveness also requires more powerful semantics and proof theory.
 
 +++
 

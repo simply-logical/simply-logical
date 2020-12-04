@@ -59,8 +59,6 @@ If you find an error in the online version of the book, please open a [*GitHub i
 - [ ] TODO(Peter): typographical consistency
 - [ ] TODO(Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
 
-- [ ] TODO(Kacper): automated numbering:
-    * sections
 - [ ] TODO(Kacper): fix the mismatch of references to items in itemize -- they are lower case roman numbers in the book and Jupyter Book has its own style
     * step (..+) maybe with italics somehow
     * these can be letters or numbers or roman
