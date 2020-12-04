@@ -2,7 +2,8 @@
 (part:ii)=
 # Reasoning with structured knowledge #
 
-A physical object is *structured* if it consists of several components having certain spatial relationships to each other. Likewise, knowledge is structured if its components have certain logical relationships. For instance, a description of the London underground system consists of a list of stations (the components) plus a list of connections between stations (the relationships). As can be seen in {numref}`fig:1.1` in Chapter 1, such structured knowledge has a convenient graphical representation, in which components are represented by points or *nodes*, and relationships are represented by lines or *arcs* between nodes. In mathematics, such graphical structures are called *graphs*.
+A physical object is *structured* if it consists of several components having certain spatial relationships to each other. Likewise, knowledge is structured if its components have certain logical relationships. For instance, a description of the London underground system consists of a list of stations (the components) plus a list of connections between stations (the relationships). As can be seen in {numref}`fig:1.1` in {numref}`Chapter %s<ch:1>`, such structured knowledge has a convenient graphical representation, in which components are represented by points or *nodes*, and relationships are represented by lines or *arcs* between nodes. In mathematics, such graphical structures are called *graphs*.
+<!--Chapter 1-->
 
 +++
 
@@ -94,6 +95,7 @@ Since the number of allowed positions is $3^n$, the search space for the Towers 
 
 +++
 
-  For many problems in intelligent reasoning such analytic solutions simply do not exist, and search is the best we can do. In Chapters 5 and 6, we will present and analyse various methods for searching graphs. Since graphs are not only important for search problems, but for all forms of structured knowledge, Chapter 4 is devoted to a discussion of various ways to represent structured knowledge in clausal logic.
+  For many problems in intelligent reasoning such analytic solutions simply do not exist, and search is the best we can do. In {numref}`Chapters %s<ch:5>` and {numref}`%s<ch:6>`, we will present and analyse various methods for searching graphs. Since graphs are not only important for search problems, but for all forms of structured knowledge, {numref}`Chapter %s<ch:4>` is devoted to a discussion of various ways to represent structured knowledge in clausal logic.
+<!--Chapters 5 6 Chapter 4-->
 
 [^12]: The remaining disk on A can safely be ignored, since it is the largest.

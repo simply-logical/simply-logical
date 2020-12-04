@@ -14,4 +14,8 @@ Imperative programming and Logic Programming also differ with respect to the *ma
 
 +++
 
-The first three chapters of the book are devoted to an introduction to Logic Programming. Chapter 1, *A brief introduction to clausal logic*, is an introductory chapter, introducing many concepts in Logic Programming by means of examples. These concepts get a more formal treatment in Chapter 2, *Clausal logic and resolution: theoretical backgrounds*. In Chapter 3, *Logic Programming and Prolog*, we take a closer look at Prolog as a logic programming language, explaining its main features and describing some common programming techniques.
+The first three chapters of the book are devoted to an introduction to Logic Programming. {numref}`Chapter %s<ch:1>`, *{ref}`ch:1`*, is an introductory chapter, introducing many concepts in Logic Programming by means of examples. These concepts get a more formal treatment in {numref}`Chapter %s<ch:2>`, *{ref}`ch:2`*. In {numref}`Chapter %s<ch:3>`, *{ref}`ch:3`*, we take a closer look at Prolog as a logic programming language, explaining its main features and describing some common programming techniques.
+<!--Chapter 1 Chapter 2 Chapter 3-->
+<!--A brief introduction to clausal logic-->
+<!--Clausal logic and resolution: theoretical backgrounds-->
+<!--Logic Programming and Prolog-->
