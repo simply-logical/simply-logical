@@ -66,7 +66,7 @@ For instance, when searching for an answer to a query by means of SLD-resolution
 ---
 title: An analytic solution to the Towers of Hanoi
 ---
-In the case of the Towers of Hanoi, there is a simple analytic solution based on the following observation: suppose we are able to solve the problem for *n*-1 disks, then we can solve it for *n* disks also: move the upper *n*-1 disks from the left to the middle peg[^12], move the remaining disk on the left peg to the right peg, and move the *n*-1 disks from the middle peg to the right peg. Since we are able to solve the problem for 0 disks, it follows by complete induction that we can solve the problem for any number of disks. The inductive nature of this argument is nicely reflected in the following recursive program:
+In the case of the Towers of Hanoi, there is a simple analytic solution based on the following observation: suppose we are able to solve the problem for $n-1$ disks, then we can solve it for $n$ disks also: move the upper $n-1$ disks from the left to the middle peg[^12], move the remaining disk on the left peg to the right peg, and move the $n-1$ disks from the middle peg to the right peg. Since we are able to solve the problem for $0$ disks, it follows by complete induction that we can solve the problem for any number of disks. The inductive nature of this argument is nicely reflected in the following recursive program:
 ```Prolog
 :-op(900,xfx,to).
 
@@ -91,7 +91,7 @@ The first three moves move the upper two disks from the left to the middle peg, 
 
 +++
 
-Since the number of allowed positions is $3^n$, the search space for the Towers of Hanoi grows exponentially with the number of disks. In practice, this means that the problem will be unsolvable for large *n*, no matter how efficient the search program, or how powerful the computer. *This is a common characteristic of search problems*. Search is a problem solving method which, although applicable to almost any problem, has considerable practical limitations. Therefore, search is only applied to problems for which no analytic solutions are known.
+Since the number of allowed positions is $3^n$, the search space for the Towers of Hanoi grows exponentially with the number of disks. In practice, this means that the problem will be unsolvable for large $n$, no matter how efficient the search program, or how powerful the computer. *This is a common characteristic of search problems*. Search is a problem solving method which, although applicable to almost any problem, has considerable practical limitations. Therefore, search is only applied to problems for which no analytic solutions are known.
 
 +++
 

@@ -56,12 +56,8 @@ If you find an error in the online version of the book, please open a [*GitHub i
 - [ ] TODO(Peter): hacked named paragraphs (search for `&nbsp;`) into markdown sections (e.g., 1.2.1) -- will show up on the right in the content
     - [ ] TODO (Kacper) prevent sphinx from numbering these entries (toc `:maxdepth:`)
 - [ ] TODO(Peter): adjust figure width
-- [ ] TODO(Peter): typographical consistency
+- [ ] TODO(Peter): typographical consistency, e.g., maths was in italics leading to statements like `*CWA* (*P*)` or ```not` (*F*)``
 - [ ] TODO(Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
-
-- [ ] TODO(Kacper): fix the mismatch of references to items in itemize -- they are lower case roman numbers in the book and Jupyter Book has its own style
-    * step (..+) maybe with italics somehow
-    * these can be letters or numbers or roman
 
 - [ ] TODO(Kacper): automated numbering and referencing of **exercises**
 - [ ] TODO(Kacper): some of the footnotes have messed up numbering (check github issues)
