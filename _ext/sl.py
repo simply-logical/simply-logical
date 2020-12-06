@@ -207,6 +207,79 @@ def visit_exercise_title_node(self, node):
     self.visit_title(node)
 
 
+def source_exercise_target(self, node):
+    """Collects `docname`, `id` and `fignumber` of a linked exercise."""
+    std_domain = self.builder.env.domains['std']
+    figtype = std_domain.get_enumerable_node_type(node.parent)
+    assert figtype == 'solution'
+
+    fig_id = node.parent['ids'][0]
+
+    # sort out the label
+    exercise_label = node.parent.attributes['exercise']
+
+    names = node.parent['names']
+    assert len(names) == 1
+    assert names[0].startswith('sol:')
+
+    # get exercise id
+    assert fig_id.startswith('sol-')
+    exercise_id = 'ex-{}'.format(fig_id[4:])
+    assert exercise_id == nodes.make_id(exercise_label)
+
+    # because the exercise may be in a different document, we go global
+    all_labels = std_domain.data['labels']
+    assert exercise_label in all_labels
+
+    # track down the document and identifier
+    exercise_source_docname = all_labels[exercise_label][0]
+    fig_identifiers = self.builder.env.toc_fignumbers
+    assert exercise_source_docname in fig_identifiers
+    assert 'exercise' in fig_identifiers[exercise_source_docname]
+    ex_docname_map = fig_identifiers[exercise_source_docname]['exercise']
+    assert exercise_id in ex_docname_map
+
+    fignumber = ex_docname_map[exercise_id]
+
+    return exercise_source_docname, exercise_id, fignumber
+
+
+def source_solution_target(self, node):
+    """
+    Collects `docname`, `id` and `fignumber` of a linked solution if it exists.
+    """
+    std_domain = self.builder.env.domains['std']
+    figtype = std_domain.get_enumerable_node_type(node.parent)
+    assert figtype == 'exercise'
+
+    # sort out the label
+    names = node.parent['names']
+    assert len(names) == 1
+    exercise_label = names[0]
+    assert exercise_label.startswith('ex:')
+
+    # get solution id
+    solution_label = 'sol:{}'.format(exercise_label[3:])
+    solution_id = nodes.make_id(solution_label)
+
+    # because the solution may be in a different document, we go global
+    all_labels = std_domain.data['labels']
+    if solution_label not in all_labels:
+        return None
+
+    # track down the document and identifier
+    solution_source_docname = all_labels[solution_label][0]
+    fig_identifiers = self.builder.env.toc_fignumbers
+    assert solution_source_docname in fig_identifiers
+    assert 'solution' in fig_identifiers[solution_source_docname]
+    sol_docname_map = fig_identifiers[solution_source_docname]['solution']
+    assert solution_id in sol_docname_map
+
+    fignumber = sol_docname_map[solution_id]
+
+    return solution_source_docname, solution_id, fignumber
+
+
 def alternative_visit_title(self, node):
     """
     Provides an alternative implementation of Sphinx's HTML5 `add_fignumber`.
@@ -218,29 +291,36 @@ def alternative_visit_title(self, node):
     # get the figtype from the parent of this node since titles are not
     # enumerable
     figtype = std_domain.get_enumerable_node_type(node.parent)
-    # get id the exercise node
-    exercise_id = node.parent['ids'][0]
 
     if figtype is None:
         raise RuntimeError('The figtype was not found despite the '
                            'exercise_title node being used within an exercise '
                            'node.')
 
-    assert figtype == 'exercise'
-    # get the map of figure numbers for exercises for this document
-    exercise_map = self.builder.fignumbers.get(figtype, {})
+    assert figtype in ('exercise', 'solution')
 
+    # get the map of figure numbers for exercises for this document
+    # if figtype is solution, we need to get a number of the corresponding
+    # exercise
+    fig_map = self.builder.fignumbers.get(figtype, {})
+
+    # get id the exercise node
+    fig_id = node.parent['ids'][0]
     # get figure number of the exercise node
-    assert exercise_id in exercise_map
-    exercise_number = exercise_map[exercise_id]
+    assert fig_id in fig_map
+
+    if figtype == 'solution':
+        _, _, fig_number = source_exercise_target(self, node)
+    else:
+        fig_number = fig_map[fig_id]
 
     # stringify the exercise id
-    exercise_number_str = '.'.join(map(str, exercise_number))
+    fig_number_str = '.'.join(map(str, fig_number))
 
     # format the exercise id
     prefix = self.builder.config.numfig_format.get(figtype)
     assert prefix is not None, 'exercise fignum format is not defined.'
-    exercise_title = prefix % exercise_number_str
+    exercise_title = prefix % fig_number_str
 
     # build the HTML structure
     self.body.append('<span class="caption-number">')
@@ -261,6 +341,18 @@ def depart_exercise_title_node(self, node):
     else:
         raise RuntimeError('Could not add a permalink to an exercise box.')
 
+    # get a URL to the exercise
+    sol = source_solution_target(self, node)
+    if sol is not None:
+        docname, id_, _ = sol
+        url = self.builder.get_relative_uri(
+            self.builder.current_docname, docname)
+        # self.builder.env.doc2path(docname, base=None)
+        content = ('<a href="{}#{}" class="solution-link" '
+                   'title="Go to the solution"></a>')
+        self.body.append(content.format(url, id_))
+
+    # finish the title
     # self.body.append('</span>\n')
     #
     self.depart_title(node)
@@ -339,6 +431,8 @@ class Exercise(Directive):
 
     def run(self):
         """Builds an exercise box with a title."""
+        # NOTE: since this directive has a complementary `solution` directive
+        #       it may be better to put the two in a separate `exercise` domain
         env = self.state.document.settings.env
 
         # we do not assign an id to this node (despite it being a prerequisite
@@ -348,6 +442,7 @@ class Exercise(Directive):
 
         # get the user-provided label of the exercise
         label = self.arguments[0]
+        assert label.startswith('ex:')
 
         # since the label of the node was not given in the standard docutil
         # manner (via the optional `name` parameter), it needs to be manually
@@ -393,6 +488,135 @@ def set_exercise_numfig_format(app, config):
     This function is hooked up to the `config-inited` Sphinx event.
     """
     numfig_format = {'exercise': 'Exercise %s'}
+
+    # override the default numfig format with values in the config file
+    numfig_format.update(config.numfig_format)
+    config.numfig_format = numfig_format
+
+
+#### Solution directive #######################################################
+
+
+class solution(nodes.Admonition, nodes.Element):
+    """A `docutils` node holding Simply Logical solution."""
+
+
+def visit_solution_node(self, node):
+    """See the coresponding exercise function."""
+    self.body.append(self.starttag(
+        node, 'div', CLASS=('admonition solution')))
+
+
+def depart_solution_node(self, node):
+    """See the coresponding exercise function."""
+    self.body.append('</div>\n')
+
+
+def visit_solution_node_(self, node):
+    """See the coresponding exercise function."""
+    raise NotImplemented
+    self.visit_admonition(node)
+
+
+def depart_solution_node_(self, node):
+    """See the coresponding exercise function."""
+    raise NotImplemented
+    self.depart_admonition(node)
+
+
+class solution_title(nodes.title):
+    """A `docutils` node holding the **title** of Simply Logical solution."""
+
+
+def visit_solution_title_node(self, node):
+    """See the coresponding exercise function."""
+    assert self.builder.name != 'singlehtml', (
+        'This function is not suitable for singlehtml builds -- '
+        'see the URL in the docstring.')
+    if not isinstance(node, solution_title):
+        raise RuntimeError('This function should only be used to process '
+                           'a solution title.')
+    if not isinstance(node.parent, solution):
+        raise RuntimeError('This function should only be used to process '
+                           'a solution title that is embedded within an '
+                           'solution node.')
+    assert len(node.parent['ids']) == 1, (
+        'Solution nodes need to be ided to be referenceable.')
+
+    self.body.append(self.starttag(node, 'p', CLASS=('admonition-title')))
+    alternative_visit_title(self, node)
+
+
+def depart_solution_title_node(self, node):
+    """See the coresponding exercise function."""
+    if (self.permalink_text and self.builder.add_permalinks
+            and node.parent.hasattr('ids') and node.parent['ids']):
+        self.add_permalink_ref(node.parent, 'Permalink to this solution')
+    else:
+        raise RuntimeError('Could not add a permalink to an solution box.')
+
+    # get a URL to the exercise
+    docname, id_, _ = source_exercise_target(self, node)
+    url = self.builder.get_relative_uri(self.builder.current_docname, docname)
+    # self.builder.env.doc2path(docname, base=None)
+    content = ('<a href="{}#{}" class="exercise-link" '
+               'title="Go to the exercise"></a>')
+    self.body.append(content.format(url, id_))
+
+    # finish the title
+    self.body.append('</p>\n')
+
+
+def visit_solution_title_node_(self, node):
+    """See the coresponding exercise function."""
+    raise NotImplemented
+
+
+def depart_solution_title_node_(self, node):
+    """See the coresponding exercise function."""
+    raise NotImplemented
+
+
+class Solution(Directive):
+    """See the coresponding exercise function."""
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    has_content = True
+    option_spec = {}
+
+    def run(self):
+        """See the coresponding exercise function."""
+        env = self.state.document.settings.env
+
+        label = self.arguments[0]
+        assert label.startswith('ex:')
+        sol_label = 'sol:{}'.format(label[3:])
+
+        solution_content_node = solution('\n'.join(self.content),
+                                         exercise=label)
+
+        self.options['name'] = sol_label
+        self.add_name(solution_content_node)
+
+        solution_title_node = solution_title()
+
+        solution_content_node += solution_title_node
+        self.state.nested_parse(
+            self.content, self.content_offset, solution_content_node)
+
+        return [solution_content_node]
+
+
+def solution_title_getter(node):
+    """See the coresponding exercise function."""
+    assert isinstance(node, solution)
+    return 'solution'
+
+
+def set_solution_numfig_format(app, config):
+    """See the coresponding exercise function."""
+    numfig_format = {'solution': 'Solution %s'}
 
     # override the default numfig format with values in the config file
     numfig_format.update(config.numfig_format)
@@ -1082,6 +1306,20 @@ def setup(app):
         latex=(visit_exercise_title_node_, depart_exercise_title_node_),
         text=(visit_exercise_title_node_, depart_exercise_title_node_)
     )
+    app.add_enumerable_node(
+        solution,
+        'solution',
+        solution_title_getter,
+        html=(visit_solution_node, depart_solution_node),
+        latex=(visit_solution_node_, depart_solution_node_),
+        text=(visit_solution_node_, depart_solution_node_)
+    )
+    app.add_node(
+        solution_title,
+        html=(visit_solution_title_node, depart_solution_title_node),
+        latex=(visit_solution_title_node_, depart_solution_title_node_),
+        text=(visit_solution_title_node_, depart_solution_title_node_)
+    )
     app.add_node(
         swish_box,
         html=(visit_swish_box_node, depart_swish_box_node),
@@ -1108,6 +1346,7 @@ def setup(app):
     app.add_directive('infobox', Infobox)
     app.add_directive('swish', SWISH)
     app.add_directive('exercise', Exercise)
+    app.add_directive('solution', Solution)
 
     # connect custom hooks to the Sphinx build process
     app.connect('env-purge-doc', purge_swish_detect)
@@ -1115,5 +1354,6 @@ def setup(app):
     app.connect('doctree-resolved', inject_swish_detect)
     app.connect('env-get-outdated', analyse_swish_code)
     app.connect('config-inited', set_exercise_numfig_format)
+    app.connect('config-inited', set_solution_numfig_format)
 
     return {'version': VERSION}

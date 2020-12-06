@@ -9,3 +9,31 @@
   color:#28a745;
   content:"";
 }
+.admonition.exercise .admonition-title .solution-link {
+  color:#ffc107;
+  float: right;
+  font-family: Font Awesome\ 5 Free;
+}
+
+/*Exercise solution directive*/
+.admonition.solution {
+  border-color:#ffc107;
+}
+.admonition.solution .admonition-title {
+  background-color: #fff6dd;
+}
+.admonition.solution .admonition-title:before {
+  color:#ffc107;
+  content:"";
+}
+.admonition.solution .admonition-title .exercise-link {
+  color:#28a745;
+  float: right;
+  font-family: Font Awesome\ 5 Free;
+}
+
+/*Justify the book text*/
+#main-content {
+  text-align: justify;
+  text-justify: auto;
+}
