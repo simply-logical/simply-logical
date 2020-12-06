@@ -60,6 +60,5 @@ If you find an error in the online version of the book, please open a [*GitHub i
 - [ ] TODO(Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
 
 - [ ] TODO(Kacper): automated numbering and referencing of **exercises**
-    * add automatic references (`ag "exercise(?!})" src/text`)
     * fix double references in appendix, which uses repeated exercise identifiers; how to point them to the original exercise with the right reference? Maybe use an optional `:title:` argument or provide a `solution` directive (since now we need both exercise and solution directives maybe it is better to have a custom domain?)
 - [ ] TODO(Kacper): some of the footnotes have messed up numbering (check github issues)

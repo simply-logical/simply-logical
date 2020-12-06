@@ -27,8 +27,6 @@ import sys
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
-from sphinx.domains.std import StandardDomain
-from sphinx.util.nodes import clean_astext
 
 if sys.version_info >= (3, 0):
     unicode = str
@@ -286,15 +284,52 @@ def depart_exercise_title_node_(self, node):
 
 class Exercise(Directive):
     """
-    TODO
-
-    discuss the numfig_format setting for exrecise
-
-    `exercise` directive is of the form::
+    Defines and processes the `exercise` directive, which is of the form::
        .. exercise:: ex:2.9
 
          Exercise content.
-    which can be referenced either with :ref:`ex:2.9` or :numref:`ex:2.9`.
+
+    `ex:2.9` is a label that can be referred to either with ``:ref:`ex:2.9```
+    to get a hyperlink saying *exercise* (see the `exercise_title_getter`
+    function), or with ``:numref:`ex:2.9``` to get a numbered reference based
+    on the `numfig_format` for `exercise` (see the `set_exercise_numfig_format`
+    function), which by default is defined as `Exercise %s`. To change this
+    stub the `numfig_format.exercise` Sphinx setting variable can be set to the
+    desired string formatter.
+
+    Notes:
+        `env.domaindata['std']` and `env.domains['std']` hold the reference
+        catalogue.
+
+        Giving an exercise node an id (via
+        `exercise(content, ids=[unique_id])`) ensures that it gets a `numfig`
+        assigned. When assigning a name via `self.add_name(node)`, this is done
+        automatically. To get a nice id string we can use the
+        `nodes.make_id(name)` function.
+
+        Other useful arguments for creating a node are:
+
+        * `ids=[id_]`,
+        * `names=[label]`,
+        * `label=label`,
+        * `title=label`,
+        * `docname=env.docname`.
+
+        The inspiration for this directive -- in particular to make it
+        referenceable and enumerable -- was taken from:
+
+        * https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/directives/patches.py#L166
+        * https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/directives/patches.py#L42
+
+        and
+
+        * https://docutils.sourceforge.io/docs/ref/doctree.html#names
+        * https://docutils.sourceforge.io/docs/ref/rst/directives.html#common-options
+
+        The latter two documents show the importance, universality and
+        portability of the `name` option for a directive, and the former two
+        show how to assign it on the fly if a directive was not given a `name`
+        in the first place.
     """
     required_arguments = 1
     optional_arguments = 0
@@ -303,23 +338,32 @@ class Exercise(Directive):
     option_spec = {}
 
     def run(self):
-        """TODO"""
+        """Builds an exercise box with a title."""
         env = self.state.document.settings.env
 
-        # TODO: check for duplicated labels
-        # TODO: enable ref and numref work
+        # we do not assign an id to this node (despite it being a prerequisite
+        # for assigning it a fignum) as this will happen automatically when
+        # a name is assigned to this node
+        exercise_content_node = exercise('\n'.join(self.content))
 
-        #print('hello')
-        #print(self.state.document.__dict__)
-        #print('goodbye')
+        # get the user-provided label of the exercise
+        label = self.arguments[0]
 
-        # giving an exercise node an id ensures that it gets a numfig assigned
-        exercise_content_node = exercise('\n'.join(self.content),
-                                         ids=['6.1'], name='6.1')
-                                              # self.arguments[0]
+        # since the label of the node was not given in the standard docutil
+        # manner (via the optional `name` parameter), it needs to be manually
+        # assigned to this instance of the exercise directive and processed,
+        # i.e., it registers the label with the domain (standard `std` domain
+        # in this case); it also checks whether the labels is not duplicated
+        self.options['name'] = label
+        self.add_name(exercise_content_node)
+        # these steps ensure that the node created by this directive can be
+        # referenced with `ref` and `numref`
 
+        # build an empty exercise title, the fignum is injected when building
+        # its HTML representation
         exercise_title_node = exercise_title()
 
+        # add title to the exercise and process the content
         exercise_content_node += exercise_title_node
         self.state.nested_parse(
             self.content, self.content_offset, exercise_content_node)
@@ -329,20 +373,11 @@ class Exercise(Directive):
 
 def exercise_title_getter(node):
     """
-    TODO
-
-    The default returned upon calling :ref:`name`"""
-    print('called for name')
-    return 'Exercise {}'
-    for n in node:
-        if isinstance(n, nodes.title):
-            clean_title = clean_astext(n)
-            print('\n********* clean title *********')
-            print(clean_title)
-            print('*******************************\n')
-            return clean_title
-    else:
-        raise RuntimeError('An exercise directive is missing a title.')
+    Defines the default calling name (accessed via :ref:`ex:1.1`) of an
+    exercise node.
+    """
+    assert isinstance(node, exercise)
+    return 'exercise'
 
 
 def set_exercise_numfig_format(app, config):
