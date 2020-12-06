@@ -135,111 +135,166 @@ class Infobox(Directive):
 #### Exercise directive #######################################################
 
 
-def get_exercise_fignumber(writer, node):
-    """TODO"""
-    if not isinstance(node, exercise):
-        raise RuntimeError('Function assigned to a wrong directive.')
-
-    element_id = node['ids'][0]
-    exercise_ids = writer.builder.fignumbers.get('exercise', {})
-
-    if element_id not in exercise_ids:
-        raise RuntimeError('Exercise id is missing.')
-
-    exercise_number = exercise_ids[element_id]
-    exercise_number_str = '.'.join(map(str, exercise_number))
-
-    return exercise_number_str
-
-
 class exercise(nodes.Admonition, nodes.Element):
-    """TODO"""
+    """A `docutils` node holding Simply Logical exercises."""
 
 
 def visit_exercise_node(self, node):
     """
-    TODO
+    Builds an opening HTML tag for Simply Logical exercises.
+
     Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
     """
-    # exercise_number_str = get_exercise_fignumber(self, node)
-    # exercise_title = 'Exercise {}'.format(exercise_number_str)
-
-
-    self.add_permalink_ref(node.children[0], 'test')
-
     self.body.append(self.starttag(
         node, 'div', CLASS=('admonition exercise')))
 
 
 def depart_exercise_node(self, node):
     """
-    TODO
+    Builds a closing HTML tag for Simply Logical exercises.
+
     Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
     """
     self.body.append('</div>\n')
 
 
 def visit_exercise_node_(self, node):
-    """TODO"""
+    """
+    Builds a prefix for embedding Simply Logical exercises in LaTeX and raw
+    text.
+    """
     raise NotImplemented
     self.visit_admonition(node)
 
 
 def depart_exercise_node_(self, node):
-    """TODO"""
+    """
+    Builds a postfix for embedding Simply Logical exercises in LaTeX and raw
+    text.
+    """
     raise NotImplemented
     self.depart_admonition(node)
 
 
 class exercise_title(nodes.title):
-    """TODO"""
+    """A `docutils` node holding the **title** of Simply Logical exercises."""
 
 
 def visit_exercise_title_node(self, node):
-    """TODO"""
-    # TODO: Remove print statements
-    if isinstance(node, nodes.title):
-        print('\n\nhere\n\n')
-        # print(node.content)
-        print(clean_astext(node))
+    """
+    Builds an opening HTML tag for the **title** node of the Simply Logical
+    exercises.
 
-    # Adds Exercise X.X to the title
+    Overwrites Sphinx's HTML5
+    `visit title <https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L355>`_.
+
+    Note: `self` is of a `writer` type.
+    """
+    assert self.builder.name != 'singlehtml', (
+        'This function is not suitable for singlehtml builds -- '
+        'see the URL in the docstring.')
+    if not isinstance(node, exercise_title):
+        raise RuntimeError('This function should only be used to process '
+                           'an exercise title.')
+    if not isinstance(node.parent, exercise):
+        raise RuntimeError('This function should only be used to process '
+                           'an exercise title that is embedded within an '
+                           'exercise node.')
+    assert len(node.parent['ids']) == 1, (
+        'Exercise nodes need to be ided to be referenceable.')
+
+    # self.body.append(self.starttag(node, 'p', CLASS=('admonition-title')))
+    # alternative_visit_title(self, node)
+    #
     self.visit_title(node)
+
+
+def alternative_visit_title(self, node):
+    """
+    Provides an alternative implementation of Sphinx's HTML5 `add_fignumber`.
+
+    See `here <https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L280>`_ for more details.
+    """
+    std_domain = self.builder.env.domains['std']
+
+    # get the figtype from the parent of this node since titles are not
+    # enumerable
+    figtype = std_domain.get_enumerable_node_type(node.parent)
+    # get id the exercise node
+    exercise_id = node.parent['ids'][0]
+
+    if figtype is None:
+        raise RuntimeError('The figtype was not found despite the '
+                           'exercise_title node being used within an exercise '
+                           'node.')
+
+    assert figtype == 'exercise'
+    # get the map of figure numbers for exercises for this document
+    exercise_map = self.builder.fignumbers.get(figtype, {})
+
+    # get figure number of the exercise node
+    assert exercise_id in exercise_map
+    exercise_number = exercise_map[exercise_id]
+
+    # stringify the exercise id
+    exercise_number_str = '.'.join(map(str, exercise_number))
+
+    # format the exercise id
+    prefix = self.builder.config.numfig_format.get(figtype)
+    assert prefix is not None, 'exercise fignum format is not defined.'
+    exercise_title = prefix % exercise_number_str
+
+    # build the HTML structure
+    self.body.append('<span class="caption-number">')
+    self.body.append(exercise_title + ' ')
+    self.body.append('</span>')
 
 
 def depart_exercise_title_node(self, node):
     """
-    TODO
-    Adapted from
-    https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L362
+    Builds a closing HTML tag for the **title** node of the Simply Logical
+    exercises.
+
+    Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L362>`_.
     """
-    self.add_permalink_ref(node.parent, 'Permalink to this exercise')
+    if (self.permalink_text and self.builder.add_permalinks
+            and node.parent.hasattr('ids') and node.parent['ids']):
+        self.add_permalink_ref(node.parent, 'Permalink to this exercise')
+    else:
+        raise RuntimeError('Could not add a permalink to an exercise box.')
+
+    # self.body.append('</span>\n')
+    #
     self.depart_title(node)
 
 
 def visit_exercise_title_node_(self, node):
-    """TODO"""
+    """
+    Builds a prefix for embedding the **title** of Simply Logical exercises in
+    LaTeX and raw text.
+    """
     raise NotImplemented
 
 
 def depart_exercise_title_node_(self, node):
-    """TODO"""
+    """
+    Builds a postfix for embedding the **title** of Simply Logical exercises in
+    LaTeX and raw text.
+    """
     raise NotImplemented
 
 
 class Exercise(Directive):
     """
-    In appendix there are repeated exercises
-    ag -A 3 "{exercise}" src/text/appendices/c_*
-    how to enusre that they refer to the original on -- i.e. have the same
-    exercise number
-
     TODO
+
+    discuss the numfig_format setting for exrecise
+
     `exercise` directive is of the form::
-       .. exercise:: 2.9
+       .. exercise:: ex:2.9
 
          Exercise content.
-    xxx {ref}`label` xxx {numref}`label` xxx
+    which can be referenced either with :ref:`ex:2.9` or :numref:`ex:2.9`.
     """
     required_arguments = 1
     optional_arguments = 0
@@ -251,7 +306,17 @@ class Exercise(Directive):
         """TODO"""
         env = self.state.document.settings.env
 
-        exercise_content_node = exercise('\n'.join(self.content))
+        # TODO: check for duplicated labels
+        # TODO: enable ref and numref work
+
+        #print('hello')
+        #print(self.state.document.__dict__)
+        #print('goodbye')
+
+        # giving an exercise node an id ensures that it gets a numfig assigned
+        exercise_content_node = exercise('\n'.join(self.content),
+                                         ids=['6.1'], name='6.1')
+                                              # self.arguments[0]
 
         exercise_title_node = exercise_title()
 
@@ -259,35 +324,42 @@ class Exercise(Directive):
         self.state.nested_parse(
             self.content, self.content_offset, exercise_content_node)
 
-        print(self.arguments[0])
-
         return [exercise_content_node]
 
 
-class ExerciseDomain(StandardDomain):
-    """TODO"""
-    name = "exercise"
-    label = "Exercise"
-
-    directives = {
-        '': Exercise,
-    }
-
-
 def exercise_title_getter(node):
-    """TODO"""
+    """
+    TODO
+
+    The default returned upon calling :ref:`name`"""
+    print('called for name')
+    return 'Exercise {}'
     for n in node:
         if isinstance(n, nodes.title):
-            return clean_astext(n)
+            clean_title = clean_astext(n)
+            print('\n********* clean title *********')
+            print(clean_title)
+            print('*******************************\n')
+            return clean_title
     else:
         raise RuntimeError('An exercise directive is missing a title.')
 
 
-def init_exercise_numfig_format(app, config):
-    """TODO"""
+def set_exercise_numfig_format(app, config):
+    """
+    Initialises the default `fignum_format` for the enumerated `exercise` node.
+
+    This is needed as setting the default `numfig` format as follows::
+        app.config.numfig_format.setdefault('exercise', 'Exercise %s')
+    in the `setup(app)` function as shown `here
+    <https://github.com/sphinx-doc/sphinx/blob/af62fa61e6cbd88d0798963211e73e5ba0d55e6d/tests/roots/test-add_enumerable_node/enumerable_node.py#L62>`_
+    does not work.
+
+    This function is hooked up to the `config-inited` Sphinx event.
+    """
     numfig_format = {'exercise': 'Exercise %s'}
 
-    # override default labels by configuration
+    # override the default numfig format with values in the config file
     numfig_format.update(config.numfig_format)
     config.numfig_format = numfig_format
 
@@ -593,6 +665,8 @@ class SWISH(Directive):
 
     def run(self):
         """Builds a swish box."""
+        # NOTE: using `env.note_dependency()` may simplify monitoring for code
+        #       file changes.
         env = self.state.document.settings.env
         options = self.options
 
@@ -998,19 +1072,13 @@ def setup(app):
     # register the custom directives with Sphinx
     app.add_directive('infobox', Infobox)
     app.add_directive('swish', SWISH)
-
-    # TODO
-    # registering the domain ensures that fignumbers are assigned to exercises
-    # app.add_domain(ExerciseDomain)
     app.add_directive('exercise', Exercise)
-    # app.add_directive_to_domain('exercise', '', Exercise)
 
     # connect custom hooks to the Sphinx build process
-    # TODO
-    # app.connect('config-inited', init_exercise_numfig_format)
     app.connect('env-purge-doc', purge_swish_detect)
     app.connect('env-merge-info', merge_swish_detect)
     app.connect('doctree-resolved', inject_swish_detect)
     app.connect('env-get-outdated', analyse_swish_code)
+    app.connect('config-inited', set_exercise_numfig_format)
 
     return {'version': VERSION}

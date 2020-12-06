@@ -54,10 +54,12 @@ If you find an error in the online version of the book, please open a [*GitHub i
 # TODO #
 - [ ] TODO(Peter): fix TODO tags
 - [ ] TODO(Peter): hacked named paragraphs (search for `&nbsp;`) into markdown sections (e.g., 1.2.1) -- will show up on the right in the content
-    - [ ] TODO (Kacper) prevent sphinx from numbering these entries (toc `:maxdepth:`)
+    - [ ] TODO (Kacper) prevent sphinx from numbering these entries (toc `:maxdepth:`, e.g., `maxdepth: 2`) -- see [here](https://github.com/executablebooks/jupyter-book/blob/master/jupyter_book/toc.py)
 - [ ] TODO(Peter): adjust figure width
 - [ ] TODO(Peter): typographical consistency, e.g., maths was in italics leading to statements like `*CWA* (*P*)` or ```not` (*F*)``
 - [ ] TODO(Peter): point the [book website](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) to the [online edition](https://book.simply-logical.space)
 
 - [ ] TODO(Kacper): automated numbering and referencing of **exercises**
+    * add automatic references (`ag "exercise(?!})" src/text`)
+    * fix double references in appendix, which uses repeated exercise identifiers; how to point them to the original exercise with the right reference? Maybe use an optional `:title:` argument or provide a `solution` directive (since now we need both exercise and solution directives maybe it is better to have a custom domain?)
 - [ ] TODO(Kacper): some of the footnotes have messed up numbering (check github issues)
