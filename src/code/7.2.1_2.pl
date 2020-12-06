@@ -20,5 +20,8 @@ transitive_verb(tv(beats))    --> [beats].
 
 /** <examples>
 ?- phrase(sentence(T),[achilles,beats,the,lazy,turtle]).
-?- phrase(sentence(s(np(pn(achilles)),vp(tv(beats),np(art(the),adj(lazy),n(turtle))))),L).
+?- phrase(sentence(s(np(pn(achilles)),
+                     vp(tv(beats),np(art(the),adj(lazy),n(turtle)))
+                   )),
+          L).
 */
