@@ -379,7 +379,7 @@ class Exercise(Directive):
     Defines and processes the `exercise` directive, which is of the form::
        .. exercise:: ex:2.9
 
-         Exercise content.
+         Exercise content. (optional)
 
     `ex:2.9` is a label that can be referred to either with ``:ref:`ex:2.9```
     to get a hyperlink saying *exercise* (see the `exercise_title_getter`
@@ -388,6 +388,11 @@ class Exercise(Directive):
     function), which by default is defined as `Exercise %s`. To change this
     stub the `numfig_format.exercise` Sphinx setting variable can be set to the
     desired string formatter.
+
+    If the `exercise` directive has content, it will be used to fill in the
+    exercise box. Otherwise, a file name with striped `ex:` and appended `.md`
+    will be located in the exercise directory provided by the user through the
+    `sl_exercise_directory` Sphinx configuration parameter.
 
     Notes:
         `env.domaindata['std']` and `env.domains['std']` hold the reference
@@ -435,14 +440,23 @@ class Exercise(Directive):
         #       it may be better to put the two in a separate `exercise` domain
         env = self.state.document.settings.env
 
-        # we do not assign an id to this node (despite it being a prerequisite
-        # for assigning it a fignum) as this will happen automatically when
-        # a name is assigned to this node
-        exercise_content_node = exercise('\n'.join(self.content))
-
         # get the user-provided label of the exercise
         label = self.arguments[0]
         assert label.startswith('ex:')
+
+        if self.content:
+            content_string = '\n'.join(self.content)
+            content_list = self.content
+            content_offset = self.content_offset
+        else:
+            content_string = read_exercise(env, label)
+            content_list = content_string.split('\n')
+            content_offset = 0
+
+        # we do not assign an id to this node (despite it being a prerequisite
+        # for assigning it a fignum) as this will happen automatically when
+        # a name is assigned to this node
+        exercise_content_node = exercise(content_string)
 
         # since the label of the node was not given in the standard docutil
         # manner (via the optional `name` parameter), it needs to be manually
@@ -461,7 +475,7 @@ class Exercise(Directive):
         # add title to the exercise and process the content
         exercise_content_node += exercise_title_node
         self.state.nested_parse(
-            self.content, self.content_offset, exercise_content_node)
+            content_list, content_offset, exercise_content_node)
 
         return [exercise_content_node]
 
@@ -492,6 +506,51 @@ def set_exercise_numfig_format(app, config):
     # override the default numfig format with values in the config file
     numfig_format.update(config.numfig_format)
     config.numfig_format = numfig_format
+
+
+def read_exercise(env, label):
+    """
+    Reads in a file containing the exercise linked to the `label`.
+    """
+    # checks whether the exercise location is set by the user
+    sl_ex_directory = env.config.sl_exercise_directory
+    if sl_ex_directory is None:
+        raise RuntimeError('The sl_exercise_directory sphinx config '
+                           'value must be set.')
+    # localise the directory if given as an absolute path
+    if sl_ex_directory.startswith('/'):
+        localised_directory = '.' + sl_ex_directory
+    else:
+        localised_directory = sl_ex_directory
+    # check whether the directory exists
+    if not os.path.exists(localised_directory):
+        raise RuntimeError('The sl_exercise_directory ({}) does not '
+                           'exist.'.format(localised_directory))
+
+    # format the filename
+    assert not label.endswith('.md')
+    if label.startswith('ex:'):
+        exercise_id = label[3:]
+    elif label.startswith('sol:'):
+        exercise_id = label[4:]
+    else:
+        raise RuntimeError('The label either has to start with "ex:" or '
+                           '"sol:".')
+
+    filename = '{}.md'.format(exercise_id)
+    exercise_path = os.path.join(localised_directory, filename)
+
+    # ensure that the file exists
+    file_exists(exercise_path)
+
+    # read the file
+    with open(exercise_path, 'r') as f:
+        exercise_content = f.read()
+
+    # add this file to watch list for rebuilding this document
+    env.note_dependency(exercise_path)
+
+    return exercise_content
 
 
 #### Solution directive #######################################################
@@ -593,8 +652,16 @@ class Solution(Directive):
         assert label.startswith('ex:')
         sol_label = 'sol:{}'.format(label[3:])
 
-        solution_content_node = solution('\n'.join(self.content),
-                                         exercise=label)
+        if self.content:
+            content_string = '\n'.join(self.content)
+            content_list = self.content
+            content_offset = self.content_offset
+        else:
+            content_string = read_exercise(env, label)
+            content_list = content_string.split('\n')
+            content_offset = 0
+
+        solution_content_node = solution(content_string, exercise=label)
 
         self.options['name'] = sol_label
         self.add_name(solution_content_node)
@@ -603,7 +670,7 @@ class Solution(Directive):
 
         solution_content_node += solution_title_node
         self.state.nested_parse(
-            self.content, self.content_offset, solution_content_node)
+            content_list, content_offset, solution_content_node)
 
         return [solution_content_node]
 
@@ -1282,6 +1349,7 @@ def setup(app):
     directives.
     """
     # register the two Sphinx config values used for the extension
+    app.add_config_value('sl_exercise_directory', None, 'env')
     app.add_config_value('sl_code_directory', None, 'env')
     app.add_config_value('sl_swish_url', '', 'env')
 

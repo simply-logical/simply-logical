@@ -6,7 +6,7 @@ author: >
 copyright: '2015–2020'
 logo: src/img/SL.svg
 
-exclude_patterns: [README.md, .DS_Store, __pycache__, _ext]
+exclude_patterns: [README.md, .DS_Store, __pycache__, _ext, .github, src/ex]
 
 execute:
   execute_notebooks: off
@@ -50,5 +50,6 @@ sphinx:
       figure: "Figure %s"
     numfig_secnum_depth: 2
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    sl_exercise_directory: /src/ex/
     sl_code_directory: /src/code/
     sl_swish_url: https://swish.simply-logical.space/
