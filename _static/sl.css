@@ -33,7 +33,7 @@
 }
 
 /*Justify the book text*/
-#main-content {
+#main-content p {
   text-align: justify;
   text-justify: auto;
 }

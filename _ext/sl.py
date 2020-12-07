@@ -45,7 +45,7 @@ def visit_infobox_node(self, node):
     """
     Builds an opening HTML tag for Simply Logical infoboxes.
 
-    Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
+    Overrides `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
     """
     self.body.append(self.starttag(
         node, 'div', CLASS=('admonition infobox')))
@@ -55,7 +55,7 @@ def depart_infobox_node(self, node):
     """
     Builds a closing HTML tag for Simply Logical infoboxes.
 
-    Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
+    Overrides `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
     """
     self.body.append('</div>\n')
 
@@ -141,7 +141,7 @@ def visit_exercise_node(self, node):
     """
     Builds an opening HTML tag for Simply Logical exercises.
 
-    Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
+    Overrides `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
     """
     self.body.append(self.starttag(
         node, 'div', CLASS=('admonition exercise')))
@@ -151,7 +151,7 @@ def depart_exercise_node(self, node):
     """
     Builds a closing HTML tag for Simply Logical exercises.
 
-    Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
+    Overrides `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/writers/html5.py#L53>`_.
     """
     self.body.append('</div>\n')
 
@@ -183,7 +183,7 @@ def visit_exercise_title_node(self, node):
     Builds an opening HTML tag for the **title** node of the Simply Logical
     exercises.
 
-    Overwrites Sphinx's HTML5
+    Overrides Sphinx's HTML5
     `visit title <https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L355>`_.
 
     Note: `self` is of a `writer` type.
@@ -333,7 +333,7 @@ def depart_exercise_title_node(self, node):
     Builds a closing HTML tag for the **title** node of the Simply Logical
     exercises.
 
-    Overwrites `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L362>`_.
+    Overrides `Sphinx's HTML5 generator <https://github.com/sphinx-doc/sphinx/blob/68cc0f7e94f360a2c62ebcb761f8096e04ebf07f/sphinx/writers/html5.py#L362>`_.
     """
     if (self.permalink_text and self.builder.add_permalinks
             and node.parent.hasattr('ids') and node.parent['ids']):
