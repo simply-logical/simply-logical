@@ -41,6 +41,11 @@ sphinx:
   local_extensions:
     sl: _ext
   config:
+    html_extra_path:
+      - README.md
+      - LICENCE
+      - CNAME
+      - .nojekyll
     numfig_format:
       figure: "Figure %s"
     numfig_secnum_depth: 2

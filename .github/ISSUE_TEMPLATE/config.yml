@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contact Information
+    url: https://simply-logical.space/contact-us/
+    about: Information on how to contact us.
+  - name: Gitter
+    url: https://gitter.im/simply-logical/simply-logical/
+    about: Please ask and answer questions here.
+  - name: Google Group
+    url: https://groups.google.com/g/simply-logical/
+    about: Alternative discussion channel.
