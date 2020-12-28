@@ -29,9 +29,15 @@ If the interactive Prolog code blocks are not working for you in the online vers
 If you find an error in the online version of the book, please open a [*GitHub issue*](https://github.com/simply-logical/simply-logical/issues).
 
 ### Building the book ###
+0. Pull the book repository and initialise the git sub-module holding the custom Sphinx/Jupyter Book extensions (the `--recurse-submodules` flag)
+   ```bash
+   git clone --recurse-submodules https://github.com/simply-logical/simply-logical.git
+
+   cd simply-logical
+   ```
 1. Install *Jupyter Book*; either a stable version
    ```bash
-   pip install jupyter-book
+   pip install "jupyter-book>=0.9.1"
    ```
    or the latest development version
    ```bash
@@ -50,14 +56,3 @@ If you find an error in the online version of the book, please open a [*GitHub i
    python3 -m http.server --directory _build/html
    open http://localhost:8000
    ```
-
-# TODO #
-- [ ] TODO(Kacper): fix TODO tags
-- [ ] TODO(Kacper): hacked named paragraphs (search for `&nbsp;`) into markdown sections (e.g., 1.2.1) -- will show up on the right in the content
-    - [ ] TODO (Kacper) prevent sphinx from numbering these entries (toc `:maxdepth:`, e.g., `maxdepth: 2`) -- see [here](https://github.com/executablebooks/jupyter-book/blob/master/jupyter_book/toc.py)
-- [ ] TODO(Kacper): some of the footnotes have messed up numbering (check github issues)
-- [ ] TODO(Kacper): highlight the paragraph marker for exercise and solution boxes when hovering the mouse over the box and not just the character
-- [ ] TODO(Kacper): add SWISH queries, both inline and display
-- [ ] TODO(Kacper): exercise are referenced by `ex:xxx` and solutions by `sol:xxx`, but SWISH boxes use the filename without any prefix -- we need consistency
-- [ ] TODO(Kacper): add a SWISH box parameter to reference an existing query
-- [ ] TODO(Kacper): add a SWISH box parameter to manually include SWISH queries

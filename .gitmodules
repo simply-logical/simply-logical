@@ -1,0 +1,3 @@
+[submodule "_ext"]
+	path = _ext
+	url = https://github.com/simply-logical/SL-Sphinx.git

@@ -3,7 +3,7 @@ author: >
   <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and
   <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>,
   University of Bristol, United Kingdom
-copyright: '2015–2020'
+copyright: '2015–2021'
 logo: src/img/SL.svg
 
 exclude_patterns: [README.md, .DS_Store, __pycache__, _ext, .github, src/ex]
@@ -39,7 +39,9 @@ repository:
 
 sphinx:
   local_extensions:
-    sl: _ext
+    solex: _ext
+    infobox: _ext
+    swish: _ext
   config:
     html_extra_path:
       - README.md
