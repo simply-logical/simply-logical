@@ -32,8 +32,17 @@
   font-family: Font Awesome\ 5 Free;
 }
 
+/*Highlight the hyper-link marker when hovering over the "title" of
+ *figures, infoboxes, exercises and solutions.*/
+main.bd-content #main-content div.figure p.caption:hover a.headerlink,
+main.bd-content #main-content div.admonition.infobox p.admonition-title:hover a.headerlink,
+main.bd-content #main-content div.admonition.exercise p.admonition-title:hover a.headerlink,
+main.bd-content #main-content div.admonition.solution p.admonition-title:hover a.headerlink {
+  opacity:.5;
+}
+
 /*Justify the book text*/
-#main-content p {
+main.bd-content #main-content p {
   text-align: justify;
   text-justify: auto;
 }
