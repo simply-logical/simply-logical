@@ -66,7 +66,7 @@ For instance, when searching for an answer to a query by means of SLD-resolution
 ---
 title: An analytic solution to the Towers of Hanoi
 ---
-In the case of the Towers of Hanoi, there is a simple analytic solution based on the following observation: suppose we are able to solve the problem for $n-1$ disks, then we can solve it for $n$ disks also: move the upper $n-1$ disks from the left to the middle peg[^12], move the remaining disk on the left peg to the right peg, and move the $n-1$ disks from the middle peg to the right peg. Since we are able to solve the problem for $0$ disks, it follows by complete induction that we can solve the problem for any number of disks. The inductive nature of this argument is nicely reflected in the following recursive program:
+In the case of the Towers of Hanoi, there is a simple analytic solution based on the following observation: suppose we are able to solve the problem for $n-1$ disks, then we can solve it for $n$ disks also: move the upper $n-1$ disks from the left to the middle peg[^12_], move the remaining disk on the left peg to the right peg, and move the $n-1$ disks from the middle peg to the right peg. Since we are able to solve the problem for $0$ disks, it follows by complete induction that we can solve the problem for any number of disks. The inductive nature of this argument is nicely reflected in the following recursive program:
 ```Prolog
 :-op(900,xfx,to).
 
@@ -98,4 +98,4 @@ Since the number of allowed positions is $3^n$, the search space for the Towers 
   For many problems in intelligent reasoning such analytic solutions simply do not exist, and search is the best we can do. In {numref}`Chapters %s<ch:5>` and {numref}`%s<ch:6>`, we will present and analyse various methods for searching graphs. Since graphs are not only important for search problems, but for all forms of structured knowledge, {numref}`Chapter %s<ch:4>` is devoted to a discussion of various ways to represent structured knowledge in clausal logic.
 <!--Chapters 5 6 Chapter 4-->
 
-[^12]: The remaining disk on A can safely be ignored, since it is the largest.
+[^12_]: The remaining disk on A can safely be ignored, since it is the largest.
