@@ -21,164 +21,164 @@
     var currentSource = null;
 
     return this.each(function() {
-		var elem = $(this);
-		var data = {};			/* private data */
+    var elem = $(this);
+    var data = {};      /* private data */
 
-		data.swishURL = options.swish || SWISH;
+    data.swishURL = options.swish || SWISH;
 
-		function appendRunButtonTo(obj) {
-		  obj.append("<div class='load'></div>")
-			 .on("click", "div.load", function() {
-			   toggleSWISH(elem);
-			 });
+    function appendRunButtonTo(obj) {
+      obj.append("<div class='load'></div>")
+       .on("click", "div.load", function() {
+         toggleSWISH(elem);
+       });
 
-		  return obj;
-		}
+      return obj;
+    }
 
-		// Begin edited by TW.
-		if( elem.hasClass("temp") ) {
-			database[elem.attr("id")] = elem.text();
-		}
-		// End edit.
+    // Begin edited by TW.
+    if( elem.hasClass("temp") ) {
+      database[elem.attr("id")] = elem.text();
+    }
+    // End edit.
 
-		if ( elem.hasClass("exercise") ) {
-		  currentSource = null;		/* make them independent */
-		  if ( elem.find(".swish").length == 0 ) {
-			var run = $("<div>"+
-				  "<span>Run Prolog Now!</span>"+
-				"</div>");
-			elem.append(run);
-			run.wrap("<div class='open-prolog'></div>");
-			elem = run;
-			appendRunButtonTo(elem.parent());
-		  }
-		}
-
-		// Begin edited by TW.
-
-		else if ( elem.hasClass("answer") ) {
-			elem.wrap("<div class='answer'></div>");
-			data.answer = elem.attr("answer");
-			appendRunButtonTo(elem.parent());
-		}
-
-		// End edit.
-		//
-		// Begin modified by TW & CH.
-		else if ( elem.hasClass("source") ) {
-		  data.queries = [];
-		  data.id = elem.attr("id");
-		  if ( elem.hasClass("inherit") ) {
-			var inherits = elem.attr("inherit-id").split(" ");
-			var text = "";
-			for (index = 0; index < inherits.length; index++) {
-			  if(database[inherits[index]]) {
-          text += "/*This part is inherited from: " + inherits[index] + "*/\n";
-				  text += database[inherits[index]];
-		      text += "/*This is the end of inheritance.*/\n\n";
-			  }
+    if ( elem.hasClass("exercise") ) {
+      currentSource = null;    /* make them independent */
+      if ( elem.find(".swish").length == 0 ) {
+      var run = $("<div>"+
+          "<span>Run Prolog Now!</span>"+
+        "</div>");
+      elem.append(run);
+      run.wrap("<div class='open-prolog'></div>");
+      elem = run;
+      appendRunButtonTo(elem.parent());
       }
-			if ( elem.hasClass("query") ) {
-				data.queries.push(elem.text(), "\n");
-				data.source = text;
-			} else {
-				data.source = text + elem.text();
-			}
-		  }
-		  else {
+    }
 
-			var startText = "";
-			var endText = "";
+    // Begin edited by TW.
 
-			var attr = $(this).attr('source-text-end');
-			if (typeof attr !== typeof undefined && attr !== false) {
-				endText = elem.attr("source-text-end");
-			}
+    else if ( elem.hasClass("answer") ) {
+      elem.wrap("<div class='answer'></div>");
+      data.answer = elem.attr("answer");
+      appendRunButtonTo(elem.parent());
+    }
 
-			attr = $(this).attr('source-text-start');
-			if (typeof attr !== typeof undefined && attr !== false) {
-				startText = elem.attr("source-text-start");
-			}
+    // End edit.
+    //
+    // Begin modified by TW & CH.
+    else if ( elem.hasClass("source") ) {
+      data.queries = [];
+      data.id = elem.attr("id");
+      if ( elem.hasClass("inherit") ) {
+      var inherits = elem.attr("inherit-id").split(" ");
+      var text = "";
+      for (index = 0; index < inherits.length; index++) {
+        if(database[inherits[index]]) {
+          text += "/*This part is inherited from: " + inherits[index] + "*/\n";
+          text += database[inherits[index]];
+          text += "/*This is the end of inheritance.*/\n\n";
+        }
+      }
+      if ( elem.hasClass("query") ) {
+        data.queries.push(elem.text(), "\n");
+        data.source = text;
+      } else {
+        data.source = text + elem.text();
+      }
+      }
+      else {
 
-			data.source = startText + elem.text() + endText;
-		  }
+      var startText = "";
+      var endText = "";
 
-		  var attr = $(this).attr('query-id');
-		  if (typeof attr !== typeof undefined && attr !== false) {
-			var queryIds = elem.attr("query-id").split(" ");
-			for(var i = 0; i < queryIds.length ; ++i) {
-				var newElem = document.getElementById(queryIds[i]);
-				if(newElem != undefined) {
-					data.queries.push(newElem.innerText, "\n");
-				}
-			}
-		  }
+      var attr = $(this).attr('source-text-end');
+      if (typeof attr !== typeof undefined && attr !== false) {
+        endText = elem.attr("source-text-end");
+      }
 
-		  var attr = $(this).attr('query-text');
-		  if (typeof attr !== typeof undefined && attr !== false) {
-			var queryTexts = elem.attr("query-text").split(" ");
-			for(var i = 0; i < queryTexts.length ; ++i) {
-				data.queries.push(queryTexts[i], "\n");
-			}
-		  }
+      attr = $(this).attr('source-text-start');
+      if (typeof attr !== typeof undefined && attr !== false) {
+        startText = elem.attr("source-text-start");
+      }
 
-		  currentSource = data;
-		  keepingSource.push(data);
-		  elem.wrap("<div class='source'></div>");
-		  appendRunButtonTo(elem.parent());
-		}
+      data.source = startText + elem.text() + endText;
+      }
 
-		else if ( elem.hasClass("query") ) {
-		  var attr = $(this).attr('source-id');
-		  if (typeof attr !== typeof undefined && attr !== false) {
-			var sourceIds = elem.attr("source-id").split(" ");
-			for(var i = 0; i < sourceIds.length ; ++i) {
-				function Find(id) {
-					for (var i = 0; i < keepingSource.length; ++i) {
-						if(keepingSource[i].id == id) {
-							return keepingSource[i];
-						}
-					}
+      var attr = $(this).attr('query-id');
+      if (typeof attr !== typeof undefined && attr !== false) {
+      var queryIds = elem.attr("query-id").split(" ");
+      for(var i = 0; i < queryIds.length ; ++i) {
+        var newElem = document.getElementById(queryIds[i]);
+        if(newElem != undefined) {
+          data.queries.push(newElem.innerText, "\n");
+        }
+      }
+      }
 
-					return false;
-				}
+      var attr = $(this).attr('query-text');
+      if (typeof attr !== typeof undefined && attr !== false) {
+      var queryTexts = elem.attr("query-text").split(" ");
+      for(var i = 0; i < queryTexts.length ; ++i) {
+        data.queries.push(queryTexts[i], "\n");
+      }
+      }
 
-				var data = Find(sourceIds[i]);
-				if (data != false) {
-					data.queries.push(elem.text(), "\n");
-				}
-			}
-		  }
+      currentSource = data;
+      keepingSource.push(data);
+      elem.wrap("<div class='source'></div>");
+      appendRunButtonTo(elem.parent());
+    }
 
-		  // End modified.
+    else if ( elem.hasClass("query") ) {
+      var attr = $(this).attr('source-id');
+      if (typeof attr !== typeof undefined && attr !== false) {
+      var sourceIds = elem.attr("source-id").split(" ");
+      for(var i = 0; i < sourceIds.length ; ++i) {
+        function Find(id) {
+          for (var i = 0; i < keepingSource.length; ++i) {
+            if(keepingSource[i].id == id) {
+              return keepingSource[i];
+            }
+          }
 
-		  else if ( currentSource ) {
-			currentSource.queries.push(elem.text(), "\n");
-		  } else {
-			data.queries = [elem.text(), "\n"];
-			elem.wrap("<div class='query'></div>");
-			appendRunButtonTo(elem.parent());
-		  }
-		}
+          return false;
+        }
 
-		else if ( elem.hasClass("query-list") ) {
-		  function addQueries(list) {
-			elem.children().each(function() {
-			  var li = $(this);
-			  list.push(makeQuery(li.text()));
-			});
-		  }
+        var data = Find(sourceIds[i]);
+        if (data != false) {
+          data.queries.push(elem.text(), "\n");
+        }
+      }
+      }
 
-		  if ( currentSource ) {
-			addQueries(currentSource.queries);
-		  } else {
-			data.queries = [];
-			addQueries(data.queries);
-			elem.wrap("<div class='query'></div>");
-			appendRunButtonTo(elem.parent());
-		  }
-		}
-		elem.data(pluginName, data);	/* store with element */
+      // End modified.
+
+      else if ( currentSource ) {
+      currentSource.queries.push(elem.text(), "\n");
+      } else {
+      data.queries = [elem.text(), "\n"];
+      elem.wrap("<div class='query'></div>");
+      appendRunButtonTo(elem.parent());
+      }
+    }
+
+    else if ( elem.hasClass("query-list") ) {
+      function addQueries(list) {
+      elem.children().each(function() {
+        var li = $(this);
+        list.push(makeQuery(li.text()));
+      });
+      }
+
+      if ( currentSource ) {
+      addQueries(currentSource.queries);
+      } else {
+      data.queries = [];
+      addQueries(data.queries);
+      elem.wrap("<div class='query'></div>");
+      appendRunButtonTo(elem.parent());
+      }
+    }
+    elem.data(pluginName, data);  /* store with element */
       });
     }
   }; // methods
@@ -191,7 +191,7 @@
     }
 
     var data    = elem.data(pluginName);
-	if ( data.swish ) {
+  if ( data.swish ) {
       var swish = data.swish;
 
       delete data.swish;
@@ -199,25 +199,25 @@
       swish.hide(400, function() { swish.remove(); });
       elem.show(400, function() { elem.parent().removeClass("swish"); });
       elem.parent()
-	.resizable('destroy')
+  .resizable('destroy')
         .css("height", "auto");
     } else
     {
-	  var query   = data.swishURL;
+    var query   = data.swishURL;
       var content = [ "<iframe " ];
       var q = "?";
 
       if ( currentSWISHElem )
-		toggleSWISH(currentSWISHElem);
+    toggleSWISH(currentSWISHElem);
 
       if ( data.source ) {
-		query += q +"code="+encodeURIComponent(data.source);
-		q = "&";
+    query += q +"code="+encodeURIComponent(data.source);
+    q = "&";
       }
 
       if ( data.queries && data.queries.length > 0 ) {
-		query += q + "examples=" + encodeURIComponent(data.queries.join(""));
-		q = "&";
+    query += q + "examples=" + encodeURIComponent(data.queries.join(""));
+    q = "&";
       }
 
       attr("class", "swish");
@@ -227,15 +227,15 @@
 
       content.push("></iframe>");
 
-	// Edited by TW.
-	  if( data.answer ) {
-		content = [ "<div " ];
-		attr("class", "swish");
-		attr("width", "100%");
-		attr("height", "100%");
-		content.push(">"+ data.answer +"</div>");
-	  }
-	// End of edit.
+  // Edited by TW.
+    if( data.answer ) {
+    content = [ "<div " ];
+    attr("class", "swish");
+    attr("width", "100%");
+    attr("height", "100%");
+    content.push(">"+ data.answer +"</div>");
+    }
+  // End of edit.
 
       data.swish = $(content.join("")).hide().insertAfter(elem);
       elem.parent().css("height", "450px").resizable({handles:'s'});
@@ -273,7 +273,7 @@
   $.fn.LPN = function(method) {
     if ( methods[method] ) {
       return methods[method]
-	.apply(this, Array.prototype.slice.call(arguments, 1));
+  .apply(this, Array.prototype.slice.call(arguments, 1));
     } else if ( typeof method === 'object' || !method ) {
       return methods._init.apply(this, arguments);
     } else {
@@ -283,9 +283,9 @@
 }(jQuery));
 
 
-		 /*******************************
-		 *	    CHEAP MODAL		*
-		 *******************************/
+    /*******************************
+    *          CHEAP MODAL         *
+    *******************************/
 
 var modal = (function() {
   var method = {},
@@ -294,7 +294,7 @@ var modal = (function() {
   $content,
   $close;
 
-				// Center the modal in the viewport
+        // Center the modal in the viewport
   method.center = function () {
     var top, left;
 
@@ -306,13 +306,13 @@ var modal = (function() {
                });
   };
 
-				// Open the modal
+        // Open the modal
   method.open = function (settings) {
     $content.empty().append(settings.content);
 
     $modal.css({ width: settings.width || 'auto',
                  height: settings.height || 'auto'
-	       });
+         });
 
     method.center();
     $(window).bind('resize.modal', method.center);
@@ -320,7 +320,7 @@ var modal = (function() {
     $overlay.show();
   };
 
-				// Close the modal
+        // Close the modal
   method.close = function () {
     $modal.hide();
     $overlay.hide();
@@ -328,7 +328,7 @@ var modal = (function() {
     $(window).unbind('resize.modal');
   };
 
-				// Generate the HTML and add it to the document
+        // Generate the HTML and add it to the document
   $overlay = $('<div id="overlay"></div>');
   $modal = $('<div id="modal"></div>');
   $content = $('<div id="content"></div>');
