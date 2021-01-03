@@ -1,7 +1,8 @@
 # Simply Logical
 - file: src/simply-logical
   title: 'Simply Logical:<br>Intelligent Reasoning by Example'
-  numbered: true
+  # NOTE: On merge https://github.com/executablebooks/jupyter-book/pull/1162
+  numbered: 3
 
 # Part I -- Logic and Logic Programming
 - part: Logic and Logic Programming
