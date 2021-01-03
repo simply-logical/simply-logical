@@ -46,3 +46,11 @@ main.bd-content #main-content p {
   text-align: justify;
   text-justify: auto;
 }
+
+/*** Sphinx-copybutton extension ***/
+div.extract.swish  {
+  position: relative;
+}
+div.extract.swish:hover .copybtn {
+  opacity: 1;
+}
