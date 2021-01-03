@@ -14,7 +14,7 @@ A characteristic property of structured knowledge is the distinction that is mad
 Other examples of structured knowledge, encountered in {numref}`Part %s<part:i>`, include Prolog terms, proof trees, and SLD-trees. Among these, SLD-trees constitute a special case, since they are not given *a priori* as part of the knowledge describing a certain Universe of Discourse, but are instead *derived* from problem specifications of the form 'given program *P*, find all answers to query *Q*'. By means of SLD-trees, such problems are translated to problems of the form 'given SLD-tree *T*, find all paths from the root of the tree to the empty clause'. Problems of the latter kind are called *search problems*, and the graph being searched is called a *search space*. Most problems in intelligent reasoning are search problems of one kind or the other.
 <!--Part I-->
 
-<!--TODO: Subfigures-->
+<!--NOTE: Subfigures-->
 <!--parent: II.1-->
 <!--parent_caption: The Towers of Hanoi.-->
 <!--caption: Starting position-->
@@ -60,7 +60,7 @@ In principle, any given problem can be defined as a search problem. To this end,
 1. the goal node.
 
 For instance, when searching for an answer to a query by means of SLD-resolution, the nodes in the search space are resolvents, the arcs are resolution steps by means of a program clause, the starting node is the query, and the goal node is the empty clause. As another example, we consider the puzzle known as *The Towers of Hanoi*. This puzzle consists of three pegs and *n* disks of decreasing size. Initially, all the disks are on the left peg, such that no disk is placed on a smaller one. This rule is to be obeyed throughout the game. The goal is to move all the disks to the right peg by moving one disk at a time. This problem is easily reformulated as a search problem, where nodes are allowed positions, and arcs are moves of the upper disk on one peg to another. Starting node and goal node are as in {numref}`fig:II.1.a`, {numref}`fig:II.1.b` and {numref}`fig:II.1.c`.
-<!--TODO: Since the figures have to be separated, "fig. II.1" got replaced with "{numref}`fig:II.1.a`, {numref}`fig:II.1.b` and {numref}`fig:II.1.c`".-->
+<!--NOTE: Since the figures had to be separated, "fig. II.1" got replaced with "{numref}`fig:II.1.a`, {numref}`fig:II.1.b` and {numref}`fig:II.1.c`".-->
 
 ````{infobox}
 ---
