@@ -42,6 +42,7 @@ sphinx:
     solex: _ext
     infobox: _ext
     swish: _ext
+    pprolog: _ext
   config:
     html_extra_path:
       - README.md
