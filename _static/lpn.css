@@ -21,6 +21,13 @@ div.answer {
 
 pre.query, pre.source, pre.verbatim {
   margin: 0px;
+  /* Enforce scrolling
+   * https://stackoverflow.com/questions/
+   * 10251369/css-max-height-and-overflow-auto-always-displays-vertical-scroll
+   * line-height:normal;
+   */
+  max-height: 450px;
+  overflow: auto;
 }
 
 .guessed {
