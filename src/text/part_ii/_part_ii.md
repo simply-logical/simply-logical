@@ -22,7 +22,7 @@ Other examples of structured knowledge, encountered in {numref}`Part %s<part:i>`
 ```{figure} /src/fig/part_ii/image002.svg
 ---
 name: 'fig:II.1.a'
-width: 100%
+width: 70%
 ---
 The Towers of Hanoi: Starting position.
 ```
@@ -33,7 +33,7 @@ The Towers of Hanoi: Starting position.
 ```{figure} /src/fig/part_ii/image004.svg
 ---
 name: 'fig:II.1.b'
-width: 100%
+width: 70%
 ---
 The Towers of Hanoi: Intermediate position.
 ```
@@ -44,7 +44,7 @@ The Towers of Hanoi: Intermediate position.
 ```{figure} /src/fig/part_ii/image006.svg
 ---
 name: 'fig:II.1.c'
-width: 100%
+width: 70%
 ---
 The Towers of Hanoi: Goal position.
 ```
