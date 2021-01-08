@@ -34,11 +34,12 @@ pre.query, pre.source, pre.verbatim {
   outline: 1px dotted green;
 }
 
-div.query {
-  position: relative;
-  width: 80%;
-  display: inline-block;
-}
+/* div.query {
+ *   position: relative;
+ *   width: 80%;
+ *   display: inline-block;
+ * }
+ */
 
 div.open-prolog {
   width: auto;
@@ -55,7 +56,8 @@ div.open-prolog div.load {
   right: -37px;
 }
 
-div.source.swish, div.query.swish {
+/* div.query.swish, */
+div.source.swish {
   padding: 8px 8px;
 }
 

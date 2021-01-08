@@ -53,14 +53,14 @@ sphinx:
       figure: "Figure %s"
     numfig_secnum_depth: 2
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    # Allow copy buttons in SWISH query boxes
+    # Configure Sphinx-copybutton
     # <https://sphinx-copybutton.readthedocs.io/en/latest/>
-    # NOTE: it is disabled for now since it overwrites the code block id
-    # <https://github.com/executablebooks/sphinx-copybutton/issues/115>
-    # copybutton_selector: "div.highlight pre, div.extract.swish pre.swish.query"
-    copybutton_prompt_text: "?-"
+    copybutton_prompt_text: "\\s*\\?\\s*-\\s*"
+    copybutton_prompt_is_regexp: true
     copybutton_only_copy_prompt_lines: false
     copybutton_remove_prompts: true
+    # copybutton_selector: "div.highlight pre, div.extract.swish pre.swish.query"
+    # Configure SL-Sphinx <https://github.com/simply-logical/SL-Sphinx>
     sl_exercise_directory: /src/ex/
     sl_code_directory: /src/code/
     sl_swish_url: https://swish.simply-logical.space/
