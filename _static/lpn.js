@@ -8,7 +8,8 @@
  */
 
 var SWISH = "https://swish.simply-logical.space/";
-var RE = /\s*^\/\*\*\s*<examples>\s*$.*?(?!^\*\/\s*$).*?^\*\/\s*$\s*/mis;
+var RE_EX = /\s*^\/\*\*\s*<examples>\s*$.*?(?!^\*\/\s*$).*?^\*\/\s*$\s*/mis;
+var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
 
 (function($) {
   var pluginName = 'LPN';
@@ -40,7 +41,7 @@ var RE = /\s*^\/\*\*\s*<examples>\s*$.*?(?!^\*\/\s*$).*?^\*\/\s*$\s*/mis;
     if( elem.hasClass("temp") ) {
       // NOTE (KS edit): discard Prolog queries included via the
       // `/** <examples> ... */` block for inheriting this code box
-      database[elem.attr("id")] = elem.text().replace(RE, '\n');
+      database[elem.attr("id")] = elem.text().replace(RE_EX, '\n');
     }
     // End edit.
 
@@ -114,8 +115,17 @@ var RE = /\s*^\/\*\*\s*<examples>\s*$.*?(?!^\*\/\s*$).*?^\*\/\s*$\s*/mis;
         if(newElem != undefined) {
           // NOTE (KS edit): if a query does not end with a ".", append one
           var queryTxt = newElem.innerText.trim();
-          if(!queryTxt.endsWith(".")) {
-            queryTxt = newElem.innerText + ".";
+          if(queryTxt.includes("\n")) { // complex queries
+            if(RE_Q.test(queryTxt)) {
+              queryTxt = queryTxt.match(RE_Q).join("\n");
+            } else {
+              console.debug("Could not parse SWISH query:");
+              console.debug(queryTxt);
+            }
+          } else {  // flat queries
+            if(!queryTxt.endsWith(".")) {
+              queryTxt += ".";
+            }
           }
           data.queries.push(queryTxt, "\n");
         }
