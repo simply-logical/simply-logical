@@ -59,7 +59,7 @@
       # Further reading
       - file: src/text/part_i/3.10.md
   # ???
-  - file: src/text/part_i/4-additional_materials.md
+  # - file: src/text/part_i/4-additional_materials.md
 
 # Part II -- Reasoning with structured knowledge
 - part: Reasoning with structured knowledge
