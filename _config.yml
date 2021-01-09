@@ -59,7 +59,13 @@ sphinx:
     copybutton_prompt_is_regexp: true
     copybutton_only_copy_prompt_lines: false
     copybutton_remove_prompts: true
-    # copybutton_selector: "div.highlight pre, div.extract.swish pre.swish.query"
+    # NOTE: if a copybutton is added to a SWISH code box, inheritance breaks!
+    # <https://github.com/executablebooks/sphinx-copybutton/issues/115>
+    # CSS selector syntax:
+    # <https://learn.shayhowe.com/advanced-html-css/complex-selectors/>
+    #     div.highlight pre, div.extract.swish pre.swish.query
+    #     :not(pre) > div.highlight > pre
+    copybutton_selector: "div.highlight:not(.extract):not(.swish) > pre"
     # Configure SL-Sphinx <https://github.com/simply-logical/SL-Sphinx>
     sl_exercise_directory: /src/ex/
     sl_code_directory: /src/code/
