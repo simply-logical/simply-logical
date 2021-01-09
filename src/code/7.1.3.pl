@@ -1,3 +1,4 @@
+sentence                   --> noun_phrase,plurality,verb_phrase.
 noun_phrase                --> article,noun.
 plurality                  --> singular.
 plurality                  --> plural.

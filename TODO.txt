@@ -2,8 +2,6 @@
 
 1.2.5 fix predicate logic formulae
 2.1.1 change node names in Fig.2.1.2 (1 -> n1 etc.)
-2.2.3 turn prove_bf/1 and refute_bf/1 into SWISH boxes
-2.2.4 turn model_d/2 into SWISH box
 2.3.2, 2.3.3: add palindrome SWISH boxes
 
 Check all SWISH boxes for anonymous variables.

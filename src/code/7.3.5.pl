@@ -45,15 +45,6 @@ find_clause(Clause,[_Rule|Rules]):-
     find_clause(Clause,Rules).
 
 %%% copy_element/2: see Appendix A.2
-% vvv online code addition
-copy_element(X,Ys):-
-    element(X1,Ys),
-    copy_term(X1,X).
-% element(X,Ys) <- X is an element of the list Ys
-element(X,[X|_Ys]).
-element(X,[_Y|Ys]):-
-    element(X,Ys).
-% ^^^ online code addition
 
 % transform query to answer
 transform((A,B),[(A:-true)|Rest]):-!,
@@ -69,5 +60,5 @@ show_answer(Answer):-
     write('! '),write(Answer),nl.
 
 /** <examples>
-?- nl_shell(Rulebase).
+?- nl_shell([]).
 */
