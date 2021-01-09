@@ -67,18 +67,7 @@ For instance, when searching for an answer to a query by means of SLD-resolution
 title: An analytic solution to the Towers of Hanoi
 ---
 In the case of the Towers of Hanoi, there is a simple analytic solution based on the following observation: suppose we are able to solve the problem for $n-1$ disks, then we can solve it for $n$ disks also: move the upper $n-1$ disks from the left to the middle peg[^12_], move the remaining disk on the left peg to the right peg, and move the $n-1$ disks from the middle peg to the right peg. Since we are able to solve the problem for $0$ disks, it follows by complete induction that we can solve the problem for any number of disks. The inductive nature of this argument is nicely reflected in the following recursive program:
-```Prolog
-:-op(900,xfx,to).
-
-% hanoi(N,A,B,C,Moves) <- Moves is the list of moves to
-%                         move N disks from peg A to peg C,
-%                         using peg B as intermediary peg
-hanoi(0,A,B,C,[]).
-hanoi(N,A,B,C,Moves):-
-    N1 is N-1,
-    hanoi(N1,A,C,B,Moves1),
-    hanoi(N1,B,A,C,Moves2),
-    append(Moves1,[A to C|Moves2],Moves).
+```{swish} swish:hanoi
 ```
 For instance, the query `?-hanoi(3,left,middle,right,M)` yields the answer
 ```Prolog
