@@ -27,10 +27,8 @@ same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
 /** <examples>
 ?-theta_lgg((element(c,[b,c]):-[element(c,[c])]),
             (element(d,[b,c,d]):-[element(d,[c,d]),element(d,[d])]),
-            C),
-  portray_clause(C).
+            C).
 ?-theta_lgg((reverse([2,1],[3],[1,2,3]):-[reverse([1],[2,3],[1,2,3])]),
             (reverse([a],[],[a]):-[reverse([],[a],[a])]),
-            C),
-  portray_clause(C).
+            C).
 */

@@ -3,5 +3,6 @@
 1.2.5 fix predicate logic formulae (also 3.2.2)
 2.1.1 change node names in Fig.2.1.2 (1 -> n1 etc.)
 2.3.2, 2.3.3: add palindrome SWISH boxes
+3.3.3, 3.3.4: add SWISH boxes
 
 Check all SWISH boxes for anonymous variables.
