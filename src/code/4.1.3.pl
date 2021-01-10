@@ -8,7 +8,7 @@ term_write(Pos,Tree):-
     term_writes(Pos2,Subtrees).      % new position
 
 % write a list of trees at position Pos
-term_writes(Pos,[]).
+term_writes(_Pos,[]).
 term_writes(Pos,[Tree]):-!,          % no newline here
     term_write(Pos,Tree).
 term_writes(Pos,[Tree|Subtrees]):-

@@ -1,5 +1,5 @@
-reachable(X,Y,[]):-connected(X,Y,L).
-reachable(X,Y,[Z|R]):-connected(X,Z,L),
+reachable(X,Y,[]):-connected(X,Y,_L).
+reachable(X,Y,[Z|R]):-connected(X,Z,_L),
                       reachable(Z,Y,R).
 
 /** <examples>
