@@ -9,6 +9,7 @@
 
 # Part I -- Logic and Logic Programming
 - part: Logic and Logic Programming
+  title: 'I. Logic and Logic Programming'
   numbered: 2
   # Introduction
   file: src/text/1_part_i/_part_i.md
@@ -66,6 +67,7 @@
 
 # Part II -- Reasoning with structured knowledge
 - part: Reasoning with structured knowledge
+  title: 'II. Reasoning with structured knowledge'
   numbered: 2
   # Introduction
   file: src/text/2_part_ii/_part_ii.md
@@ -108,6 +110,7 @@
 
 # Part III -- Advanced reasoning techniques
 - part: Advanced reasoning techniques
+  title: 'III. Advanced reasoning techniques'
   numbered: 2
   # Introduction
   file: src/text/3_part_iii/_part_iii.md

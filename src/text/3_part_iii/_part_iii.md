@@ -2,7 +2,7 @@
 (part:iii)=
 # Advanced reasoning techniques #
 
-In {numref}`Part %s<part:i>`, we introduced the formalism of clausal logic and showed how it can be used in practice to perform logical inferences. In {numref}`Part %s<part:ii>`, we discussed the basic issues one encounters when writing a program to solve some reasoning task: how to represent the knowledge needed to solve the task, and how to search the space of possible solutions. In {numref}`Part %s<part:iii>`, we will go beyond the power of clausal logic in a number of ways.
+In {ref}`Part I<part:i>`, we introduced the formalism of clausal logic and showed how it can be used in practice to perform logical inferences. In {ref}`Part II<part:ii>`, we discussed the basic issues one encounters when writing a program to solve some reasoning task: how to represent the knowledge needed to solve the task, and how to search the space of possible solutions. In {ref}`Part III<part:iii>`, we will go beyond the power of clausal logic in a number of ways.
 <!--Part I Part II Part III-->
 
 +++
