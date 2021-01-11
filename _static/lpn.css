@@ -21,17 +21,25 @@ div.answer {
 
 pre.query, pre.source, pre.verbatim {
   margin: 0px;
+  /* Enforce scrolling
+   * https://stackoverflow.com/questions/
+   * 10251369/css-max-height-and-overflow-auto-always-displays-vertical-scroll
+   * line-height:normal;
+   */
+  max-height: 450px;
+  overflow: auto;
 }
 
 .guessed {
   outline: 1px dotted green;
 }
 
-div.query {
-  position: relative;
-  width: 80%;
-  display: inline-block;
-}
+/* div.query {
+ *   position: relative;
+ *   width: 80%;
+ *   display: inline-block;
+ * }
+ */
 
 div.open-prolog {
   width: auto;
@@ -48,7 +56,8 @@ div.open-prolog div.load {
   right: -37px;
 }
 
-div.source.swish, div.query.swish {
+/* div.query.swish, */
+div.source.swish {
   padding: 8px 8px;
 }
 

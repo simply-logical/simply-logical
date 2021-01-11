@@ -54,3 +54,8 @@ div.extract.swish  {
 div.extract.swish:hover .copybtn {
   opacity: 1;
 }
+
+/* SWISH directive -- hide the examples block */
+div.hide-examples {
+  display: none;
+}
