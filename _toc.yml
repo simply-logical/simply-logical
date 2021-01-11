@@ -1,11 +1,15 @@
 # Simply Logical
-- file: src/simply-logical
+- file: src/simply-logical.md
   title: 'Simply Logical:<br>Intelligent Reasoning by Example'
-  # NOTE: On merge https://github.com/executablebooks/jupyter-book/pull/1162
-  numbered: 3
+
+- part: Preface
+  file: src/text/preface/_preface.md
+  chapters:
+  - file: src/text/preface/glossary.md
 
 # Part I -- Logic and Logic Programming
 - part: Logic and Logic Programming
+  numbered: 2
   # Introduction
   file: src/text/part_i/_part_i.md
   chapters:
@@ -63,6 +67,7 @@
 
 # Part II -- Reasoning with structured knowledge
 - part: Reasoning with structured knowledge
+  numbered: 2
   # Introduction
   file: src/text/part_ii/_part_ii.md
   chapters:
@@ -104,6 +109,7 @@
 
 # Part III -- Advanced reasoning techniques
 - part: Advanced reasoning techniques
+  numbered: 2
   # Introduction
   file: src/text/part_iii/_part_iii.md
   chapters:
@@ -145,6 +151,7 @@
 
 # Appendices -- Additional materials
 - part: Additional materials
+  numbered: 2
   # Introduction
   file: src/text/appendices/_appendices.md
   chapters:

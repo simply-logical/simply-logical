@@ -38,6 +38,8 @@ repository:
   url: https://github.com/simply-logical/simply-logical
 
 sphinx:
+  extra_extensions:
+    - sphinx_multitoc_numbering
   local_extensions:
     solex: _ext
     infobox: _ext
@@ -70,3 +72,4 @@ sphinx:
     sl_exercise_directory: /src/ex/
     sl_code_directory: /src/code/
     sl_swish_url: https://swish.simply-logical.space/
+    sl_swish_hide_examples: true

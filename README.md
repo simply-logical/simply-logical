@@ -37,11 +37,7 @@ If you find an error in the online version of the book, please open a [*GitHub i
    ```
 1. Install *Jupyter Book*; either a stable version
    ```bash
-   pip install "jupyter-book>=0.9.1"
-   ```
-   or the latest development version
-   ```bash
-   pip install git+https://github.com/executablebooks/jupyter-book.git
+   pip install -r requirements.txt
    ```
 2. Build the book
    ```bash
