@@ -6,3 +6,9 @@
 3.3.2, 3.3.3: add SWISH boxes
 
 check answers to exercises
+
+---
+
+Populate:
+* src/text/0_preface/_preface.md
+* src/text/0_preface/glossary.md

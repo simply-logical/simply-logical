@@ -6,7 +6,14 @@ author: >
 copyright: '2015–2021'
 logo: src/img/SL.svg
 
-exclude_patterns: [README.md, .DS_Store, __pycache__, _ext, .github, src/ex]
+exclude_patterns:
+  - README.md
+  - .DS_Store
+  - __pycache__
+  - _ext
+  - .github
+  - src/ex
+  - src/text/1_part_i/4-additional_materials.md
 
 execute:
   execute_notebooks: off
