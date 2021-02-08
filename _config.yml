@@ -6,7 +6,7 @@ author: >
 copyright: '2015–2021'
 logo: src/img/SL.svg
 
-exclude_patterns: [README.md, .DS_Store, __pycache__, _ext, .github, src/ex]
+exclude_patterns: [README.md, .DS_Store, __pycache__, .github, src/ex]
 
 execute:
   execute_notebooks: off
@@ -29,7 +29,12 @@ html:
   home_page_in_navbar: true
 
 parse:
-  myst_extended_syntax: true
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - amsmath
+    - deflist
+    - html_image
 
 latex:
   latex_engine: pdflatex
@@ -40,11 +45,10 @@ repository:
 sphinx:
   extra_extensions:
     - sphinx_multitoc_numbering
-  local_extensions:
-    solex: _ext
-    infobox: _ext
-    swish: _ext
-    pprolog: _ext
+    - sphinx_prolog.solex
+    - sphinx_prolog.infobox
+    - sphinx_prolog.swish
+    - sphinx_prolog.pprolog
   config:
     html_extra_path:
       - README.md
