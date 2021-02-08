@@ -29,21 +29,24 @@ If the interactive Prolog code blocks are not working for you in the online vers
 If you find an error in the online version of the book, please open a [*GitHub issue*](https://github.com/simply-logical/simply-logical/issues).
 
 ### Building the book ###
-0. Pull the book repository and initialise the git sub-module holding the custom Sphinx/Jupyter Book extensions (the `--recurse-submodules` flag)
+1. Pull the book repository
    ```bash
-   git clone --recurse-submodules https://github.com/simply-logical/simply-logical.git
+   git clone https://github.com/simply-logical/simply-logical.git
 
    cd simply-logical
    ```
-1. Install *Jupyter Book*; either a stable version
+2. Install [*Jupyter Book*](https://pypi.org/project/jupyter-book/) with the
+   [`sphinx-prolog`](https://pypi.org/project/sphinx-prolog/) and
+   [`sphinx-multitoc-numbering`](https://pypi.org/project/sphinx-multitoc-numbering/)
+   extensions
    ```bash
    pip install -r requirements.txt
    ```
-2. Build the book
+3. Build the book
    ```bash
    jb build .
    ```
-3. Open the html build
+4. Open the html build
    ```bash
    open _build/html/index.html
    ```
