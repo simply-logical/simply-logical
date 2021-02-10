@@ -7,13 +7,13 @@ copyright: '2015–2021'
 logo: src/img/SL.svg
 
 exclude_patterns:
-  - README.md
   - .DS_Store
   - __pycache__
-  - _ext
   - .github
-  - src/ex
+  - README.md
   - src/text/1_part_i/4-additional_materials.md
+  - src/ex
+  - src/code/temp
 
 execute:
   execute_notebooks: off
@@ -36,7 +36,12 @@ html:
   home_page_in_navbar: true
 
 parse:
-  myst_extended_syntax: true
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - amsmath
+    - deflist
+    - html_image
 
 latex:
   latex_engine: pdflatex
@@ -47,11 +52,10 @@ repository:
 sphinx:
   extra_extensions:
     - sphinx_multitoc_numbering
-  local_extensions:
-    solex: _ext
-    infobox: _ext
-    swish: _ext
-    pprolog: _ext
+    - sphinx_prolog.solex
+    - sphinx_prolog.infobox
+    - sphinx_prolog.swish
+    - sphinx_prolog.pprolog
   config:
     html_extra_path:
       - README.md
@@ -75,8 +79,9 @@ sphinx:
     #     div.highlight pre, div.extract.swish pre.swish.query
     #     :not(pre) > div.highlight > pre
     copybutton_selector: "div.highlight:not(.extract):not(.swish) > pre"
-    # Configure SL-Sphinx <https://github.com/simply-logical/SL-Sphinx>
-    sl_exercise_directory: /src/ex/
-    sl_code_directory: /src/code/
-    sl_swish_url: https://swish.simply-logical.space/
-    sl_swish_hide_examples: true
+    # Configure sphinx-prolog <https://github.com/simply-logical/sphinx-prolog>
+    sp_exercise_directory: /src/ex/
+    sp_code_directory: /src/code/
+    sp_swish_url: https://swish.simply-logical.space/
+    sp_swish_book_url: https://book.simply-logical.space/
+    sp_swish_hide_examples: true
