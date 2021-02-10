@@ -1,5 +1,6 @@
 # Jupyter Book
 _build
+src/code/temp
 
 # Mac OS
 .DS_Store

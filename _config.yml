@@ -6,7 +6,13 @@ author: >
 copyright: '2015–2021'
 logo: src/img/SL.svg
 
-exclude_patterns: [README.md, .DS_Store, __pycache__, .github, src/ex]
+exclude_patterns:
+  - .DS_Store
+  - __pycache__
+  - .github
+  - README.md
+  - src/ex
+  - src/code/temp
 
 execute:
   execute_notebooks: off
@@ -72,8 +78,9 @@ sphinx:
     #     div.highlight pre, div.extract.swish pre.swish.query
     #     :not(pre) > div.highlight > pre
     copybutton_selector: "div.highlight:not(.extract):not(.swish) > pre"
-    # Configure SL-Sphinx <https://github.com/simply-logical/SL-Sphinx>
-    sl_exercise_directory: /src/ex/
-    sl_code_directory: /src/code/
-    sl_swish_url: https://swish.simply-logical.space/
-    sl_swish_hide_examples: true
+    # Configure sphinx-prolog <https://github.com/simply-logical/sphinx-prolog>
+    sp_exercise_directory: /src/ex/
+    sp_code_directory: /src/code/
+    sp_swish_url: https://swish.simply-logical.space/
+    sp_swish_book_url: https://book.simply-logical.space/
+    sp_swish_hide_examples: true
