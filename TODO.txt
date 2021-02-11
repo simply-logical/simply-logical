@@ -7,6 +7,8 @@
 
 check answers to exercises
 
+long SWISH boxes at the end of sections 9.2 and 9.3
+
 ---
 
 Populate:
