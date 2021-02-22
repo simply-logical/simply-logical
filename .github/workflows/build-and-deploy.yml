@@ -17,6 +17,9 @@ jobs:
       run: pip install -r requirements.txt
     - name: Build the book 🔧📖
       run: jb build -nW .
+    - name: Validate links ☑️🔗
+      continue-on-error: true
+      run: jb build -q --builder linkcheck .
     - name: Deploy 🚀
       if: github.ref == 'refs/heads/master'
       uses: JamesIves/github-pages-deploy-action@3.7.1
