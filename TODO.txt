@@ -1,10 +1,5 @@
 * TO DO
 
-1.2.5 fix predicate logic formulae (also 3.2.2)
-2.1.1 change node names in Fig.2.1.2 (1 -> n1 etc.)
-2.3.2, 2.3.3: add palindrome SWISH boxes
-3.3.2, 3.3.3: add SWISH boxes
-
 check answers to exercises
 
 long SWISH boxes at the end of sections 9.2 and 9.3
