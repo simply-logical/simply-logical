@@ -64,7 +64,7 @@ sphinx:
       - .nojekyll
     numfig_format:
       figure: "Figure %s"
-    numfig_secnum_depth: 2
+    numfig_secnum_depth: 1
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # Configure Sphinx-copybutton
     # <https://sphinx-copybutton.readthedocs.io/en/latest/>
