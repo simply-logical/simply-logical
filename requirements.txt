@@ -1,4 +1,3 @@
 jupyter-book>=0.10.0
-# NOTE: new release of sphinx-multitoc-numbering needed (>=0.1.2)
-https://github.com/executablebooks/sphinx-multitoc-numbering/archive/v0.1.2.zip
+sphinx-multitoc-numbering>=0.1.2
 sphinx-prolog>=0.5
