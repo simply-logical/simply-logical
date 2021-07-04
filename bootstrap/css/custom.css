@@ -10,3 +10,11 @@ abar {
 table.figure {
   width: 75%;
 }
+
+/*Banner*/
+div#banner {
+  text-align: center;
+  font-weight: bold;
+  background-color: #FFAF7A;
+  width: 100%;
+}
