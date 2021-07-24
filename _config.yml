@@ -26,12 +26,19 @@ html:
   extra_navbar: >
     <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a>
   extra_footer: >
+    <p>
+    This work is licenced under the
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
+    Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+    </p>
+    <p>
     This book discusses methods to implement intelligent reasoning by means of
     Prolog programs.
     The book is written from the shared viewpoints of Computational Logic,
     which aims at automating various kinds of reasoning, and Artificial
     Intelligence, which seeks to implement aspects of intelligent behaviour on
     a computer.
+    </p>
   google_analytics_id: UA-112595762-2
   home_page_in_navbar: true
 
