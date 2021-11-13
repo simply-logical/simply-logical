@@ -12,15 +12,15 @@ Reprinted: December 1994, July 1998.
 ## About the Book ##
 
 ### History ###
-"Simply Logical" by Peter Flach was published by John Wiley in 1994. It could be purchased as book-only or with a 3.5 inch diskette containing the Prolog programs printed in the book (for various operating systems). In 2007 the copyright reverted back to the author and book and programs have been freely available [online](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html).
+"Simply Logical -- Intelligent Reasoning by Example" by Peter Flach was first published by John Wiley in 1994. It could be purchased as book-only or with a 3.5 inch diskette containing the Prolog programs printed in the book (for various operating systems). 
 
-In 2015, as a pilot, we have ported most of the original book into an online, interactive website using SWI-Prolog's [SWISH platform](https://swish.swi-prolog.org/). Since then, we have created *Simply Logical* open source organisation committed to maintaining a suite of freely available interactive online educational resources about Artificial Intelligence and Logic Programming with Prolog. Visit our organisation's [website](https://simply-logical.space/) and [GitHub profile](https://github.com/simply-logical) for more details.
+In 2007 the copyright reverted back to the author and book and programs have been freely available [online](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) ever since. The print version is no longer available through John Wiley publishers. 
 
-This book is no longer available through John Wiley publishers. You can download a free PDF copy or view an online version.
+In 2015, as a pilot, we ported most of the original book into an online, interactive website using SWI-Prolog's [SWISH platform](https://swish.swi-prolog.org/). Since then, we created the *Simply Logical* open source organisation committed to maintaining a suite of freely available interactive online educational resources about Artificial Intelligence and Logic Programming with Prolog. Visit our organisation's [website](https://simply-logical.space/) and [GitHub profile](https://github.com/simply-logical) for more details.
 
 ### PDF version ###
 [![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)  
-The PDF version of the book is available as a [*GitHub release*](https://github.com/simply-logical/simply-logical/releases/tag/v1.0).
+The PDF version of the original book is available as a [*GitHub release*](https://github.com/simply-logical/simply-logical/releases/tag/v1.0).
 
 #### Citation ####
 ```BibTeX
@@ -39,6 +39,7 @@ The PDF version of the book is available as a [*GitHub release*](https://github.
 [![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
 The online version of the book is hosted on [*GitHub Pages*](https://book.simply-logical.space).
 It is built with [Jupyter Book](https://jupyterbook.org/) and [SWISH](https://swish.swi-prolog.org/), the online version of [SWI-Prolog](https://swi-prolog.org/).
+It follows the structure of the original print version, with minor corrections and additions as explained in the {ref}`part:preface`.  
 
 #### Citation ####
 ```BibTeX
@@ -55,7 +56,7 @@ It is built with [Jupyter Book](https://jupyterbook.org/) and [SWISH](https://sw
 ```
 
 #### Prolog code blocks not working ####
-If the interactive Prolog code blocks are not working for you in the online version of the book, please ensure that 3rd party cookies are enabled in your web browser.
+If the interactive Prolog code blocks are not working for you in the online version of the book, please ensure that third-party cookies are enabled in your web browser.
 
 #### Error in the book ####
 If you find an error in the online version of the book, please open a [*GitHub issue*](https://github.com/simply-logical/simply-logical/issues).
