@@ -3,8 +3,8 @@
 
 ![Simply Logical cover](/src/img/SLfront.gif "Simply Logical cover")
 
-*by [Peter Flach](https://www.cs.bris.ac.uk/~flach/index.html), then at [Tilburg University](https://www.tilburguniversity.nl/), the Netherlands*  
-[John Wiley](https://www.wiley.com/) 1994, xvi + 240 pages, ISBN 0471 94152 2  
+*by [Peter Flach](https://www.cs.bris.ac.uk/~flach/index.html), then at [Tilburg University](https://www.tilburguniversity.edu/), the Netherlands*  
+[John Wiley](https://www.wiley.com/en-gb) 1994, xvi + 240 pages, ISBN 0471 94152 2  
 Reprinted: December 1994, July 1998.
 
 <!--acknowledgements-->
@@ -34,7 +34,7 @@ The PDF version of the original book is available as a [*GitHub release*](https:
 ```
 
 ### Online version ###
-[![Licence](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)
+[![Licence](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg)](https://doi.org/10.5281/zenodo.1156977)
 [![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
 The online version of the book is hosted on [*GitHub Pages*](https://book.simply-logical.space).
