@@ -1,0 +1,160 @@
+div.source {
+  position: relative;
+  margin: 10px 2ex;
+  border: 1px solid #888;
+  background-color: #eee;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+/* Edited by TW. */
+div.answer {
+  position: relative;
+  margin: 10px 2ex;
+  border: 1px solid #888;
+  background-color: #eee;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+/* End of edition */
+
+pre.query, pre.source, pre.verbatim {
+  margin: 0px;
+}
+
+.guessed {
+  outline: 1px dotted green;
+}
+
+div.query {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+}
+
+div.open-prolog {
+  width: auto;
+  display: inline-block;
+  position: relative;
+}
+
+div.open-prolog.swish {
+  width: 80%;
+}
+
+div.open-prolog div.load {
+  top: -7px;
+  right: -37px;
+}
+
+div.source.swish, div.query.swish {
+  padding: 8px 8px;
+}
+
+div.source iframe, div.query iframe {
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+pre.source, pre.query {
+  width: 100%;
+}
+
+div.load {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  background-image: url("../../img/Actions-system-run-icon.png");
+  background-repeat: none;
+  background-size: 100%;
+}
+
+div.query div.load {
+ top: -5px;
+}
+
+div.source.swish div.load,
+div.query.swish div.load,
+div.answer.swish div.load,
+div.open-prolog.swish div.load {
+  background-image: url("../../img/close.png");
+}
+
+div.ui-resizable-s {
+}
+
+
+		 /*******************************
+		 *	    DISCLAIMER		*
+		 *******************************/
+
+div.swish-disclaimer {
+  font-size: 80%;
+  font-family:Helvetica,sans-serif;
+  color: #444;
+  padding: 0px 5%;
+}
+
+div.github {
+  padding-top: 5px;
+  text-align: center;
+  margin: auto;
+}
+
+div.github > span {
+}
+
+div.github iframe {
+  vertical-align: top;
+  border: 0px;
+}
+
+div.content {
+  background-image: url("testing-version.png");
+  background-size: 50%;
+}
+
+
+
+		 /*******************************
+		 *	  MODAL DIALOGUE	*
+		 *******************************/
+
+#overlay {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+}
+
+#modal {
+	position:absolute;
+	background:url(tint20.png) 0 0 repeat;
+	background:rgba(0,0,0,0.2);
+	border-radius:14px;
+	padding:8px;
+}
+
+#content {
+	border-radius:8px;
+	background:#fff;
+	padding:20px;
+}
+
+#close {
+	position:absolute;
+	background:url(../../img/close.png) 0 0 no-repeat;
+	width:24px;
+	height:27px;
+	display:block;
+	text-indent:-9999px;
+	top:-7px;
+	right:-7px;
+}

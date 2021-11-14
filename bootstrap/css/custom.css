@@ -1,0 +1,20 @@
+p.romeinscijfer,p.cijfer,h3,h4,h5,h6 {
+  padding-top: 60px;
+}
+body {
+  position: relative;
+}
+abar {
+  padding-top: 55px;
+}
+table.figure {
+  width: 75%;
+}
+
+/*Banner*/
+div#banner {
+  text-align: center;
+  font-weight: bold;
+  background-color: #FFAF7A;
+  width: 100%;
+}
