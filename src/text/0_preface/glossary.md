@@ -122,6 +122,9 @@ tautology
 term
 	A *term* is either a {term}`variable` or has the form `f(t1,...,tn)`, where `f` is a {term}`functor` and `t1,...,tn` are terms. `n` is the arity of the functor. Variable tokens start with an uppercase letter; functor tokens start with a lowercase letter. A 0-arity functor is also called a {term}`constant`. 
 
+unification
+	TO DO
+
 unifier
 	TO DO
 
