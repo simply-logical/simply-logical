@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glossary &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Logic and Logic Programming" href="../1_part_i/_part_i.html" />
+    <link rel="prev" title="Preface to the online edition" href="_preface.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../simply-logical.html">
+   Simply Logical
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_preface.html">
+   Preface to the online edition
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Glossary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1_part_i/_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.2.html">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.5.html">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.2.html">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2_part_ii/_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/5.0.html">
+     5. Searching graphs
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.4.html">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/6.0.html">
+     6. Informed search
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.1.html">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../appendices/_appendices.html">
+   Appendices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_2.html">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a>
+
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/src/text/0_preface/glossary.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simply-logical/simply-logical"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/0_preface/glossary.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/simply-logical/simply-logical/edit/master/src/text/0_preface/glossary.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="glossary">
+<span id="ch-glossary"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<dl class="glossary">
+<dt id="term-atom">atom<a class="headerlink" href="#term-atom" title="Permalink to this term">¶</a></dt><dd><p>An <em>atom</em> has the form <code class="docutils literal notranslate"><span class="pre">pred(t1,...,tn)</span></code>, where <code class="docutils literal notranslate"><span class="pre">pred</span></code> is a <a class="reference internal" href="#term-predicate"><span class="xref std std-term">predicate</span></a> and <code class="docutils literal notranslate"><span class="pre">t1,...,tn</span></code> are <a class="reference internal" href="#term-term"><span class="xref std std-term">terms</span></a>. <code class="docutils literal notranslate"><span class="pre">n</span> </code>is the arity of the predicate. Predicates with different arities are treated as different even if they use the same token. A 0-arity predicate is also called a <a class="reference internal" href="#term-proposition"><span class="xref std std-term">proposition</span></a>.</p>
+</dd>
+<dt id="term-body">body<a class="headerlink" href="#term-body" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-clause">clause<a class="headerlink" href="#term-clause" title="Permalink to this term">¶</a></dt><dd><p>A <em>clause</em> has the form <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">:-</span> <span class="pre">body</span></code>, to be read <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">IF</span> <span class="pre">body</span></code> or <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">body</span> <span class="pre">THEN</span> <span class="pre">head</span></code>. The <a class="reference internal" href="#term-head"><span class="xref std std-term">head</span></a> is a disjunction of <a class="reference internal" href="#term-atom"><span class="xref std std-term">atoms</span></a> separated by semicolons. The <a class="reference internal" href="#term-body"><span class="xref std std-term">body</span></a> is a conjunction of <a class="reference internal" href="#term-atom"><span class="xref std std-term">atoms</span></a> separated by commas.</p>
+<p>Special cases: <code class="docutils literal notranslate"><span class="pre">body</span></code> can be empty, in which case the clause is written as either <code class="docutils literal notranslate"><span class="pre">head</span></code> or as <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">:-</span> <span class="pre">true</span></code>. Similarly, <code class="docutils literal notranslate"><span class="pre">head</span></code> can be empty, in which case the clause is written as either <code class="docutils literal notranslate"><span class="pre">:-body</span></code> or as <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">:-</span> <span class="pre">body</span></code>. The empty clause, written as <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">:-</span> <span class="pre">true</span></code> or as <code class="docutils literal notranslate"><span class="pre">[]</span></code>, indicates a logical contradiction.</p>
+<p>In Prolog, clause heads must have a single atom (<a class="reference internal" href="#term-definite-clause"><span class="xref std std-term">definite clause</span></a>). Clauses with an empty head are interpreted as <a class="reference internal" href="#term-query"><span class="xref std std-term">queries</span></a>.</p>
+</dd>
+<dt id="term-completeness">completeness<a class="headerlink" href="#term-completeness" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-conjunctive-normal-form">conjunctive normal form<a class="headerlink" href="#term-conjunctive-normal-form" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-constant">constant<a class="headerlink" href="#term-constant" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-counter-example">counter-example<a class="headerlink" href="#term-counter-example" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-decidable">decidable<a class="headerlink" href="#term-decidable" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-definite-clause">definite clause<a class="headerlink" href="#term-definite-clause" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-clause"><span class="xref std std-term">clause</span></a> with a single <a class="reference internal" href="#term-atom"><span class="xref std std-term">atom</span></a> in the <a class="reference internal" href="#term-head"><span class="xref std std-term">head</span></a>.</p>
+</dd>
+<dt id="term-functor">functor<a class="headerlink" href="#term-functor" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-ground-term-atom-clause">ground term/atom/clause<a class="headerlink" href="#term-ground-term-atom-clause" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-term"><span class="xref std std-term">term</span></a>, <a class="reference internal" href="#term-atom"><span class="xref std std-term">atom</span></a> or <a class="reference internal" href="#term-clause"><span class="xref std std-term">clause</span></a> without <a class="reference internal" href="#term-variable"><span class="xref std std-term">variables</span></a>.</p>
+</dd>
+<dt id="term-head">head<a class="headerlink" href="#term-head" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-Herbrand-universe">Herbrand universe<a class="headerlink" href="#term-Herbrand-universe" title="Permalink to this term">¶</a></dt><dd><p>The set of all <a class="reference internal" href="#term-ground-term-atom-clause"><span class="xref std std-term">ground terms</span></a>. These represent all the “things” you can talk about. The Herbrand universe is infinite if we have one or more <a class="reference internal" href="#term-functor"><span class="xref std std-term">functors</span></a>, finite otherwise (i.e., in <a class="reference internal" href="#term-propositional-clausal-logic"><span class="xref std std-term">propositional</span></a> and <a class="reference internal" href="#term-relational-clausal-logic"><span class="xref std std-term">relational clausal logic</span></a>).</p>
+</dd>
+<dt id="term-Herbrand-base">Herbrand base<a class="headerlink" href="#term-Herbrand-base" title="Permalink to this term">¶</a></dt><dd><p>The set of all <a class="reference internal" href="#term-ground-term-atom-clause"><span class="xref std std-term">ground atoms</span></a>. These represent statements that can be true or false. Finite or infinite depending on the <a class="reference internal" href="#term-Herbrand-universe"><span class="xref std std-term">Herbrand universe</span></a>.</p>
+</dd>
+<dt id="term-Herbrand-interpretation">Herbrand interpretation<a class="headerlink" href="#term-Herbrand-interpretation" title="Permalink to this term">¶</a></dt><dd><p>assignment of truth values true/false to all <a class="reference internal" href="#term-ground-term-atom-clause"><span class="xref std std-term">ground atoms</span></a> in the <a class="reference internal" href="#term-Herbrand-base"><span class="xref std std-term">Herbrand base</span></a>. Usually represented by the subset of true atoms. Each Herbrand interpretation represents a possible state of affairs in the world (<a class="reference internal" href="#term-possible-world"><span class="xref std std-term">possible world</span></a>).</p>
+</dd>
+<dt id="term-inference-rule">inference rule<a class="headerlink" href="#term-inference-rule" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-literal">literal<a class="headerlink" href="#term-literal" title="Permalink to this term">¶</a></dt><dd><p>Given a <a class="reference internal" href="#term-clause"><span class="xref std std-term">clause</span></a>, an <a class="reference internal" href="#term-atom"><span class="xref std std-term">atom</span></a> is a positive/negative <em>literal</em> if it occurs in the <a class="reference internal" href="#term-body"><span class="xref std std-term">body</span></a>/<a class="reference internal" href="#term-head"><span class="xref std std-term">head</span></a>. This corresponds to the interpretation of a clause <code class="docutils literal notranslate"><span class="pre">h1</span> <span class="pre">;</span> <span class="pre">h2</span> <span class="pre">:-</span> <span class="pre">b1</span> <span class="pre">,</span> <span class="pre">b2</span></code> as a disjunction <span class="math notranslate nohighlight">\(h1 \vee h2 \vee \neg b1 \vee \neg b2\)</span>, in which head literals occur unnegated and body literals occur negated.</p>
+</dd>
+<dt id="term-logical-consequence">logical consequence<a class="headerlink" href="#term-logical-consequence" title="Permalink to this term">¶</a></dt><dd><p>A clause <span class="math notranslate nohighlight">\(C\)</span> is a <em>logical consequence</em> of a <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a> <span class="math notranslate nohighlight">\(P\)</span> (or <span class="math notranslate nohighlight">\(P\)</span> entails <span class="math notranslate nohighlight">\(C\)</span>) iff every <a class="reference internal" href="#term-model"><span class="xref std std-term">model</span></a> of <span class="math notranslate nohighlight">\(P\)</span> is also a <a class="reference internal" href="#term-model"><span class="xref std std-term">model</span></a> of <span class="math notranslate nohighlight">\(C\)</span>; we write <span class="math notranslate nohighlight">\(P \models C\)</span>. If this isn’t the case (i.e., some <a class="reference internal" href="#term-model"><span class="xref std std-term">model</span></a> of <span class="math notranslate nohighlight">\(P\)</span> is not a <a class="reference internal" href="#term-model"><span class="xref std std-term">model</span></a> of <span class="math notranslate nohighlight">\(C\)</span>), then <span class="math notranslate nohighlight">\(C\)</span> expresses some knowledge that is not contained in <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p>Edge cases: any <a class="reference internal" href="#term-tautology"><span class="xref std std-term">tautology</span></a> such as <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">:-</span> <span class="pre">a</span></code> is a logical consequence of any <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a>; an inconsistent <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a> (e.g., containing both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">:-a</span></code>) has no <a class="reference internal" href="#term-model"><span class="xref std std-term">models</span></a> and hence entails anything.</p>
+</dd>
+<dt id="term-model">model<a class="headerlink" href="#term-model" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-Herbrand-interpretation"><span class="xref std std-term">Herbrand interpretation</span></a> that makes a <a class="reference internal" href="#term-clause"><span class="xref std std-term">clause</span></a> or <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a> true. A <a class="reference internal" href="#term-ground-term-atom-clause"><span class="xref std std-term">ground clause</span></a> is <strong>false</strong> in an interpretation if all body atoms are <strong>true</strong> and all head atoms are <strong>false</strong> (<a class="reference internal" href="#term-counter-example"><span class="xref std std-term">counter-example</span></a>), and <strong>true</strong> otherwise. A non-ground clause is true iff all its ground instances over the <a class="reference internal" href="#term-Herbrand-universe"><span class="xref std std-term">Herbrand universe</span></a> are. A <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a> is true if all of its clauses are.</p>
+</dd>
+<dt id="term-most-general-unifier">most general unifier<a class="headerlink" href="#term-most-general-unifier" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-possible-world">possible world<a class="headerlink" href="#term-possible-world" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-predicate">predicate<a class="headerlink" href="#term-predicate" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-predicate-logic">predicate logic<a class="headerlink" href="#term-predicate-logic" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-program">program<a class="headerlink" href="#term-program" title="Permalink to this term">¶</a></dt><dd><p>A <em>(logic) program</em> consists of one of more <a class="reference internal" href="#term-clause"><span class="xref std std-term">clauses</span></a>, read conjunctively. Hence a program is said to be in <a class="reference internal" href="#term-conjunctive-normal-form"><span class="xref std std-term">conjunctive normal form</span></a>, i.e., a conjunction of disjunctions of (possibly negated) atoms. Normal forms limit the number of ways programs can be written, which is computationally advantageous.</p>
+</dd>
+<dt id="term-proof-by-refutation">proof by refutation<a class="headerlink" href="#term-proof-by-refutation" title="Permalink to this term">¶</a></dt><dd><p>A <em>proof by refutation</em> adds the negation of the <a class="reference internal" href="#term-query"><span class="xref std std-term">query</span></a> (what you want to prove) to the <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a>, and then uses <a class="reference internal" href="#term-resolution"><span class="xref std std-term">resolution</span></a> to derive the empty clause (falsity). If that succeeds, then the original (un-negated) query is a <a class="reference internal" href="#term-logical-consequence"><span class="xref std std-term">logical consequence</span></a> of the <a class="reference internal" href="#term-program"><span class="xref std std-term">program</span></a> – but only under the <a class="reference internal" href="#term-substitution"><span class="xref std std-term">substitutions</span></a> needed for all resolution steps.</p>
+</dd>
+<dt id="term-proposition">proposition<a class="headerlink" href="#term-proposition" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-propositional-clausal-logic">propositional clausal logic<a class="headerlink" href="#term-propositional-clausal-logic" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-query">query<a class="headerlink" href="#term-query" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-relational-clausal-logic">relational clausal logic<a class="headerlink" href="#term-relational-clausal-logic" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-resolution">resolution<a class="headerlink" href="#term-resolution" title="Permalink to this term">¶</a></dt><dd><p>The single <a class="reference internal" href="#term-inference-rule"><span class="xref std std-term">inference rule</span></a> in clausal logic is <em>resolution</em>. (This is a consequence of having a <a class="reference internal" href="#term-conjunctive-normal-form"><span class="xref std std-term">normal form</span></a> – <a class="reference internal" href="#term-predicate-logic"><span class="xref std std-term">predicate logic</span></a> needs many more <a class="reference internal" href="#term-inference-rule"><span class="xref std std-term">inference rules</span></a>.) Resolution takes two clauses and infers a third clause that is a <a class="reference internal" href="#term-logical-consequence"><span class="xref std std-term">logical consequence</span></a> (i.e., resolution is *<a class="reference internal" href="#term-soundness"><span class="xref std std-term">sound</span></a>). We can chain several resolution steps together into a proof to produce further <a class="reference internal" href="#term-logical-consequence"><span class="xref std std-term">logical consequences</span></a>.</p>
+<p>In <a class="reference internal" href="#term-propositional-clausal-logic"><span class="xref std std-term">propositional clausal logic</span></a>, resolution is applicable to any two clauses where the same literal occurs positively in one clause (i.e., in the head) and negatively in the other (in the body). This literal is “resolved away”, and the remaining literals are combined in the inferred clause, keeping their sign (location in head or body). It follows that if the two input clauses are <a class="reference internal" href="#term-definite-clause"><span class="xref std std-term">definite</span></a>, then so is the inferred clause.</p>
+<p>With <a class="reference internal" href="#term-variable"><span class="xref std std-term">variables</span></a> we first may have to apply a <a class="reference internal" href="#term-substitution"><span class="xref std std-term">substitution</span></a> to make the positive/negative literal pair identical. Such a <a class="reference internal" href="#term-substitution"><span class="xref std std-term">substitution</span></a> is called a <a class="reference internal" href="#term-unifier"><span class="xref std std-term">unifier</span></a>; it is applied to the entire clause and carried along to the rest of the proof. Applying a <a class="reference internal" href="#term-substitution"><span class="xref std std-term">substitution</span></a> to a clause produces a <a class="reference internal" href="#term-logical-consequence"><span class="xref std std-term">logical consequence</span></a>, so this doesn’t affect the <a class="reference internal" href="#term-soundness"><span class="xref std std-term">soundness</span></a> of resolution. We are generally only interested in <a class="reference internal" href="#term-most-general-unifier"><span class="xref std std-term">most general unifiers</span></a> that don’t make unnecessary <a class="reference internal" href="#term-substitution"><span class="xref std std-term">substitutions</span></a>.</p>
+<p>Resolution cannot infer all <a class="reference internal" href="#term-logical-consequence"><span class="xref std std-term">logical consequences</span></a> (e.g., arbitrary <a class="reference internal" href="#term-tautology"><span class="xref std std-term">tautologies</span></a>) and hence is <a class="reference internal" href="#term-completeness"><span class="xref std std-term">incomplete</span></a>}. This can be overcome by turning things around, starting from the thing you want to prove. Technically, this is realised by <a class="reference internal" href="#term-proof-by-refutation"><span class="xref std std-term">proof by refutation</span></a>.</p>
+</dd>
+<dt id="term-refutation">refutation<a class="headerlink" href="#term-refutation" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-refutation-complete">refutation-complete<a class="headerlink" href="#term-refutation-complete" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-soundness">soundness<a class="headerlink" href="#term-soundness" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-substitution">substitution<a class="headerlink" href="#term-substitution" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-tautology">tautology<a class="headerlink" href="#term-tautology" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-term">term<a class="headerlink" href="#term-term" title="Permalink to this term">¶</a></dt><dd><p>A <em>term</em> is either a <a class="reference internal" href="#term-variable"><span class="xref std std-term">variable</span></a> or has the form <code class="docutils literal notranslate"><span class="pre">f(t1,...,tn)</span></code>, where <code class="docutils literal notranslate"><span class="pre">f</span></code> is a <a class="reference internal" href="#term-functor"><span class="xref std std-term">functor</span></a> and <code class="docutils literal notranslate"><span class="pre">t1,...,tn</span></code> are terms. <code class="docutils literal notranslate"><span class="pre">n</span></code> is the arity of the functor. Variable tokens start with an uppercase letter; functor tokens start with a lowercase letter. A 0-arity functor is also called a <a class="reference internal" href="#term-constant"><span class="xref std std-term">constant</span></a>.</p>
+</dd>
+<dt id="term-unification">unification<a class="headerlink" href="#term-unification" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-unifier">unifier<a class="headerlink" href="#term-unifier" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+<dt id="term-variable">variable<a class="headerlink" href="#term-variable" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
+</dd>
+</dl>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/0_preface"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="_preface.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Preface to the online edition</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../1_part_i/_part_i.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Logic and Logic Programming</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+        
+            &copy; Copyright 2015–2021.<br/>
+          <div class="extra_footer">
+            <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

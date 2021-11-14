@@ -1,0 +1,68 @@
+/*Exercise directive*/
+.admonition.exercise {
+  border-color:#28a745;
+}
+.admonition.exercise .admonition-title {
+  background-color: #f2fdf3;
+}
+.admonition.exercise .admonition-title:before {
+  color:#28a745;
+  content:"";
+}
+.admonition.exercise .admonition-title .solution-link {
+  color:#ffc107;
+  float: right;
+  font-family: Font Awesome\ 5 Free;
+  text-decoration: none;
+  opacity:.3;
+}
+.admonition.exercise .admonition-title .solution-link:hover {
+  background-color: transparent;
+  opacity:1 !important;
+}
+
+/*Exercise solution directive*/
+.admonition.solution {
+  border-color:#ffc107;
+}
+.admonition.solution .admonition-title {
+  background-color: #fff6dd;
+}
+.admonition.solution .admonition-title:before {
+  color:#ffc107;
+  content:"";
+}
+.admonition.solution .admonition-title .exercise-link {
+  color:#28a745;
+  float: right;
+  font-family: Font Awesome\ 5 Free;
+  text-decoration: none;
+  opacity:.3;
+}
+.admonition.solution .admonition-title .exercise-link:hover {
+  background-color: transparent;
+  opacity:1 !important;
+}
+
+/*Highlight the hyper-link marker when hovering over the "title" of
+ *infoboxes, exercises and solutions.*/
+main.bd-content #main-content div.admonition.infobox p.admonition-title:hover a.headerlink,
+main.bd-content #main-content div.admonition.exercise p.admonition-title:hover a.headerlink,
+main.bd-content #main-content div.admonition.exercise p.admonition-title:hover a.solution-link,
+main.bd-content #main-content div.admonition.solution p.admonition-title:hover a.headerlink,
+main.bd-content #main-content div.admonition.solution p.admonition-title:hover a.exercise-link {
+  opacity:.5;
+}
+
+/*** Sphinx-copybutton extension ***/
+div.extract.swish  {
+  position: relative;
+}
+div.extract.swish:hover .copybtn {
+  opacity: 1;
+}
+
+/* SWISH directive -- hide the examples block */
+div.hide-examples {
+  display: none;
+}
