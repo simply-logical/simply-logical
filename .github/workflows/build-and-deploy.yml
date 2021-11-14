@@ -28,15 +28,3 @@ jobs:
         BRANCH: gh-pages
         FOLDER: _build/html
         CLEAN: true
-    - name: Deploy Too CNAME 🚀
-      if: github.ref == 'refs/heads/pf-release'
-      run: echo "too.simply-logical.space" > _build/html/CNAME
-    - name: Deploy Too 🚀
-      if: github.ref == 'refs/heads/pf-release'
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        GITHUB_TOKEN: ${{ secrets.TOO }}
-        REPOSITORY-NAME: simply-logical/simply-logical-too
-        BRANCH: master
-        FOLDER: _build/html
-        CLEAN: true
