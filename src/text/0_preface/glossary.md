@@ -38,7 +38,7 @@ functor
 
 ground term/atom/clause
 	A {term}`term`, {term}`atom` or {term}`clause` without {term}`variables<variable>`. 
-	
+
 head
 	TO DO
 
@@ -59,7 +59,7 @@ literal
 
 logical consequence
 	A clause $C$ is a *logical consequence* of a {term}`program` $P$ (or $P$ entails $C$) iff every {term}`model` of $P$ is also a {term}`model` of $C$; we write $P \models C$. If this isn't the case (i.e., some {term}`model` of $P$ is not a {term}`model` of $C$), then $C$ expresses some knowledge that is not contained in $P$. 
-	
+
 	Edge cases: any {term}`tautology` such as `a :- a` is a logical consequence of any {term}`program`; an inconsistent {term}`program` (e.g., containing both `a` and `:-a`) has no {term}`models<model>` and hence entails anything. 
 
 model
