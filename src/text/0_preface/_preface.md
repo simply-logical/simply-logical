@@ -17,7 +17,7 @@ But none of this would matter if the *Simply Logical* content was by now hopeles
 
 
 ````{tip}
-Having used the book for undergraduate and postgraduate teaching for many years, I decided against making major structural changes or adding substantial new material. I have, of course, taken the opportunity to include small improvements and corrections, such as using anonymous variables wherever appropriate. 
+Having used the book for undergraduate and postgraduate teaching for many years, I decided against making major structural changes or adding substantial new material. I have, of course, taken the opportunity to include small improvements and corrections, such as using anonymous variables wherever appropriate, and slight punctuation improvements in clauses and queries. 
 I have also inserted further examples from my teaching, formatted in boxes like this one.
 In parallel I am working on a separate {ref}`ch:glossary` that can be read either alongside or separate from the main text. 
 ````

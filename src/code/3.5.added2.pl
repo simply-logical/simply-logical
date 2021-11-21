@@ -1,5 +1,4 @@
 % Try these queries here.
-% Is the answer to the last query really as described here?
 
 /** <examples>
 ?-X = 5+7-3.

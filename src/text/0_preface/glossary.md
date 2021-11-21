@@ -30,10 +30,22 @@ counter-example
 decidable
 	TO DO
 
+declarative semantics
+	TO DO
+
 definite clause
 	A {term}`clause` with a single {term}`atom` in the {term}`head`.
 
+existential variable
+	TO DO
+
+failure-driven loop
+	TO DO
+
 functor
+	TO DO
+
+general clause
 	TO DO
 
 ground term/atom/clause
@@ -54,18 +66,36 @@ Herbrand interpretation
 inference rule
 	TO DO
 
+list
+	TO DO
+
 literal
-	Given a {term}`clause`, an {term}`atom` is a positive/negative *literal* if it occurs in the {term}`body`/{term}`head`. This corresponds to the interpretation of a clause `h1 ; h2 :- b1 , b2` as a disjunction $h1 \vee h2 \vee \neg b1 \vee \neg b2$, in which head literals occur unnegated and body literals occur negated. 
+	Given a {term}`clause`, an {term}`atom` is a positive/negative *literal* if it occurs in the {term}`body`/{term}`head`. This corresponds to the interpretation of a clause `h1 ; h2 :- b1 , b2` as a disjunction $h1 \lor h2 \lor \neg b1 \lor \neg b2$, in which head literals occur unnegated and body literals occur negated. 
 
 logical consequence
 	A clause $C$ is a *logical consequence* of a {term}`program` $P$ (or $P$ entails $C$) iff every {term}`model` of $P$ is also a {term}`model` of $C$; we write $P \models C$. If this isn't the case (i.e., some {term}`model` of $P$ is not a {term}`model` of $C$), then $C$ expresses some knowledge that is not contained in $P$. 
 
 	Edge cases: any {term}`tautology` such as `a :- a` is a logical consequence of any {term}`program`; an inconsistent {term}`program` (e.g., containing both `a` and `:-a`) has no {term}`models<model>` and hence entails anything. 
 
+meta-interpreter
+	TO DO
+
+meta-level
+	TO DO
+
+minimal model
+	TO DO
+
 model
 	A {term}`Herbrand interpretation` that makes a {term}`clause` or {term}`program` true. A {term}`ground clause<ground term/atom/clause>` is **false** in an interpretation if all body atoms are **true** and all head atoms are **false** ({term}`counter-example`), and **true** otherwise. A non-ground clause is true iff all its ground instances over the {term}`Herbrand universe` are. A {term}`program` is true if all of its clauses are. 
 
 most general unifier
+	TO DO
+
+negation as failure
+	TO DO
+
+object-level
 	TO DO
 
 possible world
@@ -77,11 +107,17 @@ predicate
 predicate logic
 	TO DO
 
+procedural semantics
+	TO DO
+
 program
 	A *(logic) program* consists of one of more {term}`clauses<clause>`, read conjunctively. Hence a program is said to be in {term}`conjunctive normal form`, i.e., a conjunction of disjunctions of (possibly negated) atoms. Normal forms limit the number of ways programs can be written, which is computationally advantageous. 
 
 proof by refutation
-	A *proof by refutation* adds the negation of the {term}`query` (what you want to prove) to the {term}`program`, and then uses {term}`resolution` to derive the empty clause (falsity). If that succeeds, then the original (un-negated) query is a {term}`logical consequence` of the {term}`program` -- but only under the {term}`substitutions<substitution>` needed for all resolution steps. 
+	A *proof by refutation*, also referred to as *reduction to the absurd*, adds the negation of the {term}`query` (what you want to prove) to the {term}`program`, and then uses {term}`resolution` to derive the empty clause (falsity). If that succeeds, then the original (un-negated) query is a {term}`logical consequence` of the {term}`program` -- but only under the {term}`substitutions<substitution>` needed for all resolution steps. 
+
+proof tree
+	TO DO
 
 proposition
 	TO DO
@@ -90,6 +126,9 @@ propositional clausal logic
 	TO DO
 
 query
+	TO DO
+
+recursion
 	TO DO
 
 relational clausal logic
@@ -113,7 +152,13 @@ refutation-complete
 soundness
 	TO DO
 
+stratified program
+	TO DO
+
 substitution
+	TO DO
+
+success set
 	TO DO
 
 tautology

@@ -27,7 +27,7 @@ resolve((A;B),C,(A;D),E):-
 resolve(A,C,false,E):-
 	conj_remove_one(A,C,E).
 
-%%% disj_append/3, conj_remove_one/3: see Section 4.1.2 (appendix)
+%%% disj_append/3, conj_remove_one/3: see Section 10.2 (appendix)
 
 /** <examples>
 ?- refute_bf((false:-bachelor(X))).

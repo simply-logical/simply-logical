@@ -27,7 +27,7 @@ satisfied_head((A;_B),M):-
 satisfied_head((_A;B),M):-
     satisfied_head(B,M).
 
-%%% from Appendix A.2
+%%% from Section 10.2 (appendix)
 disj_element(X,X):-          % single-element disjunction
     X\=false,
     X\=(_;_).

@@ -21,7 +21,7 @@ rlgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2,V):-
 rlgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2,V):-
     rlgg_literal(L1,B2,B0,B,S10,S1,S20,S2,V).
 
-%%% var_… uses == rather than unification (Section 4.1.2 (appendix))
+%%% var_… uses == rather than unification (Section 10.2 (appendix))
 
 /** <examples>
 ?-rlgg( append([1,2],[3,4],[1,2,3,4]),

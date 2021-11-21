@@ -44,7 +44,7 @@ find_clause(Clause,[Rule|_Rules]):-
 find_clause(Clause,[_Rule|Rules]):-
     find_clause(Clause,Rules).
 
-%%% copy_element/2: see Appendix A.2
+%%% copy_element/2: see Section 10.2 (appendix) 
 
 % transform query to answer
 transform((A,B),[(A:-true)|Rest]):-!,

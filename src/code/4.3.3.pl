@@ -10,8 +10,10 @@ properties([Attr|Attrs],Inst,[Attr=Value|Props]):-
 attributes([function,material,action]).
 
 get_value(A,B,C):-
-    Goal =.. [A,B,C],
-    call(Goal).
+    ( A=function -> function(B,C)
+    ; A=material -> material(B,C)
+    ; A=action   -> action(B,C)
+    ).
 
 /** <examples>
 ?- properties(saxophone,P).
