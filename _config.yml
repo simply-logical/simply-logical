@@ -90,5 +90,5 @@ sphinx:
     sp_exercise_directory: /src/ex/
     sp_code_directory: /src/code/
     sp_swish_url: https://swish.simply-logical.space/
-    sp_swish_book_url: https://book.simply-logical.space/
+    sp_swish_book_url: https://too.simply-logical.space/
     sp_swish_hide_examples: true
