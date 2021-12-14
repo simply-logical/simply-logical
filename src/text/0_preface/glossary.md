@@ -1,6 +1,8 @@
 (ch:glossary)=
 # Glossary #
 
+This glossary is a work in progress. It will contain a mixture of brief definitional entries and short essays complementing the material covered in the main text. Together, book and glossary can be seen as an updated, revised and extended second edition. 
+
 ```{glossary}
 atom
    An *atom* has the form `pred(t1,...,tn)`, where `pred` is a {term}`predicate` and `t1,...,tn` are {term}`terms<term>`. `n `is the arity of the predicate. Predicates with different arities are treated as different even if they use the same token. A 0-arity predicate is also called a {term}`proposition`. 

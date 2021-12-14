@@ -24,7 +24,7 @@ In parallel I am working on a separate {ref}`ch:glossary` that can be read eithe
 
 
 Finally, I must pay tribute to the very significant and decisive role played by Kacper Sokol in creating and shaping this online resource. The work started in 2015, when Kacper converted the original content authored in a legacy version of Microsoft Word to static HTML. It was then integrated with [SWISH (SWI-Prolog for SHaring)](https://swish.swi-prolog.org/), so that the Prolog code could be run from within the browser. In 2020 Kacper began work on a new version based on Jupyter Book and the Sphinx Python Documentation Generator [^*_].
-The result is a modern-looking, platform-independent, aesthetically pleasing online format that sets a great example for what is possible today in computer-supported academic publishing. To a very large extent this is due to Kacper's initiative and technical skills. It has been a great pleasure and a privilege to work with him, and I have learned a great deal in the process. 
+The result is a modern-looking, platform-independent, aesthetically pleasing online format that sets a great example for what is possible today in computer-supported academic publishing. To a very large extent this is due to Kacper's initiative and technical skills. It has been a great pleasure and a privilege to work with him, and -- most importantly -- I have learned a great deal in the process. 
 
 
 [^*_]: You can find out more about the `sphinx-prolog` extension at [https://github.com/simply-logical/sphinx-prolog](https://github.com/simply-logical/sphinx-prolog). 
