@@ -22,7 +22,7 @@ get_definition([([H]:-B)|Clauses],Head,Def,[([H]:-B)|Rest]):-
             F),
 transform(F,CP).
 ?- complete([ ([likes(peter,S)]:-[student_of(S,peter)]),
-              ([student_of(paul,peter)]:-[]) ]
+              ([student_of(paul,peter)]:-[]) ],
             F),
 transform(F,CP).
 */
