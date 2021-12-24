@@ -1,26 +1,5 @@
 %%% B.2  Predicate Completion %%%
 
-:-consult(transform).
-
-complete(Program,Comp):-
-    separate_definitions(Program,Definitions),
-    complete_definitions(Definitions,CompDefs,Heads),
-    handle_undefined(Program,Heads,CompDefs,Comp).
-
-separate_definitions([],[]).
-separate_definitions([([Head]:-Body)|Clauses],[[([Head]:-Body)|Def]|Defs]):-
-    get_definition(Clauses,Head,Def,Rest),
-    separate_definitions(Rest,Defs).
-    
-get_definition([],_Head,[],[]).
-get_definition([([H]:-B)|Clauses],Head,[([H]:-B)|Def],Rest):-
-    same_predicate(H,Head),
-    get_definition(Clauses,Head,Def,Rest).
-get_definition([([H]:-B)|Clauses],Head,Def,[([H]:-B)|Rest]):-
-    not same_predicate(H,Head),
-    get_definition(Clauses,Head,Def,Rest).
-
-
 handle_undefined(Program,Heads,CompDefs,Comp):-
     setof0(L,
            H^B^(member((H:-B),Program),
@@ -143,17 +122,3 @@ var_element(X,[Y|_Ys]):-
 	X == Y.	% syntactic identity
 var_element(X,[_Y|Ys]):-
 	var_element(X,Ys).
-
-
-%%% Queries %%%
-
-query2(P,F,CP):-
-	program(P),
-	complete(P,F),
-	transform(F,CP).
-
-program([ ([bird(tweety)]:-[]),
-          ([flies(X)]:-[bird(X),not abnormal(X)]) ]).
-program([ ([likes(peter,S)]:-[student_of(S,peter)]),
-          ([student_of(paul,peter)]:-[]) ]).
-

@@ -7,6 +7,14 @@
 
 :-op(400,fy,not).	% negation
 
+transform(Formula,Clauses):-
+   rewrite_implications(Formula,F1),
+   negations_inside(F1,F2),
+   prenex_normal_form(F2,F3),
+   skolemise(F3,F4),
+   conjunctive_normal_form(F4,F5),
+   clausal_form(F5,Clauses).
+
 % rewrite_implications(F1,F2) <-	F2 is a predicate logic formula 
 %                                without implications, logically equivalent to F1
 rewrite_implications(A,A):-	% base case
