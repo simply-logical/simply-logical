@@ -1,7 +1,9 @@
 (ch:glossary)=
 # Glossary #
 
-This glossary is a work in progress. It will contain a mixture of brief definitional entries and short essays complementing the material covered in the main text. Together, book and glossary can be seen as an updated, revised and extended second edition. 
+```{tip}
+This glossary is a work in progress. It will contain a mixture of brief definitional entries and short essays complementing the material covered in the main text. Eventually, the online book and glossary can be seen as an updated, revised and extended second edition.
+``` 
 
 ```{glossary}
 atom
