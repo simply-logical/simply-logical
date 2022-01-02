@@ -1,9 +1,9 @@
 % covers(Clauses,Ex) <- Ex can be proved from Clauses and
 %                       background theory in max. 10 steps
-covers(Clauses,Example):-
+covers_d(Clauses,Example):-
     prove_d(10,Clauses,Example).
 
-prove_d(D,Cls,true):-!.
+prove_d(_D,_Cls,true):-!.
 prove_d(D,Cls,(A,B)):-!,
     prove_d(D,Cls,A),
     prove_d(D,Cls,B).
@@ -11,7 +11,7 @@ prove_d(D,Cls,A):-
     D>0,D1 is D-1,
     copy_element((A:-B),Cls),  % make copy of clause
     prove_d(D1,Cls,B).
-prove_d(D,Cls,A):-
+prove_d(_D,_Cls,A):-
     prove_bg(A).
 
 prove_bg(true):-!.
@@ -28,20 +28,19 @@ specialise(Cls,Done,Example,Clauses):-
     false_clause(Cls,Done,Example,C),
     remove_one(C,Cls,Cls1),
     write('     ...refuted: '),write(C),nl,nl,
-    writeln('<return> to continue'),readln(_),
     process_examples(Cls1,[],[-Example|Done],Clauses).
 
 % false_clause(Cs,E,E,C) <- C is a false clause in the proof of E (or ok)
-false_clause(Cls,Exs,true,ok):-!.
+false_clause(_Cls,_Exs,true,ok):-!.
 false_clause(Cls,Exs,(A,B),X):-!,
     false_clause(Cls,Exs,A,Xa),
     ( Xa = ok   -> false_clause(Cls,Exs,B,X)
     ; otherwise -> X = Xa
     ).
-false_clause(Cls,Exs,E,ok):-
+false_clause(_Cls,Exs,E,ok):-
     element(+E,Exs),!.
-false_clause(Cls,Exs,A,ok):-
-    bg((A:-B)),!.
+false_clause(_Cls,_Exs,A,ok):-
+    bg((A:-_B)),!.
 false_clause(Cls,Exs,A,X):-
     copy_element((A:-B),Cls),
     false_clause(Cls,Exs,B,Xb),
@@ -55,7 +54,6 @@ generalise(Cls,Done,Example,Clauses):-
     write('Generalising example: '),write(Example),nl,
     search_clause(Done,Example,Cl),
     writeln('Found clause: '),portray_clause(Cl),nl,
-    writeln('<return> to continue'),readln(_),
     process_examples([Cl|Cls],[],[+Example|Done],Clauses).
 
 
@@ -74,7 +72,7 @@ search_clause(D,Current,Exs,Example,Clause):-
     D1 is D+1,
     !,search_clause(D1,Current,Exs,Example,Clause).
 
-search_clause_d(D,a(Clause,Vars),Exs,Example,Clause):-
+search_clause_d(_D,a(Clause,_Vars),Exs,Example,Clause):-
     covers_ex(Clause,Example,Exs),  % goal
     not((element(-N,Exs),covers_ex(Clause,N,Exs))),!.
 search_clause_d(D,Current,Exs,Example,Clause):-
@@ -87,13 +85,13 @@ search_clause_d(D,Current,Exs,Example,Clause):-
 covers_ex((Head:-Body),Example,Exs):-
     try((Head=Example,covers_ex(Body,Exs))).
 
-covers_ex(true,Exs):-!.
+covers_ex(true,_Exs):-!.
 covers_ex((A,B),Exs):-!,
     covers_ex(A,Exs),
     covers_ex(B,Exs).
 covers_ex(A,Exs):-
     element(+A,Exs).
-covers_ex(A,Exs):-
+covers_ex(A,_Exs):-
     prove_bg(A).
 
 
@@ -131,6 +129,39 @@ subs_term(Vars,SVars):-
     term(Term,TVars),
     X=Term,
     append(Vs,TVars,SVars).
+
+
+%%% From library %%%
+
+%%% Lists and sets
+
+% element(X,Ys) <- X is an element of the list Ys
+element(X,[X|_Ys]).
+element(X,[_Y|Ys]):-
+	element(X,Ys).
+
+% remove_one(X,Ys,Zs) <- Zs is list Ys minus one occurrence of X
+remove_one(X,[X|Ys],Ys).
+remove_one(X,[Y|Ys],[Y|Zs]):-
+	remove_one(X,Ys,Zs).
+
+% proper_subset(Xs,Ys) <- Xs is a subset of Ys, and Ys contains 
+%                         at least one element more
+proper_subset([],Ys):-
+	Ys \= [].
+proper_subset([X|Xs],Ys):-
+	remove_one(X,Ys,Ys1),
+	proper_subset(Xs,Ys1).
+
+%%% Preventing variables from getting instantiated.
+
+copy_element(X,Ys):-
+	element(X1,Ys),
+	copy_term(X1,X).
+
+% try(Goal) <- Goal succeeds, but variables are not instantiated
+try(Goal):-
+	not(not(Goal)).
 
 
 %%% Specialisation graph and background knowledge %%%

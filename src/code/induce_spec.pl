@@ -2,22 +2,22 @@ induce_spec(Examples,Clauses):-
     process_examples([],[],Examples,Clauses).
 
 % process the examples
-process_examples(Clauses,Done,[],Clauses).
+process_examples(Clauses,_Done,[],Clauses).
 process_examples(Cls1,Done,[Ex|Exs],Clauses):-
     process_example(Cls1,Done,Ex,Cls2),
     process_examples(Cls2,[Ex|Done],Exs,Clauses).
 
 % process one example
-process_example(Clauses,Done,+Example,Clauses):-
+process_example(Clauses,_Done,+Example,Clauses):-
     covers_d(Clauses,Example).
 process_example(Cls,Done,+Example,Clauses):-
-    not covers_d(Cls,Example),
+    not(covers_d(Cls,Example)),
     generalise(Cls,Done,Example,Clauses).
 process_example(Cls,Done,-Example,Clauses):-
     covers_d(Cls,Example),
     specialise(Cls,Done,Example,Clauses).
-process_example(Clauses,Done,-Example,Clauses):-
-    not covers_d(Clauses,Example).
+process_example(Clauses,_Done,-Example,Clauses):-
+    not(covers_d(Clauses,Example)).
 
 /** <examples>
 ?-  induce_spec([+element(a,[a,b]),
