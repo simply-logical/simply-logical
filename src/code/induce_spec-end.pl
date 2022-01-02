@@ -166,13 +166,16 @@ try(Goal):-
 
 %%% Specialisation graph and background knowledge %%%
 
+% terms
 term(list([]),[]).
 term(list([X|Y]),[item(X),list(Y)]).
-literal(element(X,Y),[item(X),list(Y)]).
-literal(append(X,Y,Z),[list(X),list(Y),list(Z)]).
-literal(listnum(X,Y),[list(X),list(Y)]).
-literal(num(X,Y),[item(X),item(Y)]).
+% literals
+literal(element(X,Y),[item(X),list(Y)]).          % for inducing element/2
+literal(append(X,Y,Z),[list(X),list(Y),list(Z)]). % for inducing append/3
+literal(listnum(X,Y),[list(X),list(Y)]).          % for inducing listnum/2
+literal(num(X,Y),[item(X),item(Y)]).              % auxiliary predicate for listnum/2
 
+% background knowledge for listnum/2
 bg((num(1,one):-true)).
 bg((num(2,two):-true)).
 bg((num(3,three):-true)).
