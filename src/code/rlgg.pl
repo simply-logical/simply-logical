@@ -26,7 +26,7 @@ rlgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2,V):-
 /** <examples>
 ?-rlgg( append([1,2],[3,4],[1,2,3,4]),
         append([a],[],[a]),
-        [append([1,2],[3,4],[1,2,3,4]), append([a],[],[a])
+        [append([1,2],[3,4],[1,2,3,4]), append([a],[],[a]),
          append([],[],[]),              append([2],[3,4],[2,3,4])],
-       C)
+       C).
 */
