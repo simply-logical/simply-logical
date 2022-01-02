@@ -1,60 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                      %
-%   Prolog programs from Section 9.2 of the book       %
-%   SIMPLY LOGICAL: Intelligent reasoning by example   %
-%   (c) Peter A. Flach/John Wiley & Sons, 1994.        %
-%                                                      %
-%   Predicates: induce_rlgg/2                          %
-%               rlgg/4                                 %
-%                                                      %
-%   NB. This file needs predicates defined in          %
-%   the file 'library'.                                %
-%                                                      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%:-consult(library).
-
-
-%%% 9.2  Bottom-up induction %%%
-
-induce_rlgg(Exs,Clauses):-
-    writeln('%%% Bottom-up induction %%%'),
-    writeln('Examples'),
-    writelns(Exs),
-    pos_neg(Exs,Poss,Negs),
-    bg_model(BG),
-    append(Poss,BG,Model),
-    induce_rlgg(Poss,Negs,Model,Clauses).
-
-induce_rlgg(Poss,Negs,Model,Clauses):-
-    covering(Poss,Negs,Model,[],Clauses).
-
-% split positive and negative examples
-pos_neg([],[],[]).
-pos_neg([+E|Exs],[E|Poss],Negs):-
-    pos_neg(Exs,Poss,Negs).
-pos_neg([-E|Exs],Poss,[E|Negs]):-
-    pos_neg(Exs,Poss,Negs).
-
-% covering algorithm
-covering(Poss,Negs,Model,H0,H):-
-    construct_hypothesis(Poss,Negs,Model,Hyp),!,
-    remove_pos(Poss,Model,Hyp,NewPoss),
-    covering(NewPoss,Negs,Model,[Hyp|H0],H).
-covering(P,_N,_M,H0,H):-
-    append(H0,P,H).  % add uncovered examples to hypothesis
-
-% remove covered positive examples
-remove_pos([],_M,_H,[]).
-remove_pos([P|Ps],Model,Hyp,NewP):-
-    covers_ex(Hyp,P,Model),!,
-    write('Covered example: '),write(P),nl,
-    remove_pos(Ps,Model,Hyp,NewP).
-remove_pos([P|Ps],Model,Hyp,[P|NewP]):-
-    remove_pos(Ps,Model,Hyp,NewP).
-
-
 % extensional coverage, relative to a ground model
 covers_ex((Head:-Body),Example,Model):-
     try((Head=Example,forall(element(L,Body),element(L,Model)))).
@@ -144,6 +87,8 @@ covers_neg(Clause,Negs,Model,N):-
     element(N,Negs),
     covers_ex(Clause,N,Model).
 
+bg_model([]). % in simplest case
+
 
 %%% From library %%%
 
@@ -205,90 +150,3 @@ varsin_args(N,Term,V0,V):-
         arg(N,Term,ArgN),
         varsin(ArgN,V0,V1),
         varsin_args(N1,Term,V1,V).
-
-
-%%% For lectures
-
-writelns(X):-
-    ( X=[] -> nl
-    ; X=[H|T] -> writelns(H),writelns(T)
-    ; otherwise -> write(X),nl
-    ).
-
-
-%%% Queries %%%
-
-%%%%%%%%%%%%%%%%%%  element/2  %%%%%%%%%%%%%%%%%%%%%%%%
-
-% bg_model([]).
-
-query1(Clauses):-
-    induce_rlgg([+element(b,[b]),
-                 +element(2,[2,3]),
-                 +element(3,[1,2,3]),
-                 +element(b,[a,b]),
-                 +element(3,[2,3]),
-                 +element(3,[3]),
-                 -element(3,[a,b]),
-                 -element(a,[])
-                ],Clauses).
-
-%%%%%%%%%%%%%%%%%%  append/3   %%%%%%%%%%%%%%%%%%%%%%%
-
-% bg_model([]).
-
-query2(Clauses):-
-    induce_rlgg([+append([1,2],[3,4],[1,2,3,4]),
-                 +append([a],[],[a]),
-                 +append([],[],[]),
-                 +append([],[1,2,3],[1,2,3]),
-                 +append([2],[3,4],[2,3,4]),
-                 +append([],[3,4],[3,4]),
-                 -append([a],[b],[b]),
-                 -append([c],[b],[c,a]),
-                 -append([1,2],[],[1,3])
-                ],Clauses).
-
-%%%%%%%%%%%%%%%%%%   num/2    %%%%%%%%%%%%%%%%%%%%%%%
-
-bg_model([num(1,one),
-          num(2,two),
-          num(3,three),
-          num(4,four),
-          num(5,five)
-         ]).
-
-query3(Clauses):-
-    induce_rlgg([+listnum([],[]),
-                 +listnum([2,three,4],[two,3,four]),
-                 +listnum([4],[four]),
-                 +listnum([three,4],[3,four]),
-                 +listnum([two],[2]),
-                 -listnum([1,4],[1,four]),
-                 -listnum([2,three,4],[two]),
-                 -listnum([five],[5,5])
-                ],Clauses).
-
-%%%%%%%%%%%%%%%%%%   names/2    %%%%%%%%%%%%%%%%%%%%%%%
-
-/*
-bg_model([person(mick,jagger),
-          person(david,bowie),
-          person(tina,turner),
-          person(johann,sebastian),
-          person(ludwig,van)
-         ]).
-*/
-
-query4(Clauses):-
-    induce_rlgg([+names([],[]),
-                 +names([david,turner,johann],[p(david,bowie),p(tina,turner),p(johann,sebastian)]),
-                 +names([johann],[p(johann,sebastian)]),
-                 +names([turner,johann],[p(tina,turner),p(johann,sebastian)]),
-                 +names([bowie],[p(david,bowie)]),
-                 -names([mick,johann],[p(mick,mick),p(johann,sebastian)]),
-                 -names([david,turner,johann],[p(david,bowie)]),
-                 -names([van],[p(ludwig,van),p(ludwig,van)])
-                ],Clauses).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
