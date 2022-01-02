@@ -1,47 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                      %
-%   Prolog programs from Section 9.3 of the book       %
-%   SIMPLY LOGICAL: Intelligent reasoning by example   %
-%   (c) Peter A. Flach/John Wiley & Sons, 1994.        %
-%                                                      %
-%   Predicates: induce_spec/2                          %
-%                                                      %
-%   NB. This file needs predicates defined in          %
-%   the file 'library'.                                %
-%                                                      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-:-consult(library).
-
-
-%%% 9.3  Top-down induction %%%
-
-induce_spec(Examples,Clauses):-
-    writeln('%%% Top-down induction %%%'),
-    writeln('Examples'),
-    writelns(Examples),
-    process_examples([],[],Examples,Clauses).
-
-% process the examples
-process_examples(Clauses,Done,[],Clauses).
-process_examples(Cls1,Done,[Ex|Exs],Clauses):-
-    process_example(Cls1,Done,Ex,Cls2),
-    process_examples(Cls2,[Ex|Done],Exs,Clauses).
-
-% process one example
-process_example(Clauses,Done,+Example,Clauses):-
-    covers(Clauses,Example).
-process_example(Cls,Done,+Example,Clauses):-
-    not covers(Cls,Example),
-    generalise(Cls,Done,Example,Clauses).
-process_example(Cls,Done,-Example,Clauses):-
-    covers(Cls,Example),
-    specialise(Cls,Done,Example,Clauses).
-process_example(Clauses,Done,-Example,Clauses):-
-    not covers(Clauses,Example).
-
-
 % covers(Clauses,Ex) <- Ex can be proved from Clauses and
 %                       background theory in max. 10 steps
 covers(Clauses,Example):-
@@ -177,47 +133,12 @@ subs_term(Vars,SVars):-
     append(Vs,TVars,SVars).
 
 
-%%% Queries %%%
+%%% Specialisation graph and background knowledge %%%
 
 term(list([]),[]).
 term(list([X|Y]),[item(X),list(Y)]).
-
-%%%%%%%%%%%%%%%%%%  element/2  %%%%%%%%%%%%%%%%%%%%%%%%
-
-/*
 literal(element(X,Y),[item(X),list(Y)]).
-
-bg(true).
-*/
-
-query1(Clauses):-
-    induce_spec([+element(a,[a,b]),
-                 -element(x,[a,b]),
-                 +element(b,[b]),
-                 +element(b,[a,b])
-                ],Clauses).
-
-
-%%%%%%%%%%%%%%%%%%  append/3   %%%%%%%%%%%%%%%%%%%%%%%
-
-/*
 literal(append(X,Y,Z),[list(X),list(Y),list(Z)]).
-
-bg(true).
-*/
-
-query2(Clauses):-
-    induce_spec([+append([],[b,c],[b,c]),
-                 -append([],[a,b],[c,d]),
-                 -append([a,b],[c,d],[c,d]),
-                 -append([a],[b,c],[d,b,c]),
-                 -append([a],[b,c],[a,d,e]),
-                 +append([a],[b,c],[a,b,c])
-                ],Clauses).
-
-%%%%%%%%%%%%%%%%%%   listnum/2    %%%%%%%%%%%%%%%%%%%%%%%
-
-
 literal(listnum(X,Y),[list(X),list(Y)]).
 literal(num(X,Y),[item(X),item(Y)]).
 
@@ -226,15 +147,3 @@ bg((num(2,two):-true)).
 bg((num(3,three):-true)).
 bg((num(4,four):-true)).
 bg((num(5,five):-true)).
-
-
-query3(Clauses):-
-    induce_spec([+listnum([],[]),
-                 -listnum([one],[one]),
-                 -listnum([1,two],[one,two]),
-                 +listnum([1],[one]),
-                 -listnum([five,two],[5,two]),
-                 +listnum([five],[5])
-                ],Clauses).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
