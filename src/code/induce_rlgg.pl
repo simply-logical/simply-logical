@@ -32,8 +32,6 @@ remove_pos([P|Ps],Model,Hyp,[P|NewP]):-
     remove_pos(Ps,Model,Hyp,NewP).
 
 /** <examples>
-bg_model([]). % in simplest case
-
 ?-  induce_rlgg([+element(b,[b]),
                  +element(2,[2,3]),
                  +element(3,[1,2,3]),
@@ -43,4 +41,15 @@ bg_model([]). % in simplest case
                  -element(3,[a,b]),
                  -element(a,[])
                 ],Clauses).
+?-  induce_rlgg([+append([1,2],[3,4],[1,2,3,4]),
+                 +append([a],[],[a]),
+                 +append([],[],[]),
+                 +append([],[1,2,3],[1,2,3]),
+                 +append([2],[3,4],[2,3,4]),
+                 +append([],[3,4],[3,4]),
+                 -append([a],[b],[b]),
+                 -append([c],[b],[c,a]),
+                 -append([1,2],[],[1,3])
+                ],Clauses).
+
 */
