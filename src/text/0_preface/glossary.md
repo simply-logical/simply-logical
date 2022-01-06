@@ -52,6 +52,16 @@ functor
 general clause
 	TO DO
 
+general and test
+	A typical Prolog backtracking search strategy, where a *generator* predicate produces potential solutions and a *tester* checks whether all requirements are satisfied. Below are a few classic AI examples of *blind* generate and test, where all checking is done in the tester. The search will be more efficient if some requirements are checked in the generator. 
+```
+
+```{swish} swish:gentest
+```
+```{swish} swish:nqueens
+```
+
+```{glossary}
 ground term/atom/clause
 	A {term}`term`, {term}`atom` or {term}`clause` without {term}`variables<variable>`. 
 
