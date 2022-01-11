@@ -1,18 +1,18 @@
 /*
  * This file provides the following predicates: 
- ?- herbrand_universe(U): generates the Herbrand universe U
- ?- herbrand_base(B): generates the Herbrand base B
- ?- herbrand_interpretation(I): generates possible Herbrand interpretations I
- ?- ground_clause(C): grounds the variables in clause C over the Herbrand universe
- ?- true_clause(C,I) / false_clause(C,I): to test whether clause C is true/false 
+ * herbrand_universe(U): generates the Herbrand universe U
+ * herbrand_base(B): generates the Herbrand base B
+ * herbrand_interpretation(I): generates possible Herbrand interpretations I
+ * ground_clause(C): grounds the variables in clause C over the Herbrand universe
+ * true_clause(C,I) / false_clause(C,I): to test whether clause C is true/false 
  *                                          in interpretation I
- ?- true_program(P,I): to test whether program P (list of clauses) is true in interpretation I
- ?- herbrand_model(P,M): to generate Herbrand models of program P
- ?- logical_consequence(C,P): to test whether clause C is a logical consequence of program P
+ * true_program(P,I): to test whether program P (list of clauses) is true in interpretation I
+ * herbrand_model(P,M): to generate Herbrand models of program P
+ * logical_consequence(C,P): to test whether clause C is a logical consequence of program P
  *
  * It requires the following predicates to be defined: 
- ?- ground_term(T): T is a ground term in the language (N/A for propositional language)
- ?- ground_atom(A): A is a ground atom in the language 
+ * ground_term(T): T is a ground term in the language (N/A for propositional language)
+ * ground_atom(A): A is a ground atom in the language 
  */
 
 
