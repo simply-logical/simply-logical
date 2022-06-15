@@ -14,4 +14,5 @@ transitive_verb      --> [beats].
 
 /** <examples>
 ?- phrase(sentence,[achilles,beats,the,lazy,turtle]).
+?- phrase(sentence,L),reverse(L,L).
 */

@@ -4,4 +4,6 @@ determiner(X=>B,X=>H,(H:-B))  --> [every].
 
 /** <examples>
 ?- phrase(sentence(C),S).
+?- phrase(noun(M),N).
+?- phrase(verb_phrase(M),VP).
 */

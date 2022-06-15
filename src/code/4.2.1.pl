@@ -6,5 +6,6 @@ path([Node1,Node2|Nodes]):-
     path([Node2|Nodes]).
 
 /** <examples>
+?- path([n1|Path]).
 ?- path([n1,Node2]).
 */
