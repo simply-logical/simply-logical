@@ -1,0 +1,10 @@
+/*Highlight the hyper-link marker when hovering over the "title" of figures.*/
+main.bd-content #main-content div.figure p.caption:hover a.headerlink {
+  opacity:.5;
+}
+
+/*Justify the book text*/
+main.bd-content #main-content p {
+  text-align: justify;
+  text-justify: auto;
+}

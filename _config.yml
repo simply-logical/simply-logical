@@ -1,23 +1,96 @@
-# Site settings
-title: Simply Logical
-subtitle: Intelligent Reasoning by Example
-email: Peter.Flach@bristol.ac.uk
-website: http://www.cs.bris.ac.uk/~flach/SimplyLogical.html
-description: > # this means to ignore newlines until "baseurl:"
-  This book discusses methods to implement intelligent reasoning by means of Prolog programs. 
-  The book is written from the shared viewpoints of Computational Logic, which aims at automating 
-  various kinds of reasoning, and Artificial Intelligence, which seeks to 
-  implement aspects of intelligent behaviour on a computer. 
-url: "https://book.simply-logical.space" # the base hostname & protocol for your site
-baseurl: "" # the subpath of your site, e.g. /blog/
-repo: "https://github.com/simply-logical/simply-logical"
-swish: "https://swish.simply-logical.space/"
-author: Peter Flach
-# twitter_username: jekyllrb
-# github_username:  jekyll
+title: 'Simply Logical<br><i>Intelligent Reasoning by Example</i>'
+author: >
+  <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and
+  <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>,
+  University of Bristol, United Kingdom
+copyright: '2015–2022'
+logo: src/img/SL.svg
 
-orgurl: "https://simply-logical.space"
-google_analytics: "UA-112595762-2"
+exclude_patterns:
+  - .DS_Store
+  - __pycache__
+  - .github
+  - README.md
+  - src/ex
+  - src/code/temp
+  - src/text/0_preface/glossary.md
+  - src/text/1_part_i/4-additional_materials.md
 
-# Build settings
-markdown: kramdown
+execute:
+  execute_notebooks: off
+
+html:
+  favicon: src/img/favicon.ico
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  extra_navbar: >
+    <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br>
+    <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+  extra_footer: >
+    <p>
+    This work is licenced under the
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
+    Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+    </p>
+    <p>
+    This book discusses methods to implement intelligent reasoning by means of
+    Prolog programs.
+    The book is written from the shared viewpoints of Computational Logic,
+    which aims at automating various kinds of reasoning, and Artificial
+    Intelligence, which seeks to implement aspects of intelligent behaviour on
+    a computer.
+    </p>
+  google_analytics_id: UA-112595762-2
+  home_page_in_navbar: true
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - amsmath
+    - deflist
+    - html_image
+
+latex:
+  latex_engine: pdflatex
+
+repository:
+  url: https://github.com/simply-logical/simply-logical
+
+sphinx:
+  extra_extensions:
+    - sphinx_multitoc_numbering
+    - sphinx_prolog.solex
+    - sphinx_prolog.infobox
+    - sphinx_prolog.swish
+    - sphinx_prolog.pprolog
+  config:
+    html_extra_path:
+      - README.md
+      - LICENCE
+      - CNAME
+      - .nojekyll
+    numfig_format:
+      figure: "Figure %s"
+    numfig_secnum_depth: 1
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # Configure Sphinx-copybutton
+    # <https://sphinx-copybutton.readthedocs.io/en/latest/>
+    copybutton_prompt_text: "\\s*\\?\\s*-\\s*"
+    copybutton_prompt_is_regexp: true
+    copybutton_only_copy_prompt_lines: false
+    copybutton_remove_prompts: true
+    # NOTE: if a copybutton is added to a SWISH code box, inheritance breaks!
+    # <https://github.com/executablebooks/sphinx-copybutton/issues/115>
+    # CSS selector syntax:
+    # <https://learn.shayhowe.com/advanced-html-css/complex-selectors/>
+    #     div.highlight pre, div.extract.swish pre.swish.query
+    #     :not(pre) > div.highlight > pre
+    copybutton_selector: "div.highlight:not(.extract):not(.swish) > pre"
+    # Configure sphinx-prolog <https://github.com/simply-logical/sphinx-prolog>
+    sp_exercise_directory: /src/ex/
+    sp_code_directory: /src/code/
+    sp_swish_url: https://swish.simply-logical.space/
+    sp_swish_book_url: https://book.simply-logical.space/
+    sp_swish_hide_examples: true

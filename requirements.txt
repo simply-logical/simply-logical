@@ -1,0 +1,2 @@
+jupyter-book==0.13.0
+sphinx-prolog>=0.5

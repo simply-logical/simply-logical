@@ -1,6 +1,6 @@
-# jekyll
-.sass-cache/*
-_site/*
+# Jupyter Book
+_build
+src/code/temp
 
 # Mac OS
-*.DS_Store
+.DS_Store
