@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="158.75"
+   height="171.25"
+   id="svg2"
+   xml:space="preserve"><defs
+     id="defs6"><clipPath
+       id="clipPath20"><path
+         d="M 0,0 127,0 127,137 0,137 0,0 z"
+         id="path22" /></clipPath><clipPath
+       id="clipPath30"><path
+         d="m 0,137 127,0 0,-137.000002021523 -127,0 L 0,137 z"
+         id="path32" /></clipPath><clipPath
+       id="clipPath36"><path
+         d="M 0,0 127,0 127,137 0,137 0,0 z"
+         id="path38" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,171.25)"
+     id="g12"><g
+       id="g14" /><g
+       id="g16"><g
+         clip-path="url(#clipPath20)"
+         id="g18"><path
+           d="M 0,137 127,137 127,0 0,0 0,137 z"
+           id="path24"
+           style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:none" /></g></g><g
+       id="g26"><g
+         clip-path="url(#clipPath30)"
+         id="g28"><g
+           clip-path="url(#clipPath36)"
+           id="g34"><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g40"><text
+               transform="translate(55,48)"
+               id="text42"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001 42.007 48.007999 54.008999"
+                 y="0"
+                 id="tspan44"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">:-not(q),s</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g46"><text
+               transform="translate(36,10)"
+               id="text48"><tspan
+                 x="0 6.0009999 12.002"
+                 y="0"
+                 id="tspan50"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">?-p</tspan></text>
+</g><path
+             d="m 36,123 0.25,0 0,-0.25 -20,-22 -0.25,0 0,0.25"
+             id="path52"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 56,123 0.25,0 20,-22 0,-0.25 -0.25,0 -20,22"
+             id="path54"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g56"><text
+               transform="translate(1,48)"
+               id="text58"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004"
+                 y="0"
+                 id="tspan60"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">:-q,r</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g62"><path
+               d="m 3,52.5 29,0"
+               id="path64"
+               style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g66"><text
+               transform="translate(109,133)"
+               id="text68"><tspan
+                 x="-3.5"
+                 y="0.75"
+                 id="tspan70"
+                 style="font-size:20px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Geneva;-inkscape-font-specification:Geneva">&#x25A1;</tspan></text>
+</g><path
+             d="m 70,83 0.25,0 0,-0.25 -20,-22 -0.25,0 0,0.25"
+             id="path72"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 84,83 0.25,0 20,-22 0,-0.25 -0.25,0 -20,22"
+             id="path74"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g76"><text
+               transform="translate(12,87)"
+               id="text78"><tspan
+                 x="0 6.0009999 12.002 18.003 24.004 30.004999 36.006001 42.007 48.007999 54.008999 60.009998 66.011002"
+                 y="0"
+                 id="tspan80"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">:-q,!,fail,s</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g82"><path
+               d="m 16,91.5 69,0"
+               id="path84"
+               style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g86"><text
+               transform="translate(102,87)"
+               id="text88"><tspan
+                 x="0 6.0009999 12.002"
+                 y="0"
+                 id="tspan90"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">:-s</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,137)"
+             id="g92"><path
+               d="m 111.125,92 0,29.25"
+               id="path94"
+               style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none" /></g></g></g></g></g></svg>

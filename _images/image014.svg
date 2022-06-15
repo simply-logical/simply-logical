@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="315"
+   height="252.5"
+   id="svg2"
+   xml:space="preserve"><defs
+     id="defs6"><clipPath
+       id="clipPath20"><path
+         d="M 0,0 252,0 252,202 0,202 0,0 z"
+         id="path22" /></clipPath><clipPath
+       id="clipPath30"><path
+         d="m 0,202 252,0 0,-202.00000298064 -252,0 L 0,202 z"
+         id="path32" /></clipPath><clipPath
+       id="clipPath36"><path
+         d="M 0,0 252,0 252,202 0,202 0,0 z"
+         id="path38" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,252.5)"
+     id="g12"><g
+       id="g14" /><g
+       id="g16"><g
+         clip-path="url(#clipPath20)"
+         id="g18"><path
+           d="M 0,202 252,202 252,0 0,0 0,202 z"
+           id="path24"
+           style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:none" /></g></g><g
+       id="g26"><g
+         clip-path="url(#clipPath30)"
+         id="g28"><g
+           clip-path="url(#clipPath36)"
+           id="g34"><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g40"><text
+               transform="translate(61,11)"
+               id="text42"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan44"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">.</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g46"><text
+               transform="translate(4,74)"
+               id="text48"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan50"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">a</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g52"><text
+               transform="translate(67,137)"
+               id="text54"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan56"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">b</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g58"><text
+               transform="translate(121,74)"
+               id="text60"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan62"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">.</tspan></text>
+</g><path
+             d="m 68,185 0.25,0 45,-45 0,-0.25 -0.25,0 -45,45"
+             id="path64"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 59,185 0.25,0 0,-0.25 -45,-45 -0.25,0 0,0.25"
+             id="path66"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 131,122 0.25,0 45,-45 0,-0.25 -0.25,0 -45,45"
+             id="path68"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 122,122 0.25,0 0,-0.25 -45,-45 -0.25,0 0,0.25"
+             id="path70"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g72"><text
+               transform="translate(181,134)"
+               id="text74"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan76"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">.</tspan></text>
+</g><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g78"><text
+               transform="translate(235,198)"
+               id="text80"><tspan
+                 x="0 6.0009999"
+                 y="0"
+                 id="tspan82"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">[]</tspan></text>
+</g><path
+             d="m 191,62 0.25,0 45,-45 0,-0.25 -0.25,0 -45,45"
+             id="path84"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><path
+             d="m 182,62 0.25,0 0,-0.25 -45,-45 -0.25,0 0,0.25"
+             id="path86"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" /><g
+             transform="matrix(1,0,0,-1,0,202)"
+             id="g88"><text
+               transform="translate(135,197)"
+               id="text90"><tspan
+                 x="0"
+                 y="0"
+                 id="tspan92"
+                 style="font-size:10px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">c</tspan></text>
+</g></g></g></g></g></svg>

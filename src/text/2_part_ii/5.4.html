@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5.4. Forward chaining &#8212; Simply Logical&lt;br&gt;&lt;i&gt;Intelligent Reasoning by Example&lt;/i&gt;</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="5.5. Further reading" href="5.5.html" />
+    <link rel="prev" title="5.3. Breadth-first search" href="5.3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical<br><i>Intelligent Reasoning by Example</i></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../simply-logical.html">
+                    Simply Logical
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0_preface/_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1_part_i/_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.2.html">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.5.html">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.2.html">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="5.0.html">
+     5. Searching graphs
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="6.0.html">
+     6. Informed search
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.1.html">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../appendices/_appendices.html">
+   Additional materials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_2.html">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/2_part_ii/5.4.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/2_part_ii/5.4.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/src/text/2_part_ii/5.4.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Forward chaining</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--H3: Section 5.4-->
+<section class="tex2jax_ignore mathjax_ignore" id="forward-chaining">
+<span id="sec-5-4"></span><h1><span class="section-number">5.4. </span>Forward chaining<a class="headerlink" href="#forward-chaining" title="Permalink to this headline">#</a></h1>
+<p>Search programs involving if-then rules, such as meta-interpreters and theorem provers, can use these rules in either of two directions: from body to head or forward, and from head to body or backward. The meta-interpreters we encountered up till now apply clauses backward, just like Prolog; they are said to perform <em>backward chaining</em>. For checking if a given formula follows logically from a given theory, this is usually the best strategy.</p>
+<p>However, in some cases we must rather perform <em>forward chaining</em>, because we do not have a goal to start from. For instance, consider the problem of constructing a model of a given theory. It would not be feasible to generate all the ground atoms in the Herbrand base and follow the chains back to the theory. Rather, we would generate the model incrementally by forward chaining. The procedure is as follows:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p>search for a violated clause of which the body is true in the current model, but the head is not (such a clause is said to <em>fire</em>);</p></li>
+<li><p>add a literal from the head to the model<a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p></li>
+</ol>
+<p>By step 2, the head (a disjunction) is made true in the model, so that this clause is no longer violated. The procedure iterates back to step 1; if no violated clauses remain, the model is complete.</p>
+<p>The program for model generation by forward chaining is given below. It is a fairly simple forward chainer, in the sense that it simply chooses the first clause which fires. More sophisticated forward chainers use <em>conflict resolution</em> strategies in order to choose among the rules which fire at a certain stage.</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-model">
+<pre class="literal-block source swish" id="swish-model-code">
+<span></span><span class="c1">% model(M) &lt;- M is a model of the clauses defined by cl/1</span>
+<span class="nf">model</span><span class="p">(</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">model</span><span class="p">([],</span><span class="nv">M</span><span class="p">).</span>
+
+<span class="nf">model</span><span class="p">(</span><span class="nv">M0</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">is_violated</span><span class="p">(</span><span class="nv">Head</span><span class="p">,</span><span class="nv">M0</span><span class="p">),!,</span>  <span class="c1">% instance of violated clause</span>
+    <span class="nf">disj_element</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="nv">Head</span><span class="p">),</span>    <span class="c1">% L: ground literal from head</span>
+    <span class="nf">model</span><span class="p">([</span><span class="nv">L</span><span class="p">|</span><span class="nv">M0</span><span class="p">],</span><span class="nv">M</span><span class="p">).</span>         <span class="c1">% add L to the model</span>
+<span class="nf">model</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>                  <span class="c1">% no more violated clauses</span>
+
+<span class="nf">is_violated</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">cl</span><span class="p">((</span><span class="nv">H</span><span class="p">:-</span><span class="nv">B</span><span class="p">)),</span>
+    <span class="nf">satisfied_body</span><span class="p">(</span><span class="nv">B</span><span class="p">,</span><span class="nv">M</span><span class="p">),</span>     <span class="c1">% grounds the variables</span>
+    <span class="s s-Atom">\+</span> <span class="nf">satisfied_head</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+
+<span class="nf">satisfied_body</span><span class="p">(</span><span class="s s-Atom">true</span><span class="p">,</span><span class="k">_</span><span class="nv">M</span><span class="p">).</span>     <span class="c1">% body is a conjunction</span>
+<span class="nf">satisfied_body</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">member</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+<span class="nf">satisfied_body</span><span class="p">((</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">),</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">member</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">M</span><span class="p">),</span>
+    <span class="nf">satisfied_body</span><span class="p">(</span><span class="nv">B</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+
+<span class="nf">satisfied_head</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>        <span class="c1">% head is a disjunction</span>
+    <span class="nf">member</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+<span class="nf">satisfied_head</span><span class="p">((</span><span class="nv">A</span><span class="p">;</span><span class="k">_</span><span class="nv">B</span><span class="p">),</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">member</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+<span class="nf">satisfied_head</span><span class="p">((</span><span class="k">_</span><span class="nv">A</span><span class="p">;</span><span class="nv">B</span><span class="p">),</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">satisfied_head</span><span class="p">(</span><span class="nv">B</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+
+<span class="c1">%%% from Section 10.2 (appendix)</span>
+<span class="nf">disj_element</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">X</span><span class="p">):-</span>          <span class="c1">% single-element disjunction</span>
+    <span class="nv">X</span><span class="s s-Atom">\=false</span><span class="p">,</span>
+    <span class="nv">X</span><span class="s s-Atom">\=</span><span class="p">(</span><span class="k">_</span><span class="p">;</span><span class="k">_</span><span class="p">).</span>
+<span class="nf">disj_element</span><span class="p">(</span><span class="nv">X</span><span class="p">,(</span><span class="nv">X</span><span class="p">;</span><span class="k">_</span><span class="nv">Ys</span><span class="p">)).</span>
+<span class="nf">disj_element</span><span class="p">(</span><span class="nv">X</span><span class="p">,(</span><span class="k">_</span><span class="nv">Y</span><span class="p">;</span><span class="nv">Ys</span><span class="p">)):-</span>
+    <span class="nf">disj_element</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Ys</span><span class="p">).</span>
+
+<span class="c1">%%% Example disjunctive clauses to compute model for</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">married</span><span class="p">(</span><span class="nv">X</span><span class="p">);</span><span class="nf">bachelor</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="nf">man</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">adult</span><span class="p">(</span><span class="nv">X</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">has_wife</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="nf">married</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">man</span><span class="p">(</span><span class="nv">X</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">man</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">adult</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?-model(M).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<p>Given the following clauses:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">cl</span><span class="p">((</span><span class="nf">married</span><span class="p">(</span><span class="nv">X</span><span class="p">);</span><span class="nf">bachelor</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="nf">man</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">adult</span><span class="p">(</span><span class="nv">X</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">has_wife</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="nf">married</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">man</span><span class="p">(</span><span class="nv">X</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">man</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">adult</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+</pre></div>
+</div>
+<p>and the query <code class="docutils literal notranslate"><span class="pre">?-model(M)</span></code>, the program constructs the following models (on backtracking):</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">M</span> <span class="o">=</span> <span class="p">[</span><span class="nf">has_wife</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">),</span><span class="nf">married</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">),</span><span class="nf">adult</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">),</span><span class="nf">man</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">)];</span>
+<span class="nv">M</span> <span class="o">=</span> <span class="p">[</span><span class="nf">bachelor</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">),</span><span class="nf">adult</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">),</span><span class="nf">man</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Notice that these are the two minimal models of the program.</p>
+<div class="admonition exercise" id="ex-5-5">
+<p class="admonition-title"><span class="caption-number">Exercise 5.5 </span><a class="headerlink" href="#ex-5-5" title="Permalink to this exercise">#</a><a href="../appendices/c_5.html#sol-5-5" class="solution-link" title="Go to the solution"></a></p>
+<p>Give the remaining models of the program.</p>
+</div>
+<p>Not every model generated by <code class="docutils literal notranslate"><span class="pre">model/1</span></code> is minimal. Consider the following set of clauses:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">cl</span><span class="p">((</span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">student</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">teacher</span><span class="p">(</span><span class="nv">X</span><span class="p">);</span><span class="nf">friendly</span><span class="p">(</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">likes</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">),</span><span class="nf">student</span><span class="p">(</span><span class="nv">Y</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">friendly</span><span class="p">(</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">teacher</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">likes</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">))).</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">is_violated/2</span></code> will first succeed for the third clause, returning the instantiated head <code class="docutils literal notranslate"><span class="pre">teacher(peter);friendly(maria)</span></code>. The first literal in this head will be added to the model. Next, the fourth clause is violated, and <code class="docutils literal notranslate"><span class="pre">friendly(maria)</span></code> is added to the model. This results in the following model:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="nf">friendly</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">),</span><span class="nf">teacher</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">),</span>
+  <span class="nf">student</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">),</span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>However, this is not a minimal model since <code class="docutils literal notranslate"><span class="pre">teacher(peter)</span></code> can be removed from it, yielding the model</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="nf">friendly</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">),</span><span class="nf">student</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">),</span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>which will be returned as the second answer.</p>
+<div class="admonition exercise" id="ex-5-6">
+<p class="admonition-title"><span class="caption-number">Exercise 5.6 </span><a class="headerlink" href="#ex-5-6" title="Permalink to this exercise">#</a><a href="../appendices/c_5.html#sol-5-6" class="solution-link" title="Go to the solution"></a></p>
+<p>Are all minimal models always constructed by <code class="docutils literal notranslate"><span class="pre">model/1</span></code>?</p>
+</div>
+<p>It should be noted that the program only works properly for a restricted class of clauses, namely those clauses for which grounding the body also grounds the head. Otherwise, a head literal from a violated clause might still contain variables. Adding a non-ground literal to the model could result in incorrect behaviour. Consider the following set of clauses:</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">man</span><span class="p">(</span><span class="nv">X</span><span class="p">);</span><span class="s s-Atom">woman</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">false</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">))).</span>
+<span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">false</span><span class="o">:-</span><span class="s s-Atom">woman</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">))).</span>
+</pre></div>
+</div>
+<p>Since the first clause is violated by the empty model, the program will attempt to add <code class="docutils literal notranslate"><span class="pre">man(X)</span></code> to the model. This leads to the second clause being violated, and since this clause has an empty head, it cannot be satisfied by adding a literal to the model. Upon backtracking <code class="docutils literal notranslate"><span class="pre">woman(X)</span></code> is tried instead, but this leads to a similar problem with the third clause. Consequently, <code class="docutils literal notranslate"><span class="pre">model/1</span></code> will fail to construct a model, although there exists one, namely <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">man(peter),</span> <span class="pre">woman(maria)</span> <span class="pre">}</span></code>.</p>
+<p>The solution is to add a literal to the body of the first clause, which serves to enumerate the possible values for <code class="docutils literal notranslate"><span class="pre">X</span></code>:</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">man</span><span class="p">(</span><span class="nv">X</span><span class="p">);</span><span class="s s-Atom">woman</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="s s-Atom">person</span><span class="p">(</span><span class="nv">X</span><span class="p">))).</span>
+<span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">person</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">person</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">false</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">))).</span>
+<span class="s s-Atom">cl</span><span class="p">((</span><span class="s s-Atom">false</span><span class="o">:-</span><span class="s s-Atom">woman</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">))).</span>
+</pre></div>
+</div>
+<p>In this way, the first clause is violated only under the substitutions { <code class="docutils literal notranslate"><span class="pre">X</span></code> → <code class="docutils literal notranslate"><span class="pre">maria</span></code>} and { <code class="docutils literal notranslate"><span class="pre">X</span></code> → <code class="docutils literal notranslate"><span class="pre">peter</span></code> }. Thus, all literals which are added to the model are ground, and the program constructs the correct model</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nf">man</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">),</span><span class="nf">person</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">),</span><span class="nf">woman</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">),</span><span class="nf">person</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Clauses of which all variables in the head occur also in the body are called <em>range-restricted</em>. Every set of clauses can be transformed into a set of range-restricted clauses by adding domain predicates enumerating the domains of variables, as above. The two sets of clauses are equivalent in the sense that there exists a one-to-one correspondence between their models:</p>
+<ul class="simple">
+<li><p>any model of the original clauses provides an enumeration of all the domains;</p></li>
+<li><p>any model of the range-restricted clauses can be transformed to a model of the original clauses by dropping the domain literals.</p></li>
+</ul>
+<p>Obviously, <code class="docutils literal notranslate"><span class="pre">model/1</span></code> loops if the model being constructed is infinite. This will happen, for instance, with the following set of clauses, representing a range-restricted version of the append predicate:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">cl</span><span class="p">((</span><span class="nf">append</span><span class="p">([],</span><span class="nv">Y</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">Y</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">append</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Xs</span><span class="p">],</span><span class="nv">Ys</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">Zs</span><span class="p">]):-</span><span class="nf">thing</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">append</span><span class="p">(</span><span class="nv">Xs</span><span class="p">,</span><span class="nv">Ys</span><span class="p">,</span><span class="nv">Zs</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">list</span><span class="p">([]):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">list</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Y</span><span class="p">]):-</span><span class="nf">thing</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">list</span><span class="p">(</span><span class="nv">Y</span><span class="p">))).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">thing</span><span class="p">(</span><span class="s s-Atom">a</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">thing</span><span class="p">(</span><span class="s s-Atom">b</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">cl</span><span class="p">((</span><span class="nf">thing</span><span class="p">(</span><span class="s s-Atom">c</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+</pre></div>
+</div>
+<p>Instead of the complete, infinite model, we might be interested in a subset over a universe of lists up to a given length. Such a ‘submodel’ can be computed by a forward chaining procedure which stops after a prespecified number of steps. In this way, the procedure gets more of a ‘breadth-first’ flavour. The program is given below:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-model-d">
+<pre class="literal-block source swish" id="swish-model-d-code" source-text-end="
+is_violated(H,M):-
+   cl((H:-B)),
+   satisfied_body(B,M),  % this will ground the variables
+   not(satisfied_head(H,M)).
+
+satisfied_body(true,_M).  % body is a conjunction
+satisfied_body(A,M):-
+   member(A,M).
+satisfied_body((A,B),M):-
+   member(A,M),
+   satisfied_body(B,M).
+
+satisfied_head(A,M):-  % head is a disjunction
+   member(A,M).
+satisfied_head((A;_B),M):-
+   member(A,M).
+satisfied_head((_A;B),M):-
+   satisfied_head(B,M).
+
+disj_element(X,X):-  % single-element disjunction
+    not(X=false),not(X=(_;_)).
+disj_element(X,(X;_Ys)).
+disj_element(X,(_Y;Ys)):-
+    disj_element(X,Ys).
+
+cl((append([],Y,Y):-list(Y))).
+cl((append([X|Xs],Ys,[X|Zs]):-thing(X),append(Xs,Ys,Zs))).
+cl((list([]):-true)).
+cl((list([X|Y]):-thing(X),list(Y))).
+cl((thing(a):-true)).
+cl((thing(b):-true)).
+cl((thing(c):-true)).">
+<span></span><span class="c1">% model_d(D,M) &lt;- M is a submodel of the clauses</span>
+<span class="c1">%                 defined by cl/1</span>
+<span class="nf">model_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">model_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,[],</span><span class="nv">M</span><span class="p">).</span>
+
+<span class="nf">model_d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nv">M</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+<span class="nf">model_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">M0</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nv">D</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="nv">D1</span> <span class="o">is</span> <span class="nv">D</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nf">findall</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span><span class="nf">is_violated</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span><span class="nv">M0</span><span class="p">),</span><span class="nv">Heads</span><span class="p">),</span>
+    <span class="nf">satisfy_clauses</span><span class="p">(</span><span class="nv">Heads</span><span class="p">,</span><span class="nv">M0</span><span class="p">,</span><span class="nv">M1</span><span class="p">),</span>
+    <span class="nf">model_d</span><span class="p">(</span><span class="nv">D1</span><span class="p">,</span><span class="nv">M1</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+
+<span class="nf">satisfy_clauses</span><span class="p">([],</span><span class="nv">M</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+<span class="nf">satisfy_clauses</span><span class="p">([</span><span class="nv">H</span><span class="p">|</span><span class="nv">Hs</span><span class="p">],</span><span class="nv">M0</span><span class="p">,</span><span class="nv">M</span><span class="p">):-</span>
+    <span class="nf">disj_element</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="nv">H</span><span class="p">),</span>
+    <span class="nf">satisfy_clauses</span><span class="p">(</span><span class="nv">Hs</span><span class="p">,[</span><span class="nv">L</span><span class="p">|</span><span class="nv">M0</span><span class="p">],</span><span class="nv">M</span><span class="p">).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?- model_d(4,M).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<p><code class="docutils literal notranslate"><span class="pre">model/1</span></code> is replaced by <code class="docutils literal notranslate"><span class="pre">model_d/2</span></code>, which has an additional depth parameter. On each iteration, all the violated clauses are generated and satisfied.</p>
+<p>Below, we illustrate the operation of the program on the above set of clauses, setting the depth to 4:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span><span class="nf">model_d</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="nv">M</span><span class="p">).</span>
+  <span class="nv">M</span> <span class="o">=</span> <span class="p">[</span><span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>  <span class="c1">% D=4 %</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">],[],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">],[],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">],[],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>        <span class="c1">% D=3 %</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[],[</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">],[],[</span><span class="s s-Atom">b</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">],[],[</span><span class="s s-Atom">c</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">]),</span>
+       <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">]),</span>
+       <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">b</span><span class="p">]),</span> <span class="nf">list</span><span class="p">([</span><span class="s s-Atom">c</span><span class="p">]),</span>              <span class="c1">% D=2 %</span>
+       <span class="nf">append</span><span class="p">([],[],[]),</span>
+       <span class="nf">thing</span><span class="p">(</span><span class="s s-Atom">c</span><span class="p">),</span> <span class="nf">thing</span><span class="p">(</span><span class="s s-Atom">b</span><span class="p">),</span> <span class="nf">thing</span><span class="p">(</span><span class="s s-Atom">a</span><span class="p">),</span>                 <span class="c1">% D=1 %</span>
+       <span class="nf">list</span><span class="p">([])</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>At depth 1, only domain clauses are satisfied; at depth 2 the first <code class="docutils literal notranslate"><span class="pre">append</span></code> literal appears. Depths 3 and 4 add <code class="docutils literal notranslate"><span class="pre">list</span></code> literals for all lists of length 2 and 3, and <code class="docutils literal notranslate"><span class="pre">append</span></code> literals for all lists of length 1 and 2, respectively.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>We will assume for the moment that the head literals are ground by the substitution which makes the body true; a more detailed discussion follows below.</p>
+</dd>
+</dl>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/2_part_ii"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="5.3.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.3. </span>Breadth-first search</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="5.5.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.5. </span>Further reading</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+  
+      &copy; Copyright 2015–2022.<br/>
+    <div class="extra_footer">
+      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

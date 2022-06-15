@@ -1,0 +1,1012 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.2. Pruning the search by means of cut &#8212; Simply Logical&lt;br&gt;&lt;i&gt;Intelligent Reasoning by Example&lt;/i&gt;</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3.3. Negation as failure" href="3.3.html" />
+    <link rel="prev" title="3.1. SLD-resolution" href="3.1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical<br><i>Intelligent Reasoning by Example</i></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../simply-logical.html">
+                    Simply Logical
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0_preface/_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.2.html">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.5.html">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2_part_ii/_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/5.0.html">
+     5. Searching graphs
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.4.html">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/6.0.html">
+     6. Informed search
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.1.html">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../appendices/_appendices.html">
+   Additional materials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_2.html">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/1_part_i/3.2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/1_part_i/3.2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/src/text/1_part_i/3.2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Pruning the search by means of cut</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--H3: Section 3.2-->
+<section class="tex2jax_ignore mathjax_ignore" id="pruning-the-search-by-means-of-cut">
+<span id="sec-3-2"></span><h1><span class="section-number">3.2. </span>Pruning the search by means of cut<a class="headerlink" href="#pruning-the-search-by-means-of-cut" title="Permalink to this headline">#</a></h1>
+<p>As shown in the previous section, Prolog constantly searches the clauses in a program in order to reach a success branch in the SLD-tree for a query. If a failure branch is reached (i.e., a non-empty resolvent which cannot be reduced any further), Prolog has to ‘unchoose’ the last-chosen program clause, and try another one. This amounts to going up one level in the SLD-tree, and trying the next branch to the right. This process of reconsidering previous choices is called <em>backtracking</em>. Note that backtracking requires that all previous resolvents are remembered for which not all alternatives have been tried yet, together with a pointer to the most recent program clause that has been tried at that point. Because of Prolog’s depth-first search strategy, we can easily record all previous resolvents in a <em>goal stack</em>: backtracking is then implemented by popping the upper resolvent from the stack, and searching for the next program clause to resolve with.</p>
+<p>As an illustration, consider again the SLD-tree in <a class="reference internal" href="3.1.html#fig-3-1"><span class="std std-numref">Figure 3.1</span></a>. The resolvent in the middle branch</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="nf">teaches</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">expert_systems</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>cannot be reduced any further, and thus represents a failure branch. At that point, the stack contains (top-down) the previous resolvents</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="nf">follows</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span><span class="nf">teaches</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="nv">C</span><span class="p">).</span>
+<span class="s s-Atom">?-</span><span class="nf">student_of</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>The top one is popped from the stack; it has been most recently resolved with <code class="docutils literal notranslate"><span class="pre">follows(paul,expert_systems)</span></code>, so we continue searching the program from that clause, finding <code class="docutils literal notranslate"><span class="pre">follows(maria,ai_techniques)</span></code> as the next alternative.</p>
+<p>A node in the SLD-tree which is not a leaf is called a <em>choice point</em>, because the subtree rooted at that node may contain several success branches, each of which may be reached by a different choice for a program clause to resolve with. Now, suppose a subtree contains only one success branch, yielding an answer to our query. If we want to know whether there are any alternative answers, we can force Prolog to backtrack. However, since the rest of the subtree does not contain any success branches, we might as well skip it altogether, thus speeding up backtracking. But how do we tell Prolog that a subtree contains only one success branch? For this, Prolog provides a control device which is called <em>cut</em> (written <code class="docutils literal notranslate"><span class="pre">!</span></code>), because it cuts away (or prunes) part of the SLD-tree.</p>
+<p>To illustrate the effect of cut, consider the following program.</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-3-2-2">
+<pre class="literal-block source swish" id="swish-3-2-2-code" query-id="swishq-3-2-2-1-query swishq-3-2-2-2-query">
+<span></span><span class="nf">parent</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">father</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">).</span>
+<span class="nf">parent</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">mother</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">).</span>
+<span class="nf">father</span><span class="p">(</span><span class="s s-Atom">john</span><span class="p">,</span><span class="s s-Atom">paul</span><span class="p">).</span>
+<span class="nf">mother</span><span class="p">(</span><span class="s s-Atom">mary</span><span class="p">,</span><span class="s s-Atom">paul</span><span class="p">).</span>
+</pre></div>
+<p>The SLD-tree for the query <span class="extract swish" id="swishq-3-2-2-1">
+<code class="swish query" id="swishq-3-2-2-1-query">
+?-parent(john,C)</code></span> is given in <a class="reference internal" href="#fig-3-4"><span class="std std-numref">Figure 3.4</span></a>. The answer given by Prolog is { <code class="docutils literal notranslate"><span class="pre">C</span></code> → <code class="docutils literal notranslate"><span class="pre">paul</span></code> }. By asking whether there are any other answers, we force Prolog to backtrack to the most recent choice point for which there are any alternatives left, which is the root of the SLD-tree (i.e. the original query). Prolog tries the second clause for <code class="docutils literal notranslate"><span class="pre">parent</span></code>, but discovers that this leads to a failure branch.</p>
+<figure class="align-default" id="fig-3-4">
+<a class="reference internal image-reference" href="../../../_images/image028.svg"><img alt="../../../_images/image028.svg" src="../../../_images/image028.svg" width="55%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 3.4 </span><span class="caption-text">SLD-tree for the query <code class="docutils literal notranslate"><span class="pre">?-parent(john,C)</span></code>.</span><a class="headerlink" href="#fig-3-4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Of course, <strong>we</strong> know that this backtracking step did not make sense: if John is a father of anyone, he can’t be a mother. We can express this by adding a cut to the first <code class="docutils literal notranslate"><span class="pre">parent</span></code> clause:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-3-2-3">
+<pre class="literal-block source swish" id="swish-3-2-3-code" query-id="swishq-3-2-2-1-query swishq-3-2-2-2-query">
+<span></span><span class="nf">parent</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">father</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">),!.</span>
+<span class="nf">parent</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">mother</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">).</span>
+<span class="nf">father</span><span class="p">(</span><span class="s s-Atom">john</span><span class="p">,</span><span class="s s-Atom">paul</span><span class="p">).</span>
+<span class="nf">mother</span><span class="p">(</span><span class="s s-Atom">mary</span><span class="p">,</span><span class="s s-Atom">paul</span><span class="p">).</span>
+</pre></div>
+<p>The cut says: <em>once you’ve reached me, stick to all the variable substitutions you’ve found after you entered my clause</em>. That is: don’t try to find any alternative solutions to the literals left of the cut, and also: don’t try any alternative clauses for the one in which the cut is found. Given this modified program, the SLD-tree for the same query is shown in <a class="reference internal" href="#fig-3-5"><span class="std std-numref">Figure 3.5</span></a>. Since <code class="docutils literal notranslate"><span class="pre">!</span></code> is true by definition, the resolvent <code class="docutils literal notranslate"><span class="pre">:-!</span></code> reduces to the empty clause. The shaded part represents the part of the SLD-tree which is pruned as a result of the cut. That is: every alternative at choice points below and including <code class="docutils literal notranslate"><span class="pre">?-parent(john,C)</span></code>, which are on the stack when the cut is reached, are pruned.</p>
+<figure class="align-default" id="fig-3-5">
+<a class="reference internal image-reference" href="../../../_images/image030.svg"><img alt="../../../_images/image030.svg" src="../../../_images/image030.svg" width="60%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 3.5 </span><span class="caption-text">The effect of cut.</span><a class="headerlink" href="#fig-3-5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Note carefully that a cut does not prune <strong>every</strong> choice point. First of all, pruning does not occur above the choice point containing the head of the clause in which the cut is found. Secondly, choice points created by literals to the right of the cut, which are below the cut in the SLD-tree but are not yet on the stack when the cut is reached, are not pruned either (<a class="reference internal" href="#fig-3-6"><span class="std std-numref">Figure 3.6</span></a>).</p>
+<figure class="align-default" id="fig-3-6">
+<a class="reference internal image-reference" href="../../../_images/image032.svg"><img alt="../../../_images/image032.svg" src="../../../_images/image032.svg" width="50%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 3.6 </span><span class="caption-text">Cut prunes away alternative solutions for <code class="docutils literal notranslate"><span class="pre">s</span></code>, but not for <code class="docutils literal notranslate"><span class="pre">t</span></code>. Also, choice points above <code class="docutils literal notranslate"><span class="pre">:-q(X,Y)</span></code> are not pruned.</span><a class="headerlink" href="#fig-3-6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The example in <a class="reference internal" href="#fig-3-6"><span class="std std-numref">Figure 3.6</span></a> assumes there are two solutions for <code class="docutils literal notranslate"><span class="pre">:-s(X)</span></code> and for <code class="docutils literal notranslate"><span class="pre">:-t(Y)</span></code>, and one solution for <code class="docutils literal notranslate"><span class="pre">:-r(X,Y)</span></code>.</p>
+</div>
+<p>A cut is harmless if it does not cut away subtrees containing success branches. If a cut prunes success branches, then some logical consequences of the program are not returned as answers, resulting in a procedural meaning different from the declarative meaning. Cuts of the first kind are called <em>green</em> cuts, while cuts of the second kind are called <em>red</em> cuts. A green cut merely stresses that the conjunction of literals to its left is <em>deterministic</em>: it does not give alternative solutions. In addition, it signifies that if those literals give a solution, the clauses below it will not result in any alternatives.</p>
+<p>This seems to be true for the above program: John is the father of only one child, and no-one is both a father and a mother. However, note that we only analysed the situation with regard to a particular query. We can show that the cut is in fact red by asking the query <span class="extract swish" id="swishq-3-2-2-2">
+<code class="swish query" id="swishq-3-2-2-2-query">
+?-parent(P,paul)</code></span>. The answer { <code class="docutils literal notranslate"><span class="pre">P</span></code> → <code class="docutils literal notranslate"><span class="pre">mary</span></code> } is pruned by the cut (<a class="reference internal" href="#fig-3-7"><span class="std std-numref">Figure 3.7</span></a>). That is, the literal <code class="docutils literal notranslate"><span class="pre">father(X,Y)</span></code> left to the cut is only deterministic if <code class="docutils literal notranslate"><span class="pre">X</span></code> is <em>instantiated</em> (is substituted by a non-variable value).</p>
+<figure class="align-default" id="fig-3-7">
+<a class="reference internal image-reference" href="../../../_images/image034.svg"><img alt="../../../_images/image034.svg" src="../../../_images/image034.svg" width="60%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 3.7 </span><span class="caption-text">A success branch is pruned.</span><a class="headerlink" href="#fig-3-7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Note that success branches are also pruned for the first query if John has several children:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-3-2-4">
+<pre class="literal-block source swish" id="swish-3-2-4-code" query-id="swishq-3-2-2-2-query swishq-3-2-4-query">
+<span></span><span class="nf">parent</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">father</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">),!.</span>
+<span class="nf">parent</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">mother</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">).</span>
+<span class="nf">father</span><span class="p">(</span><span class="s s-Atom">john</span><span class="p">,</span><span class="s s-Atom">paul</span><span class="p">).</span>
+<span class="nf">father</span><span class="p">(</span><span class="s s-Atom">john</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">).</span>
+<span class="nf">mother</span><span class="p">(</span><span class="s s-Atom">mary</span><span class="p">,</span><span class="s s-Atom">paul</span><span class="p">).</span>
+<span class="nf">mother</span><span class="p">(</span><span class="s s-Atom">mary</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">).</span>
+</pre></div>
+<p>The SLD-tree for the query <span class="extract swish" id="swishq-3-2-4">
+<code class="swish query" id="swishq-3-2-4-query">
+?-parent(john,C)</code></span> is given in <a class="reference internal" href="#fig-3-8"><span class="std std-numref">Figure 3.8</span></a>. Indeed, the second answer { <code class="docutils literal notranslate"><span class="pre">C</span></code> → <code class="docutils literal notranslate"><span class="pre">peter</span></code> } is pruned by the cut. This clearly shows that the effect of a cut is not only determined by the clause in which it occurs but also by other clauses. Therefore, the effect of a cut is often hard to understand.</p>
+<figure class="align-default" id="fig-3-8">
+<a class="reference internal image-reference" href="../../../_images/image036.svg"><img alt="../../../_images/image036.svg" src="../../../_images/image036.svg" width="60%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 3.8 </span><span class="caption-text">Another success branch is pruned.</span><a class="headerlink" href="#fig-3-8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Programs with cuts are not only difficult to understand; this last example also shows that their procedural interpretation (the set of answers they produce to a query) may be different from their declarative interpretation (the set of its logical consequences). Logically, cut has no meaning: it always evaluates to <strong>true</strong>, and therefore it can always be added or removed from the body of a clause without affecting its declarative interpretation. Procedurally, cut may have many effects, as the preceding examples show. This incompatibility between declarative and procedural interpretation makes it a very problematic concept. Much research in Logic Programming aims at replacing it by higher-level constructs which have cleaner declarative meanings and which are easier to understand. The most important of these will be considered in the next two sections.</p>
+<div class="admonition exercise" id="ex-3-3">
+<p class="admonition-title"><span class="caption-number">Exercise 3.3 </span><a class="headerlink" href="#ex-3-3" title="Permalink to this exercise">#</a><a href="../appendices/c_3.html#sol-3-3" class="solution-link" title="Go to the solution"></a></p>
+<p>Draw the SLD-tree for the query <span class="extract swish" id="swishq-3-2-ex3-3-2">
+<code class="swish query" id="swishq-3-2-ex3-3-2-query">
+?-likes(A,B)</code></span>, given the following program:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-3-2-ex3-3-2">
+<pre class="literal-block source swish" id="swish-3-2-ex3-3-2-code" query-id="swishq-3-2-ex3-3-2-query">
+<span></span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">friendly</span><span class="p">(</span><span class="nv">Y</span><span class="p">).</span>
+<span class="nf">likes</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="nv">S</span><span class="p">):-</span><span class="nf">student_of</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span><span class="nv">T</span><span class="p">).</span>
+<span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">).</span>
+<span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">paul</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">).</span>
+<span class="nf">friendly</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">).</span>
+</pre></div>
+<p>Add a cut in order to prune away one of the answers { <code class="docutils literal notranslate"><span class="pre">A</span></code> → <code class="docutils literal notranslate"><span class="pre">peter</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> → <code class="docutils literal notranslate"><span class="pre">maria</span></code> }, and indicate the result in the SLD-tree. Can this be done without pruning away the third answer?</p>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/1_part_i"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="3.1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.1. </span>SLD-resolution</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="3.3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Negation as failure</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+  
+      &copy; Copyright 2015–2022.<br/>
+    <div class="extra_footer">
+      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

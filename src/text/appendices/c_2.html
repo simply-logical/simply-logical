@@ -1,0 +1,1170 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>12.2. Clausal logic and resolution: theoretical backgrounds &#8212; Simply Logical&lt;br&gt;&lt;i&gt;Intelligent Reasoning by Example&lt;/i&gt;</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="12.3. Logic Programming and Prolog" href="c_3.html" />
+    <link rel="prev" title="12.1. A brief introduction to clausal logic" href="c_1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical<br><i>Intelligent Reasoning by Example</i></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../simply-logical.html">
+                    Simply Logical
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0_preface/_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1_part_i/_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.2.html">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.5.html">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.2.html">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2_part_ii/_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/5.0.html">
+     5. Searching graphs
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.4.html">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/6.0.html">
+     6. Informed search
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.1.html">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_appendices.html">
+   Additional materials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/appendices/c_2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/appendices/c_2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/src/text/appendices/c_2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Clausal logic and resolution: theoretical backgrounds</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--H3: Section C.2-->
+<section class="tex2jax_ignore mathjax_ignore" id="clausal-logic-and-resolution-theoretical-backgrounds">
+<span id="apx-c-2"></span><h1><span class="section-number">12.2. </span>Clausal logic and resolution: theoretical backgrounds<a class="headerlink" href="#clausal-logic-and-resolution-theoretical-backgrounds" title="Permalink to this headline">#</a></h1>
+<div class="admonition solution" id="sol-2-1">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.1 </span><a class="headerlink" href="#sol-2-1" title="Permalink to this solution">#</a><a href="../1_part_i/2.1.html#ex-2-1" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Translate the following statements into clauses, using the atoms <code class="docutils literal notranslate"><span class="pre">person</span></code>, <code class="docutils literal notranslate"><span class="pre">sad</span></code> and <code class="docutils literal notranslate"><span class="pre">happy</span></code>:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p>persons are happy or sad;</p></li>
+<li><p>no person is both happy and sad;</p></li>
+<li><p>sad persons are not happy;</p></li>
+<li><p>non-happy persons are sad.</p></li>
+</ol>
+</div>
+<p>The statements should be read as ‘<strong>if</strong> … <strong>then</strong> …’ statements. Thus, the first statement reads ‘<strong>if</strong> somebody is a person, <strong>then</strong> she is happy or sad’:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">happy</span><span class="p">;</span><span class="nn">sad</span><span class="p">:</span><span class="o">-</span><span class="s s-Atom">person</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>The second statement reads ‘<strong>if</strong> somebody is a person, <strong>then</strong> she is not both happy and sad’. In clausal logic, only positive conclusions can be drawn; negative conclusions are turned into positive conditions, as follows: ‘<strong>if</strong> somebody is a person, and she is happy and sad, <strong>then</strong> contradiction’. A contradictory conclusion is signalled by the empty head:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="s s-Atom">person</span><span class="p">,</span><span class="s s-Atom">happy</span><span class="p">,</span><span class="s s-Atom">sad</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Following the same recipe, the third statement expresses that ‘<strong>if</strong> somebody is a person who is sad, and she is happy, <strong>then</strong> contradiction’:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="s s-Atom">person</span><span class="p">,</span><span class="s s-Atom">sad</span><span class="p">,</span><span class="s s-Atom">happy</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Thus, sentences 2 and 3 convey the same logical meaning.</p>
+<p>Finally, the fourth sentence reads ‘<strong>if</strong> somebody is a person who is not happy, <strong>then</strong> she is sad’. In clausal logic, only positive conditions can be used; therefore, this negative condition should be turned into a positive conclusion: ‘<strong>if</strong> somebody is a person, <strong>then</strong> she is sad or happy’. We thus obtain the same clause as in case 1:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">sad</span><span class="p">;</span><span class="nn">happy</span><span class="p">:</span><span class="o">-</span><span class="s s-Atom">person</span><span class="p">.</span>
+</pre></div>
+</div>
+<div class="admonition solution" id="sol-2-2">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.2 </span><a class="headerlink" href="#sol-2-2" title="Permalink to this solution">#</a><a href="../1_part_i/2.1.html#ex-2-2" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Given the program</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
+<span class="s s-Atom">man</span><span class="p">.</span>
+<span class="p">:-</span><span class="s s-Atom">bachelor</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>determine which of the following clauses are logical consequences of this program:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">married:-adult</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">married:-bachelor</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bachelor:-man</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bachelor:-bachelor</span></code>.</p></li>
+</ol>
+</div>
+<!--roman list-->
+<ol class="simple">
+<li><p>Any model of the first clause, which additionally makes <code class="docutils literal notranslate"><span class="pre">man</span></code> <strong>true</strong>, is also a model of the clause <code class="docutils literal notranslate"><span class="pre">married;bachelor:-adult</span></code>. Likewise, any model of this clause which additionally makes <code class="docutils literal notranslate"><span class="pre">bachelor</span></code> <strong>false</strong> is also a model of the clause <code class="docutils literal notranslate"><span class="pre">married:-adult</span></code>, which is therefore a logical consequence of the program.</p></li>
+<li><p>The body of this clause is <strong>false</strong> in any model of the program, and therefore the clause is <strong>true</strong> in any such model.</p></li>
+<li><p>The body of this clause is <strong>true</strong> in any model of the program, while its head is <strong>false</strong>. The clause is therefore not a logical consequence of the program (on the contrary, it is <strong>false</strong> in every model of the program, not just in some).</p></li>
+<li><p>This clause is a <em>tautology</em>: it is <strong>true</strong> in any interpretation, and therefore a logical consequence of any program.</p></li>
+</ol>
+<div class="admonition solution" id="sol-2-3">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.3 </span><a class="headerlink" href="#sol-2-3" title="Permalink to this solution">#</a><a href="../1_part_i/2.1.html#ex-2-3" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Write down the six Herbrand interpretations that are not models of the program</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="nn">bachelor</span><span class="p">:</span><span class="o">-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
+<span class="nf">has_wife</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">married</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<p>The six interpretations are:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s s-Atom">man</span><span class="p">,</span> <span class="s s-Atom">adult</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s s-Atom">man</span><span class="p">,</span> <span class="s s-Atom">adult</span><span class="p">,</span> <span class="s s-Atom">has_wife</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s s-Atom">man</span><span class="p">,</span> <span class="s s-Atom">married</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s s-Atom">man</span><span class="p">,</span> <span class="s s-Atom">married</span><span class="p">,</span> <span class="s s-Atom">adult</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s s-Atom">man</span><span class="p">,</span> <span class="s s-Atom">married</span><span class="p">,</span> <span class="s s-Atom">bachelor</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s s-Atom">man</span><span class="p">,</span> <span class="s s-Atom">married</span><span class="p">,</span> <span class="s s-Atom">adult</span><span class="p">,</span> <span class="s s-Atom">bachelor</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The first two interpretations satisfy the body of the first clause but violate its head; the remaining four interpretations satisfy the body of the second clause but violate its head.</p>
+<div class="admonition solution" id="sol-2-4">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.4 </span><a class="headerlink" href="#sol-2-4" title="Permalink to this solution">#</a><a href="../1_part_i/2.1.html#ex-2-4" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Give a derivation of <code class="docutils literal notranslate"><span class="pre">friendly</span></code> from the following program:</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">happy</span><span class="p">;</span><span class="s s-Atom">friendly</span><span class="o">:-</span><span class="s s-Atom">teacher</span><span class="p">.</span>
+<span class="s s-Atom">friendly</span><span class="o">:-</span><span class="s s-Atom">teacher</span><span class="p">,</span><span class="s s-Atom">happy</span><span class="p">.</span>
+<span class="s s-Atom">teacher</span><span class="p">;</span><span class="s s-Atom">wise</span><span class="p">.</span>
+<span class="s s-Atom">teacher</span><span class="o">:-</span><span class="s s-Atom">wise</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<p>This requires derivations of the clauses <code class="docutils literal notranslate"><span class="pre">friendly:-teacher</span></code> and <code class="docutils literal notranslate"><span class="pre">teacher</span></code>:</p>
+<figure class="align-default" id="fig-a-2">
+<a class="reference internal image-reference" href="../../../_images/image0043.svg"><img alt="../../../_images/image0043.svg" src="../../../_images/image0043.svg" width="100%" /></a>
+</figure>
+<p>Notice that this derivation can not be recast in the form of a linear tree, where each resolvent is obtained from the previous resolvent and a given clause, as in <a class="reference internal" href="../1_part_i/1.0.html#ch-1"><span class="std std-numref">Chapter 1</span></a>. This is due to the fact that some clauses are indefinite (have more than one positive literal).</p>
+<!--Chapter 1-->
+<div class="admonition solution" id="sol-2-5">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.5 </span><a class="headerlink" href="#sol-2-5" title="Permalink to this solution">#</a><a href="../1_part_i/2.1.html#ex-2-5" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Prove by refutation that <code class="docutils literal notranslate"><span class="pre">friendly:-has_friends</span></code> is a logical consequence of the following clauses:</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">happy</span><span class="o">:-</span><span class="s s-Atom">has_friends</span><span class="p">.</span>
+<span class="s s-Atom">friendly</span><span class="o">:-</span><span class="s s-Atom">happy</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<p>The negation of <code class="docutils literal notranslate"><span class="pre">friendly:-has_friends</span></code> consists of two clauses, <code class="docutils literal notranslate"><span class="pre">:-friendly</span></code> and <code class="docutils literal notranslate"><span class="pre">has_friends</span></code>. Together, these four clauses are inconsistent:</p>
+<figure class="align-default" id="fig-a-3">
+<a class="reference internal image-reference" href="../../../_images/image0063.svg"><img alt="../../../_images/image0063.svg" src="../../../_images/image0063.svg" width="45%" /></a>
+</figure>
+<div class="admonition solution" id="sol-2-6">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.6 </span><a class="headerlink" href="#sol-2-6" title="Permalink to this solution">#</a><a href="../1_part_i/2.2.html#ex-2-6" class="exercise-link" title="Go to the exercise"></a></p>
+<p>How many models does the following clause have over the Herbrand universe <code class="docutils literal notranslate"><span class="pre">{peter,maria}</span></code>:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="nv">S</span><span class="p">):-</span><span class="nf">student_of</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">).</span>
+</pre></div>
+</div>
+</div>
+<p>The set of ground instances of this clause is</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">):-</span><span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">),</span>
+  <span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">):-</span><span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>and the Herbrand base is</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">),</span>      <span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">),</span>
+  <span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">),</span>      <span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">),</span>
+  <span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">),</span> <span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">),</span>
+  <span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="s s-Atom">peter</span><span class="p">),</span> <span class="nf">student_of</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Only the left four ground atoms are relevant for determining whether an interpretation is a model. 9 out of 16 truth-value assignments to these ground atoms result in a model. Because of the 4 irrelevant ground atoms, this yields <span class="math notranslate nohighlight">\(9*2^4=144\)</span> models. Notice that this is a rather large number of models for such a modest Herbrand universe, and such a simple clause! This illustrates that <em>less knowledge leads to more models</em>.</p>
+<div class="admonition solution" id="sol-2-7">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.7 </span><a class="headerlink" href="#sol-2-7" title="Permalink to this solution">#</a><a href="../1_part_i/2.2.html#ex-2-7" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Write a clause expressing that Peter teaches all the first-year courses, and apply resolution to this clause and the clause</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">):-</span><span class="nf">follows</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span><span class="nf">teaches</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="nv">C</span><span class="p">).</span>
+</pre></div>
+</div>
+</div>
+<p>This is expressed by the clause</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">teaches</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="nv">C</span><span class="p">):-</span><span class="nf">first_year_course</span><span class="p">(</span><span class="nv">C</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Resolution with the above clause yields</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">likes</span><span class="p">(</span><span class="s s-Atom">peter</span><span class="p">,</span><span class="s s-Atom">maria</span><span class="p">):-</span><span class="nf">follows</span><span class="p">(</span><span class="s s-Atom">maria</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span><span class="nf">first_year_course</span><span class="p">(</span><span class="nv">C</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>In words: ‘Peter likes Maria <strong>if</strong> Maria follows a first-year course’.</p>
+<div class="admonition solution" id="sol-2-9">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.9 </span><a class="headerlink" href="#sol-2-9" title="Permalink to this solution">#</a><a href="../1_part_i/2.3.html#ex-2-9" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Translate to clausal logic:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p>every mouse has a tail;</p></li>
+<li><p>somebody loves everybody;</p></li>
+<li><p>every two numbers have a maximum.</p></li>
+</ol>
+</div>
+<!--roman list-->
+<ol>
+<li><p>This statement should be read as ‘<strong>if</strong> <em>X</em> is a mouse, <strong>then</strong> there exists something which is <em>X</em>’s tail’. Giving <em>X</em>’s tail the abstract name <code class="docutils literal notranslate"><span class="pre">tail(X)</span></code>, we obtain the following clause:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">tail_of</span><span class="p">(</span><span class="nf">tail</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nv">X</span><span class="p">):-</span><span class="nf">mouse</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+</pre></div>
+</div>
+</li>
+<li><p>Here we need to give the person who loves everybody an abstract name. Since this person does not depend on anybody else, it can simply be a constant:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">loves</span><span class="p">(</span><span class="s s-Atom">person_who_loves_everybody</span><span class="p">,</span><span class="nv">X</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Notice the difference with the statement ‘everybody loves somebody’:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">loves</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nf">person_loved_by</span><span class="p">(</span><span class="nv">X</span><span class="p">)).</span>
+</pre></div>
+</div>
+</li>
+<li><p>This statement should be read as ‘<strong>if</strong> <em>X</em> and <em>Y</em> are numbers, then there exists a number which is their maximum’. Giving this maximum the abstract name <code class="docutils literal notranslate"><span class="pre">max(X,Y)</span></code> yields the clause</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">maximum</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nf">max</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">)):-</span><span class="nf">number</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">number</span><span class="p">(</span><span class="nv">Y</span><span class="p">).</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition solution" id="sol-2-10">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.10 </span><a class="headerlink" href="#sol-2-10" title="Permalink to this solution">#</a><a href="../1_part_i/2.3.html#ex-2-10" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Determine the Herbrand universe of the following program:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">([],</span><span class="mi">0</span><span class="p">).</span>
+<span class="nf">length</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Y</span><span class="p">],</span><span class="nf">s</span><span class="p">(</span><span class="nv">L</span><span class="p">)):-</span><span class="nf">length</span><span class="p">(</span><span class="nv">Y</span><span class="p">,</span><span class="nv">L</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>(Hint: recall that <code class="docutils literal notranslate"><span class="pre">[]</span></code> is a constant, and that <code class="docutils literal notranslate"><span class="pre">[X|Y]</span></code> is an alternative notation for the complex term <code class="docutils literal notranslate"><span class="pre">.(X,Y)</span></code> with binary functor ‘<code class="docutils literal notranslate"><span class="pre">.</span></code>’!)</p>
+</div>
+<p>In the intended interpretation, <code class="docutils literal notranslate"><span class="pre">s</span></code> is restricted to numbers and ‘<code class="docutils literal notranslate"><span class="pre">.</span></code>’ is restricted to lists; however, variables are untyped in clausal logic, and the two sets of terms may be mixed. Thus, the Herbrand universe will contain terms denoting numbers, such as</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">,</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="nf">s</span><span class="p">(</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span><span class="nf">s</span><span class="p">(</span><span class="nf">s</span><span class="p">(</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">))),</span><span class="s s-Atom">…</span>
+</pre></div>
+</div>
+<p>and terms denoting lists of numbers, such as</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[],[</span><span class="mi">0</span><span class="p">],[</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">],[</span><span class="nf">s</span><span class="p">(</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">],</span><span class="s s-Atom">…</span>
+</pre></div>
+</div>
+<p>but also ‘strange’ terms like</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[[[</span><span class="mi">0</span><span class="p">]]]</span> <span class="s s-Atom">or</span> <span class="p">.(.(.(</span><span class="mi">0</span><span class="p">,[]),[]),[])</span>
+<span class="p">[</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">)|</span><span class="mi">0</span><span class="p">]</span> <span class="s s-Atom">or</span> <span class="p">.(</span><span class="nf">s</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">[</span><span class="nf">s</span><span class="p">([[]|</span><span class="mi">0</span><span class="p">])]</span>
+</pre></div>
+</div>
+<p>and so on.</p>
+<div class="admonition solution" id="sol-2-11">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.11 </span><a class="headerlink" href="#sol-2-11" title="Permalink to this solution">#</a><a href="../1_part_i/2.3.html#ex-2-11" class="exercise-link" title="Go to the exercise"></a></p>
+<p>If possible, unify the following pairs of terms:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plus(X,Y,s(Y))</span></code> and <code class="docutils literal notranslate"><span class="pre">plus(s(V),W,s(s(V)))</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length([X|Y],s(0))</span></code> and <code class="docutils literal notranslate"><span class="pre">length([V],V)</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">larger(s(s(X)),X)</span></code> and <code class="docutils literal notranslate"><span class="pre">larger(V,s(V))</span></code>.</p></li>
+</ol>
+</div>
+<!--roman list-->
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plus(s(V),s(V),s(s(V)))</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length([s(0)],s(0))</span></code>.</p></li>
+<li><p>Not unifiable.</p></li>
+</ol>
+<div class="admonition solution" id="sol-2-13">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.13 </span><a class="headerlink" href="#sol-2-13" title="Permalink to this solution">#</a><a href="../1_part_i/2.4.html#ex-2-13" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Write a clause for the statement ‘somebody is innocent unless proven guilty’, and give its intended model (supposing that <code class="docutils literal notranslate"><span class="pre">john</span></code> is the only individual in the Herbrand universe).</p>
+</div>
+<p>The clause is</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">innocent</span><span class="p">(</span><span class="nv">X</span><span class="p">):-</span><span class="o">not</span> <span class="nf">guilty</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>with intended model <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">innocent(john)</span> <span class="pre">}</span></code>.</p>
+<div class="admonition solution" id="sol-2-14">
+<p class="admonition-title">
+<span class="caption-number">Solution 2.14 </span><a class="headerlink" href="#sol-2-14" title="Permalink to this solution">#</a><a href="../1_part_i/2.5.html#ex-2-14" class="exercise-link" title="Go to the exercise"></a></p>
+<p>Translate to clausal logic:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\( \forall \texttt{X} \exists \texttt{Y} : \texttt{mouse(X)} \rightarrow \texttt{tail_of(Y,X)} \)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \forall \texttt{X} \exists \texttt{Y} : \texttt{loves(X,Y)} \land ( \forall \texttt{Z} : \texttt{loves(Y,Z)} ) \)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \forall \texttt{X} \forall \texttt{Y} \exists \texttt{Z} : \texttt{number(X)} \land \texttt{number(Y)} \rightarrow \texttt{maximum(X,Y,Z)} \)</span>.</p></li>
+</ol>
+</div>
+<!--Exercise 2.9-->
+<!--roman list-->
+<ol>
+<li><p>This statement translates almost immediately into a clause, replacing the existential quantifier by a Skolem functor <code class="docutils literal notranslate"><span class="pre">tail</span></code>:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">tail_of</span><span class="p">(</span><span class="nf">tail</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nv">X</span><span class="p">):-</span><span class="nf">mouse</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+</pre></div>
+</div>
+</li>
+<li><p>This formula is already in conjunctive normal form, and each conjunct yields a separate clause. After replacing the existential quantifier by a Skolem functor <code class="docutils literal notranslate"><span class="pre">person_loved_by</span></code>, we obtain</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">loves</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nf">person_loved_by</span><span class="p">(</span><span class="nv">X</span><span class="p">)).</span>
+<span class="nf">loves</span><span class="p">(</span><span class="nf">person_loved_by</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nv">Z</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Notice that the two clauses are ‘linked’ by the Skolem functor.</p>
+</li>
+<li><p>Here, the Skolem functor has two arguments:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">maximum</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nf">max</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">)):-</span><span class="nf">number</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">number</span><span class="p">(</span><span class="nv">Y</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>See also <a class="reference internal" href="../1_part_i/2.3.html#ex-2-9"><span class="std std-numref">Exercise 2.9</span></a>.</p>
+</li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/appendices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="c_1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">12.1. </span>A brief introduction to clausal logic</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="c_3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12.3. </span>Logic Programming and Prolog</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+  
+      &copy; Copyright 2015–2022.<br/>
+    <div class="extra_footer">
+      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

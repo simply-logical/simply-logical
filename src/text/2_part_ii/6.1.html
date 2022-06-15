@@ -1,0 +1,1261 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>6.1. Best-first search &#8212; Simply Logical&lt;br&gt;&lt;i&gt;Intelligent Reasoning by Example&lt;/i&gt;</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="6.2. Optimal best-first search" href="6.2.html" />
+    <link rel="prev" title="6. Informed search" href="6.0.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical<br><i>Intelligent Reasoning by Example</i></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../simply-logical.html">
+                    Simply Logical
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0_preface/_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../1_part_i/_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.2.html">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.5.html">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../1_part_i/3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.2.html">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../1_part_i/3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="5.0.html">
+     5. Searching graphs
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.4.html">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="6.0.html">
+     6. Informed search
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../appendices/_appendices.html">
+   Additional materials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_2.html">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/2_part_ii/6.1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/2_part_ii/6.1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/src/text/2_part_ii/6.1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Best-first search</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--H3: Section 6.1-->
+<section class="tex2jax_ignore mathjax_ignore" id="best-first-search">
+<span id="sec-6-1"></span><h1><span class="section-number">6.1. </span>Best-first search<a class="headerlink" href="#best-first-search" title="Permalink to this headline">#</a></h1>
+<p>We will assume that a predicate <code class="docutils literal notranslate"><span class="pre">eval/2</span></code> is defined, which returns for a given node in the search space an estimate of the distance between that node and a goal node. The children of the current node are added to the agenda according to their heuristic evaluation (lowest values first). Thus, the agenda will always be sorted.</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% best-first search</span>
+<span class="c1">% goal/1, children/2 and eval/2 depend on</span>
+<span class="c1">% the search problem at hand</span>
+<span class="nf">search_bstf</span><span class="p">([</span><span class="nv">Goal</span><span class="p">|</span><span class="nv">Rest</span><span class="p">],</span><span class="nv">Goal</span><span class="p">):-</span>
+    <span class="nf">goal</span><span class="p">(</span><span class="nv">Goal</span><span class="p">).</span>
+<span class="nf">search_bstf</span><span class="p">([</span><span class="nv">Current</span><span class="p">|</span><span class="nv">Rest</span><span class="p">],</span><span class="nv">Goal</span><span class="p">):-</span>
+    <span class="nf">children</span><span class="p">(</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Children</span><span class="p">),</span>
+    <span class="nf">add_bstf</span><span class="p">(</span><span class="nv">Children</span><span class="p">,</span><span class="nv">Rest</span><span class="p">,</span><span class="nv">NewAgenda</span><span class="p">),</span>
+    <span class="nf">search_bstf</span><span class="p">(</span><span class="nv">NewAgenda</span><span class="p">,</span><span class="nv">Goal</span><span class="p">).</span>
+
+<span class="c1">% add_bstf(A,B,C) &lt;- C contains the elements of A and B</span>
+<span class="c1">%                    (B and C sorted according to eval/2)</span>
+<span class="nf">add_bstf</span><span class="p">([],</span><span class="nv">Agenda</span><span class="p">,</span><span class="nv">Agenda</span><span class="p">).</span>
+<span class="nf">add_bstf</span><span class="p">([</span><span class="nv">Child</span><span class="p">|</span><span class="nv">Children</span><span class="p">],</span><span class="nv">OldAgenda</span><span class="p">,</span><span class="nv">NewAgenda</span><span class="p">):-</span>
+    <span class="nf">add_one</span><span class="p">(</span><span class="nv">Child</span><span class="p">,</span><span class="nv">OldAgenda</span><span class="p">,</span><span class="nv">TmpAgenda</span><span class="p">),</span>
+    <span class="nf">add_bstf</span><span class="p">(</span><span class="nv">Children</span><span class="p">,</span><span class="nv">TmpAgenda</span><span class="p">,</span><span class="nv">NewAgenda</span><span class="p">).</span>
+
+<span class="c1">% add_one(S,A,B) &lt;- B is A with S inserted acc. to eval/2</span>
+<span class="nf">add_one</span><span class="p">(</span><span class="nv">Child</span><span class="p">,</span><span class="nv">OldAgenda</span><span class="p">,</span><span class="nv">NewAgenda</span><span class="p">):-</span>
+    <span class="nf">eval</span><span class="p">(</span><span class="nv">Child</span><span class="p">,</span><span class="nv">Value</span><span class="p">),</span>
+    <span class="nf">add_one</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">Child</span><span class="p">,</span><span class="nv">OldAgenda</span><span class="p">,</span><span class="nv">NewAgenda</span><span class="p">).</span>
+
+<span class="nf">add_one</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">Child</span><span class="p">,[],[</span><span class="nv">Child</span><span class="p">]).</span>
+<span class="nf">add_one</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">Child</span><span class="p">,[</span><span class="nv">Node</span><span class="p">|</span><span class="nv">Rest</span><span class="p">],[</span><span class="nv">Child</span><span class="p">,</span><span class="nv">Node</span><span class="p">|</span><span class="nv">Rest</span><span class="p">]):-</span>
+    <span class="nf">eval</span><span class="p">(</span><span class="nv">Node</span><span class="p">,</span><span class="nv">V</span><span class="p">),</span>
+    <span class="nv">Value</span><span class="o">&lt;</span><span class="nv">V</span><span class="p">.</span>
+<span class="nf">add_one</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">Child</span><span class="p">,[</span><span class="nv">Node</span><span class="p">|</span><span class="nv">Rest</span><span class="p">],[</span><span class="nv">Node</span><span class="p">|</span><span class="nv">NewRest</span><span class="p">]):-</span>
+    <span class="nf">eval</span><span class="p">(</span><span class="nv">Node</span><span class="p">,</span><span class="nv">V</span><span class="p">),</span>
+    <span class="nv">Value</span><span class="o">&gt;=</span><span class="nv">V</span><span class="p">,</span>
+    <span class="nf">add_one</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">Child</span><span class="p">,</span><span class="nv">Rest</span><span class="p">,</span><span class="nv">NewRest</span><span class="p">).</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">add_bstf/3</span></code> operates by inserting the new children one by one in the current agenda. Note that if the list of children were already sorted, it could more efficiently be <strong>merged</strong> with the current agenda.</p>
+<div class="admonition exercise" id="ex-6-1">
+<p class="admonition-title"><span class="caption-number">Exercise 6.1 </span><a class="headerlink" href="#ex-6-1" title="Permalink to this exercise">#</a><a href="../appendices/c_6.html#sol-6-1" class="solution-link" title="Go to the solution"></a></p>
+<p>Suppose the call <code class="docutils literal notranslate"><span class="pre">children(Current,Children)</span></code> results in an ordered list of children. Write a predicate <code class="docutils literal notranslate"><span class="pre">merge/3</span></code> which directly merges this list with the current agenda.</p>
+</div>
+<p>As an application of best-first search, consider the following puzzle. We have a board consisting of seven consecutive squares, three black tiles and three white tiles, initially placed on the board as in <a class="reference internal" href="#fig-6-1"><span class="std std-numref">Figure 6.1</span></a>. The goal is to move the tiles in such a way that the black tiles are to the right of the white tiles (the position of the empty square is immaterial). Each move consists of moving one tile into the empty square, which is allowed if there are at most two other tiles in between. The cost of such a move is 1 if there are no tiles in between, and equals the number of tiles jumped over otherwise.</p>
+<figure class="align-default" id="fig-6-1">
+<a class="reference internal image-reference" href="../../../_images/image0161.svg"><img alt="../../../_images/image0161.svg" src="../../../_images/image0161.svg" width="40%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 6.1 </span><span class="caption-text">Initial board position.</span><a class="headerlink" href="#fig-6-1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition infobox" id="infobox-0">
+<p class="admonition-title">When not to use lists<a class="headerlink" href="#infobox-0" title="Permalink to this infobox">#</a></p>
+<!--section 1.3-->
+<p>Recall (<a class="reference internal" href="../1_part_i/1.3.html#sec-1-3"><span class="std std-numref">Section 1.3</span></a>) that <code class="docutils literal notranslate"><span class="pre">[b,b,b,e,w,w,w]</span></code> is an alternative notation for the term <code class="docutils literal notranslate"><span class="pre">.(b,.(b,.(b,.(e,.(w,.(w,.(w,[])))))))</span></code>. This term contains, besides the seven constants in the linear notation, one additional constant (’<code class="docutils literal notranslate"><span class="pre">[]</span></code>’) and seven functors (’<code class="docutils literal notranslate"><span class="pre">.</span></code>’), each with two arguments. In contrast, a ‘flat’ term <code class="docutils literal notranslate"><span class="pre">p(b,b,b,e,w,w,w)</span></code> contains only one additional functor, with seven arguments. Recursive datastructures like lists are useful if the number of items to be stored is not fixed, but they require significantly more storage space. In general, if the number of items is fixed, a non-recursive datastructure is preferred as far as memory is concerned. Given a term <code class="docutils literal notranslate"><span class="pre">T</span></code> holding the items, the call <code class="docutils literal notranslate"><span class="pre">arg(N,T,A)</span></code> retrieves the <code class="docutils literal notranslate"><span class="pre">N</span></code>th argument <code class="docutils literal notranslate"><span class="pre">A</span></code>. However, <code class="docutils literal notranslate"><span class="pre">arg/3</span></code> requires <code class="docutils literal notranslate"><span class="pre">N</span></code> to be instantiated, and cannot be used to generate all arguments on backtracking. Therefore, lists are sometimes used even if the nature of the data is non-recursive.</p>
+</div>
+<p>This puzzle defines a search space, in which nodes are board positions and arcs are single moves. We choose a simple list representation for board positions: e.g. <code class="docutils literal notranslate"><span class="pre">[b,b,b,e,w,w,w]</span></code> represents the starting position of <a class="reference internal" href="#fig-6-1"><span class="std std-numref">Figure 6.1</span></a>. The following predicates examine and manipulate board positions:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-get-tile">
+<pre class="literal-block source swish" id="swish-get-tile-code">
+<span></span><span class="c1">% get_tile(P,N,T) &lt;- pos. P contains tile T at square N</span>
+<span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">T</span><span class="p">):-</span>
+    <span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">T</span><span class="p">).</span>
+
+<span class="nf">get_tile</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="k">_</span><span class="nv">Xs</span><span class="p">],</span><span class="nv">N</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">X</span><span class="p">).</span>
+<span class="nf">get_tile</span><span class="p">([</span><span class="k">_</span><span class="nv">X</span><span class="p">|</span><span class="nv">Xs</span><span class="p">],</span><span class="nv">N0</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span>
+    <span class="nv">N1</span> <span class="o">is</span> <span class="nv">N0</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nf">get_tile</span><span class="p">(</span><span class="nv">Xs</span><span class="p">,</span><span class="nv">N1</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">Y</span><span class="p">).</span>
+
+<span class="c1">% replace(P,N,T,P1) &lt;- P1 is P with tile T at square N</span>
+<span class="nf">replace</span><span class="p">([</span><span class="k">_</span><span class="nv">X</span><span class="p">|</span><span class="nv">Xs</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="nv">Y</span><span class="p">,[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Xs</span><span class="p">]).</span>
+<span class="nf">replace</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Xs</span><span class="p">],</span><span class="nv">N</span><span class="p">,</span><span class="nv">Y</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">Zs</span><span class="p">]):-</span>
+    <span class="nv">N</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="nv">N1</span> <span class="o">is</span> <span class="nv">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nf">replace</span><span class="p">(</span><span class="nv">Xs</span><span class="p">,</span><span class="nv">N1</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">Zs</span><span class="p">).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?-get_tile([b,b,b,e,w,w,w],N,T).</span>
+<span class="cm">?-replace([b,b,b,e,w,w,w],3,e,Pos).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<p>We use the above best-first search procedure, with a number of changes. First, rather than returning the goal position found, the program should construct a sequence of moves by which the goal position is reached. Therefore, nodes that are examined during the search process are collected in the list <code class="docutils literal notranslate"><span class="pre">Visited</span></code>. After a goal position has been found, the solution path and its total cost are reconstructed from the list <code class="docutils literal notranslate"><span class="pre">Visited</span></code> by means of the predicate <code class="docutils literal notranslate"><span class="pre">construct_moves/6</span></code>.</p>
+<p>Secondly, the items on the agenda are represented as pairs <code class="docutils literal notranslate"><span class="pre">v(Value,Move)</span></code>, where <code class="docutils literal notranslate"><span class="pre">Value</span></code> is the heuristic evaluation of the position reached by <code class="docutils literal notranslate"><span class="pre">Move</span></code>. Children of the current position are generated by means of the <code class="docutils literal notranslate"><span class="pre">setof/3</span></code> predicate, which yields a <strong>sorted</strong> list. By putting the heuristic <code class="docutils literal notranslate"><span class="pre">Value</span></code> as the first argument of the functor <code class="docutils literal notranslate"><span class="pre">v</span></code>, the list <code class="docutils literal notranslate"><span class="pre">Children</span></code> is therefore sorted according to increasing heuristic value. Therefore, this list can be simply merged with the current agenda to yield the new agenda. The program thus looks as follows:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% tiles(M,C) &lt;- moves M lead to a goal position at cost C</span>
+<span class="c1">%               (best-first search strategy)</span>
+<span class="nf">tiles</span><span class="p">(</span><span class="nv">Moves</span><span class="p">,</span><span class="nv">Cost</span><span class="p">):-</span>
+    <span class="nf">start</span><span class="p">(</span><span class="nv">Start</span><span class="p">),</span>
+    <span class="nf">eval</span><span class="p">(</span><span class="nv">Start</span><span class="p">,</span><span class="nv">Value</span><span class="p">),</span>
+    <span class="nf">tiles_a</span><span class="p">([</span><span class="nf">v</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">Start</span><span class="p">)],</span><span class="nv">Final</span><span class="p">,[],</span><span class="nv">Visited</span><span class="p">),</span>
+    <span class="nf">construct_moves</span><span class="p">(</span><span class="nv">Final</span><span class="p">,</span><span class="nv">Visited</span><span class="p">,[],</span><span class="nv">Moves</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">Cost</span><span class="p">).</span>
+
+<span class="c1">% tiles_a(A,M,V0,V) &lt;- goal position can be reached from</span>
+<span class="c1">%                      one of the positions on A with last</span>
+<span class="c1">%                      move M (best-first strategy)</span>
+<span class="nf">tiles_a</span><span class="p">([</span><span class="nf">v</span><span class="p">(</span><span class="nv">V</span><span class="p">,</span><span class="nv">LastMove</span><span class="p">)|</span><span class="nv">Rest</span><span class="p">],</span><span class="nv">LastMove</span><span class="p">,</span><span class="nv">Visited</span><span class="p">,</span><span class="nv">Visited</span><span class="p">):-</span>
+    <span class="nf">goal</span><span class="p">(</span><span class="nv">LastMove</span><span class="p">).</span>
+<span class="nf">tiles_a</span><span class="p">([</span><span class="nf">v</span><span class="p">(</span><span class="nv">V</span><span class="p">,</span><span class="nv">LastMove</span><span class="p">)|</span><span class="nv">Rest</span><span class="p">],</span><span class="nv">Goal</span><span class="p">,</span><span class="nv">Visited0</span><span class="p">,</span><span class="nv">Visited</span><span class="p">):-</span>
+    <span class="nf">show_move</span><span class="p">(</span><span class="nv">LastMove</span><span class="p">,</span><span class="nv">V</span><span class="p">),</span>
+    <span class="nf">setof0</span><span class="p">(</span><span class="nf">v</span><span class="p">(</span><span class="nv">Value</span><span class="p">,</span><span class="nv">NextMove</span><span class="p">),</span>
+           <span class="p">(</span> <span class="nf">move</span><span class="p">(</span><span class="nv">LastMove</span><span class="p">,</span><span class="nv">NextMove</span><span class="p">),</span>
+             <span class="nf">eval</span><span class="p">(</span><span class="nv">NextMove</span><span class="p">,</span><span class="nv">Value</span><span class="p">)</span> <span class="p">),</span>
+           <span class="nv">Children</span><span class="p">),</span>
+    <span class="nf">merge</span><span class="p">(</span><span class="nv">Children</span><span class="p">,</span><span class="nv">Rest</span><span class="p">,</span><span class="nv">NewAgenda</span><span class="p">),</span>  <span class="c1">% best-first</span>
+    <span class="nf">tiles_a</span><span class="p">(</span><span class="nv">NewAgenda</span><span class="p">,</span><span class="nv">Goal</span><span class="p">,[</span><span class="nv">LastMove</span><span class="p">|</span><span class="nv">Visited0</span><span class="p">],</span><span class="nv">Visited</span><span class="p">).</span>
+
+<span class="c1">%%% merge/3: see exercise 2.3.1</span>
+</pre></div>
+</div>
+<!--exercise 6.1 {numref}`ex:6.1`-->
+<p><code class="docutils literal notranslate"><span class="pre">setof0/3</span></code> is a variant of <code class="docutils literal notranslate"><span class="pre">setof/3</span></code> which succeeds with the empty list if no solutions can be found (see <a class="reference internal" href="../appendices/a_2.html#apx-a-2"><span class="std std-numref">Section 10.2 (appendix)</span></a>).</p>
+<!--Appendix A.2-->
+<p>A move from <code class="docutils literal notranslate"><span class="pre">OldPos</span></code> to <code class="docutils literal notranslate"><span class="pre">NewPos</span></code> is represented by a triple</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">m</span><span class="p">(</span><span class="nv">OldPos</span><span class="p">,</span><span class="nv">NewPos</span><span class="p">,</span><span class="nv">Cost</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">Cost</span></code> specifies the cost of the move. According to the principle of data abstraction, this representation is kept local to the following predicates:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% move(m(X,P,Y),m(P,NP,C)) &lt;- position NP can be reached</span>
+<span class="c1">%                             from position P in one move</span>
+<span class="c1">%                             at cost C</span>
+<span class="nf">move</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="nv">OldPos</span><span class="p">,</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">OldCost</span><span class="p">),</span><span class="nf">m</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">NewPos</span><span class="p">,</span><span class="nv">Cost</span><span class="p">)):-</span>
+    <span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Ne</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">),</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Nbw</span><span class="p">,</span><span class="nv">BW</span><span class="p">),</span><span class="o">not</span><span class="p">(</span><span class="nv">BW</span><span class="o">=</span><span class="s s-Atom">e</span><span class="p">),</span>
+    <span class="nv">Diff</span> <span class="o">is</span> <span class="nf">abs</span><span class="p">(</span><span class="nv">Ne</span><span class="o">-</span><span class="nv">Nbw</span><span class="p">),</span><span class="nv">Diff</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">,</span>
+    <span class="nf">replace</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Ne</span><span class="p">,</span><span class="nv">BW</span><span class="p">,</span><span class="nv">Pos1</span><span class="p">),</span>
+    <span class="nf">replace</span><span class="p">(</span><span class="nv">Pos1</span><span class="p">,</span><span class="nv">Nbw</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="nv">NewPos</span><span class="p">),</span>
+    <span class="p">(</span> <span class="nv">Diff</span><span class="o">=</span><span class="mi">1</span>    <span class="s s-Atom">-&gt;</span> <span class="nv">Cost</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">;</span> <span class="s s-Atom">otherwise</span> <span class="s s-Atom">-&gt;</span> <span class="nv">Cost</span> <span class="o">is</span> <span class="nv">Diff</span><span class="o">-</span><span class="mi">1</span> <span class="p">).</span>
+
+<span class="nf">start</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="s s-Atom">noparent</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span><span class="mi">0</span><span class="p">)).</span>
+
+<span class="c1">% reconstruct total cost and path from visited nodes</span>
+<span class="nf">construct_moves</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="s s-Atom">noparent</span><span class="p">,</span><span class="nv">Start</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="nv">V</span><span class="p">,</span><span class="nv">Ms</span><span class="p">,[</span><span class="nv">Start</span><span class="p">|</span><span class="nv">Ms</span><span class="p">],</span><span class="nv">Cost</span><span class="p">,</span><span class="nv">Cost</span><span class="p">).</span>
+<span class="nf">construct_moves</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="nv">P</span><span class="p">,</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span><span class="nv">Visited</span><span class="p">,</span><span class="nv">Ms0</span><span class="p">,</span><span class="nv">Ms</span><span class="p">,</span><span class="nv">Cost0</span><span class="p">,</span><span class="nv">Cost</span><span class="p">):-</span>
+    <span class="nf">element</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="nv">GP</span><span class="p">,</span><span class="nv">P</span><span class="p">,</span><span class="nv">C1</span><span class="p">),</span><span class="nv">Visited</span><span class="p">),</span>  <span class="c1">% GP is parent of P</span>
+    <span class="nv">Cost1</span> <span class="o">is</span> <span class="nv">Cost0</span><span class="o">+</span><span class="nv">C</span><span class="p">,</span>
+    <span class="nf">construct_moves</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="nv">GP</span><span class="p">,</span><span class="nv">P</span><span class="p">,</span><span class="nv">C1</span><span class="p">),</span><span class="nv">Visited</span><span class="p">,[</span><span class="nv">Pos</span><span class="p">|</span><span class="nv">Ms0</span><span class="p">],</span><span class="nv">Ms</span><span class="p">,</span><span class="nv">Cost1</span><span class="p">,</span><span class="nv">Cost</span><span class="p">).</span>
+
+<span class="nf">show_move</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="nv">P</span><span class="p">,</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span><span class="nv">Value</span><span class="p">):-</span>
+    <span class="nf">write</span><span class="p">(</span><span class="nv">Pos</span><span class="o">-</span><span class="nv">Value</span><span class="p">),</span><span class="s s-Atom">nl</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Finally, we have to choose a heuristic evaluation function. A first idea is to count, for each white tile, the number of black tiles to the left of it:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">goal</span><span class="p">(</span><span class="nv">LastMove</span><span class="p">):-</span>
+    <span class="nf">eval</span><span class="p">(</span><span class="nv">LastMove</span><span class="p">,</span><span class="mi">0</span><span class="p">).</span>
+
+<span class="nf">eval</span><span class="p">(</span><span class="nf">m</span><span class="p">(</span><span class="nv">P</span><span class="p">,</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span><span class="nv">Value</span><span class="p">):-</span>
+    <span class="nf">bLeftOfw</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Value</span><span class="p">).</span>
+
+<span class="nf">bLeftOfw</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Value</span><span class="p">):-</span>
+    <span class="nf">findall</span><span class="p">((</span><span class="nv">Nb</span><span class="p">,</span><span class="nv">Nw</span><span class="p">),</span>
+            <span class="p">(</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Nb</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">),</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Nw</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">),</span><span class="nv">Nb</span><span class="o">&lt;</span><span class="nv">Nw</span><span class="p">),</span>
+            <span class="nv">L</span><span class="p">),</span>
+    <span class="nf">length</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="nv">Value</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Note that this program actually <em>counts</em> the number of solutions to the query</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Nb</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">),</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Nw</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">),</span><span class="nv">Nb</span><span class="o">&lt;</span><span class="nv">Nw</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>by determining the length of the list that is returned by the second-order predicate <code class="docutils literal notranslate"><span class="pre">findall/3</span></code>.</p>
+<div class="admonition exercise" id="ex-6-2">
+<p class="admonition-title"><span class="caption-number">Exercise 6.2 </span><a class="headerlink" href="#ex-6-2" title="Permalink to this exercise">#</a></p>
+<p>Rewrite <code class="docutils literal notranslate"><span class="pre">bLeftOfw/2</span></code> such that it uses only first-order predicates.</p>
+</div>
+<p>The program writes every move it considers on the screen, together with its heuristic evaluation. For instance, the query</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span><span class="nf">tiles</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span><span class="nv">C</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>results in the following output:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">8</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">6</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+<span class="nv">M</span> <span class="o">=</span> <span class="p">[[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]]</span>
+<span class="nv">C</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>Since the only moves that are considered are those that are on the final solution path, there is no backtracking. This seems to suggest that the heuristic works quite well. On the other hand, the first few moves seem a bit awkward: in particular, the first and the fourth move are relatively expensive.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Try it out in SWISH:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-tiles">
+<pre class="literal-block source swish" id="swish-tiles-code" source-text-end="
+% tiles(M,C) &lt;- moves M lead to a goal position at cost C
+%               (best-first search strategy)
+tiles(Moves,Cost):-
+    start(Start),
+    eval(Start,Value),
+    tiles_a([v(Value,Start)],Final,[],Visited),
+    construct_moves(Final,Visited,[],Moves,0,Cost).
+
+% tiles_a(A,M,V0,V) &lt;- goal position can be reached from one of the
+%                      positions on A with last move M (best-first)
+%                      (V is list of visited nodes, V0 is accumulator)
+tiles_a([v(_V,LastMove)|_Rest],LastMove,Visited,Visited):-
+    goal(LastMove).
+tiles_a([v(V,LastMove)|Rest],Goal,Visited0,Visited):-
+    show_move(LastMove,V),
+    setof0(v(Value,NextMove),
+           (move(LastMove,NextMove),eval(NextMove,Value)),
+           Children),
+    merge(Children,Rest,NewAgenda),  % best-first
+    tiles_a(NewAgenda,Goal,[LastMove|Visited0],Visited).
+
+/*
+merge([],Agenda,Agenda).
+merge([C|Cs],[],[C|Cs]).
+merge([v(V1,Move1)|Rest1],[v(V2,Move2)|Rest2],[v(V1,Move1)|Rest3]):-
+    V1&lt;V2,
+    merge(Rest1,[v(V2,Move2)|Rest2],Rest3).
+merge([v(V1,Move1)|Rest1],[v(V2,Move2)|Rest2],[v(V2,Move2)|Rest3]):-
+    V1&gt;=V2,
+    merge([v(V1,Move1)|Rest1],Rest2,Rest3).
+*/
+
+% move(m(X,P,Y),m(P,NP,C)) &lt;- position NP can be reached from current
+%                             position P in one move at cost C
+move(m(_OldPos,Pos,_OldCost),m(Pos,NewPos,Cost)):-
+    get_tile(Pos,Ne,e),get_tile(Pos,Nbw,BW),not(BW=e),
+    D is Ne-Nbw,
+    ( D&lt;0       -&gt; Diff is -D
+    ; otherwise -&gt; Diff is D ),  % Diff is abs(Ne-Nbw)
+    Diff&lt;4,
+    replace(Pos,Ne,BW,Pos1),
+    replace(Pos1,Nbw,e,NewPos),
+    ( Diff=1    -&gt; Cost=1
+    ; otherwise -&gt; Cost is Diff-1 ).
+
+% reconstruct total cost and path from list of visited nodes
+construct_moves(m(noparent,Start,0),_Visited,Moves,[Start|Moves],Cost,Cost).
+construct_moves(m(Parent,Pos,C),Visited,Moves0,Moves,Cost0,Cost):-
+    member(m(GP,Parent,C1),Visited),  % GP is parent of Parent
+    Cost1 is Cost0+C,
+    construct_moves(m(GP,Parent,C1),Visited,[Pos|Moves0],Moves,Cost1,Cost).
+
+start(m(noparent,[b,b,b,e,w,w,w],0)).
+
+show_move(m(_P,Pos,_C),Value):-
+    write(Pos-Value),nl.
+
+get_tile(Pos,N,S):-
+    get_tile(Pos,1,N,S).
+
+get_tile([X|_Xs],N,N,X).
+get_tile([_X|Xs],N0,N,Y):-
+    N1 is N0+1,
+    get_tile(Xs,N1,N,Y).
+
+replace([_X|Xs],1,Y,[Y|Xs]).
+replace([X|Xs],N,Y,[X|Zs]):-
+    N&gt;1,N1 is N-1,
+    replace(Xs,N1,Y,Zs).
+
+goal(LastMove):-
+    eval(LastMove,0).
+
+eval(m(_P,Pos,_C),Value):-
+    bLeftOfw(Pos,Value).
+%   outOfPlace(Pos,1,0,Value).
+
+bLeftOfw(Pos,Value):-
+    findall(b,(get_tile(Pos,Nb,b),get_tile(Pos,Nw,w),Nb&lt;Nw),L),
+    length(L,Value).
+
+outOfPlace(_Pos,8,N,N).
+outOfPlace(Pos,K,N0,N):-
+    K&lt;8, K1 is K+1,
+    ( K&lt;4,get_tile(Pos,K,b) -&gt; N1 is N0-(K-4)
+    ; K&gt;4,get_tile(Pos,K,w) -&gt; N1 is N0+(K-4)
+    ; otherwise -&gt; N1=N0 ),
+    outOfPlace(Pos,K1,N1,N).
+
+setof0(X,Q,L):-setof(X,Q,L),!.
+setof0(_X,_Q,[]).">
+<span></span><span class="c1">%%% all above code taken together %%%</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?-tiles(M,C).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+</div>
+<p>Let’s try another heuristic, which counts the number of tiles out of place: a wrong tile on the first or seventh square gives 3, on the second or sixth square 2, and on the third or fifth square 1.</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">eval</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Value</span><span class="p">):-</span>
+    <span class="nf">outOfPlace</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">Value</span><span class="p">).</span>
+
+<span class="nf">outOfPlace</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">N</span><span class="p">).</span>
+<span class="nf">outOfPlace</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">K</span><span class="p">,</span><span class="nv">N0</span><span class="p">,</span><span class="nv">N</span><span class="p">):-</span>
+    <span class="nv">K</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">,</span> <span class="nv">K1</span> <span class="o">is</span> <span class="nv">K</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span> <span class="nv">K</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">,</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">K</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">)</span> <span class="s s-Atom">-&gt;</span> <span class="nv">N1</span> <span class="o">is</span> <span class="nv">N0</span><span class="s s-Atom">-</span><span class="p">(</span><span class="nv">K</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+    <span class="p">;</span> <span class="nv">K</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">,</span><span class="nf">get_tile</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">K</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">)</span> <span class="s s-Atom">-&gt;</span> <span class="nv">N1</span> <span class="o">is</span> <span class="nv">N0</span><span class="s s-Atom">+</span><span class="p">(</span><span class="nv">K</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+    <span class="p">;</span> <span class="s s-Atom">otherwise</span> <span class="s s-Atom">-&gt;</span> <span class="nv">N1</span><span class="o">=</span><span class="nv">N0</span> <span class="p">),</span>
+    <span class="nf">outOfPlace</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">K1</span><span class="p">,</span><span class="nv">N1</span><span class="p">,</span><span class="nv">N</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>We get the following result:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">12</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">10</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
+<span class="nv">M</span> <span class="o">=</span> <span class="p">[[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]]</span>
+<span class="nv">C</span> <span class="o">=</span> <span class="mi">14</span>
+</pre></div>
+</div>
+<p>We observe a couple of differences with the previous heuristic. First of all, there is backtracking: the first, second and fourth moves are not pursued any further. Furthermore, the solution found requires two moves less, and is also cheaper.</p>
+<figure class="align-default" id="fig-6-2">
+<a class="reference internal image-reference" href="../../../_images/image0181.svg"><img alt="../../../_images/image0181.svg" src="../../../_images/image0181.svg" width="100%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 6.2 </span><span class="caption-text">Solutions found for different heuristics.</span><a class="headerlink" href="#fig-6-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can easily try this out in the SWISH box above, the <code class="docutils literal notranslate"><span class="pre">outOfPlace/4</span></code> call is already there in <code class="docutils literal notranslate"><span class="pre">eval/2</span></code>, but commented out.</p>
+</div>
+<p>This improvement seems to suggest that an increased punishment for wrongly placed tiles might lead to an even cheaper solution. For instance, we could increase the punishment to 4, 3 and 2, respectively, by adapting the predicate <code class="docutils literal notranslate"><span class="pre">outOfPlace/4</span></code> (try it!). This leads to the following sequence of moves:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">18</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">14</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">14</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">15</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">13</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">11</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">8</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">6</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">6</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">6</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
+<span class="nv">M</span> <span class="o">=</span> <span class="p">[[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]]</span>
+<span class="nv">C</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>Obviously, this heuristic works no better than the previous two: it does not find an optimal solution, and it investigates more moves than the first heuristic. In <a class="reference internal" href="#fig-6-2"><span class="std std-numref">Figure 6.2</span></a>, the solutions found by the three heuristics are compared. In the next section, we will investigate the conditions under which a heuristic is guaranteed to find an optimal solution.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/2_part_ii"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="6.0.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Informed search</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="6.2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>Optimal best-first search</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+  
+      &copy; Copyright 2015–2022.<br/>
+    <div class="extra_footer">
+      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

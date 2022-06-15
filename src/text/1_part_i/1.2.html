@@ -1,0 +1,1025 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1.2. Recursion &#8212; Simply Logical&lt;br&gt;&lt;i&gt;Intelligent Reasoning by Example&lt;/i&gt;</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1.3. Structured terms" href="1.3.html" />
+    <link rel="prev" title="1.1. Answering queries" href="1.1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical<br><i>Intelligent Reasoning by Example</i></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../simply-logical.html">
+                    Simply Logical
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0_preface/_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.5.html">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.2.html">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2_part_ii/_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/5.0.html">
+     5. Searching graphs
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.4.html">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/6.0.html">
+     6. Informed search
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.1.html">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../appendices/_appendices.html">
+   Additional materials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_2.html">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/1_part_i/1.2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/1_part_i/1.2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/src/text/1_part_i/1.2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Recursion</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--H3: Section 1.2-->
+<section class="tex2jax_ignore mathjax_ignore" id="recursion">
+<span id="sec-1-2"></span><h1><span class="section-number">1.2. </span>Recursion<a class="headerlink" href="#recursion" title="Permalink to this headline">#</a></h1>
+<p>Until now, we have encountered two types of logical formulas: facts and rules. There is a special kind of rule which deserves special attention: the rule which defines a relation in terms of itself. This idea of ‘self-reference’, which is called <em>recursion</em>, is also present in most procedural programming languages. Recursion is a bit difficult to grasp, but once you’ve mastered it, you can use it to write very elegant programs, e.g.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>IF N=0
+THEN FAC:=1
+ELSE FAC:=N*FAC(N-1).
+</pre></div>
+</div>
+<p>is a recursive procedure for calculating the factorial of a given number, written in a Pascal-like procedural language. However, in such languages <em>iteration</em> (looping a pre-specified number of times) is usually preferred over recursion, because it uses memory more efficiently.</p>
+<!--section 3.6-->
+<p>In Prolog, however, recursion is the <strong>only</strong> looping structure<a class="footnote-reference brackets" href="#id2" id="id1">1</a>. (This does not necessarily mean that Prolog is always less efficient than a procedural language, because there are ways to write recursive loops that are just as efficient as iterative loops, as we will see in <a class="reference internal" href="3.6.html#sec-3-6"><span class="std std-numref">Section 3.6</span></a>.) Perhaps the easiest way to think about recursion is the following: an arbitrarily large chain is described by describing how one link in the chain is connected to the next. For instance, let us define the relation of <em>reachability</em> in our underground example, where a station is reachable from another station if they are connected by one or more lines. We could define it by the following 20 ground facts:</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-1-1-1">
+<pre class="literal-block source swish" id="swish-1-1-1-code">
+<span></span><span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">bond_street</span><span class="p">,</span><span class="s s-Atom">charing_cross</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">bond_street</span><span class="p">,</span><span class="s s-Atom">green_park</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">bond_street</span><span class="p">,</span><span class="s s-Atom">leicester_square</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">bond_street</span><span class="p">,</span><span class="s s-Atom">oxford_circus</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">bond_street</span><span class="p">,</span><span class="s s-Atom">piccadilly_circus</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">bond_street</span><span class="p">,</span><span class="s s-Atom">tottenham_court_road</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">green_park</span><span class="p">,</span><span class="s s-Atom">charing_cross</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">green_park</span><span class="p">,</span><span class="s s-Atom">leicester_square</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">green_park</span><span class="p">,</span><span class="s s-Atom">oxford_circus</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">green_park</span><span class="p">,</span><span class="s s-Atom">piccadilly_circus</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">green_park</span><span class="p">,</span><span class="s s-Atom">tottenham_court_road</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">leicester_square</span><span class="p">,</span><span class="s s-Atom">charing_cross</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">oxford_circus</span><span class="p">,</span><span class="s s-Atom">charing_cross</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">oxford_circus</span><span class="p">,</span><span class="s s-Atom">leicester_square</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">oxford_circus</span><span class="p">,</span><span class="s s-Atom">piccadilly_circus</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">oxford_circus</span><span class="p">,</span><span class="s s-Atom">tottenham_court_road</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">piccadilly_circus</span><span class="p">,</span><span class="s s-Atom">charing_cross</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">piccadilly_circus</span><span class="p">,</span><span class="s s-Atom">leicester_square</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">tottenham_court_road</span><span class="p">,</span><span class="s s-Atom">charing_cross</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="s s-Atom">tottenham_court_road</span><span class="p">,</span><span class="s s-Atom">leicester_square</span><span class="p">).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?-reachable(bond_street,Y).</span>
+<span class="cm">?-reachable(X,green_park).</span>
+<span class="cm">?-reachable(X,Y).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<p>Since any station is reachable from any other station by a route with at most two intermediate stations, we could instead use the following (non-recursive) definition:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">reachable</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">connected</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">L</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">connected</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z</span><span class="p">,</span><span class="nv">L1</span><span class="p">),</span><span class="nf">connected</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">L2</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">connected</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z1</span><span class="p">,</span><span class="nv">L1</span><span class="p">),</span><span class="nf">connected</span><span class="p">(</span><span class="nv">Z1</span><span class="p">,</span><span class="nv">Z2</span><span class="p">,</span><span class="nv">L2</span><span class="p">),</span>
+                <span class="nf">connected</span><span class="p">(</span><span class="nv">Z2</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">L3</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Of course, if we were to define the reachability relation for the entire London underground, we would need a lot more, longer and longer rules. Recursion is a much more convenient and natural way to define such chains of arbitrary length:</p>
+<!--This block originally inherited from 1.0.1 (`inherit-id: 1.0.1`), however since now the two are in different documents, the inheritance will not work and is replaced with `source-text-start`.-->
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-1-1-2">
+<pre class="literal-block source swish" id="swish-1-1-2-code" source-text-start="connected(bond_street,oxford_circus,central).
+connected(oxford_circus,tottenham_court_road,central).
+connected(bond_street,green_park,jubilee).
+connected(green_park,charing_cross,jubilee).
+connected(green_park,piccadilly_circus,piccadilly).
+connected(piccadilly_circus,leicester_square,piccadilly).
+connected(green_park,oxford_circus,victoria).
+connected(oxford_circus,piccadilly_circus,bakerloo).
+connected(piccadilly_circus,charing_cross,bakerloo).
+connected(tottenham_court_road,leicester_square,northern).
+connected(leicester_square,charing_cross,northern).
+
+">
+<span></span><span class="nf">reachable</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">connected</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="k">_</span><span class="nv">L</span><span class="p">).</span>
+<span class="nf">reachable</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">):-</span><span class="nf">connected</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z</span><span class="p">,</span><span class="nv">L</span><span class="p">),</span><span class="nf">reachable</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span><span class="nv">Y</span><span class="p">).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?-reachable(bond_street,Y).</span>
+<span class="cm">?-reachable(X,green_park).</span>
+<span class="cm">?-reachable(X,Y).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<p>The reading of the second rule is as follows: ‘<code class="docutils literal notranslate"><span class="pre">Y</span></code> is reachable from <code class="docutils literal notranslate"><span class="pre">X</span></code> if <code class="docutils literal notranslate"><span class="pre">Z</span></code> is directly connected to <code class="docutils literal notranslate"><span class="pre">X</span></code> via line <code class="docutils literal notranslate"><span class="pre">L</span></code>, and <code class="docutils literal notranslate"><span class="pre">Y</span></code> is reachable from <code class="docutils literal notranslate"><span class="pre">Z</span></code>’.</p>
+<figure class="align-default" id="fig-1-3">
+<a class="reference internal image-reference" href="../../../_images/image006.svg"><img alt="../../../_images/image006.svg" src="../../../_images/image006.svg" width="100%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 1.3 </span><span class="caption-text">A proof tree for the query <code class="docutils literal notranslate"><span class="pre">?-reachable(bond_street,W)</span></code>.</span><a class="headerlink" href="#fig-1-3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We can now use this recursive definition to prove that Leicester Square is reachable from Bond Street (<a class="reference internal" href="#fig-1-3"><span class="std std-numref">Figure 1.3</span></a>). However, just as there are several routes from Bond Street to Leicester Square, there are several alternative proofs of the fact that Leicester Square is reachable from Bond Street. An alternative proof is given in <a class="reference internal" href="#fig-1-4"><span class="std std-numref">Figure 1.4</span></a>. The difference between these two proofs is that in the first proof we use the fact</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">connected</span><span class="p">(</span><span class="s s-Atom">oxford_circus</span><span class="p">,</span><span class="s s-Atom">tottenham_court_road</span><span class="p">,</span><span class="s s-Atom">central</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>while in the second proof we use</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">connected</span><span class="p">(</span><span class="s s-Atom">oxford_circus</span><span class="p">,</span><span class="s s-Atom">piccadilly_circus</span><span class="p">,</span><span class="s s-Atom">bakerloo</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>There is no reason to prefer one over the other, but since Prolog searches the given formulas top-down, it will find the first proof before the second. Thus, the order of the clauses determines the order in which answers are found. As we will see in <a class="reference internal" href="3.0.html#ch-3"><span class="std std-numref">Chapter 3</span></a>, it sometimes even determines whether any answers are found at all.</p>
+<!--Chapter 3-->
+<figure class="align-default" id="fig-1-4">
+<a class="reference internal image-reference" href="../../../_images/image008.svg"><img alt="../../../_images/image008.svg" src="../../../_images/image008.svg" width="100%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 1.4 </span><span class="caption-text">Alternative proof tree for the query <code class="docutils literal notranslate"><span class="pre">?-reachable(bond_street,W)</span></code>.</span><a class="headerlink" href="#fig-1-4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition exercise" id="ex-1-3">
+<p class="admonition-title"><span class="caption-number">Exercise 1.3 </span><a class="headerlink" href="#ex-1-3" title="Permalink to this exercise">#</a></p>
+<p>Give a third proof tree for the answer { <code class="docutils literal notranslate"><span class="pre">W</span></code> → <code class="docutils literal notranslate"><span class="pre">leicester_square</span></code> }, and change the order of the facts for connectedness, such that this proof tree is constructed first.</p>
+</div>
+<p>In other words, Prolog’s query-answering process is a <em>search process</em>, in which the answer depends on all the choices made earlier. A important point is that some of these choices may lead to a dead-end later. For example, if the recursive formula for the reachability relation had been tried before the non-recursive one, the bottom part of <a class="reference internal" href="#fig-1-3"><span class="std std-numref">Figure 1.3</span></a> would have been as in <a class="reference internal" href="#fig-1-5"><span class="std std-numref">Figure 1.5</span></a>. This proof tree cannot be completed, because there are no answers to the query <code class="docutils literal notranslate"><span class="pre">?-reachable(charing_cross,W)</span></code>, as can easily be checked.
+Prolog has to recover from this failure by climbing up the tree, reconsidering previous choices. This search process, which is called <em>backtracking</em>, will be detailed in <a class="reference internal" href="../2_part_ii/5.0.html#ch-5"><span class="std std-numref">Chapter 5</span></a>.</p>
+<!--Chapter 5-->
+<figure class="align-default" id="fig-1-5">
+<a class="reference internal image-reference" href="../../../_images/image010.svg"><img alt="../../../_images/image010.svg" src="../../../_images/image010.svg" width="100%" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 1.5 </span><span class="caption-text">A failing proof tree.</span><a class="headerlink" href="#fig-1-5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<!--Exercise 7.5-->
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>If we take Prolog’s procedural behaviour into account, there are alternatives to recursive loops such as the so-called <em>failure-driven loop</em> (see <a class="reference internal" href="../3_part_iii/7.3.html#ex-7-5"><span class="std std-numref">Exercise 7.5</span></a>).</p>
+</dd>
+</dl>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/1_part_i"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="1.1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1.1. </span>Answering queries</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="1.3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Structured terms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+  
+      &copy; Copyright 2015–2022.<br/>
+    <div class="extra_footer">
+      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

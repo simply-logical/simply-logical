@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.5. The relation between clausal logic and Predicate Logic &#8212; Simply Logical&lt;br&gt;&lt;i&gt;Intelligent Reasoning by Example&lt;/i&gt;</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../../../_static/lpn.js"></script>
+    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="2.6. Further reading" href="2.6.html" />
+    <link rel="prev" title="2.4. Definite clause logic" href="2.4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical<br><i>Intelligent Reasoning by Example</i></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../simply-logical.html">
+                    Simply Logical
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0_preface/_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="_part_i.html">
+   I. Logic and Logic Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="1.0.html">
+     1. A brief introduction to clausal logic
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.1.html">
+       1.1. Answering queries
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.2.html">
+       1.2. Recursion
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.3.html">
+       1.3. Structured terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.4.html">
+       1.4. What else is there to know about clausal logic?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="2.0.html">
+     2. Clausal logic and resolution: theoretical backgrounds
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.1.html">
+       2.1. Propositional clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.2.html">
+       2.2. Relational clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.3.html">
+       2.3. Full clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.4.html">
+       2.4. Definite clause logic
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       2.5. The relation between clausal logic and Predicate Logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.6.html">
+       2.6. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="3.0.html">
+     3. Logic Programming and Prolog
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.1.html">
+       3.1. SLD-resolution
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.2.html">
+       3.2. Pruning the search by means of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.3.html">
+       3.3. Negation as failure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.4.html">
+       3.4. Other uses of cut
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.5.html">
+       3.5. Arithmetic expressions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.6.html">
+       3.6. Accumulators
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.7.html">
+       3.7. Second-order predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.8.html">
+       3.8. Meta-programs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.9.html">
+       3.9. A methodology of Prolog programming
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.10.html">
+       3.10. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../2_part_ii/_part_ii.html">
+   II. Reasoning with structured knowledge
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/4.0.html">
+     4. Representing structured knowledge
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.1.html">
+       4.1. Trees as terms
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.2.html">
+       4.2. Graphs generated by a predicate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.3.html">
+       4.3. Inheritance hierarchies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/4.4.html">
+       4.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/5.0.html">
+     5. Searching graphs
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.1.html">
+       5.1. A general search procedure
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.2.html">
+       5.2. Depth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.3.html">
+       5.3. Breadth-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.4.html">
+       5.4. Forward chaining
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/5.5.html">
+       5.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../2_part_ii/6.0.html">
+     6. Informed search
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.1.html">
+       6.1. Best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.2.html">
+       6.2. Optimal best-first search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.3.html">
+       6.3. Non-exhaustive informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../2_part_ii/6.4.html">
+       6.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../3_part_iii/_part_iii.html">
+   III. Advanced reasoning techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/7.0.html">
+     7. Reasoning with natural language
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.1.html">
+       7.1. Grammars and parsing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.2.html">
+       7.2. Definite Clause Grammars
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.3.html">
+       7.3. Interpretation of natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/7.4.html">
+       7.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/8.0.html">
+     8. Reasoning with incomplete information
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.1.html">
+       8.1. Default reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.2.html">
+       8.2. The semantics of incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.3.html">
+       8.3. Abduction and diagnostic reasoning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.4.html">
+       8.4. The complete picture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/8.5.html">
+       8.5. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../3_part_iii/9.0.html">
+     9. Inductive reasoning
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.1.html">
+       9.1. Generalisation and specialisation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.2.html">
+       9.2. Bottom-up induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.3.html">
+       9.3. Top-down induction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../3_part_iii/9.4.html">
+       9.4. Further reading
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../appendices/_appendices.html">
+   Additional materials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/a_0.html">
+     10. A catalogue of useful predicates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_1.html">
+       10.1. Built-in predicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/a_2.html">
+       10.2. A library of utility predicates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/b_0.html">
+     11. Two programs for logical conversion
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_1.html">
+       11.1. From Predicate Logic to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/b_2.html">
+       11.2. Predicate Completion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../appendices/c_0.html">
+     12. Answers to selected exercises
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_1.html">
+       12.1. A brief introduction to clausal logic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_2.html">
+       12.2. Clausal logic and resolution: theoretical backgrounds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_3.html">
+       12.3. Logic Programming and Prolog
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_4.html">
+       12.4. Representing structured knowledge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_5.html">
+       12.5. Searching graphs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_6.html">
+       12.6. Informed search
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_7.html">
+       12.7. Reasoning with natural language
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_8.html">
+       12.8. Reasoning with incomplete information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../appendices/c_9.html">
+       12.9. Inductive reasoning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://simply-logical.space/">
+   Simply Logical Organisation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
+   Original Book Home
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/1_part_i/2.5.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/1_part_i/2.5.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/src/text/1_part_i/2.5.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The relation between clausal logic and Predicate Logic</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--H3: Section 2.5-->
+<section class="tex2jax_ignore mathjax_ignore" id="the-relation-between-clausal-logic-and-predicate-logic">
+<span id="sec-2-5"></span><h1><span class="section-number">2.5. </span>The relation between clausal logic and Predicate Logic<a class="headerlink" href="#the-relation-between-clausal-logic-and-predicate-logic" title="Permalink to this headline">#</a></h1>
+<p>Clausal logic is a formalism especially suited for automated reasoning. However, the form of logic usually presented in courses on Symbolic Logic is (first-order) Predicate Logic. Predicate logic is more expressive in the sense that statements expressed in Predicate Logic often result in shorter formulas than would result if they were expressed in clausal logic. This is due to the larger vocabulary and less restrictive syntax of Predicate Logic, which includes quantifiers (‘for all’ (<span class="math notranslate nohighlight">\(\forall\)</span>) and ‘there exists’ (<span class="math notranslate nohighlight">\(\exists\)</span>)), and various logical connectives (conjunction (<span class="math notranslate nohighlight">\(\land\)</span>), disjunction (<span class="math notranslate nohighlight">\(\lor\)</span>), negation (<span class="math notranslate nohighlight">\(\neg\)</span>), implication (<span class="math notranslate nohighlight">\(\rightarrow\)</span>), and equivalence (<span class="math notranslate nohighlight">\(\leftrightarrow\)</span>)) which may occur anywhere within a formula.</p>
+<div class="admonition infobox" id="infobox-0">
+<p class="admonition-title">The order of logics<a class="headerlink" href="#infobox-0" title="Permalink to this infobox">#</a></p>
+<p>A logic with propositions (statements that can be either true or false) as basic building blocks is called a propositional logic; a logic built on predicates is called a Predicate Logic. Since propositions can be viewed as nullary predicates (i.e. predicates without arguments), any propositional logic is also a Predicate Logic.</p>
+<p>A logic may or may not have variables for its basic building blocks. If it does not include such variables, both the logic and its building blocks are called <em>first-order</em>; this is the normal case. Thus, in first-order Predicate Logic, there are no predicate variables, but only first-order predicates.</p>
+<p>Otherwise, an <span class="math notranslate nohighlight">\(n^{\text{th}}\)</span> order logic has variables (and thus quantifiers) for its <span class="math notranslate nohighlight">\((n - 1)^{\text{th}}\)</span> order building blocks. For instance, the statement</p>
+<div class="math notranslate nohighlight">
+\[
+\forall \texttt{X} \forall \texttt{Y} : \texttt{equal(X,Y)} \leftrightarrow
+( \forall \texttt{P} : \texttt{P(X)} \leftrightarrow \texttt{P(Y)})
+\]</div>
+<p>defining two individuals to be equal if they have the same properties, is a statement from second-order Predicate Logic, because <code class="docutils literal notranslate"><span class="pre">P</span></code> is a variable ranging over first-order predicates.</p>
+<p>Another example of a statement from second-order Predicate Logic is</p>
+<div class="math notranslate nohighlight">
+\[
+\forall \texttt{P} : \texttt{transitive(P)} \leftrightarrow
+( \forall \texttt{X} \forall \texttt{Y} \forall \texttt{Z} : \texttt{P(X,Y)} \land \texttt{P(Y,Z)} \rightarrow \texttt{P(X,Z)})
+\]</div>
+<p>This statement defines the transitivity of binary relations. Since <code class="docutils literal notranslate"><span class="pre">transitive</span></code> has a second-order variable as argument, it is called a <em>second-order predicate</em>.</p>
+</div>
+<p>Being syntactically quite different, clausal logic and Predicate Logic are semantically equivalent in the following sense: every set of clauses is, after minor modifications, a formula in Predicate Logic, and conversely, every formula in Predicate Logic can be rewritten to an ‘almost’ equivalent set of clauses. Why then bother about Predicate Logic at all in this book? The main reason is that in <a class="reference internal" href="../3_part_iii/8.0.html#ch-8"><span class="std std-numref">Chapter 8</span></a>, we will discuss an alternative semantics of logic programs, defined in terms of Predicate Logic. In this section, we will illustrate the semantic equivalence of clausal logic and Predicate Logic. We will assume a basic knowledge of the syntax and semantics of Predicate Logic.</p>
+<!--Chapter 8-->
+<p>We start with the propositional case. Any clause like</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>can be rewritten by reversing head and body and replacing the ‘<code class="docutils literal notranslate"><span class="pre">:-</span></code>’ sign by an implication ‘<span class="math notranslate nohighlight">\(\rightarrow\)</span>’, replacing ‘<code class="docutils literal notranslate"><span class="pre">,</span></code>’ by a conjunction ‘<span class="math notranslate nohighlight">\(\land\)</span>’, and replacing ‘<code class="docutils literal notranslate"><span class="pre">;</span></code>’ by a disjunction ‘<span class="math notranslate nohighlight">\(\lor\)</span>’, which yields</p>
+<div class="math notranslate nohighlight">
+\[
+\texttt{man} \land \texttt{adult} \rightarrow \texttt{married} \lor \texttt{bachelor}
+\]</div>
+<p>By using the logical laws <span class="math notranslate nohighlight">\(A \rightarrow B \equiv \neg A \lor B\)</span> and <span class="math notranslate nohighlight">\(\neg (C \land D) \equiv \neg C \lor \neg D\)</span>, this can be rewritten into the logically equivalent formula</p>
+<div class="math notranslate nohighlight">
+\[
+\neg \texttt{man} \lor \neg \texttt{adult} \lor \texttt{married} \lor \texttt{bachelor}
+\]</div>
+<p>which, by the way, clearly demonstrates the origin of the terms <em>negative</em> literal and <em>positive</em> literal!</p>
+<p>A set of clauses can be rewritten by rewriting each clause separately, and combining the results into a single conjunction, e.g.</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
+<span class="s s-Atom">has_wife</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">married</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>becomes</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp; ( \neg \texttt{man} \lor \neg \texttt{adult} \lor \texttt{married} \lor \texttt{bachelor} ) \; \land \\
+&amp; ( \neg \texttt{man} \lor \neg \texttt{married} \lor \texttt{has_wife})
+\end{align*}\]</div>
+<p>Formulas like these, i.e. conjunctions of disjunctions of atoms and negated atoms, are said to be in <em>conjunctive normal form</em> (CNF).</p>
+<p>The term ‘normal form’ here indicates that <em>every formula of Predicate Logic can be rewritten into a unique equivalent formula in conjunctive normal form</em>, and therefore to a unique equivalent set of clauses. For instance, the formula</p>
+<div class="math notranslate nohighlight">
+\[
+( \texttt{married} \lor \neg \texttt{child} ) \rightarrow ( \texttt{adult} \land ( \texttt{man} \lor \texttt{woman} ) )
+\]</div>
+<p>can be rewritten into CNF as (replace <span class="math notranslate nohighlight">\(A \rightarrow B\)</span> by <span class="math notranslate nohighlight">\(\neg A \lor B\)</span>, push negations inside by means of De Morgan’s laws: <span class="math notranslate nohighlight">\( \neg (C \land D) \equiv \neg C \lor \neg D\)</span> and <span class="math notranslate nohighlight">\( \neg (C \lor D) \equiv \neg C \land \neg D\)</span>, and distribute <span class="math notranslate nohighlight">\( \land \)</span> over <span class="math notranslate nohighlight">\( \lor \)</span> by means of <span class="math notranslate nohighlight">\((A \land B) \lor C \equiv (A \lor C) \land (B \lor C)\)</span>):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp; ( \neg \texttt{married} \lor \texttt{adult} ) \land ( \neg \texttt{married} \lor \texttt{man} \lor \texttt{woman}) \; \land \\
+&amp; ( \texttt{child} \lor \texttt{adult} ) \land ( \texttt{child} \lor \texttt{man} \lor \texttt{woman} )
+\end{align*}\]</div>
+<p>and hence into clausal form as</p>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">adult</span><span class="o">:-</span><span class="s s-Atom">married</span><span class="p">.</span>
+<span class="s s-Atom">man</span><span class="p">;</span><span class="s s-Atom">woman</span><span class="o">:-</span><span class="s s-Atom">married</span><span class="p">.</span>
+<span class="s s-Atom">child</span><span class="p">;</span><span class="s s-Atom">adult</span><span class="p">.</span>
+<span class="s s-Atom">child</span><span class="p">;</span><span class="s s-Atom">man</span><span class="p">;</span><span class="s s-Atom">woman</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Using a normal form has the advantage that the language contains no redundancy: formulas are only equivalent if they are <strong>identical</strong> (up to the order of the subformulas). A slight disadvantage is that normal forms are often longer and less understandable (the same objection can be made against resolution proofs).</p>
+<p>For rewriting clauses from full clausal logic to Predicate Logic, we use the same rewrite rules as for propositional clauses. Additionally, we have to add universal quantifiers for every variable in the clause. For example, the clause</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">reachable</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nf">route</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span><span class="nv">R</span><span class="p">)):-</span>
+    <span class="nf">connected</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z</span><span class="p">,</span><span class="nv">L</span><span class="p">),</span>
+    <span class="nf">reachable</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">R</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>becomes</p>
+<div class="math notranslate nohighlight">
+\[
+\forall \texttt{X} \forall \texttt{Y} \forall \texttt{Z}
+\forall \texttt{R} \forall \texttt{L} :
+\neg \texttt{connected(X,Z,L)} \lor
+\neg \texttt{reachable(Z,Y,R)} \lor \texttt{reachable(X,Y,route(Z,R))}
+\]</div>
+<p>The reverse process of rewriting a formula of Predicate Logic into an equivalent set of clauses is somewhat complicated if existential quantifiers are involved (the exact procedure is given as a Prolog program in <a class="reference internal" href="../appendices/b_1.html#apx-b-1"><span class="std std-numref">Section 11.1 (appendix)</span></a>). An existential quantifier allows us to reason about individuals without naming them. For example, the statement ‘everybody loves somebody’ is represented by the Predicate Logic formula</p>
+<!--Appendix B.1-->
+<div class="math notranslate nohighlight">
+\[
+\forall \texttt{X} \exists \texttt{Y} : \texttt{loves(X,Y)}
+\]</div>
+<p>Recall that we translated this same statement into clausal logic as</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">loves</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nf">person_loved_by</span><span class="p">(</span><span class="nv">X</span><span class="p">)).</span>
+</pre></div>
+</div>
+<p>These two formulas are not logically equivalent! That is, the Predicate Logic formula has models like <code class="docutils literal notranslate"><span class="pre">{loves(paul,anna)}</span></code> which are <strong>not</strong> models of the clause. The reason for this is, that in clausal logic we are forced to introduce abstract names, while in Predicate Logic we are not (we use existential quantification instead). On the other hand, every model of the Predicate Logic formula, if not a model of the clause, can always be converted to a model of the clause, like <code class="docutils literal notranslate"><span class="pre">{loves(paul,person_loved_by(paul))}</span></code>. Thus, we have that the formula has a model if and only if the clause has a model (but not necessarily the same model).</p>
+<p>So, existential quantifiers are replaced by functors. The arguments of the functor are given by the universal quantifiers in whose scope the existential quantifier occurs. In the above example, <span class="math notranslate nohighlight">\(\exists \texttt{Y}\)</span> occurs within the scope of <span class="math notranslate nohighlight">\(\forall \texttt{X}\)</span>, so we replace <code class="docutils literal notranslate"><span class="pre">Y</span></code> everywhere in the formula by <code class="docutils literal notranslate"><span class="pre">person_loved_by(X)</span></code>, where <code class="docutils literal notranslate"><span class="pre">person_loved_by</span></code> should be a <strong>new</strong> functor, not occurring anywhere else in the clause (or in any other clause). This new functor is called a <em>Skolem functor</em>, and the whole process is called <em>Skolemisation</em>. Note that, if the existential quantifier does not occur inside the scope of a universal quantifier, the Skolem functor does not get any arguments, i.e. it becomes a <em>Skolem constant</em>. For example, the formula</p>
+<div class="math notranslate nohighlight">
+\[
+\exists \texttt{X} \forall \texttt{Y} : \texttt{loves(X,Y)}
+\]</div>
+<p>(‘somebody loves everybody’) is translated to the clause</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">loves</span><span class="p">(</span><span class="s s-Atom">someone_who_loves_everybody</span><span class="p">,</span><span class="nv">X</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Finally, we illustrate the whole process of converting from Predicate Logic to clausal logic by means of an example. Consider the sentence ‘Everyone has a mother, but not every woman has a child’. In Predicate Logic, this can be represented as</p>
+<div class="math notranslate nohighlight">
+\[
+\forall \texttt{Y} \exists \texttt{X} :
+\texttt{mother_of(X,Y)} \land
+\neg \forall \texttt{Z} \exists \texttt{W} : \texttt{woman(Z)}
+\rightarrow \texttt{mother_of(Z,W)}
+\]</div>
+<p>First, we push the negation inside by means of the equivalences <span class="math notranslate nohighlight">\(\neg \forall X : F \equiv \exists X : \neg F\)</span> and <span class="math notranslate nohighlight">\(\neg \exists Y : G \equiv \forall Y : \neg G \)</span>, and the previously given propositional equivalences, giving</p>
+<div class="math notranslate nohighlight">
+\[
+\forall \texttt{Y} \exists \texttt{X} :
+\texttt{mother_of(X,Y)} \land \exists
+\texttt{Z} \forall \texttt{W} : \texttt{woman(Z)} \land \neg \texttt{mother_of(Z,W)}
+\]</div>
+<p>The existential quantifiers are Skolemised: <code class="docutils literal notranslate"><span class="pre">X</span></code> is replaced by <code class="docutils literal notranslate"><span class="pre">mother(Y)</span></code>, because it is in the scope of the universal quantifier <span class="math notranslate nohighlight">\(\forall \texttt{Y}\)</span>. <span class="math notranslate nohighlight">\(\texttt{Z}\)</span>, however, is not in the scope of a universal quantifier; therefore it is replaced by a Skolem constant <code class="docutils literal notranslate"><span class="pre">childless_woman</span></code>. The universal quantifiers can now be dropped:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp; \texttt{mother_of(mother(Y),Y)} \; \land \\
+&amp; \texttt{woman(childless_woman)} \; \land \\
+&amp; \neg \texttt{mother_of(childless_woman,W)}
+\end{align*}\]</div>
+<p>This formula is already in CNF, so we obtain the following set of clauses:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">mother_of</span><span class="p">(</span><span class="nf">mother</span><span class="p">(</span><span class="nv">Y</span><span class="p">),</span><span class="nv">Y</span><span class="p">).</span>
+<span class="nf">woman</span><span class="p">(</span><span class="s s-Atom">childless_woman</span><span class="p">).</span>
+<span class="p">:-</span> <span class="nf">mother_of</span><span class="p">(</span><span class="s s-Atom">childless_woman</span><span class="p">,</span><span class="nv">W</span><span class="p">).</span>
+</pre></div>
+</div>
+<div class="admonition exercise" id="ex-2-14">
+<p class="admonition-title"><span class="caption-number">Exercise 2.14 </span><a class="headerlink" href="#ex-2-14" title="Permalink to this exercise">#</a><a href="../appendices/c_2.html#sol-2-14" class="solution-link" title="Go to the solution"></a></p>
+<p>Translate to clausal logic:</p>
+<!--roman list-->
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\( \forall \texttt{X} \exists \texttt{Y} : \texttt{mouse(X)} \rightarrow \texttt{tail_of(Y,X)} \)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \forall \texttt{X} \exists \texttt{Y} : \texttt{loves(X,Y)} \land ( \forall \texttt{Z} : \texttt{loves(Y,Z)} ) \)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \forall \texttt{X} \forall \texttt{Y} \exists \texttt{Z} : \texttt{number(X)} \land \texttt{number(Y)} \rightarrow \texttt{maximum(X,Y,Z)} \)</span>.</p></li>
+</ol>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./src/text/1_part_i"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="2.4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2.4. </span>Definite clause logic</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2.6.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.6. </span>Further reading</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+<br/>
+  
+      &copy; Copyright 2015–2022.<br/>
+    <div class="extra_footer">
+      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
