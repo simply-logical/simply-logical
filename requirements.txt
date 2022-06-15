@@ -1,3 +1,2 @@
-jupyter-book==0.10.1
-sphinx-multitoc-numbering>=0.1.2
+jupyter-book==0.13.0
 sphinx-prolog>=0.5

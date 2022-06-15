@@ -15,11 +15,11 @@ Working on the online version gave me a much better appreciation of what is poss
 
 But none of this would matter if the *Simply Logical* content was by now hopelessly outdated -- as some may think indeed it is. After all, aren't today's AI systems, powered by machine learning, so powerful that they can be applied to acquire the ability to reason intelligently from data? Anyone who believes that has never tried a query such as 'books **not** written by Peter Flach' on their favourite machine learning-powered search engine. Learning and reasoning are broadly complementary skills requiring complementary techniques, much as a human's cognitive abilities are powered by complementary 'thinking fast' and 'thinking slow' skills. Intelligent reasoning has always been and continues to be a core topic in the AI syllabus, and logic-based declarative languages such as Prolog remain key ingredients.
 
-````{tip}
+```{tip}
 Having used the book for undergraduate and postgraduate teaching for many years, I decided against making major structural changes or adding substantial new material. I have, of course, taken the opportunity to include small improvements and corrections, such as using anonymous variables wherever appropriate, and slight punctuation improvements in clauses and queries.
 I have also inserted further examples from my teaching, formatted in boxes like this one.
-In parallel I am working on a separate {ref}`ch:glossary` that can be read either alongside or separate from the main text.
-````
+<!--In parallel I am working on a separate {ref}`ch:glossary` that can be read either alongside or separate from the main text.-->
+```
 
 Finally, I must pay tribute to the very significant and decisive role played by Kacper Sokol in creating and shaping this online resource. The work started in 2015, when Kacper converted the original content authored in a legacy version of Microsoft Word to static HTML. It was then integrated with [SWISH (SWI-Prolog for SHaring)](https://swish.swi-prolog.org/), so that the Prolog code could be run from within the browser. In 2020 Kacper began work on a new version based on Jupyter Book and the Sphinx Python Documentation Generator [^*_].
 The result is a modern-looking, platform-independent, aesthetically pleasing online format that sets a great example for what is possible today in computer-supported academic publishing. To a very large extent this is due to Kacper's initiative and technical skills. It has been a great pleasure and a privilege to work with him, and -- most importantly -- I have learned a great deal in the process.

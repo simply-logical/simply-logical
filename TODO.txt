@@ -1,9 +1,0 @@
-* TO DO
-
-long SWISH boxes at the end of sections 9.2 and 9.3
-turn appendices into runnable SWISH code
-
----
-
-Populate:
-* src/text/0_preface/glossary.md

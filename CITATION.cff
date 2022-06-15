@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this book, please cite it as below."
+authors:
+- family-names: "Flach"
+  given-names: "Peter"
+  orcid: "https://orcid.org/0000-0001-6857-5810"
+- family-names: "Sokol"
+  given-names: "Kacper"
+  orcid: "https://orcid.org/0000-0002-9869-5896"
+title: "Simply Logical: Intelligent Reasoning by Example (Online Edition)"
+version: v2.0
+doi: 10.5281/zenodo.1156977
+date-released: 2022-07-01
+url: "https://book.simply-logical.space/"
