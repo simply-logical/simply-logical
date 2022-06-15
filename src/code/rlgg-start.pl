@@ -52,4 +52,3 @@ theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-
 % same_predicate(L1,L2) <- literals L1 and L2 have
 %                          the same predicate and arity
 same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
-

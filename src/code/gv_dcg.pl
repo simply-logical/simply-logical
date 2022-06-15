@@ -31,13 +31,13 @@ graph -->
 header -->
     "digraph \n\c
     {\n\c
-    	overlap=false;\n\c
-    	spline=true;\n\c
-    	contentrate=true;\n\c
-    	node [shape=plaintext, fontname=\"Courier\", fontsize=12];\n\c
-    	edge [arrowhead=vee];\n\c
+        overlap=false;\n\c
+        spline=true;\n\c
+        contentrate=true;\n\c
+        node [shape=plaintext, fontname=\"Courier\", fontsize=12];\n\c
+        edge [arrowhead=vee];\n\c
         \n\c
-    	labeljust=\"l\";".
+        labeljust=\"l\";".
 
 footer -->
     "\n}".
@@ -73,5 +73,5 @@ edge(A,B) -->
     ";".
 
 term_to_codes(Term,Codes):-
-	term_to_atom(Term,Atom),
-	atom_codes(Atom,Codes).
+    term_to_atom(Term,Atom),
+    atom_codes(Atom,Codes).

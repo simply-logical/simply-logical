@@ -10,19 +10,19 @@ nqueens(N,Columns) :-
 %%% blind generator: permute rows
 permute([],[]).
 permute(L,[X|PR]):-
-	remove_one(X,L,R),
-	permute(R,PR).
-    
+    remove_one(X,L,R),
+    permute(R,PR).
+
 remove_one(X,[X|Ys],Ys).
 remove_one(X,[Y|Ys],[Y|Zs]):-
-	remove_one(X,Ys,Zs).
+    remove_one(X,Ys,Zs).
 
 %%% tester
 test([]).
 test([Column|Columns]) :-
     noattack(Column,Columns,1),
     test(Columns).
-    
+
 noattack(_,[],_).
 noattack(Y,[Y1|Ylist],Xdist) :-
     abs(Y-Y1) =\= Xdist,
@@ -32,5 +32,3 @@ noattack(Y,[Y1|Ylist],Xdist) :-
 /** <examples>
 ?- nqueens(8,Columns).
 */
-
-  

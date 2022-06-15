@@ -138,30 +138,30 @@ subs_term(Vars,SVars):-
 % element(X,Ys) <- X is an element of the list Ys
 element(X,[X|_Ys]).
 element(X,[_Y|Ys]):-
-	element(X,Ys).
+    element(X,Ys).
 
 % remove_one(X,Ys,Zs) <- Zs is list Ys minus one occurrence of X
 remove_one(X,[X|Ys],Ys).
 remove_one(X,[Y|Ys],[Y|Zs]):-
-	remove_one(X,Ys,Zs).
+    remove_one(X,Ys,Zs).
 
-% proper_subset(Xs,Ys) <- Xs is a subset of Ys, and Ys contains 
+% proper_subset(Xs,Ys) <- Xs is a subset of Ys, and Ys contains
 %                         at least one element more
 proper_subset([],Ys):-
-	Ys \= [].
+    Ys \= [].
 proper_subset([X|Xs],Ys):-
-	remove_one(X,Ys,Ys1),
-	proper_subset(Xs,Ys1).
+    remove_one(X,Ys,Ys1),
+    proper_subset(Xs,Ys1).
 
 %%% Preventing variables from getting instantiated.
 
 copy_element(X,Ys):-
-	element(X1,Ys),
-	copy_term(X1,X).
+    element(X1,Ys),
+    copy_term(X1,X).
 
 % try(Goal) <- Goal succeeds, but variables are not instantiated
 try(Goal):-
-	not(not(Goal)).
+    not(not(Goal)).
 
 
 %%% Specialisation graph and background knowledge %%%

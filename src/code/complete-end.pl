@@ -93,13 +93,13 @@ head_quants([HVar|HVars],Formula,forall(HVar,F)):-
 % variant of setof/3 which succeeds with the empty list
 % if no solutions can be found
 setof0(X,G,L):-
-	setof(X,G,L),!.
+    setof(X,G,L),!.
 setof0(_X,_G,[]).
 
-% same_predicate(L1,L2) <- literals L1 and L2 have 
+% same_predicate(L1,L2) <- literals L1 and L2 have
 %                          the same predicate and arity
 same_predicate(L1,L2):-
-	functor(L1,P,N),functor(L2,P,N).
+    functor(L1,P,N),functor(L2,P,N).
 
 varsin(Term,Vars):-
         varsin(Term,[],V),
@@ -119,6 +119,6 @@ varsin_args(N,Term,V0,V):-
         varsin_args(N1,Term,V1,V).
 
 var_element(X,[Y|_Ys]):-
-	X == Y.	% syntactic identity
+    X == Y.  % syntactic identity
 var_element(X,[_Y|Ys]):-
-	var_element(X,Ys).
+    var_element(X,Ys).

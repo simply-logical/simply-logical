@@ -4,13 +4,13 @@ prop_atom(man).
 prop_atom(adult).
 
 
-% Propositional atoms are trivially ground 
+% Propositional atoms are trivially ground
 ground_atom(A):-prop_atom(A).
 
 
 /** <examples>
-?- herbrand_base(B). 
-?- herbrand_interpretation(I). 
+?- herbrand_base(B).
+?- herbrand_interpretation(I).
 ?- ground_clause(C).
 ?- herbrand_interpretation(I),true_clause((married;bachelor:-man,adult),I).
 ?- herbrand_interpretation(I),false_clause((married;bachelor:-man,adult),I).

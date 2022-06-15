@@ -1,4 +1,4 @@
-cl(A,B):-clause(A,B). 
+cl(A,B):-clause(A,B).
 
 adder(N,X,Y,Z,Sum,Carry):-
     xorg(N-xor1,X,Y,S),

@@ -25,4 +25,3 @@ d(9,N) --> i(N),{N1 is N+1},i(N1).
 ?- phrase(roman(1984),R).
 ?- phrase(roman(Y),[m,c,m,l,x,x,x,i,v]).
 */
-  

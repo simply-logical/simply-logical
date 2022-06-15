@@ -3,7 +3,7 @@ diagnosis(Observation,Diagnosis):-
 
 abducible(fault(_X)).
 
-cl(A,B):-clause(A,B). 
+cl(A,B):-clause(A,B).
 
 % remove_one(X,Ys,Zs) <- Zs is list Ys minus one occurrence of X
 remove_one(X,[X|Ys],Ys).
