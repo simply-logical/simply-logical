@@ -11,6 +11,7 @@ exclude_patterns:
   - __pycache__
   - .github
   - README.md
+  - CONTRIBUTING.md
   - paper
   - src/ex
   - src/code/temp
