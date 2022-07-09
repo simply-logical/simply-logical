@@ -1,10 +1,16 @@
 /*Highlight the hyper-link marker when hovering over the "title" of figures.*/
-main.bd-content #main-content div.figure p.caption:hover a.headerlink {
-  opacity:.5;
+main#main-content figure figcaption:hover a.headerlink {
+  opacity: 0.5;
+  visibility: visible;
 }
 
 /*Justify the book text*/
-main.bd-content #main-content p {
+main#main-content p {
   text-align: justify;
   text-justify: auto;
+}
+
+/*Better scale text in tables placed in admonitions*/
+main#main-content div.admonition table {
+  width: revert;
 }
