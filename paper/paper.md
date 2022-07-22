@@ -51,7 +51,7 @@ This new version is more modular, easier to maintain and possible to split into
 custom teaching modules, in addition to being modern-looking, visually appealing
 and compatible with a range of (mobile) devices with varying screen sizes.
 
-# Artificial Intelligence and Logic Programming with SWI-Prolog #
+# Artificial Intelligence and Logic Programming with Prolog #
 
 <!-- learning objectives -->
 TODO
@@ -68,16 +68,25 @@ TODO
      and how someone might adopt it? -->
 <!-- Does the documentation explain how someone would adopt the module,
      and include examples of how to use it? -->
-TODO
-
-TODO:
-  Mention the *Artificial Intelligence with Logic Programming*
-  undergraduate course^[https://coms30106.github.io].
-
-TODO:
-  Mention the *Computational Logic for Artificial Intelligence*
-  master's course Interactive Artificial Intelligence Centre for Doctoral
-  Training^[https://www.bristol.ac.uk/cdt/interactive-ai/] (IAI CDT).
+The book has been the foundation of multiple courses taught to undergraduate
+and master's students at the University of Bristol and elsewhere, e.g.,
+King's College London, Queen Mary University of London, University of Cardiff,
+University College Cork, Tufts University, St. Joseph's University,
+University of Freiburg, Uppsala University, Free University Brussels, and
+University of Sevilla^[http://people.cs.bris.ac.uk/~flach/SL/Courses.html].
+Specifically, the *Artificial Intelligence with Logic Programming* undergraduate
+course^[https://coms30106.github.io/] offered at the University of Bristol
+followed the book quite closely;
+a collection of slides corresponding to the structure of the book is freely
+available as a supplementary educational
+resource^[https://github.com/simply-logical/slides/].
+A spiritual successor of this unit called
+*Computational Logic for Artificial Intelligence* is now taught as part of the
+curriculum delivered by the Interactive Artificial Intelligence Centre for
+Doctoral Training^[https://www.bristol.ac.uk/cdt/interactive-ai/] (IAI CDT).
+This unit takes a more modern approach by discussing the marriage of
+logic programming (with SWI-Prolog) and recent developments in data-driven
+machine learning^[https://github.com/simply-logical/ComputationalLogic/].
 
 # Statement of Need #
 
@@ -108,7 +117,7 @@ that is split into a collection of files based on their type:
 * figures are available as Scalable Vector Graphics (SVG).
 
 All of this content is published on
-GitHub^[https://github.com/simply-logical/simply-logical], which allows to
+GitHub^[https://github.com/simply-logical/simply-logical/], which allows to
 easily reuse these materials, incorporate them into bespoke courses or
 adapt them into alternative educational resources such as practical
 training sessions.
@@ -118,19 +127,19 @@ training sessions.
 From a technical perspective, the development of the online edition required us
 to implement a collection of Jupyter Book plugins (that are also compatible with
 Sphinx) spanning functionality specific to
-SWI-Prolog^[https://www.swi-prolog.org] [@wielemaker2012swiprolog],
-later extended to cplint^[https://cplint.ml.unife.it] [@riguzzi2018foundations]
-and ProbLog^[https://dtai.cs.kuleuven.be/problog] [@deraedt2007problog]
+SWI-Prolog^[https://www.swi-prolog.org/] [@wielemaker2012swiprolog],
+later extended to cplint^[https://cplint.ml.unife.it/] [@riguzzi2018foundations]
+and ProbLog^[https://dtai.cs.kuleuven.be/problog/] [@deraedt2007problog]
 programming languages.
 Specifically, we released
-`sphinx-prolog`^[https://github.com/simply-logical/sphinx-prolog], which
+`sphinx-prolog`^[https://github.com/simply-logical/sphinx-prolog/], which
 allows to embed interactive SWI-Prolog and cplint code boxes -- see Figure 1 --
 by including their source directly in a Markdown file via a custom Prolog code
 listing or load the programme from an external code file.
-This plugin is based on SWISH^[https://swish.swi-prolog.org] --
+This plugin is based on SWISH^[https://swish.swi-prolog.org/] --
 SWI-Prolog for Sharing -- which is an online, interactive SWI-Prolog coding
 environment akin to Jupyter Notebooks [@wielemaker2015swish].
-The `sphinx-problog`^[https://github.com/simply-logical/sphinx-problog]
+The `sphinx-problog`^[https://github.com/simply-logical/sphinx-problog/]
 extension, on the other hand, allows to embed interactive ProbLog code boxes,
 the implementation of which is based on the online execution environment
 underpinning the code examples published as part of the ProbLog website.
