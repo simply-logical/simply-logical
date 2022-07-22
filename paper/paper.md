@@ -54,14 +54,55 @@ and compatible with a range of (mobile) devices with varying screen sizes.
 # Artificial Intelligence and Logic Programming with Prolog #
 
 <!-- learning objectives -->
-TODO
+The book discusses methods to implement intelligent reasoning by means of
+Prolog programmes.
+It is written from the shared viewpoints of *Computational Logic* -- which
+strives to automate various kinds of reasoning -- and
+*Artificial Intelligence* -- which seeks to implement aspects of intelligent
+behaviour as computation.
+The combination of these two perspectives distinguishes this book among its
+peers and offers a unique learning experience.
+The readers working in Artificial Intelligence will find a detailed treatment of
+how the power of logic can be harnessed to solve some of the (practical)
+problems they may be facing.
+To support this learning objective the book provides a variety of interactive
+coding examples in the domains of natural language interpretation,
+abductive and inductive reasoning, and reasoning by default.
+Those acquainted with Logic Programming, on the other hand, will be interested
+in the practical side of many topics that in other educational materials
+mostly receive theoretical treatment -- many advanced programmes presented and
+explained in this book are not, in a didactic form, available elsewhere.
+The readers unfamiliar with either field will benefit from a comprehensive
+learning resource that collects diverse subjects and presents them consistently.
+This approach offers the best of both worlds: it introduces the theory of
+Logic Programming that does not intimidate novices to the field with superfluous
+mathematical machinery, nonetheless it offers strong theoretical foundations
+for the practical aspects of programming for Artificial Intelligence.
 
 <!-- contents summary -->
 <!-- Does the paper describe the learning materials and sequence?  -->
 TODO
 
 <!-- instructional design -->
-TODO
+As suggested by the title, this book presents intelligent reasoning techniques
+by example, therefore every method is accompanied by a Prolog implementation
+that, in the online edition, can be executed directly in a web browser.
+These code listings serve two didactic purposes: they engender understanding
+through hands-on experience, but more importantly the declarative reading of
+each implementation constitutes an integral part of the explanation of the
+underlying technique.
+The more elaborate programmes are carefully designed to explicitly communicate
+the steps taken to achieve the goal, explaining key issues along the way.
+Therefore, the book does not just focus on "How is this done in Prolog?",
+but rather on "How should I solve this problem, were I to start from scratch?"
+In other words, it embodies the "teaching by showing, learning by doing"
+philosophy.
+Despite the strong focus on practical examples, a substantial portion of the
+book is devoted to the theoretical underpinning of clausal logic and
+Logic Programming, however their presentation is primarily motivated by their
+instrumental role in understanding and implementing each particular technique.
+The book's preface offers a more comprehensive explanation of its instructional
+design and content^[https://book.simply-logical.space/src/simply-logical.html#author-s-preface].
 
 <!-- experience of use in teaching and learning situations -->
 <!-- Does it describe how it has been used in the classroom or other settings,
@@ -95,17 +136,17 @@ machine learning^[https://github.com/simply-logical/ComputationalLogic/].
 <!-- How these contribute to computationally enabled teaching and learning and
      how they might be adopted by others -->
 This online book offers an intuitive and comprehensive introduction to
-*artificial intelligence and logic programming* in the form of an accessible
+*Artificial Intelligence and Logic Programming* in the form of an accessible
 educational resource with a modern feel and look.
 The learning experience is enhanced with *exercises* and
 *practical coding examples*;
 the latter are delivered through interactive code boxes that can be executed
-directly in the web browser, thus fulfilling the original vision for the
+directly in a web browser, thus fulfilling the original vision for the
 paperback edition that was curtailed by the lack of appropriate technologies at
 the time of its publication.
 It is written with three kinds of readers in mind:
-*artificial intelligence* researchers or practitioners;
-*logic programming* researchers or practitioners; and
+*Artificial Intelligence* researchers or practitioners;
+*Logic Programming* researchers or practitioners; and
 students (advanced undergraduate or graduate level) in both fields.
 The book can be used as a teaching aid, but it is also suitable for self-study.
 It can be adopted as is or the content can be rearranged into a bespoke learning
