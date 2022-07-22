@@ -81,7 +81,25 @@ for the practical aspects of programming for Artificial Intelligence.
 
 <!-- contents summary -->
 <!-- Does the paper describe the learning materials and sequence?  -->
-TODO
+The book consists of three parts.
+Part I deals with Logic and Logic Programming and covers:
+
+* main concepts in Logic Programming, such as program clauses, query answering,
+  proof trees, and recursive data structures (Chapter 1);
+* rigorous discussion of resolution theorem proving in clausal logic, stepping
+  through propositional clausal logic, relational clausal logic (without
+  functors), full clausal logic, and definite clause logic, dealing on the way
+  with concepts such as Herbrand models and resolution refutations, as well as
+  meta-theoretical notions like soundness and completeness (Chapter 2); and
+* practical aspects of Prolog programming, including SLD-tree, cut,
+  arithmetic expressions, second-order predicates (e.g., `setof`),
+  various programming techniques (e.g., accumulators and difference lists)
+  as well as a general programming methodology, and meta-interpreters
+  (Chapter 3).
+
+Part II shifts the focus from the Logic Programming perspective to the
+Artificial Intelligence viewpoint, dealing predominantly with graphs and
+search.
 
 <!-- instructional design -->
 As suggested by the title, this book presents intelligent reasoning techniques
