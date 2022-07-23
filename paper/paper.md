@@ -84,8 +84,8 @@ for the practical aspects of programming for Artificial Intelligence.
 The book consists of three parts.
 Part I deals with Logic and Logic Programming and covers:
 
-* main concepts in Logic Programming, such as program clauses, query answering,
-  proof trees, and recursive data structures (Chapter 1);
+* main concepts in Logic Programming, such as programme clauses,
+  query answering, proof trees, and recursive data structures (Chapter 1);
 * rigorous discussion of resolution theorem proving in clausal logic, stepping
   through propositional clausal logic, relational clausal logic (without
   functors), full clausal logic, and definite clause logic, dealing on the way
@@ -100,6 +100,33 @@ Part I deals with Logic and Logic Programming and covers:
 Part II shifts the focus from the Logic Programming perspective to the
 Artificial Intelligence viewpoint, dealing predominantly with graphs and
 search.
+Chapter 4 discusses graphs found naturally in Prolog: in form of trees
+represented by terms (e.g., parse trees), and as search spaces spanned by
+predicates (e.g., SLD-trees).
+Next, Chapter 5 overviews depth-first search, iterative deepening and
+breadth-first search in the context of Logic Programming;
+moreover, it develops a breadth-first Prolog meta-interpreter and an
+(inefficient) interpreter for full clausal logic in addition to illustrating
+forward chaining with a programme that generates Herbrand models of a set of
+clauses.
+Chapter 6 discusses best-first search and its optimality, leading to
+the A* algorithm and a brief discussion of non-exhaustive heuristic search
+strategies (beam search and hill-climbing).
+Finally, Part III deals with advanced topics.
+Chapter 7 covers natural language parsing and interpretation, touching upon
+context-free grammar as well as definite clause resolution and grammar.
+Chapter 8 discusses reasoning with incomplete information in view of the Closed
+World Assumption and Predicate Completion.
+Specifically, it introduces abductive reasoning as well as default reasoning by
+means of negation as failure and defeasible default rules.
+Then, Chapter 9 deals inductively inferring a logic programme from examples,
+introducing and implementing concepts such as generality between clauses and
+anti-unification, which are fundamental to Inductive Logic Programming.
+(Appendices offer answers to selected exercises, an overview of built-in
+predicates in Prolog, a library of utility predicates underlying many
+programmes introduced throughout the book, and listings of two larger
+programmes for transforming a Predicate Logic formula to clausal logic and
+performing Predicate Completion.)
 
 <!-- instructional design -->
 As suggested by the title, this book presents intelligent reasoning techniques
