@@ -49,7 +49,7 @@ things, interactive SWI-Prolog code blocks that can be executed directly in
 a web browser.
 This new version is more modular, easier to maintain and possible to split into
 custom teaching modules, in addition to being modern-looking, visually appealing
-and compatible with a range of (mobile) devices with varying screen sizes.
+and compatible with a range of (mobile) devices of varying screen sizes.
 
 # Artificial Intelligence and Logic Programming with Prolog #
 
@@ -88,17 +88,17 @@ Part I deals with Logic and Logic Programming and covers:
   query answering, proof trees, and recursive data structures (Chapter 1);
 * rigorous discussion of resolution theorem proving in clausal logic, stepping
   through propositional clausal logic, relational clausal logic (without
-  functors), full clausal logic, and definite clause logic, dealing on the way
+  functors), full clausal logic, and definite clause logic, on the way dealing
   with concepts such as Herbrand models and resolution refutations, as well as
   meta-theoretical notions like soundness and completeness (Chapter 2); and
-* practical aspects of Prolog programming, including SLD-tree, cut,
+* practical aspects of Prolog programming, including SLD-trees, cuts,
   arithmetic expressions, second-order predicates (e.g., `setof`),
   various programming techniques (e.g., accumulators and difference lists)
   as well as a general programming methodology, and meta-interpreters
   (Chapter 3).
 
 Part II shifts the focus from the Logic Programming perspective to the
-Artificial Intelligence viewpoint, dealing predominantly with graphs and
+Artificial Intelligence viewpoint, predominantly dealing with graphs and
 search.
 Chapter 4 discusses graphs found naturally in Prolog: in form of trees
 represented by terms (e.g., parse trees), and as search spaces spanned by
@@ -106,12 +106,12 @@ predicates (e.g., SLD-trees).
 Next, Chapter 5 overviews depth-first search, iterative deepening and
 breadth-first search in the context of Logic Programming;
 moreover, it develops a breadth-first Prolog meta-interpreter and an
-(inefficient) interpreter for full clausal logic in addition to illustrating
+(inefficient) interpreter for full clausal logic, in addition to illustrating
 forward chaining with a programme that generates Herbrand models of a set of
 clauses.
 Chapter 6 discusses best-first search and its optimality, leading to
-the A* algorithm and a brief discussion of non-exhaustive heuristic search
-strategies (beam search and hill-climbing).
+the A$^\star$ algorithm and a brief discussion of non-exhaustive heuristic
+search strategies (beam search and hill-climbing).
 Finally, Part III deals with advanced topics.
 Chapter 7 covers natural language parsing and interpretation, touching upon
 context-free grammar as well as definite clause resolution and grammar.
@@ -119,11 +119,12 @@ Chapter 8 discusses reasoning with incomplete information in view of the Closed
 World Assumption and Predicate Completion.
 Specifically, it introduces abductive reasoning as well as default reasoning by
 means of negation as failure and defeasible default rules.
-Then, Chapter 9 deals inductively inferring a logic programme from examples,
-introducing and implementing concepts such as generality between clauses and
-anti-unification, which are fundamental to Inductive Logic Programming.
+Then, Chapter 9 deals with inductively inferring a logic programme from
+examples, introducing and implementing concepts such as generality between
+clauses and anti-unification, which are fundamental to Inductive Logic
+Programming.
 (Appendices offer answers to selected exercises, an overview of built-in
-predicates in Prolog, a library of utility predicates underlying many
+predicates in Prolog, a library of utility predicates underpinning many
 programmes introduced throughout the book, and listings of two larger
 programmes for transforming a Predicate Logic formula to clausal logic and
 performing Predicate Completion.)
@@ -162,12 +163,12 @@ University of Freiburg, Uppsala University, Free University Brussels, and
 University of Sevilla^[http://people.cs.bris.ac.uk/~flach/SL/Courses.html].
 Specifically, the *Artificial Intelligence with Logic Programming* undergraduate
 course^[https://coms30106.github.io/] offered at the University of Bristol
-followed the book quite closely;
+follows the book quite closely;
 a collection of slides corresponding to the structure of the book is freely
 available as a supplementary educational
 resource^[https://github.com/simply-logical/slides/].
-A spiritual successor of this unit called
-*Computational Logic for Artificial Intelligence* is now taught as part of the
+A spiritual successor of this unit is
+*Computational Logic for Artificial Intelligence* now taught as part of the
 curriculum delivered by the Interactive Artificial Intelligence Centre for
 Doctoral Training^[https://www.bristol.ac.uk/cdt/interactive-ai/] (IAI CDT).
 This unit takes a more modern approach by discussing the marriage of
@@ -195,7 +196,7 @@ It is written with three kinds of readers in mind:
 students (advanced undergraduate or graduate level) in both fields.
 The book can be used as a teaching aid, but it is also suitable for self-study.
 It can be adopted as is or the content can be rearranged into a bespoke learning
-resource, which is made possible due to the modular design of the book source
+resource, which is made possible by the modular design of the book source
 that is split into a collection of files based on their type:
 
 * text is written in Markdown -- each sub-section is placed in a separate file;
