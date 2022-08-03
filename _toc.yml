@@ -1,6 +1,6 @@
 # Simply Logical
 root: src/simply-logical
-title: 'Simply Logical<br>Intelligent Reasoning by Example'
+title: 'Simply Logical<br>Intelligent Reasoning by Example (Fully Interactive Online Edition)'
 entries:
   - title: Preface
     file: src/text/0_preface/_preface

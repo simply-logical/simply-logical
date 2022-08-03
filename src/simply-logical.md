@@ -1,5 +1,7 @@
 <!--# Simply Logical:<br>Intelligent Reasoning by Example #-->
 # Simply Logical #
+**Intelligent Reasoning by Example**  
+*(Fully Interactive Online Edition)*
 
 ![Simply Logical cover](/src/img/SLfront.gif "Simply Logical cover")
 
@@ -43,13 +45,13 @@ It follows the structure of the original print version, with minor corrections a
 
 #### Citation ####
 ```BibTeX
-@book{flach2018simply,
+@book{flach2022simply,
   author       = {Flach, Peter and Sokol, Kacper},
-  title        = {{S}imply {L}ogical: {I}ntelligent {R}easoning by {E}xample
-                  -- {O}nline {E}dition},
+  title        = {{S}imply {L}ogical -- {I}ntelligent {R}easoning by {E}xample
+                  ({F}ully {I}nteractive {O}nline {E}dition)},
   publisher    = {Zenodo},
-  year         = {2018},
-  month        = {jan},
+  year         = {2022},
+  month        = {aug},
   doi          = {10.5281/zenodo.1156977},
   url          = {https://doi.org/10.5281/zenodo.1156977}
 }
