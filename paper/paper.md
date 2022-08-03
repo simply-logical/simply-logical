@@ -1,6 +1,6 @@
 ---
 title: |
-  Simply Logical -- Intelligent Reasoning by Example\\\\
+  Simply Logical -- Intelligent Reasoning by Example\\
   (Fully Interactive Online Edition)
 tags:
   - Textbook
@@ -174,6 +174,8 @@ between logic programming (with SWI-Prolog) and recent developments in
 data-driven machine
 learning^[https://github.com/simply-logical/ComputationalLogic/].
 
+![Interactive SWI-Prolog code box based on SWISH. A code listing (left) can be turned into an interactive code box (right) by pressing the "play" button placed in the top-right corner.](codebox.png){width=95%}
+
 # Statement of Need #
 
 This online book offers an intuitive and comprehensive introduction to
@@ -228,8 +230,6 @@ technologies for composing (interactive) training resources, which in turn has
 inspired a prototype of a new publishing workflow in which multiple artefacts
 such as online documents, slides, and computational notebooks can be generated
 from a unified collection of source materials [@sokol2021you].
-
-![Interactive SWI-Prolog code box based on SWISH. A code listing (left) can be turned into an interactive code box (right) by pressing the "play" button placed in the top-right corner.](codebox.png){width=95%}
 
 # Acknowledgements #
 
