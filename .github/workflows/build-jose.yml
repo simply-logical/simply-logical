@@ -18,11 +18,11 @@ jobs:
     - name: Build draft LaTeX 📝
       uses: docker://openjournals/inara:latest
       with:
-        args: -o tex paper/paper.md
+        args: -o latex paper/paper.md
       env:
         GIT_SHA: $GITHUB_SHA
         JOURNAL: jose
-    - name: Upload draft PDF 📤
+    - name: Upload draft (PDF and LaTeX) 📤
       uses: actions/upload-artifact@v1
       with:
         name: jose-draft
