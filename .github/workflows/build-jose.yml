@@ -15,8 +15,15 @@ jobs:
       with:
         journal: jose
         paper-path: paper/paper.md
+    - name: Build draft LaTeX 📝
+      uses: docker://openjournals/inara:latest
+      with:
+        args: paper/paper.md --to=latex --output=paper/paper.tex
+      env:
+        GIT_SHA: $GITHUB_SHA
+        JOURNAL: jose
     - name: Upload draft PDF 📤
       uses: actions/upload-artifact@v1
       with:
         name: jose-draft
-        path: paper/paper.pdf
+        path: paper
