@@ -11,6 +11,8 @@ exclude_patterns:
   - __pycache__
   - .github
   - README.md
+  - CONTRIBUTING.md
+  - paper
   - src/ex
   - src/code/temp
   - src/text/0_preface/glossary.md
@@ -26,7 +28,7 @@ html:
   use_issues_button: true
   extra_navbar: >
     <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br>
-    <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+    <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
   extra_footer: >
     <p>
     This work is licenced under the

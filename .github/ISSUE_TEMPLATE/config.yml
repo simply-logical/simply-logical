@@ -1,11 +1,20 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Contribution Guidelines
+    url: https://github.com/simply-logical/simply-logical/blob/master/CONTRIBUTING.md
+    about: Description of how to contribute to the project.
   - name: Contact Information
     url: https://simply-logical.space/contact-us/
     about: Information on how to contact us.
+  - name: Slack
+    url: https://simply-logical.slack.com/
+    about: Please ask and answer questions here.
   - name: Gitter
     url: https://gitter.im/simply-logical/simply-logical/
-    about: Please ask and answer questions here.
+    about: Also for asking and answering questions.
   - name: Google Group
     url: https://groups.google.com/g/simply-logical/
     about: Alternative discussion channel.
+  - name: Email
+    url: mailto:contact@simply-logical.space
+    about: For asking private questions.
