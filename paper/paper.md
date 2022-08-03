@@ -1,6 +1,6 @@
 ---
 title: |
-  | Simply Logical -- Intelligent Reasoning by Example 
+  | Simply Logical -- Intelligent Reasoning by Example\ 
   | (Fully Interactive Online Edition)
 tags:
   - Textbook
