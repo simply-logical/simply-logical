@@ -1,4 +1,4 @@
-# Simply Logical – Intelligent Reasoning by Example #
+# Simply Logical – Intelligent Reasoning by Example (Fully Interactive Online Edition) #
 [![Licence](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)
 [![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)
 [![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
