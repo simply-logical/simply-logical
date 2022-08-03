@@ -1,6 +1,6 @@
 ---
 title: |
-  Simply Logical -- Intelligent Reasoning by Example
+  Simply Logical -- Intelligent Reasoning by Example\\\\
   (Fully Interactive Online Edition)
 tags:
   - Textbook
@@ -204,8 +204,6 @@ easily reuse these materials, incorporate them into bespoke courses, or
 adapt them into alternative educational resources such as practical
 training sessions.
 
-![Interactive SWI-Prolog code box based on SWISH. A code listing (left) can be turned into an interactive code box (right) by pressing the "play" button placed in the top-right corner.](codebox.png){width=95%}
-
 From a technical perspective, the development of the online edition required
 us to implement a collection of Jupyter Book plugins (that also work with
 Sphinx) spanning functionality specific to
@@ -230,6 +228,8 @@ technologies for composing (interactive) training resources, which in turn has
 inspired a prototype of a new publishing workflow in which multiple artefacts
 such as online documents, slides, and computational notebooks can be generated
 from a unified collection of source materials [@sokol2021you].
+
+![Interactive SWI-Prolog code box based on SWISH. A code listing (left) can be turned into an interactive code box (right) by pressing the "play" button placed in the top-right corner.](codebox.png){width=95%}
 
 # Acknowledgements #
 
