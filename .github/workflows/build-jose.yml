@@ -18,9 +18,7 @@ jobs:
     - name: Build draft LaTeX 📝
       uses: docker://openjournals/inara:latest
       with:
-        args:
-          - -o tex
-          - paper/paper.md
+        args: -o tex paper/paper.md
       env:
         GIT_SHA: $GITHUB_SHA
         JOURNAL: jose
