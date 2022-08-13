@@ -209,6 +209,13 @@ easily reuse these materials, incorporate them into bespoke courses, or
 adapt them into alternative educational resources such as practical
 training sessions.
 
+Having used the book for undergraduate and postgraduate teaching for many years, 
+we decided against making major structural changes or adding substantial new material. 
+We have, of course, taken the opportunity to include small improvements and corrections, 
+such as using anonymous variables wherever appropriate, and slight punctuation 
+improvements in clauses and queries. Other additions include additional examples 
+collected during years of teaching, formatted in clearly identifiable boxes. 
+
 From a technical perspective, the development of the online edition required
 us to implement a collection of Jupyter Book plugins (that also work with
 Sphinx) spanning functionality specific to
