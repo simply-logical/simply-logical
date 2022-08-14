@@ -21,9 +21,9 @@ authors:
     orcid: 0000-0002-9869-5896
     affiliation: 1
 affiliations:
-  - name: Department of Computer Science, University of Bristol
+  - name: Intelligent Systems Laboratory, University of Bristol, United Kingdom
     index: 1
-date: 03 August 2022
+date: 14 August 2022
 bibliography: paper.bib
 ---
 
@@ -49,7 +49,7 @@ the book from the ground up using the Jupyter Book platform [@jupyter2020book]
 enhanced with a collection of bespoke plugins that implement, among other
 things, interactive SWI-Prolog code blocks that can be executed directly in
 a web browser.
-This new version is more modular, easier to maintain, and possible to split
+This new version is more modular, easier to maintain, and can be split
 into custom teaching modules, in addition to being modern-looking, visually
 appealing, and compatible with a range of (mobile) devices of varying screen
 sizes.
@@ -85,9 +85,9 @@ for the practical aspects of programming for Artificial Intelligence.
 The book consists of three parts.
 Part I deals with Logic and Logic Programming and covers:
 
-* main concepts in Logic Programming, such as programme clauses,
+* key concepts in Logic Programming, such as programme clauses,
   query answering, proof trees, and recursive data structures (Chapter 1);
-* rigorous discussion of resolution theorem proving in clausal logic,
+* a rigorous discussion of resolution theorem proving in clausal logic,
   stepping through propositional clausal logic, relational clausal logic
   (without functors), full clausal logic, and definite clause logic,
   on the way dealing with concepts such as Herbrand models and resolution
@@ -102,7 +102,7 @@ Part I deals with Logic and Logic Programming and covers:
 Part II shifts the focus from the Logic Programming perspective to the
 Artificial Intelligence viewpoint, predominantly dealing with graphs and
 search.
-Chapter 4 discusses graphs found naturally in Prolog: in form of trees
+Chapter 4 discusses graphs found naturally in Prolog: in the form of trees
 represented by terms (e.g., parse trees) and as search spaces spanned by
 predicates (e.g., SLD-trees).
 Next, Chapter 5 overviews depth-first search, iterative deepening, and
@@ -114,9 +114,12 @@ clauses.
 Chapter 6 discusses best-first search and its optimality, leading to
 the A$^\star$ algorithm and a brief discussion of non-exhaustive heuristic
 search strategies (beam search and hill-climbing).
+
 Finally, Part III encompasses advanced topics.
-Chapter 7 covers natural language parsing and interpretation, touching upon
-context-free grammar as well as definite clause resolution and grammar.
+Chapter 7 covers natural language parsing and interpretation, in particular
+definite clause grammars.
+It also looks at semantics and natural language generation, culminating in a
+simple question-answering agent.
 Chapter 8 discusses reasoning with incomplete information in view of the Closed
 World Assumption and Predicate Completion.
 Specifically, it introduces abductive reasoning as well as default reasoning by
@@ -125,11 +128,12 @@ Then, Chapter 9 deals with inductively inferring a logic programme from
 examples, introducing and implementing concepts such as generality between
 clauses and anti-unification, which are fundamental to Inductive Logic
 Programming.
-(Appendices offer answers to selected exercises, an overview of built-in
+
+Appendices offer answers to selected exercises, an overview of built-in
 predicates in Prolog, a library of utility predicates underpinning many
 programmes introduced throughout the book, and listings of two larger
 programmes for transforming a Predicate Logic formula to clausal logic and
-performing Predicate Completion.)
+performing Predicate Completion.
 
 As suggested by the title, this book presents intelligent reasoning techniques
 by example, therefore every method is accompanied by a Prolog implementation
@@ -205,6 +209,15 @@ GitHub^[https://github.com/simply-logical/simply-logical/], which allows to
 easily reuse these materials, incorporate them into bespoke courses, or
 adapt them into alternative educational resources such as practical
 training sessions.
+
+Having used the book for undergraduate and postgraduate teaching for many
+years, we decided against making major structural changes or adding substantial
+new material.
+We have, of course, taken the opportunity to include small improvements and
+corrections, such as using anonymous variables wherever appropriate, and
+slight punctuation improvements in clauses and queries.
+Other additions include additional examples collected during years of teaching,
+formatted in clearly identifiable boxes.
 
 From a technical perspective, the development of the online edition required
 us to implement a collection of Jupyter Book plugins (that also work with
