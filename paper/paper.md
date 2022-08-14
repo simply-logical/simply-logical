@@ -27,7 +27,8 @@ date: 14 August 2022
 bibliography: paper.bib
 ---
 
-# Summary #
+<!-- Summary -->
+# Evolution of The Book #
 
 "Simply Logical -- Intelligent Reasoning by Example" by Peter Flach was first
 published by John Wiley in 1994 [@flach1994simply].
@@ -180,11 +181,12 @@ learning^[https://github.com/simply-logical/ComputationalLogic/].
 
 ![Interactive SWI-Prolog code box based on SWISH. A code listing (left) can be turned into an interactive code box (right) by pressing the "play" button placed in the top-right corner.](codebox.png){width=95%}
 
-# Statement of Need #
+<!-- Statement of Need -->
+# The Online Edition #
 
 This online book offers an intuitive and comprehensive introduction to
 *Artificial Intelligence and Logic Programming* in the form of an accessible
-educational resource with a modern feel and look.
+educational resource with a modern look and feel.
 The learning experience is enhanced with *exercises* and
 *practical coding examples*;
 the latter are delivered through interactive code boxes that can be executed
