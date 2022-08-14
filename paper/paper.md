@@ -216,8 +216,8 @@ new material.
 We have, of course, taken the opportunity to include small improvements and
 corrections, such as using anonymous variables wherever appropriate, and
 slight punctuation improvements in clauses and queries.
-Other additions include additional examples collected during years of teaching,
-formatted in clearly identifiable boxes.
+Other enhancements include additional examples collected during years of
+teaching, formatted in clearly identifiable boxes.
 
 From a technical perspective, the development of the online edition required
 us to implement a collection of Jupyter Book plugins (that also work with
