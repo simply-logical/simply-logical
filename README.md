@@ -1,9 +1,11 @@
-# Simply Logical – Intelligent Reasoning by Example (Fully Interactive Online Edition) #
-[![Licence](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)
 [![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)
 [![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg)](https://doi.org/10.5281/zenodo.1156977)
+[![arXiv](https://img.shields.io/badge/arXiv-2208.06823-red.svg)](https://arxiv.org/abs/2208.06823)  
+[![Licence](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)  
 [![Join the chat at https://gitter.im/simply-logical/simply-logical](https://badges.gitter.im/Simply-Logical/Simply_Logcal.svg)](https://gitter.im/simply-logical/simply-logical?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+# Simply Logical – Intelligent Reasoning by Example (Fully Interactive Online Edition) #
 
 ![Simply Logical cover](src/img/SLfront.gif "Simply Logical cover")
 

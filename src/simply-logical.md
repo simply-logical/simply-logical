@@ -21,7 +21,8 @@ In 2007 the copyright reverted back to the author and book and programs have bee
 In 2015, as a pilot, we ported most of the original book into an online, interactive website using SWI-Prolog's [SWISH platform](https://swish.swi-prolog.org/). Since then, we created the *Simply Logical* open source organisation committed to maintaining a suite of freely available interactive online educational resources about Artificial Intelligence and Logic Programming with Prolog. Visit our organisation's [website](https://simply-logical.space/) and [GitHub profile](https://github.com/simply-logical) for more details.
 
 ### PDF version ###
-[![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)  
+[![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)
+
 The PDF version of the original book is available as a [*GitHub release*](https://github.com/simply-logical/simply-logical/releases/tag/v1.0).
 
 #### Citation ####
@@ -36,12 +37,15 @@ The PDF version of the original book is available as a [*GitHub release*](https:
 ```
 
 ### Online version ###
-[![Licence](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg)](https://doi.org/10.5281/zenodo.1156977)
 [![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
-The online version of the book is hosted on [*GitHub Pages*](https://book.simply-logical.space).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg)](https://doi.org/10.5281/zenodo.1156977)  
+[![arXiv](https://img.shields.io/badge/arXiv-2208.06823-red.svg)](https://arxiv.org/abs/2208.06823)  
+[![Licence](https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://github.com/simply-logical/simply-logical/blob/master/LICENCE)
+
+The online edition of the book is hosted on [*GitHub Pages*](https://book.simply-logical.space).
 It is built with [Jupyter Book](https://jupyterbook.org/) and [SWISH](https://swish.swi-prolog.org/), the online version of [SWI-Prolog](https://swi-prolog.org/).
 It follows the structure of the original print version, with minor corrections and additions as explained in the {ref}`part:preface`.
+A brief description of how the online edition came to be is posted on [arXiv](https://arxiv.org/abs/2208.06823).
 
 #### Citation ####
 ```BibTeX
@@ -49,11 +53,9 @@ It follows the structure of the original print version, with minor corrections a
   author       = {Flach, Peter and Sokol, Kacper},
   title        = {{S}imply {L}ogical -- {I}ntelligent {R}easoning by {E}xample
                   ({F}ully {I}nteractive {O}nline {E}dition)},
-  publisher    = {Zenodo},
   year         = {2022},
-  month        = {aug},
   doi          = {10.5281/zenodo.1156977},
-  url          = {https://doi.org/10.5281/zenodo.1156977}
+  url          = {https://book.simply-logical.space/}
 }
 ```
 
