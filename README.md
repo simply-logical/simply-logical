@@ -27,6 +27,13 @@ You can download a free PDF copy or view an online version.
 [![PDF](https://img.shields.io/badge/read-PDF-green.svg)](https://github.com/simply-logical/simply-logical/releases/download/v1.0/SL.pdf)  
 The PDF version of the original book is available as a [*GitHub release*](https://github.com/simply-logical/simply-logical/releases/tag/v1.0).
 
+If you want to build the PDF version yourself, you can install openjournals/inara locally or use Docker:
+```
+docker run --rm -v $PWD:/data -u $(id -u):$(id -g) --env JOURNAL=jose openjournals/inara:latest -o pdf paper/paper.md
+```
+
+Note: the Docker command might log a "Killed" message if your instance of Docker runs out of memory. You might need as much as 14 GB allocated to Docker for the book.
+
 ## Online version ##
 [![Online](https://img.shields.io/badge/read-online-green.svg)](https://book.simply-logical.space)  
 The online version of the book is hosted on [*GitHub Pages*](https://book.simply-logical.space).
