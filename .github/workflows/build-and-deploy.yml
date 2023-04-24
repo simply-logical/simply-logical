@@ -3,7 +3,7 @@ on: push
 jobs:
   build-n-deploy:
     name: Build and deploy
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code 🛎️
       uses: actions/checkout@v2.3.1
