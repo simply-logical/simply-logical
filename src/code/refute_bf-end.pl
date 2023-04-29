@@ -19,7 +19,7 @@ conj_remove_one(X,(Y,Ys),(Y,Zs)):-
 
 %%% object-level program
 cl((bachelor(X);married(X):-man(X),adult(X))).
-cl((has_wife(X):-man(X),married(X))).
-cl((false:-has_wife(paul))).
+cl((has_spouse(X):-man(X),married(X))).
+cl((false:-has_spouse(paul))).
 cl((man(paul):-true)).
 cl((adult(paul):-true)).
