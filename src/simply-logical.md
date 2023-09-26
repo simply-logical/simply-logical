@@ -5,7 +5,7 @@
 
 ![Simply Logical cover](/src/img/SLfront.gif "Simply Logical cover")
 
-*by [Peter Flach](https://www.cs.bris.ac.uk/~flach/index.html), then at [Tilburg University](https://www.tilburguniversity.edu/), the Netherlands*  
+*by [Peter Flach](http://people.cs.bris.ac.uk/~flach/index.html), then at [Tilburg University](https://www.tilburguniversity.edu/), the Netherlands*  
 [John Wiley](https://www.wiley.com/en-gb) 1994, xvi + 240 pages, ISBN 0471 94152 2  
 Reprinted: December 1994, July 1998.
 
@@ -16,7 +16,7 @@ Reprinted: December 1994, July 1998.
 ### History ###
 "Simply Logical -- Intelligent Reasoning by Example" by Peter Flach was first published by John Wiley in 1994. It could be purchased as book-only or with a 3.5 inch diskette containing the Prolog programs printed in the book (for various operating systems).
 
-In 2007 the copyright reverted back to the author and book and programs have been freely available [online](https://www.cs.bris.ac.uk/~flach/SimplyLogical.html) ever since. The print version is no longer available through John Wiley publishers.
+In 2007 the copyright reverted back to the author and book and programs have been freely available [online](http://people.cs.bris.ac.uk/~flach/SimplyLogical.html) ever since. The print version is no longer available through John Wiley publishers.
 
 In 2015, as a pilot, we ported most of the original book into an online, interactive website using SWI-Prolog's [SWISH platform](https://swish.swi-prolog.org/). Since then, we created the *Simply Logical* open source organisation committed to maintaining a suite of freely available interactive online educational resources about Artificial Intelligence and Logic Programming with Prolog. Visit our organisation's [website](https://simply-logical.space/) and [GitHub profile](https://github.com/simply-logical) for more details.
 
@@ -32,7 +32,7 @@ The PDF version of the original book is available as a [*GitHub release*](https:
   title        = {{S}imply {L}ogical: {I}ntelligent {R}easoning by {E}xample},
   publisher    = {John Wiley},
   year         = {1994},
-  url          = {https://www.cs.bris.ac.uk/~flach/SimplyLogical.html}
+  url          = {http://people.cs.bris.ac.uk/~flach/index.html}
 }
 ```
 
