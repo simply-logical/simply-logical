@@ -14,3 +14,10 @@ main#main-content p {
 main#main-content div.admonition table {
   width: revert;
 }
+
+div.highlight-pProlog div.highlight pre {
+  /* background-color: rgba(var(--pst-color-preformatted-background),1); */
+  /* background-color: #FEF9EC; */
+  /* background-color: #FFF0F5; */
+  background-color: #F0FFFF;
+}
