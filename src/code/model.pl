@@ -37,7 +37,7 @@ disj_element(X,(_Y;Ys)):-
 
 %%% Example disjunctive clauses to compute model for
 cl((married(X);bachelor(X):-man(X),adult(X))).
-cl((has_wife(X):-married(X),man(X))).
+cl((has_spouse(X):-married(X),man(X))).
 cl((man(paul):-true)).
 cl((adult(paul):-true)).
 
