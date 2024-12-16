@@ -1,3 +1,7 @@
+:root {
+  color-scheme: light dark;
+}
+
 /*Highlight the hyper-link marker when hovering over the "title" of figures.*/
 main#main-content figure figcaption:hover a.headerlink {
   opacity: 0.5;
@@ -19,5 +23,5 @@ div.highlight-pProlog div.highlight pre {
   /* background-color: rgba(var(--pst-color-preformatted-background),1); */
   /* background-color: #FEF9EC; */
   /* background-color: #FFF0F5; */
-  background-color: #F0FFFF;
+  background-color: light-dark(#F0FFFF, #242525);
 }
