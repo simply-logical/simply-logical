@@ -1,2 +1,5 @@
-jupyter-book==0.13.0
-sphinx-prolog>=0.5
+jupyter-book==1.0.3
+lxml[html_clean]==5.3.0
+# lxml==5.3.0
+# lxml_html_clean==0.4.1
+sphinx-prolog>=0.6

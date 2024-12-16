@@ -3,7 +3,7 @@ author: >
   <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and
   <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>,
   University of Bristol, United Kingdom
-copyright: '2015–2023'
+copyright: '2015–2024'
 logo: src/img/SL.svg
 
 exclude_patterns:
@@ -36,6 +36,11 @@ html:
     Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
     </p>
     <p>
+    <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+    &nbsp; &nbsp; &nbsp;
+    <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a>
+    </p>
+    <p>
     This book discusses methods to implement intelligent reasoning by means of
     Prolog programs.
     The book is written from the shared viewpoints of Computational Logic,
@@ -43,7 +48,8 @@ html:
     Intelligence, which seeks to implement aspects of intelligent behaviour on
     a computer.
     </p>
-  google_analytics_id: G-JFZBHCMB8V
+  analytics:
+    google_analytics_id: G-JFZBHCMB8V
   home_page_in_navbar: true
 
 parse:
@@ -68,6 +74,47 @@ sphinx:
     - sphinx_prolog.swish
     - sphinx_prolog.pprolog
   config:
+    html_theme_options:
+      repository_url: https://github.com/simply-logical/simply-logical
+      repository_branch: master
+      use_edit_page_button: true
+      use_repository_button: true
+      use_issues_button: true
+      home_page_in_toc: true
+      logo:
+        text: Simply Logical
+        image_light: src/img/SL.svg
+        image_dark: src/img/SL.svg
+      icon_links:
+        - name: Licence
+          url: https://github.com/simply-logical/simply-logical/blob/master/LICENCE
+          icon: https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg
+          type: url
+        # - name: DOI
+        #   url: https://doi.org/10.5281/zenodo.1156977
+        #   icon: https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg
+        #   type: url
+      extra_footer: >
+        <p>
+        This work is licenced under the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
+        Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+        </p>
+        <p>
+        <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
+        &nbsp; &nbsp; &nbsp;
+        <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a>
+        </p>
+        <p>
+        This book discusses methods to implement intelligent reasoning by means of
+        Prolog programs.
+        The book is written from the shared viewpoints of Computational Logic,
+        which aims at automating various kinds of reasoning, and Artificial
+        Intelligence, which seeks to implement aspects of intelligent behaviour on
+        a computer.
+        </p>
+      analytics:
+        google_analytics_id: G-JFZBHCMB8V
     html_extra_path:
       - README.md
       - LICENCE
