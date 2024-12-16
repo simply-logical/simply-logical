@@ -1,127 +1,204 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>8.1. Default reasoning &#8212; Simply Logical</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css?v=c1617293" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css?v=711a7f8d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css?v=a05dc249" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sl.css?v=3011a09a" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script src="../../../_static/lpn.js"></script>
-    <script src="../../../_static/jquery-ui.min.js"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a6b63e94"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/jquery.js?v=3d1d8b85"></script>
+    <script src="../../../_static/jquery-ui.min.js?v=27a1b71a"></script>
+    <script src="../../../_static/lpn.js?v=199b1815"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JFZBHCMB8V"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JFZBHCMB8V');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JFZBHCMB8V');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/text/3_part_iii/8.1';</script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="8.2. The semantics of incomplete information" href="8.2.html" />
     <link rel="prev" title="8. Reasoning with incomplete information" href="8.0.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JFZBHCMB8V"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-JFZBHCMB8V');
-                </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
-    
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../simply-logical.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/SL.svg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Simply Logical</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../../_static/SL.svg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/SL.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Simply Logical</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE" title="Licence" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg" class="icon-link-image" alt="Licence"/></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -131,708 +208,325 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../0_preface/_preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../1_part_i/_part_i.html">
-   I. Logic and Logic Programming
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../1_part_i/1.0.html">
-     1. A brief introduction to clausal logic
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/1.1.html">
-       1.1. Answering queries
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/1.2.html">
-       1.2. Recursion
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/1.3.html">
-       1.3. Structured terms
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/1.4.html">
-       1.4. What else is there to know about clausal logic?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../1_part_i/2.0.html">
-     2. Clausal logic and resolution: theoretical backgrounds
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/2.1.html">
-       2.1. Propositional clausal logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/2.2.html">
-       2.2. Relational clausal logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/2.3.html">
-       2.3. Full clausal logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/2.4.html">
-       2.4. Definite clause logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/2.5.html">
-       2.5. The relation between clausal logic and Predicate Logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/2.6.html">
-       2.6. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../1_part_i/3.0.html">
-     3. Logic Programming and Prolog
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-    <label for="toctree-checkbox-4">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.1.html">
-       3.1. SLD-resolution
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.2.html">
-       3.2. Pruning the search by means of cut
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.3.html">
-       3.3. Negation as failure
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.4.html">
-       3.4. Other uses of cut
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.5.html">
-       3.5. Arithmetic expressions
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.6.html">
-       3.6. Accumulators
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.7.html">
-       3.7. Second-order predicates
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.8.html">
-       3.8. Meta-programs
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.9.html">
-       3.9. A methodology of Prolog programming
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../1_part_i/3.10.html">
-       3.10. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../2_part_ii/_part_ii.html">
-   II. Reasoning with structured knowledge
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../2_part_ii/4.0.html">
-     4. Representing structured knowledge
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-    <label for="toctree-checkbox-6">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/4.1.html">
-       4.1. Trees as terms
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/4.2.html">
-       4.2. Graphs generated by a predicate
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/4.3.html">
-       4.3. Inheritance hierarchies
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/4.4.html">
-       4.4. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../2_part_ii/5.0.html">
-     5. Searching graphs
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-    <label for="toctree-checkbox-7">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/5.1.html">
-       5.1. A general search procedure
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/5.2.html">
-       5.2. Depth-first search
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/5.3.html">
-       5.3. Breadth-first search
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/5.4.html">
-       5.4. Forward chaining
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/5.5.html">
-       5.5. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../2_part_ii/6.0.html">
-     6. Informed search
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label for="toctree-checkbox-8">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/6.1.html">
-       6.1. Best-first search
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/6.2.html">
-       6.2. Optimal best-first search
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/6.3.html">
-       6.3. Non-exhaustive informed search
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../2_part_ii/6.4.html">
-       6.4. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="_part_iii.html">
-   III. Advanced reasoning techniques
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="7.0.html">
-     7. Reasoning with natural language
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="7.1.html">
-       7.1. Grammars and parsing
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="7.2.html">
-       7.2. Definite Clause Grammars
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="7.3.html">
-       7.3. Interpretation of natural language
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="7.4.html">
-       7.4. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="reference internal" href="8.0.html">
-     8. Reasoning with incomplete information
-    </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul class="current">
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       8.1. Default reasoning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="8.2.html">
-       8.2. The semantics of incomplete information
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="8.3.html">
-       8.3. Abduction and diagnostic reasoning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="8.4.html">
-       8.4. The complete picture
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="8.5.html">
-       8.5. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="9.0.html">
-     9. Inductive reasoning
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="9.1.html">
-       9.1. Generalisation and specialisation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="9.2.html">
-       9.2. Bottom-up induction
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="9.3.html">
-       9.3. Top-down induction
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="9.4.html">
-       9.4. Further reading
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../appendices/_appendices.html">
-   Additional materials
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../appendices/a_0.html">
-     10. A catalogue of useful predicates
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/a_1.html">
-       10.1. Built-in predicates
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/a_2.html">
-       10.2. A library of utility predicates
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../appendices/b_0.html">
-     11. Two programs for logical conversion
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/b_1.html">
-       11.1. From Predicate Logic to clausal logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/b_2.html">
-       11.2. Predicate Completion
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../appendices/c_0.html">
-     12. Answers to selected exercises
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_1.html">
-       12.1. A brief introduction to clausal logic
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_2.html">
-       12.2. Clausal logic and resolution: theoretical backgrounds
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_3.html">
-       12.3. Logic Programming and Prolog
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_4.html">
-       12.4. Representing structured knowledge
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_5.html">
-       12.5. Searching graphs
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_6.html">
-       12.6. Informed search
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_7.html">
-       12.7. Reasoning with natural language
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_8.html">
-       12.8. Reasoning with incomplete information
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../appendices/c_9.html">
-       12.9. Inductive reasoning
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://simply-logical.space/">
-   Simply Logical Organisation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="http://people.cs.bris.ac.uk/~flach/SimplyLogical.html">
-   Original Book Home
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../0_preface/_preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_part_i/_part_i.html">I. Logic and Logic Programming</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../1_part_i/1.0.html">1. A brief introduction to clausal logic</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/1.1.html">1.1. Answering queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/1.2.html">1.2. Recursion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/1.3.html">1.3. Structured terms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/1.4.html">1.4. What else is there to know about clausal logic?</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../1_part_i/2.0.html">2. Clausal logic and resolution: theoretical backgrounds</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/2.1.html">2.1. Propositional clausal logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/2.2.html">2.2. Relational clausal logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/2.3.html">2.3. Full clausal logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/2.4.html">2.4. Definite clause logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/2.5.html">2.5. The relation between clausal logic and Predicate Logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/2.6.html">2.6. Further reading</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../1_part_i/3.0.html">3. Logic Programming and Prolog</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.1.html">3.1. SLD-resolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.2.html">3.2. Pruning the search by means of cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.3.html">3.3. Negation as failure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.4.html">3.4. Other uses of cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.5.html">3.5. Arithmetic expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.6.html">3.6. Accumulators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.7.html">3.7. Second-order predicates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.8.html">3.8. Meta-programs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.9.html">3.9. A methodology of Prolog programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1_part_i/3.10.html">3.10. Further reading</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_part_ii/_part_ii.html">II. Reasoning with structured knowledge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_part_ii/4.0.html">4. Representing structured knowledge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/4.1.html">4.1. Trees as terms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/4.2.html">4.2. Graphs generated by a predicate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/4.3.html">4.3. Inheritance hierarchies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/4.4.html">4.4. Further reading</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_part_ii/5.0.html">5. Searching graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/5.1.html">5.1. A general search procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/5.2.html">5.2. Depth-first search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/5.3.html">5.3. Breadth-first search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/5.4.html">5.4. Forward chaining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/5.5.html">5.5. Further reading</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_part_ii/6.0.html">6. Informed search</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/6.1.html">6.1. Best-first search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/6.2.html">6.2. Optimal best-first search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/6.3.html">6.3. Non-exhaustive informed search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_part_ii/6.4.html">6.4. Further reading</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="_part_iii.html">III. Advanced reasoning techniques</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="7.0.html">7. Reasoning with natural language</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="7.1.html">7.1. Grammars and parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7.2.html">7.2. Definite Clause Grammars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7.3.html">7.3. Interpretation of natural language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7.4.html">7.4. Further reading</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="8.0.html">8. Reasoning with incomplete information</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">8.1. Default reasoning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8.2.html">8.2. The semantics of incomplete information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8.3.html">8.3. Abduction and diagnostic reasoning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8.4.html">8.4. The complete picture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8.5.html">8.5. Further reading</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="9.0.html">9. Inductive reasoning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="9.1.html">9.1. Generalisation and specialisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9.2.html">9.2. Bottom-up induction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9.3.html">9.3. Top-down induction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9.4.html">9.4. Further reading</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../appendices/_appendices.html">Additional materials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../appendices/a_0.html">10. A catalogue of useful predicates</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/a_1.html">10.1. Built-in predicates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/a_2.html">10.2. A library of utility predicates</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../appendices/b_0.html">11. Two programs for logical conversion</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/b_1.html">11.1. From Predicate Logic to clausal logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/b_2.html">11.2. Predicate Completion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../appendices/c_0.html">12. Answers to selected exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_1.html">12.1. A brief introduction to clausal logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_2.html">12.2. Clausal logic and resolution: theoretical backgrounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_3.html">12.3. Logic Programming and Prolog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_4.html">12.4. Representing structured knowledge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_5.html">12.5. Searching graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_6.html">12.6. Informed search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_7.html">12.7. Reasoning with natural language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_8.html">12.8. Reasoning with incomplete information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendices/c_9.html">12.9. Inductive reasoning</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://simply-logical.space/">Simply Logical Organisation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://people.cs.bris.ac.uk/~flach/SimplyLogical.html">Original Book Home</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a></br> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a>
-
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/simply-logical/simply-logical" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/3_part_iii/8.1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/3_part_iii/8.1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/src/text/3_part_iii/8.1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/simply-logical/simply-logical"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/simply-logical/simply-logical/issues/new?title=Issue%20on%20page%20%2Fsrc/text/3_part_iii/8.1.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/simply-logical/simply-logical/edit/master/src/text/3_part_iii/8.1.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/src/text/3_part_iii/8.1.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button>
 
-      </li>
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
       
-    </ul>
-  </div>
+    </div>
+  
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Default reasoning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Default reasoning</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <!--H3: Section 8.1-->
 <section class="tex2jax_ignore mathjax_ignore" id="default-reasoning">
-<span id="sec-8-1"></span><h1><span class="section-number">8.1. </span>Default reasoning<a class="headerlink" href="#default-reasoning" title="Permalink to this headline">#</a></h1>
+<span id="sec-8-1"></span><h1><span class="section-number">8.1. </span>Default reasoning<a class="headerlink" href="#default-reasoning" title="Link to this heading">#</a></h1>
 <p>Consider the following argument:</p>
 <blockquote>
 <div><p>‘Tweety is a bird.’<br />
@@ -863,9 +557,9 @@ title="Print to PDF"
 </div>
 <p>Since general clauses extend the language of definite clauses, we must extend both proof theory and semantics to deal with the negation symbol <code class="docutils literal notranslate"><span class="pre">not</span></code>. A practical way to do this has been discussed in <a class="reference internal" href="../1_part_i/3.3.html#sec-3-3"><span class="std std-numref">Section 3.3</span></a>, where we treated <code class="docutils literal notranslate"><span class="pre">not/1</span></code> as a Prolog meta-predicate, implemented by means of cut. Under this interpretation, we can prove that Tweety flies (<a class="reference internal" href="#fig-8-1"><span class="std std-numref">Figure 8.1</span></a>).</p>
 <figure class="align-default" id="fig-8-1">
-<a class="reference internal image-reference" href="../../../_images/image0082.svg"><img alt="../../../_images/image0082.svg" src="../../../_images/image0082.svg" width="60%" /></a>
+<a class="reference internal image-reference" href="../../../_images/image0082.svg"><img alt="../../../_images/image0082.svg" src="../../../_images/image0082.svg" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 8.1 </span><span class="caption-text">Tweety flies by negation as failure.</span><a class="headerlink" href="#fig-8-1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Figure 8.1 </span><span class="caption-text">Tweety flies by negation as failure.</span><a class="headerlink" href="#fig-8-1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>What happens if we learn that Tweety is an ostrich, and that ostriches are non-flying birds? We should add a clause which says that ostriches are abnormal (when it comes to flying):</p>
@@ -877,9 +571,9 @@ title="Print to PDF"
 </div>
 <p>As the SLD-tree in <a class="reference internal" href="#fig-8-2"><span class="std std-numref">Figure 8.2</span></a> shows, Prolog is now unable to prove that Tweety flies, since Tweety is provably abnormal. We say that the <em>default rule</em> ‘normally birds fly’ is <em>cancelled</em> by a more <em>specific</em> rule (about ostriches).</p>
 <figure class="align-default" id="fig-8-2">
-<a class="reference internal image-reference" href="../../../_images/image0102.svg"><img alt="../../../_images/image0102.svg" src="../../../_images/image0102.svg" width="60%" /></a>
+<a class="reference internal image-reference" href="../../../_images/image0102.svg"><img alt="../../../_images/image0102.svg" src="../../../_images/image0102.svg" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 8.2 </span><span class="caption-text">Tweety doesn’t fly, since it is an ostrich.</span><a class="headerlink" href="#fig-8-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Figure 8.2 </span><span class="caption-text">Tweety doesn’t fly, since it is an ostrich.</span><a class="headerlink" href="#fig-8-2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition exercise" id="ex-8-1">
@@ -1102,7 +796,7 @@ contradiction(A,E):-
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./src/text/3_part_iii"
         },
         predefinedOutput: true
@@ -1113,55 +807,93 @@ contradiction(A,E):-
     <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
 
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="8.0.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8. </span>Reasoning with incomplete information</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="8.0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Reasoning with incomplete information</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="8.2.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="8.2.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">8.2. </span>The semantics of incomplete information</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
-<br/>
-  
-      &copy; Copyright 2015–2023.<br/>
-    <div class="extra_footer">
-      <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
-
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By <a href="mailto:Peter.Flach@bristol.ac.uk">Peter Flach</a> and <a href="mailto:K.Sokol@bristol.ac.uk">Kacper Sokol</a>, University of Bristol, United Kingdom
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2015–2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> <a href="https://github.com/simply-logical/simply-logical/blob/master/LICENCE"><img src="https://img.shields.io/badge/Licence-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="Licence"></a> &nbsp; &nbsp; &nbsp; <a href="https://doi.org/10.5281/zenodo.1156977"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1156977.svg" alt="DOI"></a> </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
+
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

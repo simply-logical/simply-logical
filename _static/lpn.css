@@ -1,8 +1,12 @@
+:root {
+  color-scheme: light dark;
+}
+
 div.source {
   position: relative;
   margin: 10px 2ex;
-  border: 1px solid #888;
-  background-color: #eee;
+  border: 1px solid light-dark(#888, #1d1d1d);
+  background-color: light-dark(#eee, #242424);
   padding: 4px 8px;
   border-radius: 5px;
 }
@@ -11,8 +15,8 @@ div.source {
 div.answer {
   position: relative;
   margin: 10px 2ex;
-  border: 1px solid #888;
-  background-color: #eee;
+  border: 1px solid light-dark(#888, #1d1d1d);
+  background-color: light-dark(#eee, #242424);
   padding: 4px 8px;
   border-radius: 5px;
 }

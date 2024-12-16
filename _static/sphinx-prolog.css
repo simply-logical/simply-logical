@@ -1,18 +1,28 @@
+/*
+Colours from:
+https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/styling.html
+https://github.com/pydata/pydata-sphinx-theme/blob/main/src/pydata_sphinx_theme/assets/styles/variables/_color.scss
+*/
+
+:root {
+  color-scheme: light dark;
+}
+
 /*Exercise directive*/
 .admonition.exercise {
-  border-color:#28a745;
+  border-color: light-dark(#f66a0a, #ff9245);
 }
 .admonition.exercise .admonition-title {
-  background-color: #f2fdf3;
+  background-color: light-dark(#f8e3d0, #652a02);
 }
-.admonition.exercise .admonition-title:before {
-  color:#28a745;
+.admonition.exercise .admonition-title:after {
+  color: light-dark(#f66a0a, #ff9245);
   content:"";
 }
 .admonition.exercise .admonition-title .solution-link {
-  color:#ffc107;
+  color: light-dark(#00843f, #5fb488);
   float: right;
-  font-family: Font Awesome\ 5 Free;
+  font-family: Font Awesome\ 6 Free;
   text-decoration: none;
   opacity:.3;
 }
@@ -23,19 +33,19 @@
 
 /*Exercise solution directive*/
 .admonition.solution {
-  border-color:#ffc107;
+  border-color: light-dark(#00843f, #5fb488);
 }
 .admonition.solution .admonition-title {
-  background-color: #fff6dd;
+  background-color: light-dark(#d6ece1, #002f17);
 }
-.admonition.solution .admonition-title:before {
-  color:#ffc107;
+.admonition.solution .admonition-title:after {
+  color: light-dark(#00843f, #5fb488);
   content:"";
 }
 .admonition.solution .admonition-title .exercise-link {
-  color:#28a745;
+  color: light-dark(#f66a0a, #ff9245);
   float: right;
-  font-family: Font Awesome\ 5 Free;
+  font-family: Font Awesome\ 6 Free;
   text-decoration: none;
   opacity:.3;
 }
