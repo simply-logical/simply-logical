@@ -133,15 +133,6 @@
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">sentence</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
-             id="g106"><text
-               transform="translate(409.9296,9)"
-               id="text108"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan110"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
              id="g112"><text
                transform="translate(416.9208,9)"
                id="text114"><tspan
@@ -167,15 +158,6 @@
                  y="0"
                  id="tspan128"
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">noun_phrase</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
-             id="g130"><text
-               transform="translate(410.9032,44)"
-               id="text132"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan134"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
              id="g136"><text
@@ -214,15 +196,6 @@
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">article</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
-             id="g160"><text
-               transform="translate(412.9132,83)"
-               id="text162"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan164"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
              id="g166"><text
                transform="translate(419.9008,83)"
                id="text168"><tspan
@@ -239,15 +212,6 @@
                  y="0"
                  id="tspan176"
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">adjective</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
-             id="g178"><text
-               transform="translate(413.91,122)"
-               id="text180"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan182"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
              id="g184"><text
@@ -268,15 +232,6 @@
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">noun</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
-             id="g196"><text
-               transform="translate(412.9504,160)"
-               id="text198"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan200"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
              id="g202"><text
                transform="translate(419.938,160)"
                id="text204"><tspan
@@ -293,15 +248,6 @@
                  y="0"
                  id="tspan212"
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">verb_phrase</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
-             id="g214"><text
-               transform="translate(417.9296,205)"
-               id="text216"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan218"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
              id="g220"><text
@@ -331,15 +277,6 @@
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">transitive_verb</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
-             id="g238"><text
-               transform="translate(475.886,248)"
-               id="text240"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan242"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
              id="g244"><text
                transform="translate(482.8784,248)"
                id="text246"><tspan
@@ -358,15 +295,6 @@
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">noun_phrase</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
-             id="g256"><text
-               transform="translate(447.9164,291)"
-               id="text258"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan260"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
              id="g262"><text
                transform="translate(454.9088,291)"
                id="text264"><tspan
@@ -383,15 +311,6 @@
                  y="0"
                  id="tspan272"
                  style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">proper_noun</tspan></text>
-</g><g
-             transform="matrix(1,0,0,-1,0,375)"
-             id="g274"><text
-               transform="translate(452.9164,331)"
-               id="text276"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan278"
-                 style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier">!</tspan></text>
 </g><g
              transform="matrix(1,0,0,-1,0,375)"
              id="g280"><text
